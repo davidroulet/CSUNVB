@@ -5,7 +5,13 @@ require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
 
-$action = $_GET['action'];
+if(isset($_GET['action']))
+{
+    $action = $_GET['action'];
+}
+else{
+    $action='home';
+}
 
 switch ($action)
 {
