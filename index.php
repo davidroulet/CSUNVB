@@ -28,8 +28,8 @@ switch ($action)
     case 'shiftend':
         shiftEndHomePage();
         break;
-    case 'shiftenddisconnect':
-        shiftEndDeconnect();
+    case 'disconnect':
+        disconnect();
         break;
     case 'login':
         connect($username, $password);

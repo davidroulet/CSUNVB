@@ -11,18 +11,19 @@ function shiftEndHomePage()
     require_once 'view/shiftEndHome.php';
 }
 
-function shiftEndDeconnect()
+function disconnect()
 {
     unset($_SESSION['username']);
     unset($_SESSION['password']);
+    require_once 'view/home.php';
 }
 
 function connect($username, $password)
 {
-    if (isset($_POST['username']) && isset($_POST['password']))
+    if ($username == "user" && $password == "usermdp")
     {
-        $username = $_SESSION['username'];
-        $password = $_SESSION['password'];
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
         shiftEndHomePage();
     } else
     {

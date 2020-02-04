@@ -11,7 +11,8 @@
     <link href="/css/styles.css" rel="stylesheet">
 
     <!-- Icons -->
-    <link href="assets/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css"/>
+    <link href="assets/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet"
+          type="text/css"/>
     <link href="assets/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css"/>
 
     <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
@@ -42,7 +43,11 @@
         <div class="row banner">
             <img class="col-2" src="/assets/images/logo.png">
             <a href="index.php" class="col-10 text-center mt-5 text-decoration-none"><h1>CSU-NVB</h1></a>
-            <a href="?action=login" class="btn btn-primary m-1 pull-right">Login</a>
+            <?php if (isset($_SESSION['username'])) { ?>
+                <a href="?action=disconnect" class="btn btn-primary m-1 pull-right">Logout</a>
+            <?php } else { ?>
+                <a href="?action=login" class="btn btn-primary m-1 pull-right">Login</a>
+            <?php } ?>
         </div>
     </header>
 
