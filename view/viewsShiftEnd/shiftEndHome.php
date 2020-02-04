@@ -7,5 +7,5 @@ $title = "CSU-NVB - Remise de garde";
 </div>
 <?php
 $content = ob_get_clean();
-require "../gabarit.php";
+require "view/gabarit.php";
 ?>
