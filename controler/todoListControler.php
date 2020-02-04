@@ -9,6 +9,6 @@ require_once 'model/todoListModel.php';
 
 function todoListHomePage()
 {
-    require_once 'view/todoListHome.php';
+    require_once 'view/todo/todoListHome.php';
 }
 ?>
