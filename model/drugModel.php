@@ -73,5 +73,4 @@ function createDrugItem($item)
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
 }
 
-
 ?>
