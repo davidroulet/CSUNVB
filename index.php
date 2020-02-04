@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Include all controllers
 require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
@@ -7,6 +8,12 @@ require "controler/drugControler.php";
 
 $action = $_GET['action'];
 
+if (isset($_POST['username']) && isset($_POST['password']))
+{
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+}
+
 switch ($action)
 {
     case 'admin':
@@ -14,6 +21,12 @@ switch ($action)
         break;
     case 'shiftend':
         shiftEndHomePage();
+        break;
+    case 'shiftenddisconnect':
+        shiftEndDeconnect();
+        break;
+    case 'login':
+        connect($username, $password);
         break;
     case 'todolist':
         todoListHomePage();
