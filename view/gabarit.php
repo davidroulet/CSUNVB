@@ -9,6 +9,7 @@
     <link href="node_modules/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet">
     <link href="node_modules/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 
     <!-- Icons -->
     <link href="assets/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet"

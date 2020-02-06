@@ -1,0 +1,32 @@
+.week {
+    background-color: #4DB9EE;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2px;
+    margin: 2px;
+}
+.day {
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 2px;
+    margin: 2px;
+}
+.hour {
+    background-color: chartreuse;
+    padding: 4px;
+    margin: 2px;
+}
+.dayheader {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    padding: 3px;
+}
+.horizontal{
+    writing-mode: vertical-rl !important;
+    text-orientation: upright !important;
+
+}
