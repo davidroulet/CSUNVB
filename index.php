@@ -6,22 +6,18 @@ require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
 
-if(isset($_GET['action']))
-{
+if (isset($_GET['action'])) {
     $action = $_GET['action'];
-}
-else{
-    $action='home';
+} else {
+    $action = 'home';
 }
 
-if (isset($_POST['username']) && isset($_POST['password']))
-{
+if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 }
-var_dump($username, $password);
-switch ($action)
-{
+
+switch ($action) {
     case 'admin':
         adminHomePage();
         break;

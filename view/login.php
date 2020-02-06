@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$title = "CSU-NVB - Remise de garde";
+$title = "CSU-NVB - Login";
 ?>
 
 <div class="row">
@@ -11,7 +11,6 @@ $title = "CSU-NVB - Remise de garde";
         <input type="password" class="form-group form-control" name="password" required>
         <button type="submit" id="btnLogin" class="btn btn-primary">Connecter</button>
     </form>
-
 </div>
 
 <?php
