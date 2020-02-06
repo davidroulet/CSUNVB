@@ -12,8 +12,11 @@
  */
 function getDrugItems()
 {
-    $data = ['tableau','de','chaînes','de','caractères'];
-    return $data;
+    $Array= json_decode(file_get_contents("model/dataStorage/stups.json"),true);
+    foreach ($Array as $p){
+        $DrugArray[$p["id"]]=$p;
+}
+    return $DrugArray;
 }
 
 /**
@@ -23,7 +26,7 @@ function getDrugItems()
 function readDrugItem($id)
 {
     $items = getDrugItems();
-    // TODO: coder la recherche de l'item demandé
+$item[]=$items[$id];
     return $item;
 }
 
@@ -33,7 +36,7 @@ function readDrugItem($id)
  */
 function updateDrugItems($items)
 {
-    file_put_contents("model/dataStorage/items.json",json_encode($items));
+    file_put_contents("model/dataStorage/stups.json",json_encode($items));
 }
 
 /**
@@ -41,6 +44,9 @@ function updateDrugItems($items)
  * Le paramètre $item est un item complet (donc un tableau associatif)
  * ...
  */
+function saveDrugItem($items){
+    updateDrugItems($items);
+}
 function updateDrugItem($item)
 {
     $items = getDrugItems();
