@@ -36,6 +36,9 @@ switch ($action) {
     case 'drugs':
         drugHomePage();
         break;
+    case "drugSiteTable":
+        drugSiteTable();
+        break;
     default: // unknown action
         require_once 'view/home.php';
         break;
