@@ -9,6 +9,6 @@ require_once 'model/adminModel.php';
 
 function adminHomePage()
 {
-    require_once 'view/adminHome.php';
+    require_once 'view/Admin/adminHome.php';
 }
 ?>

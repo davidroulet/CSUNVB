@@ -24,7 +24,7 @@ function connect($username, $password)
     {
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
-        shiftEndHomePage();
+        require_once 'view/home.php';
     } else
     {
         login();
