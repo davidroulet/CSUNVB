@@ -9,6 +9,9 @@ require_once 'model/todoListModel.php';
 
 function todoListHomePage()
 {
+    $TodoListItemsread = TodoListItems();
     require_once 'view/todo/todoListHome.php';
 }
 ?>
+
+
