@@ -26,11 +26,13 @@ function getDrugItems()
 function readDrugItem($id)
 {
     $items = getDrugItems();
-    if($id=$items["id"]){
+    foreach ($items as $item){
+    if($id==$item["id"]){
         $item=$items["id"];
+        return $item;
+    }
     }
 
-    return $item;
 }
 
 /**
