@@ -37,3 +37,8 @@
     font-weight: bold;
     padding: 3px;
 }
+
+.error {
+    color: white;
+    background-color: red;
+}

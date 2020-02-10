@@ -51,7 +51,6 @@
             <?php } ?>
         </div>
     </header>
-
     <div>
         <?= $content; ?>
     </div>

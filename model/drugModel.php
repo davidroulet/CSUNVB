@@ -1,8 +1,8 @@
 <?php
 /**
- * Ce cartouche vaudra quelques points en moins au groupe qui osera le laisser là tel quel ...
- * Auteur: X. Carrel
- * Date: Février 2020
+ * Ce cartouche vaudra quelques points en plus au groupe qui osera le laisser là tel quel ...
+ * Auteur: D . Roulet
+ * Date: A quoi bon la noté ca change tout les jours
  **/
 
 /**
@@ -26,8 +26,13 @@ function getDrugItems()
 function readDrugItem($id)
 {
     $items = getDrugItems();
-$item[]=$items[$id];
-    return $item;
+    foreach ($items as $item){
+    if($id==$item["id"]){
+        $item=$items["id"];
+        return $item;
+    }
+    }
+
 }
 
 /**
@@ -44,14 +49,18 @@ function updateDrugItems($items)
  * Le paramètre $item est un item complet (donc un tableau associatif)
  * ...
  */
-function saveDrugItem($items){
-    updateDrugItems($items);
-}
 function updateDrugItem($item)
 {
     $items = getDrugItems();
-    // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
-    saveDrugItem($items);
+    foreach ($items as $p){
+        if($p["id"]==$item["id"]){
+            $id=$p["id"];
+            $items[$id]=$item;
+            updateDrugItems($items);
+            return null;
+        }
+    }
+
 }
 
 /**
@@ -61,8 +70,8 @@ function updateDrugItem($item)
 function destroyDrugItem($id)
 {
     $items = getDrugItems();
-    // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    saveDrugItem($items);
+  unset($items[$id]);
+    updateDrugItems($items);
 }
 
 /**
@@ -74,9 +83,16 @@ function destroyDrugItem($id)
 function createDrugItem($item)
 {
     $items = getDrugItems();
-    // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
-    saveDrugItem($items);
-    return ($item); // Pour que l'appelant connaisse l'id qui a été donné
+    $i = 0;
+    foreach ($items as $p) {
+        if ($i != $p["id"]) {
+            $item["id"] = $i;
+            $items[$i] = $item;
+            updateDrugItems($items);
+            return ($item); // Pour que l'appelant connaisse l'id qui a été donné
+        }
+        $i++;
+    }
 }
 
 ?>
