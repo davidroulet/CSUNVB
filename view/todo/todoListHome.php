@@ -2,109 +2,59 @@
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
+
+
+<h1><?=$title?></h1>
+
+<div class="week">
+    <div>
+
+        <div class="parent horizontal">jour</div>
+    </div>
+<div class="day">
+
+    <div class="dayheader">Lundi</div>
+    <div class="hour">Do something</div>
+</div>
+<div class="day">
+    <div class="dayheader">Mardi</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+</div>
+<div class="day">
+    <div class="dayheader">Mercredi</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+</div>
+<div class="day">
+    <div class="dayheader">Jeudi</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+</div>
+<div class="day">
+    <div class="dayheader">Vendredi</div>
+    <div class="hour">Do something</div>
+</div>
+<div class="day">
+    <div class="dayheader">Samedi</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+</div>
+<div class="day">
+    <div class="dayheader">Dimanche</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+    <div class="hour">Do something</div>
+</div>
+</div>
 <div class="row m-2">
-    <h1>Tâches hebdomadaires</h1>
-    <table class="table table-bordered">
-        <thead class="thead-light">
-        <tr>
-            <th rowspan="2"></th>
-            <th>Lundi</th>
-            <th>Mardi</th>
-            <th>Mercredi</th>
-            <th>Jeudi</th>
-            <th>Vendredi</th>
-            <th>Samedi</th>
-            <th>Dimanche</th>
 
-        </tr>
-        <tr>
-
-            <th>date</th>
-            <th>...</th>
-            <th>...</th>
-            <th>...</th>
-            <th>...</th>
-            <th>...</th>
-            <th>...</th>
-
-        </tr>
-        </thead>
-        <tbody>
-
-
-        <tr >
-            <td rowspan="6"><span class="horizontal"> jour</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-        </tr>
-
-
-        </tbody>
-    </table>
-
-
-        <?php
-        /*
-        for ($i=1; $i <10; $i++) {
-            echo "<tr>";
-            echo "<td>" .$i." : Do something"."</td>";
-
-            echo "<td>" . $i." : Do something". "</td>";
-            echo "<td>" . $i." : Do something" ."</td>";
-            echo "<td>" . $i. " : Do something"."</td>";
-            echo "<td>" . $i." : Do something" ."</td>";
-            echo "<td>" . $i." : Do something" ."</td>";
-            echo "<td>" . $i." : Do something" ."</td>";
-            echo "</tr>";
-
-        }
-        */
-        ?>
 
 
 

@@ -1,5 +1,5 @@
 .week {
-    background-color: #4DB9EE;
+    background-color: lightgrey;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -7,7 +7,7 @@
     margin: 2px;
 }
 .day {
-    background-color: pink;
+    background-color: lightcyan;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -15,18 +15,27 @@
     margin: 2px;
 }
 .hour {
-    background-color: chartreuse;
+
+    background-color: lightyellow;
     padding: 4px;
     margin: 2px;
 }
 .dayheader {
+    background-color: lightslategrey;
     text-align: center;
     font-size: large;
     font-weight: bold;
     padding: 3px;
 }
 .horizontal{
+    font-weight: bold;
     writing-mode: vertical-rl !important;
     text-orientation: upright !important;
 
+
+}
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
