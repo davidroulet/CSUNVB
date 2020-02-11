@@ -21,6 +21,9 @@ switch ($action) {
     case 'admin':
         adminHomePage();
         break;
+    case 'error':
+        errorLogin();
+        break;
     case 'shiftend':
         shiftEndHomePage();
         break;

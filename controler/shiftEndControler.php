@@ -35,4 +35,9 @@ function login()
 {
     require_once 'view/login.php';
 }
+
+function errorLogin()
+{
+    require_once 'view/errorLogin.php';
+}
 ?>
