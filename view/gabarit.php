@@ -51,7 +51,7 @@
             <?php } ?>
         </div>
     </header>
-    <div>
+    <div class="container-fluid">
         <?= $content; ?>
     </div>
 
