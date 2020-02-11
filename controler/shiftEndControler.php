@@ -18,7 +18,12 @@ function disconnect()
     require_once 'view/home.php';
 }
 
-function connect($username, $password)
+function login()
+{
+    require_once 'view/login.php';
+
+}
+function trylogin($username, $password)
 {
     if ($username == "user" && $password == "usermdp")
     {
@@ -27,12 +32,12 @@ function connect($username, $password)
         require_once 'view/home.php';
     } else
     {
-        login();
+        errorLogin();
     }
 }
 
-function login()
+function errorLogin()
 {
-    require_once 'view/login.php';
+    require_once 'view/errorLogin.php';
 }
 ?>

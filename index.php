@@ -28,7 +28,7 @@ switch ($action) {
         disconnect();
         break;
     case 'login':
-        connect($username, $password);
+        login();
         break;
     case 'todolist':
         todoListHomePage();
@@ -38,6 +38,9 @@ switch ($action) {
         break;
     case "drugSiteTable":
         drugSiteTable();
+        break;
+    case "trylogin":
+        trylogin($username, $password);
         break;
     default: // unknown action
         require_once 'view/home.php';
