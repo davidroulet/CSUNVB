@@ -9,12 +9,14 @@ $site = "Payerne";
 
     <div class="week">
         <div class="day">
-            <div class="dayheader">Jours de la semaine</div>
-            <div class="week2">
+            <div class="dayheader">Jours</div>
+            <div class="week">
                 <div class="day">
                     <div class="dayheader">N° Ambulance</div>
                     <div class="hour">Pharmacie</div>
                     <div class="hour2">Morphine N°</div>
+                    <div class="hour2">Fentanyl N°</div>
+                    <div class="hour2">TEMESTA</div>
                 </div>
             </div>
         </div>
@@ -23,9 +25,18 @@ $site = "Payerne";
         foreach ($jours as $jour) { ?>
             <div class="day">
                 <div class="dayheader"> <?= $jour ?> </div>
-                <div class="week2">
+                <div class="week">
+                    <div class="day">
+                        <div class="dayheader">Ph</div>
+                        <div class="hour">X</div>
+                        <div class="hour2">X</div>
+                        <div class="hour">X</div>
+                        <div class="hour2">X</div>
+                    </div>
                     <div class="day">
                         <div class="dayheader">75</div>
+                        <div class="hour">X</div>
+                        <div class="hour2">X</div>
                         <div class="hour">X</div>
                         <div class="hour2">X</div>
                     </div>
@@ -33,9 +44,13 @@ $site = "Payerne";
                         <div class="dayheader">76</div>
                         <div class="hour">X</div>
                         <div class="hour2">X</div>
+                        <div class="hour">X</div>
+                        <div class="hour2">X</div>
                     </div>
                     <div class="day">
                         <div class="dayheader">77</div>
+                        <div class="hour">X</div>
+                        <div class="hour2">X</div>
                         <div class="hour">X</div>
                         <div class="hour2">X</div>
                     </div>

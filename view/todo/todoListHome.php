@@ -4,13 +4,10 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
 
 
-<h1><?=$title?></h1>
+<h1 class="center"><?=$title?></h1>
 
 <div class="week">
-    <div>
-
-        <div class="parent horizontal">jour</div>
-    </div>
+        <div class="horizontal"> <span style="font-weight: bold">  journée</span> </div>
 <div class="day">
 
     <div class="dayheader">Lundi</div>
@@ -52,10 +49,62 @@ $title = "CSU-NVB - Tâches hebdomadaires";
     <div class="hour">Do something</div>
     <div class="hour">Do something</div>
 </div>
+
+
+
 </div>
-<div class="row m-2">
+<div class="week">
+    <div class="horizontal nuitcolor"> <span style="font-weight: bold">NUIT</span> </div>
+    <div class="day">
 
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+    </div>
+    <div class="day">
 
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+    </div>
+    <div class="day">
+
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+    </div>
+    <div class="day">
+
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+    </div>
+    <div class="day">
+
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+    </div>
+    <div class="day">
+
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+    </div>
+    <div class="day">
+
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+        <div class="hour">Do something</div>
+    </div>
+</div>
 
 
 </div>
