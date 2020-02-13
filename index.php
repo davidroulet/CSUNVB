@@ -5,7 +5,9 @@ require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
-
+if (isset($_POST["Site"])){
+    $Site=$_POST["Site"];
+}
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
@@ -16,7 +18,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 }
-
+var_dump($_GET["Site"]);
 switch ($action) {
     case 'admin':
         adminHomePage();
@@ -37,7 +39,7 @@ switch ($action) {
         drugHomePage();
         break;
     case "drugSiteTable":
-        drugSiteTable();
+        drugSiteTable($Site);
         break;
     case "trylogin":
         trylogin($username, $password);
