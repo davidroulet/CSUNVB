@@ -25,7 +25,8 @@ function login()
 }
 function trylogin($username, $password)
 {
-    if ($username == "user" && $password == "usermdp")
+    $DefautPasswordHash = password_hash("usermdp", PASSWORD_DEFAULT);
+    if ($username == "user" && password_verify($password, $DefautPasswordHash))
     {
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
