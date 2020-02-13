@@ -33,6 +33,9 @@ switch ($action) {
     case 'todolist':
         todoListHomePage();
         break;
+    case 'edittod':
+        edittodopage();
+        break;
     case 'drugs':
         drugHomePage();
         break;

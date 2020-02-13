@@ -13,6 +13,14 @@ function todoListHomePage()
 
     require_once 'view/todo/todoListHome.php';
 }
+//
+function edittodopage()
+{
+
+
+    require_once 'view/todo/edittodo.php';
+}
+
 ?>
 
 
