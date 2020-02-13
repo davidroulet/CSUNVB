@@ -42,6 +42,9 @@ switch ($action) {
     case "trylogin":
         trylogin($username, $password);
         break;
+    case "DrugTest":
+        Teste();
+        break;
     default: // unknown action
         require_once 'view/home.php';
         break;

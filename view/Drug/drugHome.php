@@ -8,6 +8,9 @@ $title = "CSU-NVB - Stupéfiants";
     <form action="/index.php?action=drugSiteTable" method="post">
     <button class="btn">Fabien</button>
 </form>
+<form action="/index.php?action=DrugTest" method="post">
+    <button class="btn">Teste</button>
+</form>
 <form action="/index.php?action=drugSiteTable" method="get">
 <div class="row m-2">
     <button class="text-decoration-none card col-4 menutile pl-3 pr-3 pt-5 pb-5 m-1 align-items-center colorblue" name="Payerne">Payerne</button>
