@@ -1,16 +1,14 @@
 <?php
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
-$site = "Payerne";
 ?>
     <div class="row m-2">
         <h1>Stupéfiants</h1>
     </div>
 <?php
-$site="Payerne";
 $semaine="50";
 $date="10.02.20"; ?>
-<h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
+<h2>Site de <?= $Site ?> , Semaine N° <?= $semaine ?></h2>
 
 <?php
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
