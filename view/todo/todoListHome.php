@@ -8,13 +8,12 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
 <div class="week">
     <div>
-
         <div class="parent horizontal">jour</div>
     </div>
 <div class="day">
 
     <div class="dayheader">Lundi</div>
-    <div class="hour">Do something</div>
+    <div class="hour" >Do something</div>
 </div>
 <div class="day">
     <div class="dayheader">Mardi</div>
