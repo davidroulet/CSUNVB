@@ -38,8 +38,8 @@
 </head>
 <body>
 
+<div class="">
 <div class="container">
-
     <header>
         <div class="row banner">
             <img class="col-2" src="/assets/images/logo.png">
@@ -51,7 +51,9 @@
             <?php } ?>
         </div>
     </header>
-    <div>
+</div>
+
+    <div class="container">
         <?= $content; ?>
     </div>
 

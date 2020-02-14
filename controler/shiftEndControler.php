@@ -18,21 +18,27 @@ function disconnect()
     require_once 'view/home.php';
 }
 
-function connect($username, $password)
+function login()
 {
-    if ($username == "user" && $password == "usermdp")
+    require_once 'view/login.php';
+
+}
+function trylogin($username, $password)
+{
+    $DefautPasswordHash = password_hash("usermdp", PASSWORD_DEFAULT);
+    if ($username == "user" && password_verify($password, $DefautPasswordHash))
     {
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
         require_once 'view/home.php';
     } else
     {
-        login();
+        errorLogin();
     }
 }
 
-function login()
+function errorLogin()
 {
-    require_once 'view/login.php';
+    require_once 'view/errorLogin.php';
 }
 ?>

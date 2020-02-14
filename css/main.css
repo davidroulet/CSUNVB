@@ -28,14 +28,16 @@
     padding: 3px;
 }
 .horizontal{
+    justify-content: center !important;
     font-weight: bold;
     writing-mode: vertical-rl !important;
     text-orientation: upright !important;
 
-
 }
-.parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.center{
+    text-align: center;
+}
+.nuitcolor{
+    color: white;
+    background-color: black;
 }

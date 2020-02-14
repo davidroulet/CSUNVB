@@ -1,80 +1,80 @@
 <?php
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
-$site = "Payerne";
 ?>
-<div class="row m-2">
-    <h1>Stupéfiants</h1>
-</div>
+    <div class="row m-2">
+        <h1>Stupéfiants</h1>
+    </div>
+<?php
+$semaine="50";
+$date="10.02.20"; ?>
+<h2>Site de <?= $Site ?> , Semaine N° <?= $semaine ?></h2>
 
+<?php
+$jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
 
-<div class="week">
-    <div class="day">
-        <div class="dayheader">""</div>
-        <div class="dayheader">Morphine N°</div>
-    </div>
+foreach ($jours as $jour) { ?>
+<table border="1" class="table table-dark">
+    <tr>
+        <td colspan="5"><?= $jour." ".$date?></td>
 
-    <div class="day">
-        <div class="dayheader">Lundi</div>
-        <div class="week">
-            <div class="day">
-                <div class="dayheader">75</div>
-                <div class="hour">75</div>
-                <div class="hour">76</div>
-                <div class="hour">77</div>
-            </div>
-            <div class="day">
-                <div class="dayheader">76</div>
-                <div class="hour">75</div>
-                <div class="hour">76</div>
-                <div class="hour">77</div>
-            </div>
-            <div class="day">
-                <div class="dayheader">77</div>
-                <div class="hour">75</div>
-                <div class="hour">76</div>
-                <div class="hour">77</div>
-            </div>
-        </div>
-    </div>
-    <div class="day">
-        <div class="dayheader">Mardi</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-    </div>
-    <div class="day">
-        <div class="dayheader">Mercredi</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-    </div>
-    <div class="day">
-        <div class="dayheader">Jeudi</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-    </div>
-    <div class="day">
-        <div class="dayheader">Vendredi</div>
-        <div class="hour">Do something</div>
-    </div>
-    <div class="day">
-        <div class="dayheader">Samedi</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-    </div>
-    <div class="day">
-        <div class="dayheader">Dimanche</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-        <div class="hour">Do something</div>
-    </div>
-</div>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Pharmacie</td>
+        <td>75</td>
+        <td>76</td>
+        <td>77</td>
+    </tr>
+    <tr>
+        <td>Morphine N°</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>x</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Fentanyl N°</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>x</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Temestra</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>x</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Signature</td>
+        <td colspan="4"></td>
 
+    </tr>
+</table>
+    <?php } ?>
 
 <?php
 $content = ob_get_clean();
