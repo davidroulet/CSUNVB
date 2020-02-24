@@ -2,7 +2,7 @@
     color: blue;
 }
 .banner {
-    background-color: lightblue;
+    background-color: azure;
     width: 100%;
 }
 
@@ -46,4 +46,9 @@
 .error {
     color: white;
     background-color: red;
+}
+
+.today
+{
+    background-color: yellow;
 }
