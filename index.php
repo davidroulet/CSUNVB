@@ -18,7 +18,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 }
-var_dump($_GET["Site"]);
+
 switch ($action) {
     case 'admin':
         adminHomePage();
@@ -51,7 +51,7 @@ switch ($action) {
         Teste();
         break;
     default: // unknown action
-        require_once 'view/home.php';
+        require_once 'index.php?action=login';
         break;
 }
 
