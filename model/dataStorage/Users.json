@@ -4,7 +4,8 @@
     "initials": "JDE",
     "lastname": "Doe",
     "password": "$2y$10$ZplHbYimTZ5P1fQqYiFRwOOfxeivt.gFUvsm9v1cRR.ko72ApkY8y",
-    "firstname": "John"
+    "firstname": "John",
+    "base_id" : 3,
   },
   {
     "id": 2,

@@ -10,39 +10,39 @@ function drugSiteTable($Site){
 }
 function Teste(){
     Echo "Teste----------------------------------------------------------------------------";
-    $durgs=readDrugItem(12); //Item Precis
-    var_dump($durgs["morphinesamples"]);
+    var_dump(getStupSheets());// Tout
+    echo "ITEM PRECI-----------------";
+    var_dump(readSheet(2));//PRecis
+    echo "Update Sheet---------------------------";
 
-    var_dump(getDrugItems());// Tout
+    $item = readSheet(2);
+    echo "Before";
+    var_dump(readSheet(2));
+    $item["state"]="open";
 
-//Cahgne valeur
-    $durgs=readDrugItem(12);
-    var_dump($durgs["vehicles"]);
-    $durgs["vehicles"][2]=23;
-    updateDrugItem($durgs);
-    echo "Change After";
+updateSheet($item); // Update
+    echo "After";
+    var_dump(readSheet(2));
 
-    $durgs=readDrugItem(12);
-    var_dump($durgs["vehicles"]);
+    $item["state"]="closed"; // restor
+    updateSheet($item);//restor
 
-//restor Orgini valeur
-    $durgs=readDrugItem(12);
-    $durgs["vehicles"][2]=36;
-    updateDrugItem($durgs);
+   echo "New-----------------";
+    var_dump(getStupSheets());// Tout
+    $dataC=["week"=>"3002","state"=> "open","base_id"=>3];
+    createSheet($dataC);
+    var_dump(getStupSheets());// Tout
 
-//new
-    echo "New-----------------";
-    var_dump(getDrugItems());// Tout
-    $dataC=["info"=>"Bidon","info2"=> "Bidon2"];
-    createDrugItem($dataC);
-    var_dump(getDrugItems());// Tout
-    echo "del---------------------------";
-    var_dump(getDrugItems());// Tout
 
-    destroyDrugItem(0);
 
-    var_dump(getDrugItems());// Tout
+    //echo "del Sheet---------------------------";
+    //echo "Before";
+    //$item2 = readSheet(2);
+    //var_dump(readSheet(2));
+    //destroySheet(2);
+    //echo "After";
+    //var_dump(readSheet(2));
 
-    Echo "Teste---------------------------------------------------------------------";
+
 }
 ?>
