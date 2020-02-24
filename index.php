@@ -51,7 +51,7 @@ switch ($action) {
         Teste();
         break;
     default: // unknown action
-        require_once 'index.php?action=login';
+        require_once 'view/login.php';
         break;
 }
 
