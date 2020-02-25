@@ -5,8 +5,8 @@ require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
-if (isset($_POST["Site"])){
-    $Site=$_POST["Site"];
+if (isset($_POST["semaine"])){
+    $Site=$_POST["semaine"];
 }
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -42,7 +42,7 @@ switch ($action) {
         drugHomePage();
         break;
     case "drugSiteTable":
-        drugSiteTable($Site);
+        drugSiteTable($semaine);
         break;
     case "trylogin":
         trylogin($username, $password);
