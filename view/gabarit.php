@@ -43,7 +43,7 @@
     <header>
         <div class="row banner">
             <img class="col-2" src="/assets/images/logo.png">
-            <a href="index.php" class="col-10 text-center mt-5 text-decoration-none"><h1>CSU-NVB</h1></a>
+            <a href="?action=home" class="col-10 text-center mt-5 text-decoration-none"><h1>CSU-NVB</h1></a>
             <?php if (isset($_SESSION['username'])) { ?>
                 <a href="?action=disconnect" class="btn btn-primary m-1 pull-right">Logout</a>
             <?php } else { ?>
