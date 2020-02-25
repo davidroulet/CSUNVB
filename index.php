@@ -6,7 +6,7 @@ require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
 if (isset($_POST["semaine"])){
-    $Site=$_POST["semaine"];
+    $semaine=$_POST["semaine"];
 }
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
