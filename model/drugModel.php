@@ -26,7 +26,7 @@ function getStupSheets()
 function readSheet($id)
 {
     $SheetsArray = getStupSheets();
-   $Sheet = $SheetsArray[$id];
+    $Sheet = $SheetsArray[$id];
     return $Sheet;
 }
 
@@ -52,10 +52,9 @@ function updateSheet($item)
             $id=$sheet["id"];
             $sheets[$id]=$item;
             updateSheets($sheets);
-            return null;
         }
-
     }
+
 }
 
 /**
@@ -64,7 +63,6 @@ function updateSheet($item)
  */
 function destroySheet($id)
 {
-
     $items = getStupSheets();
 
     unset($items[$id]);
@@ -85,7 +83,6 @@ function createSheet($item)
     foreach ($items as $p){
         $idliste[]=$p["id"];
     }
-    var_dump($idliste);
     foreach ($idliste as $id){
         if ($id!=$idliste){
             $newid=$id;

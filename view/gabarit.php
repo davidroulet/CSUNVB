@@ -53,7 +53,7 @@
     </header>
 </div>
 
-    <div class="container">
+    <div>
         <?= $content; ?>
     </div>
 
