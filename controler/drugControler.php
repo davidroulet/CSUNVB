@@ -9,40 +9,56 @@ function drugSiteTable($Site){
     require_once 'view/Drug/drugSiteTable.php';
 }
 function Teste(){
-    Echo "Teste----------------------------------------------------------------------------";
-    var_dump(getStupSheets());// Tout
-    echo "ITEM PRECI-----------------";
-    var_dump(readSheet(2));//PRecis
-    echo "Update Sheet---------------------------";
+    Echo "Teste----------------------------------------------------------------------------<br>";
+    echo "ALL Info?     ";
+    if (getStupSheets()!=null){
+        echo "OK<br>";
+    }else{
+        echo "No";
+    }
 
-    $item = readSheet(2);
-    echo "Before";
-    var_dump(readSheet(2));
-    $item["state"]="open";
+        $data=readSheet(2);
+            echo "PRECI Info?     ";
+    if ($data["week"]==2009){
+        echo "OK<br>";
+    }else{
+        echo "No";
+    }
 
-updateSheet($item); // Update
-    echo "After";
-    var_dump(readSheet(2));
 
-    $item["state"]="closed"; // restor
-    updateSheet($item);//restor
+    echo "Update Info?     ";
+    $data["state"]="open";
+    updateSheet($data);
+    $data2=readSheet("2");
+    if ($data2["state"]=="open"){
+        echo "OK<br>";
+    }else{
+        echo "No";
+    }
+    $data["state"]="closed";
+    updateSheet($data);
 
-   echo "New-----------------";
-    var_dump(getStupSheets());// Tout
+
+
+    echo "New Info?     ";
     $dataC=["week"=>"3002","state"=> "open","base_id"=>3];
-    createSheet($dataC);
-    var_dump(getStupSheets());// Tout
+    $idit=createSheet($dataC);
+    $data3=readSheet($idit["id"]);
+    if ($data3["week"]=="3002"){
+        echo "OK<br>";
+    }else{
+        echo "No";
+    }
 
 
-
-    //echo "del Sheet---------------------------";
-    //echo "Before";
-    //$item2 = readSheet(2);
-    //var_dump(readSheet(2));
-    //destroySheet(2);
-    //echo "After";
-    //var_dump(readSheet(2));
-
+    echo "DEL Info?     ";
+    $delitem=readSheet($idit["id"]);
+    destroySheet($delitem["id"]);
+    if (readSheet($idit["id"])==null){
+        echo "OK<br>";
+    }else{
+        echo "No";
+    }
 
 }
 ?>

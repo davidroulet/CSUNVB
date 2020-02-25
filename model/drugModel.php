@@ -85,7 +85,6 @@ function createSheet($item)
     foreach ($items as $p){
         $idliste[]=$p["id"];
     }
-    var_dump($idliste);
     foreach ($idliste as $id){
         if ($id!=$idliste){
             $newid=$id;
