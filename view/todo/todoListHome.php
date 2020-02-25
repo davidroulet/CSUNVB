@@ -4,6 +4,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
 
 
+
 <h1 class="center"><?= $title ?></h1>
 <div class="container ">
     <div class="week">
@@ -38,9 +39,11 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                 <div class="hour">Remise locaux ambulances</div>
             </a>
 
+
         </div>
-        <div class="day col-sm">
+        <div class="day">
             <div class="dayheader">Mardi</div>
+
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Fax 144 Transmission</div>
             </a>
@@ -68,9 +71,11 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Remise locaux ambulances</div>
             </a>
+
         </div>
-        <div class="day col-sm">
+        <div class="day">
             <div class="dayheader">Mercredi</div>
+
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Fax 144 Transmission</div>
             </a>
@@ -98,9 +103,11 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Remise locaux ambulances</div>
             </a>
+
         </div>
-        <div class="day col-sm">
+        <div class="day">
             <div class="dayheader">Jeudi</div>
+
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Fax 144 Transmission</div>
             </a>
@@ -128,9 +135,11 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Remise locaux ambulances</div>
             </a>
+
         </div>
-        <div class="day col-sm">
+        <div class="day">
             <div class="dayheader">Vendredi</div>
+
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Fax 144 Transmission</div>
             </a>
@@ -158,9 +167,12 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Remise locaux ambulances</div>
             </a>
+
+          
         </div>
-        <div class="day col-sm">
+        <div class="day">
             <div class="dayheader">Samedi</div>
+
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Fax 144 Transmission</div>
             </a>
@@ -188,9 +200,12 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Remise locaux ambulances</div>
             </a>
+
+          
         </div>
-        <div class="day col-sm">
+        <div class="day">
             <div class="dayheader">Dimanche</div>
+
             <a href="?action=Edittodo" class="over">
                 <div class="hour">Fax 144 Transmission</div>
             </a>
@@ -345,8 +360,9 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             </div>
         </div>
 
-    </div>
-</div>
+          
+
+
 
 <?php
 $content = ob_get_clean();

@@ -20,6 +20,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 }
 
 switch ($action) {
+    case 'home' :
+        require_once 'view/home.php';
+        break;
     case 'admin':
         adminHomePage();
         break;
