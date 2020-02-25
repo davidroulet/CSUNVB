@@ -220,128 +220,127 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             </a>
         </div>
 
-        <hr>
         <div class="container ">
             <div class="week">
                 <div class="horizontal nuitcolor"><span style="font-weight: bold">NUIT</span></div>
                 <div class="day col-sm">
-                    <div class="dayheader">Check de nuit</div>
-                    <a class="over">
+                    <div class="dayheader">Check de Nuit</div>
+                    <a href="" class="over">
                         <div class="hour"> Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
                             Nova N°....................
                         </div>
                     </a>
-                    <a class="over">
+                    <a href=""  class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
-                    <a class="over">
+                    <a href=""  class="over">
                         <div class="hour">Remise locaux Transmission</div>
                     </a>
 
 
                 </div>
                 <div class="day col-sm">
-                    <div class="dayheader">Check de nuit</div>
-                    <a class="over">
+                    <div class="dayheader">Check de Nuit</div>
+                    <a href=""  class="over">
                         <div class="hour">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
                             Nova N°....................
                         </div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
-                    <a class="over">
+                    <a  href=""  class="over">
                         <div class="hour">Remise locaux Transmission</div>
                     </a>
 
                 </div>
                 <div class="day col-sm">
-                    <div class="dayheader">Check de nuit</div>
-                    <a class="over">
+                    <div class="dayheader">Check de Nuit</div>
+                    <a href=""  class="over">
                         <div class="hour">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
                             Nova N°....................
                         </div>
                     </a>
-                    <a class="over">
+                    <a href=""  class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Remise locaux Transmission</div>
                     </a>
                 </div>
                 <div class="day col-sm">
-                    <div class="dayheader">Check de nuit</div>
+                    <div class="dayheader">Check de Nuit</div>
 
-                    <a class="over">
+                    <a href=""  class="over">
                         <div class="hour">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
                             Nova N°....................
                         </div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
-                    <a class="over">
+                    <a href=""  class="over">
                         <div class="hour">Remise locaux Transmission</div>
                     </a>
                 </div>
                 <div class="day col-sm">
-                    <div class="dayheader">Check de nuit</div>
+                    <div class="dayheader">Check de Nuit</div>
 
-                    <a class="over">
+                    <a  href="" class="over">
                         <div class="hour">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
                             Nova N°....................
                         </div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Remise locaux Transmission</div>
                     </a>
                 </div>
                 <div class="day col-sm">
-                    <div class="dayheader">Check de nuit</div>
+                    <div class="dayheader">Check de Nuit</div>
 
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
                             Nova N°....................
                         </div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Remise locaux Transmission</div>
                     </a>
                 </div>
                 <div class="day col-sm">
-                    <div class="dayheader">Check de nuit</div>
-                    <a class="over">
+                    <div class="dayheader">Check de Nuit</div>
+                    <a href="" class="over">
                         <div class="hour">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
                             Nova N°....................
                         </div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
-                    <a class="over">
+                    <a href="" class="over">
                         <div class="hour">Remise locaux Transmission</div>
                     </a>
-                    
+
                 </div>
             </div>
         </div>
