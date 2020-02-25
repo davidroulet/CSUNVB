@@ -1,23 +1,22 @@
 <?php
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
+$year = 20;
 ?>
 <div class="row m-2">
     <h1>Stupéfiants</h1>
 </div>
-    <form action="/index.php?action=drugSiteTable" method="post">
-    <button class="btn">Fabien</button>
+<form action="/index.php?action=drugSiteTable" method="post">
 </form>
 <form action="/index.php?action=DrugTest" method="post">
-    <button class="btn">Teste</button>
+    <button class="btn">Tests</button>
 </form>
 <form action="/index.php?action=drugSiteTable" method="post">
-<div class="row m-2">
-    <button class="text-decoration-none card col-4 menutile pl-3 pr-3 pt-5 pb-5 m-1 align-items-center colorblue" name="Site" value="Payerne" >Payerne</button>
-    <button class="text-decoration-none card col-4 menutile pl-3 pr-3 pt-5 pb-5 m-1 align-items-center colorblue" name="Site" value="Yverdon">Yverdon</button>
-    <button class="text-decoration-none card col-4 menutile pl-3 pr-3 pt-5 pb-5 m-1 align-items-center colorblue" name="Site" value="Saint-Loup">Saint-Loup</button>
-    <button class="text-decoration-none card col-4 menutile pl-3 pr-3 pt-5 pb-5 m-1 align-items-center colorblue" name="Site" value="La vallée de joux">La Vallée de joux</button>
-</div>
+    <div class="row m-2">
+        <?php for ($i = 0; $i < 52; $i++) { ?>
+            <button class="text-decoration-none card col-4 menutile align-items-center colorblue"
+                    name="semaine" value="<?= $year . sprintf("%02d", $i + 1) ?>"> <?php echo $year . sprintf("%02d", $i + 1) ?> </button> <?php } ?>
+    </div>
 </form>
 <?php
 $content = ob_get_clean();

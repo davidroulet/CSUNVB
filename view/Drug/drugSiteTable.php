@@ -6,9 +6,10 @@ $title = "CSU-NVB - Stupéfiants";
         <h1>Stupéfiants</h1>
     </div>
 <?php
-$semaine = "2012";
+var_dump($semaine);
+$Site="Payerne";
 //
-$date=strtotime("2020-02-24"); ?>
+$date = strtotime("2020-02-24"); ?>
     <h2>Site de <?= $Site ?> , Semaine N° <?= $semaine ?></h2>
 
 <?php
@@ -17,7 +18,9 @@ $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dim
 foreach ($jours as $jour) { ?>
     <table border="1" class="table table-dark">
         <tr>
-                <td colspan="6" <?php if($date==date("Y-m-d")){ ?>class="today" <?php }  echo  ">".$jour . " " . date("Y-m-d",$date) ?></td>
+            <td colspan="6" <?php if (date("Y-m-d", $date) == date("Y-m-d")){ ?>class="today"
+            <?php } ?> > <?php
+            echo $jour . " " . date("Y-m-d", $date) ?></td>
             <?php
             $date = strtotime(date("Y-m-d", $date) . " +1 day");
             ?>
