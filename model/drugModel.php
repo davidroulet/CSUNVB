@@ -95,6 +95,6 @@ function createSheet($item)
     $items[]=$item;
     updateSheets($items);
     return $item;
-}-------------------
+}
 
 ?>
