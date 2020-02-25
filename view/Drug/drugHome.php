@@ -9,7 +9,7 @@ $title = "CSU-NVB - Stupéfiants";
     <button class="btn">Fabien</button>
 </form>
 <form action="/index.php?action=DrugTest" method="post">
-    <button class="btn">Tests</button>
+    <button class="btn">Teste</button>
 </form>
 <form action="/index.php?action=drugSiteTable" method="post">
 <div class="row m-2">

@@ -10,33 +10,33 @@
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
-function getStupSheets()
+function getDrugItems()
 {
-    $Array= json_decode(file_get_contents("model/dataStorage/stupsheets.json"),true);
+    $Array= json_decode(file_get_contents("model/dataStorage/stups.json"),true);
     foreach ($Array as $p){
-        $SheetsArray[$p["id"]]=$p;
+        $DrugArray[$p["id"]]=$p;
 }
-    return $SheetsArray;
+    return $DrugArray;
 }
 
 /**
  * Retourne un item précis, identifié par son id
  * ...
  */
-function readSheet($id)
+function readDrugItem($id)
 {
-    $SheetsArray = getStupSheets();
-   $Sheet = $SheetsArray[$id];
-    return $Sheet;
+    $items = getDrugItems();
+    $item=$items[$id];
+        return $item;
 }
 
 /**
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updateSheets($items)
+function updateDrugItems($items)
 {
-    file_put_contents("model/dataStorage/stupsheets.json",json_encode($items));
+    file_put_contents("model/dataStorage/stups.json",json_encode($items));
 }
 
 /**
@@ -44,32 +44,29 @@ function updateSheets($items)
  * Le paramètre $item est un item complet (donc un tableau associatif)
  * ...
  */
-function updateSheet($item)
+function updateDrugItem($item)
 {
-    $sheets=getStupSheets();
-    foreach ($sheets as $sheet) {
-        if($sheet["id"]==$item["id"]){
-            $id=$sheet["id"];
-            $sheets[$id]=$item;
-            updateSheets($sheets);
+    $items = getDrugItems();
+    foreach ($items as $p){
+        if($p["id"]==$item["id"]){
+            $id=$p["id"];
+            $items[$id]=$item;
+            updateDrugItems($items);
             return null;
         }
-
     }
+
 }
 
 /**
  * Détruit un item précis, identifié par son id
  * ...
  */
-function destroySheet($id)
+function destroyDrugItem($id)
 {
-
-    $items = getStupSheets();
-
-    unset($items[$id]);
-    updateSheets($items);
-
+    $items = getDrugItems();
+  unset($items[$id]);
+    updateDrugItems($items);
 }
 
 /**
@@ -78,22 +75,19 @@ function destroySheet($id)
  * puisque le modèle ne l'a pas encore traité
  * ...
  */
-function createSheet($item)
+function createDrugItem($item)
 {
-    $items = getStupSheets();
-    $idliste[]=0;
-    foreach ($items as $p){
-        $idliste[]=$p["id"];
-    }
-    foreach ($idliste as $id){
-        if ($id!=$idliste){
-            $newid=$id;
+    $items = getDrugItems();
+    $i = 0;
+    foreach ($items as $p) {
+        if ($i != $p["id"]) {
+            $item["id"] = $i;
+            $items[$i] = $item;
+            updateDrugItems($items);
+            return ($item); // Pour que l'appelant connaisse l'id qui a été donné
         }
+        $i++;
     }
-    $item["id"]=$newid+1;
-    $items[]=$item;
-    updateSheets($items);
-    return $item;
 }
 
 ?>

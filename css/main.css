@@ -5,15 +5,16 @@
     }
 }
 .week {
-    background-color: lightgrey;
+    background-color: lightcyan;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 2px;
     margin: 2px;
+
 }
 .day {
-    background-color: lightcyan;
+    background-color: white;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -22,28 +23,48 @@
 }
 .hour {
 
-    background-color: lightyellow;
+    background-color: white;
     padding: 4px;
     margin: 2px;
+    border-style: solid;
 }
 .dayheader {
-    background-color: lightslategrey;
+    background-color: lightskyblue;
     text-align: center;
     font-size: large;
     font-weight: bold;
     padding: 3px;
 }
+
 .horizontal{
-    justify-content: center !important;
+    font-size: 25px;
+    color: black;
+    text-align: center !important;
     font-weight: bold;
     writing-mode: vertical-rl !important;
     text-orientation: upright !important;
 
 }
+
 .center{
     text-align: center;
 }
 .nuitcolor{
     color: white;
+    background-color: navy;
+}
+.over {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+.over:hover {
+    text-align: center;
+    color: black;
     background-color: black;
+    text-decoration: none;
+
+}
+hr{
+    border: 1px solid black;
 }
