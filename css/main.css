@@ -1,3 +1,9 @@
+@media only screen and (max-device-width: 1440px) {
+    .day {
+        width:100%;
+        font-size: 80px;
+    }
+}
 .week {
     background-color: lightcyan;
     display: flex;
