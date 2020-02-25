@@ -12,13 +12,12 @@ require 'model/todoListModel.php';
 $todoItemsId = readTodoListItems();
 
 foreach ($todoItemsId as $p => $item){
-    $todoItemsId[$p['id']] = $p;
+    $todoItemsId[$item['id']] = $item;
 }
 
 var_dump($todoItemsId);
 
 ?>
-
 
 
 
