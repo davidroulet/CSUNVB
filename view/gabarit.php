@@ -38,7 +38,7 @@
 </head>
 <body>
 
-<div class="">
+
 <div class="container">
     <header>
         <div class="row banner">

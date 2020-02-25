@@ -12,46 +12,46 @@ $title = "CSU-NVB - Remise de garde";
         <h1>Remises de garde</h1>
     </div>
 
-    <div class="offset-1 col-10 offset-1">
-        <h3>Matériel & télécom</h3>
-        <table class="table-bordered">
+    <div class="container-fluid row">
+        <h4>Matériel & télécom</h4>
+        <table class="table table-bordered">
             <thead>
             <tr>
-                <th></th>
-                <th>jour</th>
-                <th>nuit</th>
-                <th>remarque</th>
+                <th width="20%"></th>
+                <th width="15%">jour</th>
+                <th width="15%">nuit</th>
+                <th width="50%">remarque</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>Radios</td>
-                <td></td>
-                <td></td>
+                <td><input type="checkbox" id="chk_Rad_J"><label for="chk_Rad_J">Ok</label></td>
+                <td><input type="checkbox" id="chk_Rad_N"><label for="chk_Rad_N">Ok</label></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Détecteurs CO</td>
-                <td></td>
-                <td></td>
+                <td><input type="checkbox" id="chk_Det_CO_J"><label for="chk_Det_CO_J">Ok</label></td>
+                <td><input type="checkbox" id="chk_Det_CO_N"><label for="chk_Det_CO_N">Ok</label></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Téléphones</td>
-                <td></td>
-                <td></td>
+                <td><input type="checkbox" id="chk_GT_J"><label for="chk_GT_J">Ok</label></td>
+                <td><input type="checkbox" id="chk_GT_N"><label for="chk_GT_N">Ok</label></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Gt info avisé</td>
-                <td></td>
-                <td></td>
+                <td><input type="checkbox" id="chk_GT_J"><label for="chk_GT_J">Ok</label></td>
+                <td><input type="checkbox" id="chk_GT_N"><label for="chk_GT_N">Ok</label></td>
                 <td></td>
             </tr>
             <tr>
                 <td>annonce 144</td>
-                <td></td>
-                <td></td>
+                <td><input type="checkbox" id="chk_ann_J"><label for="chk_ann_J">Ok</label></td>
+                <td><input type="checkbox" id="chk_ann_N"><label for="chk_ann_N">Ok</label></td>
                 <td></td>
             </tr>
 
