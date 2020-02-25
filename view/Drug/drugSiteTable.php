@@ -6,7 +6,6 @@ $title = "CSU-NVB - Stupéfiants";
         <h1>Stupéfiants</h1>
     </div>
 <?php
-var_dump($semaine);
 $Site="Payerne";
 //
 $date = strtotime("2020-02-24"); ?>

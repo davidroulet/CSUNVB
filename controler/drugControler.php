@@ -5,7 +5,7 @@ function drugHomePage()
 {
     require_once 'view/Drug/drugHome.php';
 }
-function drugSiteTable($Site){
+function drugSiteTable($semaine){
     require_once 'view/Drug/drugSiteTable.php';
 }
 function Teste(){
