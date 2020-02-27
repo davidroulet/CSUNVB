@@ -14,12 +14,16 @@ if (isset($_GET['action'])) {
     $action = 'home';
 }
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['base'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $base = $_POST['base'];
 }
 
 switch ($action) {
+    case 'home' :
+        require_once 'view/home.php';
+        break;
     case 'admin':
         adminHomePage();
         break;
@@ -45,13 +49,13 @@ switch ($action) {
         drugSiteTable($semaine);
         break;
     case "trylogin":
-        trylogin($username, $password);
+        trylogin($username, $password, $base);
         break;
     case "DrugTest":
         Teste();
         break;
     default: // unknown action
-        require_once 'view/home.php';
+        require_once 'view/login.php';
         break;
 }
 
