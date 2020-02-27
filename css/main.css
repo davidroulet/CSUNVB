@@ -22,7 +22,7 @@
     margin: 2px;
 }
 .hour {
-
+    text-align: center;
     background-color: white;
     padding: 4px;
     margin: 2px;
@@ -54,14 +54,14 @@
     background-color: navy;
 }
 .over {
-    text-align: center;
+
     color: black;
     text-decoration: none;
 }
 .over:hover {
-    text-align: center;
+
     color: black;
-    background-color: black;
+    background-color: white;
     text-decoration: none;
 
 }

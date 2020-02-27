@@ -6,10 +6,9 @@ $title = "CSU-NVB - Stupéfiants";
         <h1>Stupéfiants</h1>
     </div>
 <?php
-$Site="Payerne";
 //
 $date = strtotime("2020-02-24"); ?>
-    <h2>Site de <?= $Site ?> , Semaine N° <?= $semaine ?></h2>
+    <h2>Site de <?= $_SESSION["Selectsite"] ?> , Semaine N° <?= $semaine ?></h2>
 
 <?php
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
