@@ -5,8 +5,8 @@ $title = "CSU-NVB - Login";
 
 <div class="row">
     <form action="/?action=trylogin" method="post" class="form form-group">
-        <label for="username">Nom d'utilisateur</label>
-        <input id="username" type="text" class="form-group form-control" name="username" required>
+        <label for="initales">Initiales</label>
+        <input id="initiales" type="text" class="form-group form-control" name="username" required>
         <label for="password">Mot de passe</label>
         <input id="password" type="password" class="form-group form-control" name="password" required>
         <label>Quel site ?</label><br>
