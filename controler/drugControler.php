@@ -1,12 +1,15 @@
 <?php
 require_once 'model/drugModel.php';
 
-function drugHomePage()
+function drugHomePage($Site)
 {
     require_once 'view/Drug/drugHome.php';
 }
-function drugSiteTable($semaine){
+function drugSiteTable($semaine,$Site){
     require_once 'view/Drug/drugSiteTable.php';
+}
+function drugbase(){
+    require_once 'view/Drug/base.php';
 }
 function Teste(){
     Echo "Teste----------------------------------------------------------------------------<br>";

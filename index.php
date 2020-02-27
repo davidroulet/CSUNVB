@@ -8,6 +8,9 @@ require "controler/drugControler.php";
 if (isset($_POST["semaine"])){
     $semaine=$_POST["semaine"];
 }
+if (isset($_POST["site"])){
+    $_SESSION["Selectsite"]=$_POST["site"];
+}
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
@@ -43,16 +46,19 @@ switch ($action) {
         edittodopage();
         break;
     case 'drugs':
-        drugHomePage();
+        drugbase($Site);
         break;
     case "drugSiteTable":
-        drugSiteTable($semaine);
+        drugSiteTable($semaine,$Site);
         break;
     case "trylogin":
         trylogin($username, $password, $base);
         break;
     case "DrugTest":
         Teste();
+        break;
+    case "drugHomePage":
+        drugHomePage($Site);
         break;
     default: // unknown action
         require_once 'view/login.php';

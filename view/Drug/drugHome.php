@@ -13,9 +13,11 @@ $year = 20;
 </form>
 <form action="/index.php?action=drugSiteTable" method="post">
     <div class="row m-2">
-        <?php for ($i = 0; $i < 52; $i++) { ?>
+        <?php
+        $weeks=getStupSheets();
+        foreach ($weeks as $week) { ?>
             <button class="text-decoration-none card col-4 menutile align-items-center colorblue"
-                    name="semaine" value="<?= $year . sprintf("%02d", $i + 1) ?>"> <?php echo $year . sprintf("%02d", $i + 1) ?> </button> <?php } ?>
+                    name="semaine" value="<?= $week["week"] ?>"> <?php echo $week["week"] ?> </button> <?php } ?>
     </div>
 </form>
 <?php
