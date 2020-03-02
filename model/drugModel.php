@@ -94,4 +94,97 @@ function createSheet($item)
     return $item;
 }
 
+function getBatches()
+{
+    $Array= json_decode(file_get_contents("model/dataStorage/batches.json"),true);
+    foreach ($Array as $p){
+        $SheetsArray[$p["id"]]=$p;
+    }
+    return $SheetsArray;
+}
+function readbatche($id)
+{
+    $SheetsArray = getBatches();
+    $Sheet = $SheetsArray[$id];
+    return $Sheet;
+}
+
+function updateBatches($items)
+{
+    file_put_contents("model/dataStorage/batches.json",json_encode($items));
+}
+function updateBatche($item)
+{
+    $batchs=getBatches();
+    foreach ($batchs as $batch) {
+        if($batch["id"]==$item["id"]){
+            $id=$batch["id"];
+            $batchs[$id]=$item;
+            updateBatches($batchs);
+        }
+    }
+
+}
+function createDrug($item)
+{
+    $items = getBatches();
+    $idliste[]=0;
+    foreach ($items as $p){
+        $idliste[]=$p["id"];
+    }
+    foreach ($idliste as $id){
+        if ($id!=$idliste){
+            $newid=$id;
+        }
+    }
+    $item["id"]=$newid+1;
+    $items[]=$item;
+    updateBatches($items);
+    return $item;
+}
+
+
+function destroybatch($id)
+{
+    $items = getBatches();
+
+    unset($items[$id]);
+    updateBatches($items);
+
+}
+function getnovas()
+{
+    $Array= json_decode(file_get_contents("model/dataStorage/novas.json"),true);
+    foreach ($Array as $p){
+        $SheetsArray[$p["id"]]=$p;
+    }
+    return $SheetsArray;
+}
+function readnova($id)
+{
+    $SheetsArray = getnovas();
+    $Sheet = $SheetsArray[$id];
+    return $Sheet;
+}
+
+
+function updatenovas($items)
+{
+    file_put_contents("model/dataStorage/novas.json",json_encode($items));
+}
+
+
+
+function updateNova($item)
+{
+    $batchs=getnovas();
+    foreach ($batchs as $batch) {
+        if($batch["id"]==$item["id"]){
+            $id=$batch["id"];
+            $batchs[$id]=$item;
+            updatenovas($batchs);
+        }
+    }
+
+}
 ?>

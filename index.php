@@ -13,20 +13,19 @@ require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
 
-if (isset($_POST["semaine"])){
-    $semaine=$_POST["semaine"];
+if (isset($_POST["semaine"])) {
+    $semaine = $_POST["semaine"];
 }
-if (isset($_POST["site"])){
-    $_SESSION["Selectsite"]=$_POST["site"];
+if (isset($_POST["site"])) {
+    $_SESSION["Selectsite"] = $_POST["site"];
 }
 
 $action = $_GET['action'];
 if (isset($_SESSION['username']) || $action == 'trylogin') {
     $action = $_GET['action'];
-}else
-    {
-        $action = ' ';
-    }
+} else {
+    $action = ' ';
+}
 
 switch ($action) {
     case 'home' :
@@ -54,19 +53,19 @@ switch ($action) {
         drugbase($Site);
         break;
     case "drugSiteTable":
-        drugSiteTable($semaine,$Site);
+        drugSiteTable($semaine, $Site);
         break;
     case "trylogin":
         trylogin($username, $password, $base);
         break;
     case "DrugTest":
-        Teste();
+        require_once 'controler/Test/test.php';
         break;
     case "drugHomePage":
         drugHomePage($Site);
         break;
     default: // unknown action
-        if (isset($_SESSION['username'])){
+        if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
         } else {
             require_once 'view/login.php';
