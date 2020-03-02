@@ -71,3 +71,11 @@
     text-decoration: none;
 
 }
+.weekhead{
+    background-color: #d7fffd;
+    border-style: solid;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    padding: 3px;
+}
