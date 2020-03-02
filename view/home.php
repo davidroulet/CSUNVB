@@ -5,6 +5,7 @@
  * DATE: 13.02.2020
  * Time: 11:29
  **/
+
 ob_start();
 $title = "CSU-NVB - Accueil";
 ?>

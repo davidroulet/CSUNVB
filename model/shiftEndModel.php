@@ -1,16 +1,9 @@
 <?php
 /**
- * Ce cartouche vaudra quelques points en moins au groupe qui osera le laisser là tel quel ...
- * Auteur: X. Carrel
- * Date: Février 2020
+ * Auteur: Thomas Grossmann / Mounir Fiaux
+ * Date: Mars 2020
  **/
 
-
-/**
- * Retourne tous les items dans un tableau indexé de tableaux associatifs
- * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
- * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
- */
 function readShiftEndItems()
 {
     return json_decode(file_get_contents("model/dataStorage/items.json"),true);
