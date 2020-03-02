@@ -1,4 +1,10 @@
 <?php
+/**
+ * Title: CSUNVB
+ * USER: marwan.alhelo
+ * DATE: 13.02.2020
+ * Time: 11:29
+ **/
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
@@ -99,13 +105,13 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                 <div class="day col-sm">
 
 
-                        <div class="hour">  <a href="" class="over"> Contrôle stupéfiants Ambulances
+                    <div class="hour">
+                        <a href="" class="over">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
-                            </a>
-                            Nova N°....................
-                        </div>
-
+                        </a>
+                        <input type="text" class="form-control" placeholder=" Nova N°....................">
+                    </div>
                     <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
@@ -117,13 +123,13 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                 </div>
                 <div class="day col-sm">
 
-                    <a href="" class="over">
-                        <div class="hour">Contrôle stupéfiants Ambulances
+                    <div class="hour">
+                        <a href="" class="over">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
-                            Nova N°....................
-                        </div>
-                    </a>
+                        </a>
+                        <input type="text" class="form-control" placeholder=" Nova N°....................">
+                    </div>
                     <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
@@ -152,13 +158,13 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                 </div>
                 <div class="day col-sm">
 
-                    <a href="" class="over">
-                        <div class="hour">Contrôle stupéfiants Ambulances
+                    <div class="hour">
+                        <a href="" class="over">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
-                            Nova N°....................
-                        </div>
-                    </a>
+                        </a>
+                        <input type="text" class="form-control" placeholder=" Nova N°....................">
+                    </div>
                     <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
@@ -167,13 +173,13 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                     </a>
                 </div>
                 <div class="day col-sm">
-                    <a href="" class="over">
-                        <div class="hour">Contrôle stupéfiants Ambulances
+                    <div class="hour">
+                        <a href="" class="over">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
-                            Nova N°....................
-                        </div>
-                    </a>
+                        </a>
+                        <input type="text" class="form-control" placeholder=" Nova N°....................">
+                    </div>
                     <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
@@ -182,13 +188,13 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                     </a>
                 </div>
                 <div class="day col-sm">
-                    <a href="" class="over">
-                        <div class="hour">Contrôle stupéfiants Ambulances
+                    <div class="hour">
+                        <a href="" class="over">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
-                        </div>
-                    </a>
-                    <a> <input type="text" class="form-control" placeholder=" Nova N°...................."></a>
+                        </a>
+                        <input type="text" class="form-control" placeholder=" Nova N°....................">
+                    </div>
                     <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>
                     </a>
@@ -197,12 +203,13 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                     </a>
                 </div>
                 <div class="day col-sm">
-                    <a href="" class="over">
-                        <div class="hour">Contrôle stupéfiants Ambulances
+                    <div class="hour">
+                        <a href="" class="over">Contrôle stupéfiants Ambulances
                             * Morphine X4
                             * Sintenyl X6
-                        </div>
-                    </a>
+                        </a>
+                        <input type="text" class="form-control" placeholder=" Nova N°....................">
+                    </div>
                     <a> </a>
                     <a href="" class="over">
                         <div class="hour">Tâches spécifique</div>

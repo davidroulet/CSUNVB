@@ -1,8 +1,10 @@
 <?php
 /**
- * Ce cartouche vaudra quelques points en moins au groupe qui osera le laisser là tel quel ...
- * Auteur: X. Carrel
- * Date: Février 2020
+
+ * Title: CSUNVB
+ * USER: marwan.alhelo
+ * DATE: 13.02.2020
+ * Time: 11:29
  **/
 
 /**
