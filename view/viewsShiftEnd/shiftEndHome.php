@@ -28,8 +28,8 @@ $title = "CSU-NVB - Remise de garde";
                 <td>
                     <div id="lbl_Rad">Radios</div>
                 </td>
-                <td onclick="fn_Check()"><input type="checkbox" id="chk_Rad_J"><label for="chk_Rad_J ">Ok</label></td>
-                <td onclick="fn_Check()"><input type="checkbox" id="chk_Rad_N"><label for="chk_Rad_N">Ok</label></td>
+                <td onclick="fn_Chk_Rad_J()"><input type="checkbox" id="chk_Rad_J"><label for="chk_Rad_J ">Ok</label></td>
+                <td onclick="fn_Chk_Rad_N()"><input type="checkbox" id="chk_Rad_N"><label for="chk_Rad_N">Ok</label></td>
                 <td><textarea style="resize: none" id="TXT_Area_Rad" cols="100%" rows="3"></textarea></td>
             </tr>
             <tr>
