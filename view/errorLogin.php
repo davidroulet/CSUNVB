@@ -1,9 +1,9 @@
 <?php
-/*
- * Programme : Exo Php
- * Auteur : Thomas Grossmann
- * Date : 25.02.2020
- */
+/**
+ * Auteur: Thomas Grossmann / Mounir Fiaux
+ * Date: Février 2020
+ **/
+
 ob_start();
 $title = "CSU-NVB - Erreur";
 ?>

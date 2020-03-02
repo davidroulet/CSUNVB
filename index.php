@@ -1,27 +1,32 @@
 <?php
 session_start();
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $base = $_POST['base'];
+}
+
 // Include all controllers
 require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
+
 if (isset($_POST["semaine"])){
     $semaine=$_POST["semaine"];
 }
 if (isset($_POST["site"])){
     $_SESSION["Selectsite"]=$_POST["site"];
 }
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-} else {
-    $action = 'home';
-}
 
-if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['base'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $base = $_POST['base'];
-}
+$action = $_GET['action'];
+if (isset($_SESSION['username']) || $action == 'trylogin') {
+    $action = $_GET['action'];
+}else
+    {
+        $action = ' ';
+    }
 
 switch ($action) {
     case 'home' :
@@ -61,7 +66,11 @@ switch ($action) {
         drugHomePage($Site);
         break;
     default: // unknown action
-        require_once 'view/login.php';
+        if (isset($_SESSION['username'])){
+            require_once 'view/home.php';
+        } else {
+            require_once 'view/login.php';
+        }
         break;
 }
 
