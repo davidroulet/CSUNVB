@@ -25,33 +25,35 @@ $title = "CSU-NVB - Remise de garde";
             </thead>
             <tbody>
             <tr>
-                <td>Radios</td>
-                <td><input type="checkbox" id="chk_Rad_J"><label for="chk_Rad_J">Ok</label></td>
-                <td><input type="checkbox" id="chk_Rad_N"><label for="chk_Rad_N">Ok</label></td>
+                <td>
+                    <div id="lbl_Rad">Radios</div>
+                </td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_Rad_J"><label for="chk_Rad_J ">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_Rad_N"><label for="chk_Rad_N">Ok</label></td>
                 <td><textarea style="resize: none" id="TXT_Area_Rad" cols="100%" rows="3"></textarea></td>
             </tr>
             <tr>
                 <td>Détecteurs CO</td>
-                <td><input type="checkbox" id="chk_Det_CO_J"><label for="chk_Det_CO_J">Ok</label></td>
-                <td><input type="checkbox" id="chk_Det_CO_N"><label for="chk_Det_CO_N">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_Det_CO_J"><label for="chk_Det_CO_J">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_Det_CO_N"><label for="chk_Det_CO_N">Ok</label></td>
                 <td><textarea style="resize: none" id="TXT_Area_Det_Co" cols="100%" rows="3"></textarea></td>
             </tr>
             <tr>
                 <td>Téléphones</td>
-                <td><input type="checkbox" id="chk_GT_J"><label for="chk_GT_J">Ok</label></td>
-                <td><input type="checkbox" id="chk_GT_N"><label for="chk_GT_N">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_GT_J"><label for="chk_GT_J">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_GT_N"><label for="chk_GT_N">Ok</label></td>
                 <td><textarea style="resize: none" id="TXT_Area_Tel" cols="100%" rows="3"></textarea></td>
             </tr>
             <tr>
                 <td>Gt info avisé</td>
-                <td><input type="checkbox" id="chk_GT_J"><label for="chk_GT_J">Ok</label></td>
-                <td><input type="checkbox" id="chk_GT_N"><label for="chk_GT_N">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_GT_J"><label for="chk_GT_J">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_GT_N"><label for="chk_GT_N">Ok</label></td>
                 <td><textarea style="resize: none" id="TXT_Area_GT" cols="100%" rows="3"></textarea></td>
             </tr>
             <tr>
                 <td>annonce 144</td>
-                <td><input type="checkbox" id="chk_ann_J"><label for="chk_ann_J">Ok</label></td>
-                <td><input type="checkbox" id="chk_ann_N"><label for="chk_ann_N">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_ann_J"><label for="chk_ann_J">Ok</label></td>
+                <td onclick="fn_Check()"><input type="checkbox" id="chk_ann_N"><label for="chk_ann_N">Ok</label></td>
                 <td><textarea style="resize: none" id="TXT_Area_ann" cols="100%" rows="3"></textarea></td>
             </tr>
 
@@ -79,6 +81,14 @@ $title = "CSU-NVB - Remise de garde";
     </div>
 
 </div>
+<script>
+    function fn_Check() {
+        document.getElementById("chk_Rad_J").checked = 1 - document.getElementById("chk_Rad_J").checked;
+        if ((document.getElementById("chk_Rad_J").checked == 1) && (document.getElementById("chk_Rad_N").checked == 1)) {
+            document.getElementById("lbl_Rad").style.visibility = 'hidden';
+        }
+    }
+</script>
 <?php
 $content = ob_get_clean();
 require "view/gabarit.php";
