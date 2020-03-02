@@ -5,6 +5,7 @@
  * Date: Février 2020
  **/
 
+
 /**
  * Retourne tous les items dans un tableau indexé de tableaux associatifs
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
