@@ -16,6 +16,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         <div class="horizontal"><span style="font-weight: bold"> Journée</span></div>
         <div class="day col-sm">
             <div class="dayheader">Lundi</div>
+            <div class="weekhead" > semaine N°</div>
             <div class="hour"><a href="?action=Edittodo" class="over">Fax 144 Transmission </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over"> Check Ambulance et Communication </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over">Contrôle stupéfiants + Date perf. Chaudes</a>
@@ -29,6 +30,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         </div>
         <div class="day col-sm">
             <div class="dayheader">Mardi</div>
+            <div class="weekhead" > semaine N°</div>
             <div class="hour"><a href="?action=Edittodo" class="over">Fax 144 Transmission </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over"> Check Ambulance et Communication </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over">Contrôle stupéfiants + Date perf. Chaudes</a>
@@ -42,6 +44,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         </div>
         <div class="day col-sm">
             <div class="dayheader">Mercredi</div>
+            <div class="weekhead" > semaine N°</div>
             <div class="hour"><a href="?action=Edittodo" class="over">Fax 144 Transmission </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over"> Check Ambulance et Communication </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over">Contrôle stupéfiants + Date perf. Chaudes</a>
@@ -55,6 +58,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         </div>
         <div class="day col-sm">
             <div class="dayheader">Jeudi</div>
+            <div class="weekhead" > semaine N°</div>
             <div class="hour"><a href="?action=Edittodo" class="over">Fax 144 Transmission </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over"> Check Ambulance et Communication </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over">Contrôle stupéfiants + Date perf. Chaudes</a>
@@ -68,6 +72,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         </div>
         <div class="day col-sm">
             <div class="dayheader">Vendredi</div>
+            <div class="weekhead" > semaine N°</div>
             <div class="hour"><a href="?action=Edittodo" class="over">Fax 144 Transmission </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over"> Check Ambulance et Communication </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over">Contrôle stupéfiants + Date perf. Chaudes</a>
@@ -81,6 +86,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         </div>
         <div class="day col-sm">
             <div class="dayheader">Samedi</div>
+            <div class="weekhead" > semaine N°</div>
             <div class="hour"><a href="?action=Edittodo" class="over">Fax 144 Transmission </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over"> Check Ambulance et Communication </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over">Contrôle stupéfiants + Date perf. Chaudes</a>
@@ -94,6 +100,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         </div>
         <div class="day col-sm">
             <div class="dayheader">Dimanche</div>
+            <div class="weekhead" > semaine N°</div>
             <div class="hour"><a href="?action=Edittodo" class="over">Fax 144 Transmission </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over"> Check Ambulance et Communication </a></div>
             <div class="hour"><a href="?action=Edittodo" class="over">Contrôle stupéfiants + Date perf. Chaudes</a>
