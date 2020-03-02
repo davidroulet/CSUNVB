@@ -6,8 +6,27 @@ $title = "CSU-NVB - Stupéfiants";
         <h1>Stupéfiants</h1>
     </div>
 <?php
-//
-$date = strtotime("2020-02-24"); ?>
+$anneeChoix=2000+substr ($semaine,0,2);
+
+$semChoix=substr ($semaine,2,2);
+
+$timeStampPremierJanvier = strtotime($anneeChoix . '-01-01');
+$jourPremierJanvier = date('w', $timeStampPremierJanvier);
+
+//-- recherche du N° de semaine du 1er janvier -------------------
+$numSemainePremierJanvier = date('W', $timeStampPremierJanvier);
+
+//-- nombre à ajouter en fonction du numéro précédent ------------
+$decallage = ($numSemainePremierJanvier == 1) ? $semChoix - 1 : $semChoix;
+//-- timestamp du jour dans la semaine recherchée ----------------
+$timeStampDate = strtotime('+' . $decallage . ' weeks', $timeStampPremierJanvier);
+//-- recherche du lundi de la semaine en fonction de la ligne précédente ---------
+$jourDebutSemaine = ($jourPremierJanvier == 1) ? date('d-m-Y', $timeStampDate) : date('d-m-Y', strtotime('last monday', $timeStampDate));
+$jourFinSemaine = ($jourPremierJanvier == 1) ? date('d-m-Y', $timeStampDate) : date('d-m-Y',strtotime('next sunday', $timeStampDate));
+
+echo "Le premier jour de la semaine N° $semChoix est  le $jourDebutSemaine<br>";
+
+$date = strtotime($jourDebutSemaine); ?>
     <h2>Site de <?= $_SESSION["Selectsite"] ?> , Semaine N° <?= $semaine ?></h2>
 
 <?php
