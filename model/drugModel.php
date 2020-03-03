@@ -218,13 +218,19 @@ function getDrugs()
     foreach ($Array as $p){
         $SheetsArray[$p["id"]]=$p;
     }
-    
+
     return $SheetsArray;
 }
 function readDrug($id)
 {
     $SheetsArray = getDrugs();
     $Sheet = $SheetsArray[$id];
+    $batches=getBatches();
+    foreach ($batches as $batch){
+        if($id==$batch["drug_id"]){
+            $Sheet["batches"][]=$batch["number"];
+        }
+    }
     return $Sheet;
 }
 
@@ -241,8 +247,12 @@ function updateDrug($item)
     $batchs=getDrugs();
     foreach ($batchs as $batch) {
         if($batch["id"]==$item["id"]){
-            $id=$batch["id"];
-            $batchs[$id]=$item;
+
+            $batch["name"]=$item["name"];
+            $rendu["name"]=$batch["name"];
+
+            $rendu["id"]=$batch["id"];
+            $batchs[$batch["id"]]=$rendu;
             updateDrugs($batchs);
         }
     }

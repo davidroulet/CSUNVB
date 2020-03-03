@@ -176,10 +176,10 @@ if ($data["name"] == "Fentanyl") {
 
 echo "Update Info?     ";
 $data = readDrug(2);
-$data["name"] = "Cocaine";
+$data["name"] = "TesteDrug";
 updateDrug($data);
 $data2 = readDrug("2");
-if ($data2["name"] == "Cocaine") {
+if ($data2["name"] == "TesteDrug") {
     echo "OK<br>";
 } else {
     echo "No";
@@ -188,10 +188,10 @@ $data["name"] = "Fentanyl";
 updateDrug($data);
 
 echo "New Info?     ";
-$dataC = ["number" => "43"];
+$dataC = ["name" => "Sucre"];
 $idit = createDrug($dataC);
 $data3 = readDrug($idit["id"]);
-if ($data3["number"] == "43") {
+if ($data3["name"] == "Sucre") {
     echo "OK<br>";
 } else {
     echo "No";
