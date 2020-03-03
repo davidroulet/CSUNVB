@@ -24,9 +24,9 @@ foreach ($todoItems as $todoItem){
 }
 
 if(count($todoItems) == $i){
-    echo "2ème partie du test réussi";
+    echo "2ème partie du test réussie";
 } else {
-    echo "2ème partie du test échoué";
+    echo "2ème partie du test échouée";
 }
 
 ?>
