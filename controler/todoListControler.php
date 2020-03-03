@@ -19,8 +19,8 @@ function todoListHomePage()
 function edittodopage()
 {
 
+    require_once 'view/todo/edittodopage.php';
 
-    require_once 'view/todo/edittodo.php';
 }
 
 ?>
