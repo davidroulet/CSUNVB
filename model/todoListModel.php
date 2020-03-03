@@ -23,9 +23,14 @@ function readTodoListItems()
  */
 function readTodoListItem($id)
 {
-    $items = getTodoListItems();
+    $items = readTodoListItems();
     // TODO: coder la recherche de l'item demandé
-    return $item;
+    foreach($items as $item){
+        if($item['id'] == $id){
+            return $item;
+        }
+    }
+
 }
 
 /**
