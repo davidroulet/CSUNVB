@@ -1,14 +1,14 @@
-[
-  {
+{
+  "2": {
     "id": 2,
     "name": "Fentanyl"
   },
-  {
+  "1": {
     "id": 1,
     "name": "Morphine"
   },
-  {
+  "3": {
     "id": 3,
     "name": "Temesta"
   }
-]
+}
