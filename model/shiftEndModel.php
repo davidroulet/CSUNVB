@@ -65,6 +65,4 @@ function createShiftEndItem($item)
     saveShiftEndItem($items);
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
 }
-
-
 ?>
