@@ -6,22 +6,7 @@ $title = "CSU-NVB - Stupéfiants";
         <h1>Stupéfiants</h1>
     </div>
 <?php
-$anneeChoix=2000+substr ($semaine,0,2);
-
-$semChoix=substr ($semaine,2,2);
-
-$timeStampPremierJanvier = strtotime($anneeChoix . '-01-01');
-$jourPremierJanvier = date('w', $timeStampPremierJanvier);
-
-//-- recherche du N° de semaine du 1er janvier -------------------
-$numSemainePremierJanvier = date('W', $timeStampPremierJanvier);
-
-//-- nombre à ajouter en fonction du numéro précédent ------------
-$decallage = ($numSemainePremierJanvier == 1) ? $semChoix - 1 : $semChoix;
-//-- timestamp du jour dans la semaine recherchée ----------------
-$timeStampDate = strtotime('+' . $decallage . ' weeks', $timeStampPremierJanvier);
-//-- recherche du lundi de la semaine en fonction de la ligne précédente ---------
-$jourDebutSemaine = ($jourPremierJanvier == 1) ? date('d-m-Y', $timeStampDate) : date('d-m-Y', strtotime('last monday', $timeStampDate));
+$jourDebutSemaine= getdate2($semaine);
 
 
 $date = strtotime($jourDebutSemaine); ?>
