@@ -8,7 +8,7 @@
  * Nom du Projet CSUNVB
  */
 
-
+var_dump(getDrugs());
     Echo "Sheet Teste----------------------------------------------------------------------------<br>";
     echo "ALL Info?     ";
     if (getStupSheets() != null) {
