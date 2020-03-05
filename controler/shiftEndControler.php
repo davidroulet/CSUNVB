@@ -25,12 +25,18 @@ function login()
 }
 function trylogin($username, $password, $base)
 {
-    $User = getUser($username, $password);
-    if (($username == $User['initials'] && password_verify($password, $User['password']) && $base == true) || ($username == "user" && $password == "usermdp"))
+    $i = 1;
+    $Users = getUsers($username, $password);
+    foreach ($Users as $user)
     {
-        $_SESSION['username'] = [$username, $password, $base];
-        require_once 'view/home.php';
-    } else
+        if (($username == $user['initials'] && password_verify($password, $user['password']) && $base == true) || ($username == "user" && $password == "usermdp"))
+        {
+            $_SESSION['username'] = [$username, $password, $base];
+            $i = 2;
+            require_once 'view/home.php';
+        }
+    }
+    if ($i == 1)
     {
         errorLogin();
     }
@@ -40,6 +46,5 @@ function errorLogin()
 {
     require_once 'view/errorLogin.php';
 }
-
 
 ?>
