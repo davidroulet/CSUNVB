@@ -1,17 +1,20 @@
 <?php
+// David Roulet - Fabien Masson
+// Projet CSU-NVB A1
+// Drugs Section
 require_once 'model/drugModel.php';
 
-function drugHomePage($Site)
+function drugHomePage($Site) //Affiche la page de selection de la semaine
 {
     require_once 'view/Drug/drugHome.php';
 }
-function drugSiteTable($semaine,$Site){
+function drugSiteTable($semaine,$Site){ // Affiage de la page Finale
     require_once 'view/Drug/drugSiteTable.php';
 }
-function drugbase(){
+function drugbase(){ // Affiche la page de selection des bases
     require_once 'view/Drug/base.php';
 }
-function getdate2($semaine)
+function getdate2($semaine) //Donne les jours de la semaine Selectionée
 {
     $anneeChoix=2000+substr ($semaine,0,2);
 
