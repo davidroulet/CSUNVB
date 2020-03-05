@@ -5,6 +5,7 @@
  **/
 
 require_once 'model/shiftEndModel.php';
+require_once 'model/loginModel.php';
 
 function shiftEndHomePage()
 {
@@ -24,11 +25,10 @@ function login()
 }
 function trylogin($username, $password, $base)
 {
-    $DefautPasswordHash = password_hash("usermdp", PASSWORD_DEFAULT);
-    if ($username == "user" && password_verify($password, $DefautPasswordHash) && $base == true)
+    $User = getUser($username, $password);
+    if ($username == $User['initials'] && password_verify($password, $User['password']) && $base == true)
     {
-        $_SESSION['username'] = [
-            $username, $password, $base];
+        $_SESSION['username'] = [$username, $password, $base];
         require_once 'view/home.php';
     } else
     {
@@ -40,4 +40,6 @@ function errorLogin()
 {
     require_once 'view/errorLogin.php';
 }
+
+
 ?>
