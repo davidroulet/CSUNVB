@@ -47,14 +47,8 @@ function updateSheets($items)
 function updateSheet($item)
 {
     $sheets=getStupSheets();
-    foreach ($sheets as $sheet) {
-        if($sheet["id"]==$item["id"]){
-            $id=$sheet["id"];
-            $sheets[$id]=$item;
-            updateSheets($sheets);
-        }
-    }
-
+    $sheets[$item["id"]]=$item;
+    updateSheets($sheets);
 }
 
 /**
@@ -115,15 +109,9 @@ function updateBatches($items)
 }
 function updateBatche($item)
 {
-    $batchs=getBatches();
-    foreach ($batchs as $batch) {
-        if($batch["id"]==$item["id"]){
-            $id=$batch["id"];
-            $batchs[$id]=$item;
-            updateBatches($batchs);
-        }
-    }
-
+    $sheets=getBatches();
+    $sheets[$item["id"]]=$item;
+    updateBatches($sheets);
 }
 function createbatch($item)
 {
@@ -177,14 +165,9 @@ function updatenovas($items)
 
 function updateNova($item)
 {
-    $batchs=getnovas();
-    foreach ($batchs as $batch) {
-        if($batch["id"]==$item["id"]){
-            $id=$batch["id"];
-            $batchs[$id]=$item;
-            updatenovas($batchs);
-        }
-    }
+    $sheets=getnovas();
+    $sheets[$item["id"]]=$item;
+    updatenovas($sheets);
 
 }
 
@@ -214,11 +197,22 @@ function destroyNova($id)
 }
 function getDrugs()
 {
-    $Array= json_decode(file_get_contents("model/dataStorage/Drugs.json"),true);
+    $batches=getBatches();
+    $Array= json_decode(file_get_contents("model/dataStorage/drugs.json"),true);
     foreach ($Array as $p){
         $SheetsArray[$p["id"]]=$p;
     }
-
+    foreach ($SheetsArray as $item) {
+        foreach ($batches as $batch){
+            if($item["id"]==$batch["drug_id"]);
+            $SheetsArray[$item["id"]]["batches"][]=$batch["number"];
+        }
+    }
+    $sheets = $SheetsArray;
+    foreach ($sheets as $item){
+        unset($sheets[$item["id"]]["batches"]);
+    }
+    updateDrugs($sheets);
     return $SheetsArray;
 }
 function readDrug($id)
@@ -244,19 +238,13 @@ function updateDrugs($items)
 
 function updateDrug($item)
 {
-    $batchs=getDrugs();
-    foreach ($batchs as $batch) {
-        if($batch["id"]==$item["id"]){
 
-            $batch["name"]=$item["name"];
-            $rendu["name"]=$batch["name"];
-
-            $rendu["id"]=$batch["id"];
-            $batchs[$batch["id"]]=$rendu;
-            updateDrugs($batchs);
-        }
+    $sheets=getDrugs();
+    $sheets[$item["id"]]["name"]=$item["name"];
+    foreach ($sheets as $iteme){
+       unset($sheets[$iteme["id"]]["batches"]);
     }
-
+    updateDrugs($sheets);
 }
 function createDrug($item)
 {
