@@ -8,7 +8,6 @@
  * Nom du Projet CSUNVB
  */
 
-var_dump(getDrugs());
     Echo "Sheet Teste----------------------------------------------------------------------------<br>";
     echo "ALL Info?     ";
     if (getStupSheets() != null) {
@@ -105,6 +104,14 @@ var_dump(getDrugs());
     }
 
 
+    echo "Find Info?     ";
+$num = 222222;
+$batch=FindBatchewhitNumber($num);
+    if ($batch["id"] == 12) {
+        echo "OK<br>";
+    } else {
+        echo "No";
+    }
     Echo "Nova Teste----------------------------------------------------------------------------<br>";
 
     echo "ALL Info?     ";

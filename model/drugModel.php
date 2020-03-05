@@ -130,7 +130,14 @@ function createbatch($item)
     updateBatches($items);
     return $item;
 }
-
+function FindBatchewhitNumber($number){
+    $batches=getBatches();
+    foreach ($batches as $batch){
+        if ($batch["number"]==$number){
+            return $batch;
+        }
+    }
+}
 
 function destroybatch($id)
 {
