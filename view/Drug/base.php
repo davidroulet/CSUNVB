@@ -1,4 +1,7 @@
 <?php
+// David Roulet - Fabien Masson
+// Projet CSU-NVB A1
+// Drugs Section
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
 ?>

@@ -1,4 +1,8 @@
 <?php
+// David Roulet - Fabien Masson
+// Projet CSU-NVB A1
+// Drugs Section
+
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
 ?>
@@ -6,11 +10,31 @@ $title = "CSU-NVB - Stupéfiants";
         <h1>Stupéfiants</h1>
     </div>
 <?php
-$jourDebutSemaine = getdate2($semaine);
-$novas = getnovas();
-$case=0;
-$date = strtotime($jourDebutSemaine); ?>
-    <h2>Site de <?= $_SESSION["Selectsite"] ?> , Semaine N° <?= $semaine ?></h2>
+$jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
+$novas = getnovas(); // Obient la liste des ambulance
+$drugs=getDrugs(); // Obient la list des Drugs
+$date = strtotime($jourDebutSemaine);
+switch ($_SESSION["Selectsite"])
+{
+    case 1:
+        $site="yverdon-les-Bains";
+        break;
+    case 2:
+        $site="Sainte-Croix";
+        break;
+    case 3:
+        $site="Sait-Loup";
+        break;
+    case 4:
+        $site="Payerne";
+        break;
+    case 5:
+        $site="La Vallée-de-Joux";
+        break;
+}
+
+?>
+<h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
 
 <?php
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
@@ -33,54 +57,19 @@ foreach ($jours as $jour) { ?>
             } ?>
             <td>Pharmacie</td>
         </tr>
+
+
+<?php foreach ($drugs as $drug) {?>
         <tr>
-            <td>Morphine</td>
+            <td><?= $drug["name"]?></td>
             <td></td>
             <td></td>
             <?php foreach ($novas as $nova) {
                 echo "<td></td>";
             } ?>
-        </tr>
-        <tr>
-            <td>x</td>
-            <td></td>
-            <td></td>
-            <?php foreach ($novas as $nova) {
-                echo "<td></td>";
-            } ?>
-        </tr>
-        <tr>
-            <td>Fentanyl</td>
-            <td></td>
-            <td></td>
-            <?php foreach ($novas as $nova) {
-                echo "<td></td>";
-            } ?>
-        </tr>
-        <tr>
-            <td>x</td>
-            <td></td>
-            <td></td>
-            <?php foreach ($novas as $nova) {
-                echo "<td></td>";
-            } ?>
-        </tr>
-        <tr>
-            <td>Temestra</td>
-            <td></td>
-            <td></td>
-            <?php foreach ($novas as $nova) {
-                echo "<td></td>";
-            } ?>
-        </tr>
-        <tr>
-            <td>x</td>
-            <td></td>
-            <td></td>
-            <?php foreach ($novas as $nova) {
-                echo "<td></td>";
-            } ?>
-        </tr>
+        </tr> <?php } ?>
+
+
         <tr>
             <td>Signature</td>
             <td colspan="5"></td>
