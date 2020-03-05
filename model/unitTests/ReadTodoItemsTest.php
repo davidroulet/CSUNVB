@@ -7,9 +7,9 @@ $todoItems = readTodoListItems();
 echo "Test 1 Lire tous les items\n";
 
 if (count($todoItems) ==  22) {
-    echo "1ère partie du test réussie";
+    echo "-> Test réussie";
 } else {
-    echo "1ère partie du test réussie échouée";
+    echo "-> Test échoué";
 }
 
 $i = 0;
@@ -24,9 +24,9 @@ foreach ($todoItems as $todoItem){
 }
 
 if(count($todoItems) == $i){
-    echo "2ème partie du test réussie";
+    echo "-> Test réussie";
 } else {
-    echo "2ème partie du test échouée";
+    echo "-> Test échoué";
 }
 
 ?>
