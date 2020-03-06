@@ -16,8 +16,6 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 <h1 class="center"><?= $title ?></h1>
 
 <div class="container ">
-
-
     <div class="week">
         <div class="week">
             <?php
@@ -26,13 +24,11 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
                 echo "<div class=\"dayheader\">" . $days[$ligne] . "</div>";
                 echo " <div class=\"weekhead\" >semaine N°</div>";
                 echo "</div>";
-
             }
             ?>
             <div class="week">
                 <div class="day col-lg">
                     <div class="nuitcolor hour">Journée</div>
-
                 </div>
                 <div class="week">
                     <?php
