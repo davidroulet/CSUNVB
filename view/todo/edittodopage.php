@@ -9,9 +9,6 @@ ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 
 $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
-for ($ligne = 0; $ligne < count($days); $ligne++) {
-    echo "<li>" . $days[$ligne] . "</li>";
-}
 
 ?>
 

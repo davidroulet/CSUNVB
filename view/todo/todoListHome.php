@@ -12,69 +12,26 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 <div class="container ">
     <div class="week">
         <div class="horizontal"><span style="font-weight: bold"> Année</span></div>
-        <div class="day col-sm">
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-        </div>
-        <div class="day col-sm">
-
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-        </div>
-        <div class="day col-sm">
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-        </div>
-        <div class="day col-sm">
-
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-            <a href="?action=edittod&id=1" class="over"><div class="hour">Semaine N° </div></a>
-        </div>
-
+        <?php
+        for($i=0; $i<4; $i++){
+            echo "<div class=\"day col-sm\">";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">Semaine N° </div></a>";
+            echo "</div>";
+        }
+        ?>
 
 <?php
 $content = ob_get_clean();
