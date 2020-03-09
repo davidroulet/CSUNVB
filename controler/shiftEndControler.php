@@ -29,7 +29,7 @@ function trylogin($username, $password, $base)
     $Users = getUsers($username, $password);
     foreach ($Users as $user)
     {
-        if (($username == $user['initials'] && password_verify($password, $user['password']) && $base == true) || ($username == "user" && $password == "usermdp"))
+        if ($username == $user['initials'] && password_verify($password, $user['password']) && $base == true)
         {
             $_SESSION['username'] = [$username, $password, $base];
             $i = 2;

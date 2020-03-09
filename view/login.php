@@ -17,19 +17,19 @@ $title = "CSU-NVB - Login";
         <label>Quel site ?</label><br>
         <div class="form-check-inline">
             <div class="form-check">
-                <input id="yverdon" type="radio" name="base" required>Yverdon
+                <input id="yverdon" type="radio" name="base" value="Yverdon" required>Yverdon
             </div>
             <div class="form-check">
-                <input id="stloup" type="radio" name="base" required>Saint-Loup
+                <input id="stloup" type="radio" name="base" value="Saint-Loup" required>Saint-Loup
             </div>
             <div class="form-check">
-                <input id="stecroix" type="radio" name="base" required>Sainte-Croix
+                <input id="stecroix" type="radio" name="base" value="Sainte-Croix" required>Sainte-Croix
             </div>
             <div class="form-check">
-                <input id="valleejoux" type="radio" name="base" required>Vallée-de-Joux
+                <input id="valleejoux" type="radio" name="base" value="Vallée-de-Joux" required>Vallée-de-Joux
             </div>
             <div class="form-check">
-                <input id="payerne" type="radio" name="base" required>Payerne
+                <input id="payerne" type="radio" name="base" value="Payerne" required>Payerne
             </div>
         </div><br><br>
         <button type="submit" id="btnLogin" class="btn btn-primary">Connecter</button>
