@@ -12,29 +12,29 @@ $title = "CSU-NVB - Stupéfiants";
 <?php
 $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
 $novas = getnovas(); // Obient la liste des ambulance
-$drugs=getDrugs(); // Obient la list des Drugs
+$drugs = getDrugs(); // Obient la list des Drugs
+var_dump($drugs);
 $date = strtotime($jourDebutSemaine);
-switch ($_SESSION["Selectsite"])
-{
+switch ($_SESSION["Selectsite"]) {
     case 1:
-        $site="yverdon-les-Bains";
+        $site = "yverdon-les-Bains";
         break;
     case 2:
-        $site="Sainte-Croix";
+        $site = "Sainte-Croix";
         break;
     case 3:
-        $site="Sait-Loup";
+        $site = "Sait-Loup";
         break;
     case 4:
-        $site="Payerne";
+        $site = "Payerne";
         break;
     case 5:
-        $site="La Vallée-de-Joux";
+        $site = "La Vallée-de-Joux";
         break;
 }
 
 ?>
-<h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
+    <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
 
 <?php
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
@@ -59,15 +59,26 @@ foreach ($jours as $jour) { ?>
         </tr>
 
 
-<?php foreach ($drugs as $drug) {?>
-        <tr>
-            <td><?= $drug["name"]?></td>
-            <td></td>
-            <td></td>
-            <?php foreach ($novas as $nova) {
-                echo "<td></td>";
+        <?php foreach ($drugs as $drug) { ?>
+            <tr>
+                <td><?= $drug["name"] ?></td>
+                <td></td>
+                <td></td>
+                <?php foreach ($novas as $nova) {
+                    echo "<td></td>";
+                } ?>
+            </tr>
+            <?php foreach ($drug["batches"] as $batch) {
+                echo "<tr>";
+                echo "<td>" . $batch . "</td>"; ?>
+                <td></td>
+                <td></td>
+                <?php foreach ($novas as $nova) {
+                    echo "<td></td>";
+                }
+                echo "</tr>";
             } ?>
-        </tr> <?php } ?>
+        <?php } ?>
 
 
         <tr>

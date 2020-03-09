@@ -26,6 +26,7 @@ if (isset($_SESSION['username']) || $action == 'trylogin') {
 } else {
     $action = ' ';
 }
+
 switch ($action) {
     case 'home' :
         require_once 'view/home.php';
