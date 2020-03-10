@@ -27,7 +27,7 @@ $title = "CSU-NVB - Remise de garde";
             <tbody>
             <tr>
                 <td>
-                    <div id="lbl_Info_Traf">Info trafic consulté</div>
+                    <div id="lbl_Info_Traf">Centrale Propre</div>
                 </td>
                 <td id="td_Info_Traf_J" onclick="fn_Chk_Info_Traf_J()"><input type="checkbox" id="chk_Info_Traf_J"
                                                                   style="visibility: hidden"></td>
@@ -39,7 +39,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Report_Info_Traf">Report des info trafic sur plan de secteur centrale</div>
+                    <div id="lbl_Report_Info_Traf">Tâches du jour effectuées</div>
                 </td>
                 <td id="td_Report_Info_Traf_J" onclick="fn_Chk_Report_Info_Traf_J()"><input type="checkbox" id="chk_Report_Info_Traf_J"
                                                                         style="visibility: hidden"></td>
@@ -53,7 +53,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Acc_Stage">Acceuil étudiant ou stagiaire</div>
+                    <div id="lbl_Acc_Stage">Dimanche Fiches stupéfiants et tableau tâches scannées</div>
                 </td>
                 <td id="td_Acc_Stage_J" onclick="fn_Chk_Acc_Stage_J()"><input type="checkbox" id="chk_Acc_Stage_J"
                                                                   style="visibility: hidden"></td>
@@ -65,30 +65,7 @@ $title = "CSU-NVB - Remise de garde";
                     <span id="span_Acc_Stage_Val_NO" class="glyphicon glyphicon-ok">X</span>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <div id="lbl_Lect_Journal">Lecture journal de bord</div>
-                </td>
-                <td id="td_Lect_Journal_J" onclick="fn_Chk_Lect_Journal_J()"><input type="checkbox" id="chk_Lect_Journal_J"
-                                                                style="visibility: hidden"></td>
-                <td id="td_Lect_Journal_N" onclick="fn_Chk_Lect_Journal_N()"><input type="checkbox" id="chk_Lect_Journal_N"
-                                                                style="visibility: hidden"></td>
-                <td><textarea style="resize: none" id="TXT_Area_Lect_Journal" cols="100%" rows="4"></textarea></td>
-                <td id="td_Lect_Journal_Val"><span id="span_Lect_Journal_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span><span
-                            id="span_Lect_Journal_Val_NO" class="glyphicon glyphicon-ok">X</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <div id="lbl_Pb_Resp_GT">Problème et responsable GT avisé</div>
-                </td>
-                <td id="td_Pb_Resp_GT_J" onclick="fn_Chk_Pb_Resp_GT_J()"><input type="checkbox" id="chk_Pb_Resp_GT_J"
-                                                                  style="visibility: hidden"></td>
-                <td id="td_Pb_Resp_GT_N" onclick="fn_Chk_Pb_Resp_GT_N()"><input type="checkbox" id="chk_Pb_Resp_GT_N"
-                                                                  style="visibility: hidden"></td>
-                <td><textarea style="resize: none" id="TXT_Area_Pb_Resp_GT" cols="100%" rows="4"></textarea></td>
-                <td id="td_Pb_Resp_GT_Val"><span id="span_Pb_Resp_GT_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span>
-                    <span id="span_Pb_Resp_GT_Val_NO" class="glyphicon glyphicon-ok">X</span></td>
-            </tr>
+
 
             </tbody>
         </table>
@@ -211,69 +188,6 @@ $title = "CSU-NVB - Remise de garde";
         }
     }
 
-    function fn_Chk_Lect_Journal_J() {
-        document.getElementById("chk_Lect_Journal_J").checked = 1 - document.getElementById("chk_Lect_Journal_J").checked;
-        if (document.getElementById("chk_Lect_Journal_J").checked == 1) {
-            document.getElementById("td_Lect_Journal_J").style.backgroundColor = "lightgreen";
-        } else {
-            document.getElementById("td_Lect_Journal_J").style.backgroundColor = "#ff8080";
-        }
-        if ((document.getElementById("chk_Lect_Journal_J").checked == 1) && (document.getElementById("chk_Lect_Journal_N").checked == 1)) {
-            document.getElementById("span_Lect_Journal_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Lect_Journal_Val_NO").style.visibility = 'hidden';
-        } else {
-            document.getElementById("span_Lect_Journal_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Lect_Journal_Val_NO").style.visibility = 'visible';
-        }
-    }
-
-    function fn_Chk_Lect_Journal_N() {
-        document.getElementById("chk_Lect_Journal_N").checked = 1 - document.getElementById("chk_Lect_Journal_N").checked;
-        if (document.getElementById("chk_Lect_Journal_N").checked == 1) {
-            document.getElementById("td_Lect_Journal_N").style.backgroundColor = "lightgreen";
-        } else {
-            document.getElementById("td_Lect_Journal_N").style.backgroundColor = "#ff8080";
-        }
-        if ((document.getElementById("chk_Lect_Journal_J").checked == 1) && (document.getElementById("chk_Lect_Journal_N").checked == 1)) {
-            document.getElementById("span_Lect_Journal_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Lect_Journal_Val_NO").style.visibility = 'hidden';
-        } else {
-            document.getElementById("span_Lect_Journal_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Lect_Journal_Val_NO").style.visibility = 'visible';
-        }
-    }
-
-    function fn_Chk_Pb_Resp_GT_J() {
-        document.getElementById("chk_Pb_Resp_GT_J").checked = 1 - document.getElementById("chk_Pb_Resp_GT_J").checked;
-        if (document.getElementById("chk_Pb_Resp_GT_J").checked == 1) {
-            document.getElementById("td_Pb_Resp_GT_J").style.backgroundColor = "lightgreen";
-        } else {
-            document.getElementById("td_Pb_Resp_GT_J").style.backgroundColor = "#ff8080";
-        }
-        if ((document.getElementById("chk_Pb_Resp_GT_J").checked == 1) && (document.getElementById("chk_Pb_Resp_GT_N").checked == 1)) {
-            document.getElementById("span_Pb_Resp_GT_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Pb_Resp_GT_Val_NO").style.visibility = 'hidden';
-        } else {
-            document.getElementById("span_Pb_Resp_GT_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Pb_Resp_GT_Val_NO").style.visibility = 'visible';
-        }
-    }
-
-    function fn_Chk_Pb_Resp_GT_N() {
-        document.getElementById("chk_Pb_Resp_GT_N").checked = 1 - document.getElementById("chk_Pb_Resp_GT_N").checked;
-        if (document.getElementById("chk_Pb_Resp_GT_N").checked == 1) {
-            document.getElementById("td_Pb_Resp_GT_N").style.backgroundColor = "lightgreen";
-        } else {
-            document.getElementById("td_Pb_Resp_GT_N").style.backgroundColor = "#ff8080";
-        }
-        if ((document.getElementById("chk_Pb_Resp_GT_J").checked == 1) && (document.getElementById("chk_Pb_Resp_GT_N").checked == 1)) {
-            document.getElementById("span_Pb_Resp_GT_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Pb_Resp_GT_Val_NO").style.visibility = 'hidden';
-        } else {
-            document.getElementById("span_Pb_Resp_GT_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Pb_Resp_GT_Val_NO").style.visibility = 'visible';
-        }
-    }
 
 </script>
 <?php
