@@ -13,6 +13,8 @@ $title = "CSU-NVB - Stupéfiants";
 $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
 $novas = getnovas(); // Obient la liste des ambulance
 $drugs = getDrugs(); // Obient la list des Drugs
+$stupSheet=readSheet(2);
+//$stupSheet=GetSheetbyWeek($semaine,$_SESSION["Selectsite"]);
 var_dump($drugs);
 $date = strtotime($jourDebutSemaine);
 switch ($_SESSION["Selectsite"]) {
@@ -52,8 +54,8 @@ foreach ($jours as $jour) { ?>
         <tr>
             <td></td>
             <td>Pharmacie</td>
-            <?php foreach ($novas as $nova) {
-                echo "<td>" . $nova["number"] . "</td>";
+            <?php foreach ($stupSheet["nova"] as $nova) {
+                echo "<td>" . $nova . "</td>";
             } ?>
             <td>Pharmacie</td>
         </tr>
@@ -64,7 +66,7 @@ foreach ($jours as $jour) { ?>
                 <td><?= $drug["name"] ?></td>
                 <td></td>
                 <td></td>
-                <?php foreach ($novas as $nova) {
+                <?php foreach ($stupSheet["nova"] as $nova) {
                     echo "<td></td>";
                 } ?>
             </tr>
@@ -73,7 +75,7 @@ foreach ($jours as $jour) { ?>
                 echo "<td>" . $batch . "</td>"; ?>
                 <td></td>
                 <td></td>
-                <?php foreach ($novas as $nova) {
+                <?php foreach ($stupSheet["nova"] as $nova) {
                     echo "<td></td>";
                 }
                 echo "</tr>";
