@@ -10,6 +10,15 @@
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
+function GetSheetbyWeek($week,$base){
+    $Sheets = getStupSheets();
+    foreach ($Sheets as $Sheet) {
+        if ($Sheet["week"] == $week && $Sheet["base_id"]==$base ) {
+            return $Sheet;
+        }
+    }
+
+}
 function getStupSheets()
 {
     $novasheet = stupsheet_use_nova();
@@ -50,7 +59,7 @@ function getStupSheets()
         }
 
     }
-    var_dump($SheetsArray[3]["drugs"]);
+
     return $SheetsArray;
 
 }
@@ -83,7 +92,7 @@ function updateSheets($items)
 }
 
 /**
- * Modifie un item précis
+ * Modifie un item précis.
  * Le paramètre $item est un item complet (donc un tableau associatif)
  * ...
  */
@@ -291,6 +300,7 @@ function readDrug($id)
 
 function updateDrugs($items)
 {
+    unset($items["id"]["batches"]);
     file_put_contents("model/dataStorage/Drugs.json", json_encode($items));
 }
 
