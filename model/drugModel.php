@@ -50,7 +50,7 @@ function getStupSheets()
         }
 
     }
-    var_dump($SheetsArray[3]["drugs"]);
+
     return $SheetsArray;
 
 }
@@ -83,7 +83,7 @@ function updateSheets($items)
 }
 
 /**
- * Modifie un item précis
+ * Modifie un item précis.
  * Le paramètre $item est un item complet (donc un tableau associatif)
  * ...
  */
@@ -291,6 +291,7 @@ function readDrug($id)
 
 function updateDrugs($items)
 {
+    unset($items["id"]["batches"]);
     file_put_contents("model/dataStorage/Drugs.json", json_encode($items));
 }
 
