@@ -12,7 +12,6 @@
  */
 function getStupSheets()
 {
-    $Array= json_decode(file_get_contents("model/dataStorage/stupsheets.json"),true);
     $novasheet = stupsheet_use_nova();
     $Sutupbatch = stupsheet_use_batch();
     $Array = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
