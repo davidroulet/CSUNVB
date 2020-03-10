@@ -37,6 +37,9 @@ switch ($action) {
     case 'shiftend':
         shiftEndHomePage();
         break;
+    case 'listShiftEnd':
+        require_once 'view/viewsShiftEnd/ListShiftEnd.php';
+        break;
     case 'disconnect':
         disconnect();
         break;
