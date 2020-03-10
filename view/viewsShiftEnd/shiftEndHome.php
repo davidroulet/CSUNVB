@@ -86,8 +86,8 @@ $title = "CSU-NVB - Remise de garde";
                 <td id="td_Ann_N" onclick="fn_Chk_Ann_N()"><input type="checkbox" id="chk_Ann_N"
                                                                   style="visibility: hidden"></td>
                 <td><textarea style="resize: none" id="TXT_Area_Ann" cols="100%" rows="3"></textarea></td>
-                <td id="td_Rad_Val"><span id="span_Ann_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span><span
-                            id="span_Ann_Val_NO" class="glyphicon glyphicon-ok">X</span></td>
+                <td id="td_Rad_Val"><span id="span_Ann_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span>
+                    <span id="span_Ann_Val_NO" class="glyphicon glyphicon-ok">X</span></td>
             </tr>
 
             </tbody>
@@ -123,11 +123,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_Rad_J").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_Rad_J").checked == 1) && (document.getElementById("chk_Rad_N").checked == 1)) {
-            document.getElementById("span_Rad_Ok").style.visibility = 'visible';
-            document.getElementById("span_Rad_NO").style.visibility = 'hidden';
+            document.getElementById("span_Rad_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Rad_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Rad_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Rad_NO").style.visibility = 'visible';
+            document.getElementById("span_Rad_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Rad_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -139,11 +139,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_Rad_N").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_Rad_J").checked == 1) && (document.getElementById("chk_Rad_N").checked == 1)) {
-            document.getElementById("span_Rad_Ok").style.visibility = 'visible';
-            document.getElementById("span_Rad_NO").style.visibility = 'hidden';
+            document.getElementById("span_Rad_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Rad_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Rad_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Rad_NO").style.visibility = 'visible';;
+            document.getElementById("span_Rad_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Rad_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -155,11 +155,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_Det_CO_J").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_Det_CO_J").checked == 1) && (document.getElementById("chk_Det_CO_N").checked == 1)) {
-            document.getElementById("span_Det_CO_Ok").style.visibility = 'visible';
-            document.getElementById("span_Det_CO_NO").style.visibility = 'hidden';
+            document.getElementById("span_Det_CO_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Det_CO_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Det_CO_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Det_CO_NO").style.visibility = 'visible';
+            document.getElementById("span_Det_CO_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Det_CO_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -171,11 +171,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_Det_CO_N").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_Det_CO_J").checked == 1) && (document.getElementById("chk_Det_CO_N").checked == 1)) {
-            document.getElementById("span_Det_CO_Ok").style.visibility = 'visible';
-            document.getElementById("span_Det_CO_NO").style.visibility = 'hidden';
+            document.getElementById("span_Det_CO_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Det_CO_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Det_CO_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Det_CO_NO").style.visibility = 'visible';
+            document.getElementById("span_Det_CO_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Det_CO_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -187,11 +187,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_Tel_J").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_Tel_J").checked == 1) && (document.getElementById("chk_Tel_N").checked == 1)) {
-            document.getElementById("span_Tel_Ok").style.visibility = 'visible';
-            document.getElementById("span_Tel_NO").style.visibility = 'hidden';
+            document.getElementById("span_Tel_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Tel_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Tel_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Tel_NO").style.visibility = 'visible';
+            document.getElementById("span_Tel_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Tel_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -203,11 +203,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_Tel_N").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_Tel_J").checked == 1) && (document.getElementById("chk_Tel_N").checked == 1)) {
-            document.getElementById("span_Tel_Ok").style.visibility = 'visible';
-            document.getElementById("span_Tel_NO").style.visibility = 'hidden';
+            document.getElementById("span_Tel_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Tel_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Tel_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Tel_NO").style.visibility = 'visible';
+            document.getElementById("span_Tel_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Tel_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -219,11 +219,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_GT_J").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_GT_J").checked == 1) && (document.getElementById("chk_GT_N").checked == 1)) {
-            document.getElementById("span_GT_Ok").style.visibility = 'visible';
-            document.getElementById("span_GT_NO").style.visibility = 'hidden';
+            document.getElementById("span_GT_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_GT_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_GT_Ok").style.visibility = 'hidden';
-            document.getElementById("span_GT_NO").style.visibility = 'visible';
+            document.getElementById("span_GT_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_GT_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -235,11 +235,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_GT_N").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_GT_J").checked == 1) && (document.getElementById("chk_GT_N").checked == 1)) {
-            document.getElementById("span_GT_Ok").style.visibility = 'visible';
-            document.getElementById("span_GT_NO").style.visibility = 'hidden';
+            document.getElementById("span_GT_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_GT_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_GT_Ok").style.visibility = 'hidden';
-            document.getElementById("span_GT_NO").style.visibility = 'visible';
+            document.getElementById("span_GT_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_GT_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -250,12 +250,12 @@ $title = "CSU-NVB - Remise de garde";
         } else {
             document.getElementById("td_Ann_J").style.backgroundColor = "#ff8080";
         }
-        if ((document.getElementById("chk_Ann_J").checked == 1) && (document.getElementById("chk_ann_N").checked == 1)) {
-            document.getElementById("span_Ann_Ok").style.visibility = 'visible';
-            document.getElementById("span_Ann_NO").style.visibility = 'hidden';
+        if ((document.getElementById("chk_Ann_J").checked == 1) && (document.getElementById("chk_Ann_N").checked == 1)) {
+            document.getElementById("span_Ann_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Ann_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Ann_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Ann_NO").style.visibility = 'visible';
+            document.getElementById("span_Ann_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Ann_Val_NO").style.visibility = 'visible';
         }
     }
 
@@ -267,11 +267,11 @@ $title = "CSU-NVB - Remise de garde";
             document.getElementById("td_Ann_N").style.backgroundColor = "#ff8080";
         }
         if ((document.getElementById("chk_Ann_J").checked == 1) && (document.getElementById("chk_Ann_N").checked == 1)) {
-            document.getElementById("span_Ann_Ok").style.visibility = 'visible';
-            document.getElementById("span_Ann_NO").style.visibility = 'hidden';
+            document.getElementById("span_Ann_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Ann_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Ann_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Ann_NO").style.visibility = 'visible';
+            document.getElementById("span_Ann_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Ann_Val_NO").style.visibility = 'visible';
         }
     }
 </script>

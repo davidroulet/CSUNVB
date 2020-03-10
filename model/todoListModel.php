@@ -14,7 +14,7 @@
 // ceci à marwan faut de ne pas Crud modifier ou ajouter ou prendre de code S:V:P
 function readTodoListItems()
 {
-    return json_decode(file_get_contents("model/dataStorage/todosheets.json"),true);
+    return json_decode(file_get_contents("model/dataStorage/todothings.json"),true);
 }
 
 /**
@@ -37,9 +37,9 @@ function readTodoListItem($id)
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updateTodoListItems($items)
+function saveTodoListItems($items)
 {
-    file_put_contents("model/dataStorage/items.json",json_encode($items));
+    file_put_contents("model/dataStorage/todothings.json",json_encode($items));
 }
 
 /**
@@ -49,9 +49,42 @@ function updateTodoListItems($items)
  */
 function updateTodoListItem($item)
 {
-    $items = getTodoListItems();
+
+    $itemLists = readTodoListItems();
     // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
-    saveTodoListItem($items);
+
+
+
+    foreach($itemLists as $i => $itemList){
+        if($item['id'] == $itemList['id']){
+
+            var_dump($item);
+            var_dump($itemList);
+            $itemLists[$i]['id'] = $item['id'];
+            $itemLists[$i]['type'] = $item['type'];
+            $itemLists[$i]['daything'] = $item['daything'];
+            $itemLists[$i]['description'] = $item['description'];
+            $itemLists[$i]['display_order'] = $item['display_order'];
+        }
+
+    }
+
+    saveTodoListItems($itemLists);
+
+
+    /*for ($i=0;$i<count($items);$i++) {
+
+        if($item['id'] == $items[$i]['id']){
+            var_dump($item);
+            $items[$i]['description']=$item['description'];
+            var_dump($items[$i]);
+        }
+
+
+    }
+    var_dump($items);
+    saveTodoListItems($items);*/
+
 }
 
 /**
