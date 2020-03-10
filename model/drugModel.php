@@ -13,10 +13,47 @@
 function getStupSheets()
 {
     $Array= json_decode(file_get_contents("model/dataStorage/stupsheets.json"),true);
-    foreach ($Array as $p){
-        $SheetsArray[$p["id"]]=$p;
-}
+    $novasheet = stupsheet_use_nova();
+    $Sutupbatch = stupsheet_use_batch();
+    $Array = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
+    $drugs = getDrugs();
+    $Batches = getBatches();
+
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+        foreach ($drugs as $drug){
+            $SheetsArray[$p["id"]]["drugs"][]=$drug["name"];
+
+
+            foreach ($Sutupbatch as $bach){
+                if ($bach["stupsheet_id"]==$p["id"]){
+                    foreach ($Batches as $bob){
+                        if($bach["batch_id"]==$bob["id"]){
+                            $SheetsArray[$p["id"]]["drugs"][$drug["name"]]["batch"][]= $bob["number"];
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+
+
+
+        foreach ($novasheet as $item) {
+            if ($item["stupsheet_id"] == $p["id"]) {
+
+                $nova = readnova($item["nova_id"]);
+                $SheetsArray[$p["id"]]["nova"][] = $nova["number"];
+            }
+
+        }
+
+    }
+    var_dump($SheetsArray[3]["drugs"]);
     return $SheetsArray;
+
 }
 
 /**
@@ -36,7 +73,14 @@ function readSheet($id)
  */
 function updateSheets($items)
 {
-    file_put_contents("model/dataStorage/stupsheets.json",json_encode($items));
+    foreach ($items as $item) {
+        unset($items[$item["id"]]["drugs"]);
+        unset($items[$item["id"]]["nova"]);
+        unset($items[$item["id"]]["Fentanyl"]);
+        unset($items[$item["id"]]["Morphine"]);
+        unset($items[$item["id"]]["Temesta"]);
+    }
+    file_put_contents("model/dataStorage/stupsheets.json", json_encode($items));
 }
 
 /**
@@ -46,8 +90,8 @@ function updateSheets($items)
  */
 function updateSheet($item)
 {
-    $sheets=getStupSheets();
-    $sheets[$item["id"]]=$item;
+    $sheets = getStupSheets();
+    $sheets[$item["id"]] = $item;
     updateSheets($sheets);
 }
 
@@ -73,29 +117,30 @@ function destroySheet($id)
 function createSheet($item)
 {
     $items = getStupSheets();
-    $idliste[]=0;
-    foreach ($items as $p){
-        $idliste[]=$p["id"];
+    $idliste[] = 0;
+    foreach ($items as $p) {
+        $idliste[] = $p["id"];
     }
-    foreach ($idliste as $id){
-        if ($id!=$idliste){
-            $newid=$id;
+    foreach ($idliste as $id) {
+        if ($id != $idliste) {
+            $newid = $id;
         }
     }
-    $item["id"]=$newid+1;
-    $items[]=$item;
+    $item["id"] = $newid + 1;
+    $items[] = $item;
     updateSheets($items);
     return $item;
 }
 
 function getBatches()
 {
-    $Array= json_decode(file_get_contents("model/dataStorage/batches.json"),true);
-    foreach ($Array as $p){
-        $SheetsArray[$p["id"]]=$p;
+    $Array = json_decode(file_get_contents("model/dataStorage/batches.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
     }
     return $SheetsArray;
 }
+
 function readbatche($id)
 {
     $SheetsArray = getBatches();
@@ -105,35 +150,39 @@ function readbatche($id)
 
 function updateBatches($items)
 {
-    file_put_contents("model/dataStorage/batches.json",json_encode($items));
+    file_put_contents("model/dataStorage/batches.json", json_encode($items));
 }
+
 function updateBatche($item)
 {
-    $sheets=getBatches();
-    $sheets[$item["id"]]=$item;
+    $sheets = getBatches();
+    $sheets[$item["id"]] = $item;
     updateBatches($sheets);
 }
+
 function createbatch($item)
 {
     $items = getBatches();
-    $idliste[]=0;
-    foreach ($items as $p){
-        $idliste[]=$p["id"];
+    $idliste[] = 0;
+    foreach ($items as $p) {
+        $idliste[] = $p["id"];
     }
-    foreach ($idliste as $id){
-        if ($id!=$idliste){
-            $newid=$id;
+    foreach ($idliste as $id) {
+        if ($id != $idliste) {
+            $newid = $id;
         }
     }
-    $item["id"]=$newid+1;
-    $items[]=$item;
+    $item["id"] = $newid + 1;
+    $items[] = $item;
     updateBatches($items);
     return $item;
 }
-function FindBatchewhitNumber($number){
-    $batches=getBatches();
-    foreach ($batches as $batch){
-        if ($batch["number"]==$number){
+
+function FindBatchewhitNumber($number)
+{
+    $batches = getBatches();
+    foreach ($batches as $batch) {
+        if ($batch["number"] == $number) {
             return $batch;
         }
     }
@@ -147,14 +196,16 @@ function destroybatch($id)
     updateBatches($items);
 
 }
+
 function getnovas()
 {
-    $Array= json_decode(file_get_contents("model/dataStorage/novas.json"),true);
-    foreach ($Array as $p){
-        $SheetsArray[$p["id"]]=$p;
+    $Array = json_decode(file_get_contents("model/dataStorage/novas.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
     }
     return $SheetsArray;
 }
+
 function readnova($id)
 {
     $SheetsArray = getnovas();
@@ -165,15 +216,14 @@ function readnova($id)
 
 function updatenovas($items)
 {
-    file_put_contents("model/dataStorage/novas.json",json_encode($items));
+    file_put_contents("model/dataStorage/novas.json", json_encode($items));
 }
-
 
 
 function updateNova($item)
 {
-    $sheets=getnovas();
-    $sheets[$item["id"]]=$item;
+    $sheets = getnovas();
+    $sheets[$item["id"]] = $item;
     updatenovas($sheets);
 
 }
@@ -181,20 +231,21 @@ function updateNova($item)
 function createnova($item)
 {
     $items = getnovas();
-    $idliste[]=0;
-    foreach ($items as $p){
-        $idliste[]=$p["id"];
+    $idliste[] = 0;
+    foreach ($items as $p) {
+        $idliste[] = $p["id"];
     }
-    foreach ($idliste as $id){
-        if ($id!=$idliste){
-            $newid=$id;
+    foreach ($idliste as $id) {
+        if ($id != $idliste) {
+            $newid = $id;
         }
     }
-    $item["id"]=$newid+1;
-    $items[]=$item;
+    $item["id"] = $newid + 1;
+    $items[] = $item;
     updatenovas($items);
     return $item;
 }
+
 function destroyNova($id)
 {
     $items = getnovas();
@@ -202,34 +253,37 @@ function destroyNova($id)
     updatenovas($items);
 
 }
+
 function getDrugs()
 {
-    $batches=getBatches();
-    $Array= json_decode(file_get_contents("model/dataStorage/drugs.json"),true);
-    foreach ($Array as $p){
-        $SheetsArray[$p["id"]]=$p;
+    $batches = getBatches();
+    $Array = json_decode(file_get_contents("model/dataStorage/drugs.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
     }
     foreach ($SheetsArray as $item) {
-        foreach ($batches as $batch){
-            if($item["id"]==$batch["drug_id"]);
-            $SheetsArray[$item["id"]]["batches"][]=$batch["number"];
+        foreach ($batches as $batch) {
+            if ($item["id"] == $batch["drug_id"]) {
+                $SheetsArray[$item["id"]]["batches"][] = $batch["number"];
+            }
         }
     }
     $sheets = $SheetsArray;
-    foreach ($sheets as $item){
+    foreach ($sheets as $item) {
         unset($sheets[$item["id"]]["batches"]);
     }
     updateDrugs($sheets);
     return $SheetsArray;
 }
+
 function readDrug($id)
 {
     $SheetsArray = getDrugs();
     $Sheet = $SheetsArray[$id];
-    $batches=getBatches();
-    foreach ($batches as $batch){
-        if($id==$batch["drug_id"]){
-            $Sheet["batches"][]=$batch["number"];
+    $batches = getBatches();
+    foreach ($batches as $batch) {
+        if ($id == $batch["drug_id"]) {
+            $Sheet["batches"][] = $batch["number"];
         }
     }
     return $Sheet;
@@ -238,43 +292,63 @@ function readDrug($id)
 
 function updateDrugs($items)
 {
-    file_put_contents("model/dataStorage/Drugs.json",json_encode($items));
+    file_put_contents("model/dataStorage/Drugs.json", json_encode($items));
 }
-
 
 
 function updateDrug($item)
 {
 
-    $sheets=getDrugs();
-    $sheets[$item["id"]]["name"]=$item["name"];
-    foreach ($sheets as $iteme){
-       unset($sheets[$iteme["id"]]["batches"]);
+    $sheets = getDrugs();
+    $sheets[$item["id"]]["name"] = $item["name"];
+    foreach ($sheets as $iteme) {
+        unset($sheets[$iteme["id"]]["batches"]);
     }
     updateDrugs($sheets);
 }
+
 function createDrug($item)
 {
     $items = getDrugs();
-    $idliste[]=0;
-    foreach ($items as $p){
-       $idliste[]=$p["id"];
-   }
-  foreach ($idliste as $id){
-      if ($id!=$idliste){
-           $newid=$id;
-      }
-   }
-  $item["id"]=$newid+1;
-  $items[]=$item;
+    $idliste[] = 0;
+    foreach ($items as $p) {
+        $idliste[] = $p["id"];
+    }
+    foreach ($idliste as $id) {
+        if ($id != $idliste) {
+            $newid = $id;
+        }
+    }
+    $item["id"] = $newid + 1;
+    $items[] = $item;
     updateDrugs($items);
-   return $item;
+    return $item;
 }
+
 function destroyDrug($id)
 {
     $items = getDrugs();
-   unset($items[$id]);
+    unset($items[$id]);
     updateDrugs($items);
 
 }
+
+function stupsheet_use_batch()
+{
+    $Array = json_decode(file_get_contents("model/dataStorage/stupsheet_use_batch.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    return $SheetsArray;
+}
+
+function stupsheet_use_nova()
+{
+    $Array = json_decode(file_get_contents("model/dataStorage/stupsheet_use_nova.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    return $SheetsArray;
+}
+
 ?>
