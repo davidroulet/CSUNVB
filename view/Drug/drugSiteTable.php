@@ -15,7 +15,6 @@ $novas = getnovas(); // Obient la liste des ambulance
 $drugs = getDrugs(); // Obient la list des Drugs
 //$stupSheet=readSheet(2);
 $stupSheet=GetSheetbyWeek($semaine,$_SESSION["Selectsite"]);
-var_dump($drugs);
 $date = strtotime($jourDebutSemaine);
 switch ($_SESSION["Selectsite"]) {
     case 1:
