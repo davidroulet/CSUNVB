@@ -11,7 +11,7 @@ require 'model/todoListModel.php';
 
 $todoItems = readTodoListItems();
 
-/*foreach ($todoItems as $item){
+foreach ($todoItems as $item){
     $todoItems[$item['id']] = $item;
 }
 

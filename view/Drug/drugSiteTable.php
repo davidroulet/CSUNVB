@@ -13,8 +13,8 @@ $title = "CSU-NVB - Stupéfiants";
 $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
 $novas = getnovas(); // Obient la liste des ambulance
 $drugs = getDrugs(); // Obient la list des Drugs
-$stupSheet=readSheet(2);
-//$stupSheet=GetSheetbyWeek($semaine,$_SESSION["Selectsite"]);
+//$stupSheet=readSheet(2);
+$stupSheet=GetSheetbyWeek($semaine,$_SESSION["Selectsite"]);
 var_dump($drugs);
 $date = strtotime($jourDebutSemaine);
 switch ($_SESSION["Selectsite"]) {

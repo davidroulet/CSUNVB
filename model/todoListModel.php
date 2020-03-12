@@ -104,11 +104,22 @@ function destroyTodoListItem($id)
  * puisque le modèle ne l'a pas encore traité
  * ...
  */
-function createTodoListItem($item)
-{
-    $items = getTodoListItems();
+function createTodoListItem($item){
+    $id = 0;
+    $items = readTodoListItems();
     // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
-    saveTodoListItem($items);
+    $nextId = max(array_keys($items))+1;
+    /*foreach($items as $item){
+        if($id  == $item['id']-1){
+            $id = $item('id');
+        } else if(!($id == $item['id']-1)){
+            return $id+1;
+            }else{
+            $id = $item('id')+1;
+            return $id;
+        }
+    }*/
+    saveTodoListItems($items);
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
 }
 
