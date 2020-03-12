@@ -61,9 +61,6 @@ switch ($action) {
     case "trylogin":
         trylogin($username, $password, $base);
         break;
-    case "DrugTest":
-        require_once 'controler/Test/DrugModel.php';
-        break;
     case "drugHomePage":
         drugHomePage($Site);
         break;
