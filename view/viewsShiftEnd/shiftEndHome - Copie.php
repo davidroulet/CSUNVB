@@ -27,42 +27,42 @@ $title = "CSU-NVB - Remise de garde";
             <tbody>
             <tr>
                 <td>
-                    <div id="lbl_Info_Traf">Centrale Propre</div>
+                    <div id="lbl_Central_Propre">Centrale Propre</div>
                 </td>
-                <td id="td_Info_Traf_J" onclick="fn_Chk_Info_Traf_J()"><input type="checkbox" id="chk_Info_Traf_J"
+                <td id="td_Central_Propre_J" onclick="fn_Chk_Central_Propre_J()"><input type="checkbox" id="chk_Central_Propre_J"
                                                                   style="visibility: hidden"></td>
-                <td id="td_Info_Traf_N" onclick="fn_Chk_Info_Traf_N()"><input type="checkbox" id="chk_Info_Traf_N"
+                <td id="td_Central_Propre_N" onclick="fn_Chk_Central_Propre_N()"><input type="checkbox" id="chk_Central_Propre_N"
                                                                   style="visibility: hidden"></td>
-                <td><textarea style="resize: none" id="TXT_Area_Info_Traf" cols="100%" rows="4"></textarea></td>
-                <td id="td_Info_Traf_Val"><span id="span_Info_Traf_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span><span
-                            id="span_Info_Traf_Val_NO" class="glyphicon glyphicon-ok">X</span></td>
+                <td><textarea style="resize: none" id="TXT_Area_Central_Propre" cols="100%" rows="4"></textarea></td>
+                <td id="td_Central_Propre_Val"><span id="span_Central_Propre_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span><span
+                            id="span_Central_Propre_Val_NO" class="glyphicon glyphicon-ok">X</span></td>
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Report_Info_Traf">Tâches du jour effectuées</div>
+                    <div id="lbl_Tache_J_Eff">Tâches du jour effectuées</div>
                 </td>
-                <td id="td_Report_Info_Traf_J" onclick="fn_Chk_Report_Info_Traf_J()"><input type="checkbox" id="chk_Report_Info_Traf_J"
+                <td id="td_Tache_J_Eff_J" onclick="fn_Chk_Tache_J_Eff_J()"><input type="checkbox" id="chk_Tache_J_Eff_J"
                                                                         style="visibility: hidden"></td>
-                <td id="td_Report_Info_Traf_N" onclick="fn_Chk_Report_Info_Traf_N()"><input type="checkbox" id="chk_Report_Info_Traf_N"
+                <td id="td_Tache_J_Eff_N" onclick="fn_Chk_Tache_J_Eff_N()"><input type="checkbox" id="chk_Tache_J_Eff_N"
                                                                         style="visibility: hidden"></td>
                 <td><textarea style="resize: none" id="TXT_Area_Operation_Co" cols="100%" rows="4"></textarea></td>
-                <td id="td_Report_Info_Traf_Val">
-                    <span id="span_Report_Info_Traf_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span>
-                    <span id="span_Report_Info_Traf_Val_NO" class="glyphicon glyphicon-ok">X</span>
+                <td id="td_Tache_J_Eff_Val">
+                    <span id="span_Tache_J_Eff_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span>
+                    <span id="span_Tache_J_Eff_Val_NO" class="glyphicon glyphicon-ok">X</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Acc_Stage">Dimanche Fiches stupéfiants et tableau tâches scannées</div>
+                    <div id="lbl_Dim_Fiche_Stups">Dimanche Fiches stupéfiants et tableau tâches scannées</div>
                 </td>
-                <td id="td_Acc_Stage_J" onclick="fn_Chk_Acc_Stage_J()"><input type="checkbox" id="chk_Acc_Stage_J"
+                <td id="td_Dim_Fiche_Stups_J" onclick="fn_Chk_Dim_Fiche_Stups_J()"><input type="checkbox" id="chk_Dim_Fiche_Stups_J"
                                                                   style="visibility: hidden"></td>
-                <td id="td_Acc_Stage_N" onclick="fn_Chk_Acc_Stage_N()"><input type="checkbox" id="chk_Acc_Stage_N"
+                <td id="td_Dim_Fiche_Stups_N" onclick="fn_Chk_Dim_Fiche_Stups_N()"><input type="checkbox" id="chk_Dim_Fiche_Stups_N"
                                                                   style="visibility: hidden"></td>
-                <td><textarea style="resize: none" id="TXT_Area_Acc_Stage" cols="100%" rows="4"></textarea></td>
-                <td id="td_Acc_Stage_Val">
-                    <span id="span_Acc_Stage_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span>
-                    <span id="span_Acc_Stage_Val_NO" class="glyphicon glyphicon-ok">X</span>
+                <td><textarea style="resize: none" id="TXT_Area_Dim_Fiche_Stups" cols="100%" rows="4"></textarea></td>
+                <td id="td_Dim_Fiche_Stups_Val">
+                    <span id="span_Dim_Fiche_Stups_Val_Ok" class="glyphicon glyphicon-ok" style="visibility: hidden">O</span>
+                    <span id="span_Dim_Fiche_Stups_Val_NO" class="glyphicon glyphicon-ok">X</span>
                 </td>
             </tr>
 
@@ -92,99 +92,99 @@ $title = "CSU-NVB - Remise de garde";
 
 </div>
 <script>
-    function fn_Chk_Info_Traf_J() {
-        document.getElementById("chk_Info_Traf_J").checked = 1 - document.getElementById("chk_Info_Traf_J").checked;
-        if (document.getElementById("chk_Info_Traf_J").checked == 1) {
-            document.getElementById("td_Info_Traf_J").style.backgroundColor = "lightgreen";
+    function fn_Chk_Central_Propre_J() {
+        document.getElementById("chk_Central_Propre_J").checked = 1 - document.getElementById("chk_Central_Propre_J").checked;
+        if (document.getElementById("chk_Central_Propre_J").checked == 1) {
+            document.getElementById("td_Central_Propre_J").style.backgroundColor = "lightgreen";
         } else {
-            document.getElementById("td_Info_Traf_J").style.backgroundColor = "#ff8080";
+            document.getElementById("td_Central_Propre_J").style.backgroundColor = "#ff8080";
         }
-        if ((document.getElementById("chk_Info_Traf_J").checked == 1) && (document.getElementById("chk_Info_Traf_N").checked == 1)) {
-            document.getElementById("span_Info_Traf_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Info_Traf_Val_NO").style.visibility = 'hidden';
+        if ((document.getElementById("chk_Central_Propre_J").checked == 1) && (document.getElementById("chk_Central_Propre_N").checked == 1)) {
+            document.getElementById("span_Central_Propre_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Central_Propre_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Info_Traf_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Info_Traf_Val_NO").style.visibility = 'visible';
-        }
-    }
-
-    function fn_Chk_Info_Traf_N() {
-        document.getElementById("chk_Info_Traf_N").checked = 1 - document.getElementById("chk_Info_Traf_N").checked;
-        if (document.getElementById("chk_Info_Traf_N").checked == 1) {
-            document.getElementById("td_Info_Traf_N").style.backgroundColor = "lightgreen";
-        } else {
-            document.getElementById("td_Info_Traf_N").style.backgroundColor = "#ff8080";
-        }
-        if ((document.getElementById("chk_Info_Traf_J").checked == 1) && (document.getElementById("chk_Info_Traf_N").checked == 1)) {
-            document.getElementById("span_Info_Traf_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Info_Traf_Val_NO").style.visibility = 'hidden';
-        } else {
-            document.getElementById("span_Info_Traf_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Info_Traf_Val_NO").style.visibility = 'visible';
+            document.getElementById("span_Central_Propre_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Central_Propre_Val_NO").style.visibility = 'visible';
         }
     }
 
-    function fn_Chk_Report_Info_Traf_J() {
-        document.getElementById("chk_Report_Info_Traf_J").checked = 1 - document.getElementById("chk_Report_Info_Traf_J").checked;
-        if (document.getElementById("chk_Report_Info_Traf_J").checked == 1) {
-            document.getElementById("td_Report_Info_Traf_J").style.backgroundColor = "lightgreen";
+    function fn_Chk_Central_Propre_N() {
+        document.getElementById("chk_Central_Propre_N").checked = 1 - document.getElementById("chk_Central_Propre_N").checked;
+        if (document.getElementById("chk_Central_Propre_N").checked == 1) {
+            document.getElementById("td_Central_Propre_N").style.backgroundColor = "lightgreen";
         } else {
-            document.getElementById("td_Report_Info_Traf_J").style.backgroundColor = "#ff8080";
+            document.getElementById("td_Central_Propre_N").style.backgroundColor = "#ff8080";
         }
-        if ((document.getElementById("chk_Report_Info_Traf_J").checked == 1) && (document.getElementById("chk_Report_Info_Traf_N").checked == 1)) {
-            document.getElementById("span_Report_Info_Traf_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Report_Info_Traf_Val_NO").style.visibility = 'hidden';
+        if ((document.getElementById("chk_Central_Propre_J").checked == 1) && (document.getElementById("chk_Central_Propre_N").checked == 1)) {
+            document.getElementById("span_Central_Propre_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Central_Propre_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Report_Info_Traf_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Report_Info_Traf_Val_NO").style.visibility = 'visible';
-        }
-    }
-
-    function fn_Chk_Report_Info_Traf_N() {
-        document.getElementById("chk_Report_Info_Traf_N").checked = 1 - document.getElementById("chk_Report_Info_Traf_N").checked;
-        if (document.getElementById("chk_Report_Info_Traf_N").checked == 1) {
-            document.getElementById("td_Report_Info_Traf_N").style.backgroundColor = "lightgreen";
-        } else {
-            document.getElementById("td_Report_Info_Traf_N").style.backgroundColor = "#ff8080";
-        }
-        if ((document.getElementById("chk_Report_Info_Traf_J").checked == 1) && (document.getElementById("chk_Report_Info_Traf_N").checked == 1)) {
-            document.getElementById("span_Report_Info_Traf_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Report_Info_Traf_Val_NO").style.visibility = 'hidden';
-        } else {
-            document.getElementById("span_Report_Info_Traf_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Report_Info_Traf_Val_NO").style.visibility = 'visible';
+            document.getElementById("span_Central_Propre_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Central_Propre_Val_NO").style.visibility = 'visible';
         }
     }
 
-    function fn_Chk_Acc_Stage_J() {
-        document.getElementById("chk_Acc_Stage_J").checked = 1 - document.getElementById("chk_Acc_Stage_J").checked;
-        if (document.getElementById("chk_Acc_Stage_J").checked == 1) {
-            document.getElementById("td_Acc_Stage_J").style.backgroundColor = "lightgreen";
+    function fn_Chk_Tache_J_Eff_J() {
+        document.getElementById("chk_Tache_J_Eff_J").checked = 1 - document.getElementById("chk_Tache_J_Eff_J").checked;
+        if (document.getElementById("chk_Tache_J_Eff_J").checked == 1) {
+            document.getElementById("td_Tache_J_Eff_J").style.backgroundColor = "lightgreen";
         } else {
-            document.getElementById("td_Acc_Stage_J").style.backgroundColor = "#ff8080";
+            document.getElementById("td_Tache_J_Eff_J").style.backgroundColor = "#ff8080";
         }
-        if ((document.getElementById("chk_Acc_Stage_J").checked == 1) && (document.getElementById("chk_Acc_Stage_N").checked == 1)) {
-            document.getElementById("span_Acc_Stage_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Acc_Stage_Val_NO").style.visibility = 'hidden';
+        if ((document.getElementById("chk_Tache_J_Eff_J").checked == 1) && (document.getElementById("chk_Tache_J_Eff_N").checked == 1)) {
+            document.getElementById("span_Tache_J_Eff_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Tache_J_Eff_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Acc_Stage_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Acc_Stage_Val_NO").style.visibility = 'visible';
+            document.getElementById("span_Tache_J_Eff_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Tache_J_Eff_Val_NO").style.visibility = 'visible';
         }
     }
 
-    function fn_Chk_Acc_Stage_N() {
-        document.getElementById("chk_Acc_Stage_N").checked = 1 - document.getElementById("chk_Acc_Stage_N").checked;
-        if (document.getElementById("chk_Acc_Stage_N").checked == 1) {
-            document.getElementById("td_Acc_Stage_N").style.backgroundColor = "lightgreen";
+    function fn_Chk_Tache_J_Eff_N() {
+        document.getElementById("chk_Tache_J_Eff_N").checked = 1 - document.getElementById("chk_Tache_J_Eff_N").checked;
+        if (document.getElementById("chk_Tache_J_Eff_N").checked == 1) {
+            document.getElementById("td_Tache_J_Eff_N").style.backgroundColor = "lightgreen";
         } else {
-            document.getElementById("td_Acc_Stage_N").style.backgroundColor = "#ff8080";
+            document.getElementById("td_Tache_J_Eff_N").style.backgroundColor = "#ff8080";
         }
-        if ((document.getElementById("chk_Acc_Stage_J").checked == 1) && (document.getElementById("chk_Acc_Stage_N").checked == 1)) {
-            document.getElementById("span_Acc_Stage_Val_Ok").style.visibility = 'visible';
-            document.getElementById("span_Acc_Stage_Val_NO").style.visibility = 'hidden';
+        if ((document.getElementById("chk_Tache_J_Eff_J").checked == 1) && (document.getElementById("chk_Tache_J_Eff_N").checked == 1)) {
+            document.getElementById("span_Tache_J_Eff_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Tache_J_Eff_Val_NO").style.visibility = 'hidden';
         } else {
-            document.getElementById("span_Acc_Stage_Val_Ok").style.visibility = 'hidden';
-            document.getElementById("span_Acc_Stage_Val_NO").style.visibility = 'visible';
+            document.getElementById("span_Tache_J_Eff_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Tache_J_Eff_Val_NO").style.visibility = 'visible';
+        }
+    }
+
+    function fn_Chk_Dim_Fiche_Stups_J() {
+        document.getElementById("chk_Dim_Fiche_Stups_J").checked = 1 - document.getElementById("chk_Dim_Fiche_Stups_J").checked;
+        if (document.getElementById("chk_Dim_Fiche_Stups_J").checked == 1) {
+            document.getElementById("td_Dim_Fiche_Stups_J").style.backgroundColor = "lightgreen";
+        } else {
+            document.getElementById("td_Dim_Fiche_Stups_J").style.backgroundColor = "#ff8080";
+        }
+        if ((document.getElementById("chk_Dim_Fiche_Stups_J").checked == 1) && (document.getElementById("chk_Dim_Fiche_Stups_N").checked == 1)) {
+            document.getElementById("span_Dim_Fiche_Stups_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Dim_Fiche_Stups_Val_NO").style.visibility = 'hidden';
+        } else {
+            document.getElementById("span_Dim_Fiche_Stups_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Dim_Fiche_Stups_Val_NO").style.visibility = 'visible';
+        }
+    }
+
+    function fn_Chk_Dim_Fiche_Stups_N() {
+        document.getElementById("chk_Dim_Fiche_Stups_N").checked = 1 - document.getElementById("chk_Dim_Fiche_Stups_N").checked;
+        if (document.getElementById("chk_Dim_Fiche_Stups_N").checked == 1) {
+            document.getElementById("td_Dim_Fiche_Stups_N").style.backgroundColor = "lightgreen";
+        } else {
+            document.getElementById("td_Dim_Fiche_Stups_N").style.backgroundColor = "#ff8080";
+        }
+        if ((document.getElementById("chk_Dim_Fiche_Stups_J").checked == 1) && (document.getElementById("chk_Dim_Fiche_Stups_N").checked == 1)) {
+            document.getElementById("span_Dim_Fiche_Stups_Val_Ok").style.visibility = 'visible';
+            document.getElementById("span_Dim_Fiche_Stups_Val_NO").style.visibility = 'hidden';
+        } else {
+            document.getElementById("span_Dim_Fiche_Stups_Val_Ok").style.visibility = 'hidden';
+            document.getElementById("span_Dim_Fiche_Stups_Val_NO").style.visibility = 'visible';
         }
     }
 
