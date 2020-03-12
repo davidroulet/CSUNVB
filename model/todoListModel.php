@@ -93,9 +93,14 @@ function updateTodoListItem($item)
  */
 function destroyTodoListItem($id)
 {
-    $items = getTodoListItems();
+    $items = readTodoListItems();
     // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    saveTodoListItem($items);
+    foreach ($items as $i => $item) {
+    if ($id == $item['id']) {
+        unset($items[$i]);
+    }
+}
+    saveTodoListItems($items);
 }
 
 /**
@@ -119,8 +124,10 @@ function createTodoListItem($item){
             return $id;
         }
     }*/
+    $item['id'] = $nextId;
+    $items[] = $item;
     saveTodoListItems($items);
-    return ($item); // Pour que l'appelant connaisse l'id qui a été donné
+    return ($nextId);
 }
 
 
