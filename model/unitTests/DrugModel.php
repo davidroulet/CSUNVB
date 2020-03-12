@@ -1,7 +1,7 @@
 <?php
 /**
  * Cartouch
- * Nom du fichier test.php
+ * Nom du fichier DrugModel.php
  * Createur David.ROULET
  * Date 02.03.2020
  * IDE PhpStorm

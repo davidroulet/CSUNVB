@@ -62,7 +62,7 @@ switch ($action) {
         trylogin($username, $password, $base);
         break;
     case "DrugTest":
-        require_once 'controler/Test/test.php';
+        require_once 'controler/Test/DrugModel.php';
         break;
     case "drugHomePage":
         drugHomePage($Site);
