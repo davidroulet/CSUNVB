@@ -11,9 +11,6 @@ function drugHomePage($Site) //Affiche la page de selection de la semaine
 function drugSiteTable($semaine,$Site){ // Affiage de la page Finale
     require_once 'view/Drug/drugSiteTable.php';
 }
-function drugbase($site){ // Affiche la page de selection des bases
-    require_once 'view/Drug/drugHome.php';
-}
 function getdate2($semaine) //Donne les jours de la semaine Selectionée
 {
     $anneeChoix=2000+substr ($semaine,0,2);

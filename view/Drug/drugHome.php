@@ -10,13 +10,13 @@ $year = 20;
     <h1>Stupéfiants</h1>
 </div>
 
-<FORM action="/index.php?action=drugHomePage" method="post">
+<FORM action="/index.php?action=drugs" method="post">
     <SELECT name="site" size="1">
-        <OPTION value="4" <?php if($_SESSION["username"][1]=="Payerne"){?> selected="selected" <?php }?> >Payerne
-        <OPTION value="1" <?php if($_SESSION["username"][1]=="Yverdon"){?> selected="selected" <?php }?>>Yverdon
-        <OPTION value="3" <?php if($_SESSION["username"][1]=="Saint-Loup"){?> selected="selected" <?php }?>>Saint-Loup
-        <OPTION value="2" <?php if($_SESSION["username"][1]=="Sainte-Croix"){?> selected="selected" <?php }?>>Sainte-Croix
-        <OPTION value="5" <?php if($_SESSION["username"][1]=="Vallée-de-Joux"){?> selected="selected" <?php }?>>Vallée-de-Joux
+        <OPTION value="4" <?php if($_SESSION["Selectsite"]==4){?> selected="selected"  <?php }?> name="site">Payerne
+        <OPTION value="1" <?php if($_SESSION["Selectsite"]==1){?> selected="selected" <?php }?>name="site">Yverdon
+        <OPTION value="3" <?php if($_SESSION["Selectsite"]==3){?> selected="selected" <?php }?>name="site">Saint-Loup
+        <OPTION value="2" <?php if($_SESSION["Selectsite"]==2){?> selected="selected" <?php }?>name="site">Sainte-Croix
+        <OPTION value="5" <?php if($_SESSION["Selectsite"]==5){?> selected="selected" <?php }?>name="site">Vallée-de-Joux
     </SELECT>
     <button type="submit">Recharger</button>
 </FORM>

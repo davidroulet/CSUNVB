@@ -4,6 +4,7 @@ session_start();
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $_SESSION["Selectsite"] = $_POST['base'];
     $base = $_POST['base'];
 }
 
@@ -53,16 +54,13 @@ switch ($action) {
         edittodopage();
         break;
     case 'drugs':
-        drugbase($Site);
+        drugHomePage($Site);
         break;
     case "drugSiteTable":
         drugSiteTable($semaine, $Site);
         break;
     case "trylogin":
         trylogin($username, $password, $base);
-        break;
-    case "drugHomePage":
-        drugHomePage($Site);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
