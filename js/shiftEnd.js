@@ -2,7 +2,7 @@
  * Le fichier shiftEnd.js contient les fonctionnalités javascript qui ne sont utilisées que pour la remise de garde
  *
  * Auteur: Thomas Grossmann / Mounir Fiaux
- * Date: Février 2020
+ * Date: Mars 2020
  **/
 document.addEventListener("DOMContentLoaded", evenement);
 
