@@ -9,7 +9,20 @@ $year = 20;
 <div class="row m-2">
     <h1>Stupéfiants</h1>
 </div>
-    <div class="row m-2">
+
+<FORM action="/index.php?action=drugHomePage" method="post">
+    <SELECT name="site" size="1">
+        <OPTION value="4" <?php if($_SESSION["username"][1]=="Payerne"){?> selected="selected" <?php }?> >Payerne
+        <OPTION value="1" <?php if($_SESSION["username"][1]=="Yverdon"){?> selected="selected" <?php }?>>Yverdon
+        <OPTION value="3" <?php if($_SESSION["username"][1]=="Saint-Loup"){?> selected="selected" <?php }?>>Saint-Loup
+        <OPTION value="2" <?php if($_SESSION["username"][1]=="Sainte-Croix"){?> selected="selected" <?php }?>>Sainte-Croix
+        <OPTION value="5" <?php if($_SESSION["username"][1]=="Vallée-de-Joux"){?> selected="selected" <?php }?>>Vallée-de-Joux
+    </SELECT>
+    <button type="submit">Recharger</button>
+</FORM>
+
+
+<div class="row m-2">
         <?php
         $liste = getStupSheets();
         foreach ($liste as $item) {
