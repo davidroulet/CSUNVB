@@ -6,6 +6,8 @@
 
 ob_start();
 $title = "CSU-NVB - Remise de garde";
+$Titles = getSectionsTitles();
+$Lines = getGuardLines();
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -13,21 +15,21 @@ $title = "CSU-NVB - Remise de garde";
     </div>
 
     <div class="container-fluid row">
-        <h4>Matériel & télécom</h4>
+        <h4><?=$Titles[0]['title']?></h4>
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th width="30%"></th>
-                <th width="13%">jour</th>
-                <th width="13%">nuit</th>
-                <th width="40%">remarque</th>
+                <th width="13%">Jour</th>
+                <th width="13%">Nuit</th>
+                <th width="40%">Remarque</th>
                 <th width="4%">Validé</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>
-                    <div id="lbl_Rad">Radios</div>
+                    <div id="lbl_Rad"><?=$Lines[0]['text']?></div>
                 </td>
                 <td id="td_Rad_J" onclick="fn_Chk_Rad_J()"><input type="checkbox" id="chk_Rad_J"
                                                                   style="visibility: hidden"></td>
@@ -39,7 +41,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Det_CO">Détecteurs CO</div>
+                    <div id="lbl_Det_CO"><?=$Lines[1]['text']?></div>
                 </td>
                 <td id="td_Det_CO_J" onclick="fn_Chk_Det_CO_J()"><input type="checkbox" id="chk_Det_CO_J"
                                                                         style="visibility: hidden"></td>
@@ -53,7 +55,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Tel">Téléphones</div>
+                    <div id="lbl_Tel"><?=$Lines[2]['text']?></div>
                 </td>
                 <td id="td_Tel_J" onclick="fn_Chk_Tel_J()"><input type="checkbox" id="chk_Tel_J"
                                                                   style="visibility: hidden"></td>
@@ -67,7 +69,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_GT_Info">Gt info avisé</div>
+                    <div id="lbl_GT_Info"><?=$Lines[3]['text']?></div>
                 </td>
                 <td id="td_GT_Info_J" onclick="fn_Chk_GT_Info_J()"><input type="checkbox" id="chk_GT_Info_J"
                                                                 style="visibility: hidden"></td>
@@ -79,7 +81,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Ann">annonce 144</div>
+                    <div id="lbl_Ann"><?=$Lines[4]['text']?></div>
                 </td>
                 <td id="td_Ann_J" onclick="fn_Chk_Ann_J()"><input type="checkbox" id="chk_Ann_J"
                                                                   style="visibility: hidden"></td>
@@ -95,7 +97,7 @@ $title = "CSU-NVB - Remise de garde";
     </div>
     <br><br>
     <div class="container-fluid row">
-        <h4>véhicules & interventions</h4>
+        <h4><?=$Titles[1]['title']?></h4>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -109,7 +111,7 @@ $title = "CSU-NVB - Remise de garde";
             <tbody>
             <tr>
                 <td>
-                    <div id="lbl_Ess">Plein essence</div>
+                    <div id="lbl_Ess"><?=$Lines[5]['text']?></div>
                 </td>
                 <td id="td_Ess_J" onclick="fn_Chk_Ess_J()"><input type="checkbox" id="chk_Ess_J"
                                                                   style="visibility: hidden"></td>
@@ -121,7 +123,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Operation_CO">Opérationnel</div>
+                    <div id="lbl_Operation_CO"><?=$Lines[6]['text']?></div>
                 </td>
                 <td id="td_Operation_CO_J" onclick="fn_Chk_Operation_CO_J()"><input type="checkbox" id="chk_Operation_CO_J"
                                                                                     style="visibility: hidden"></td>
@@ -135,7 +137,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Rdv_G">Rdv Garage</div>
+                    <div id="lbl_Rdv_G"><?=$Lines[7]['text']?></div>
                 </td>
                 <td id="td_Rdv_G_J" onclick="fn_Chk_Rdv_G_J()"><input type="checkbox" id="chk_Rdv_G_J"
                                                                       style="visibility: hidden"></td>
@@ -149,7 +151,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_GT_Vhc">Gt vhc avisé</div>
+                    <div id="lbl_GT_Vhc"><?=$Lines[8]['text']?></div>
                 </td>
                 <td id="td_GT_Vhc_J" onclick="fn_Chk_GT_Vhc_J()"><input type="checkbox" id="chk_GT_Vhc_J"
                                                                         style="visibility: hidden"></td>
@@ -161,7 +163,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_50chf">50chf présents</div>
+                    <div id="lbl_50chf"><?=$Lines[9]['text']?></div>
                 </td>
                 <td id="td_50chf_J" onclick="fn_Chk_50chf_J()"><input type="checkbox" id="chk_50chf_J"
                                                                       style="visibility: hidden"></td>
@@ -174,7 +176,7 @@ $title = "CSU-NVB - Remise de garde";
 
             <tr>
                 <td>
-                    <div id="lbl_PIHV">Problème d'interventions hors véhicules</div>
+                    <div id="lbl_PIHV"><?=$Lines[10]['text']?></div>
                 </td>
                 <td id="td_PIHV_J" onclick="fn_Chk_PIHV_J()"><input type="checkbox" id="chk_PIHV_J"
                                                                     style="visibility: hidden"></td>
@@ -190,7 +192,7 @@ $title = "CSU-NVB - Remise de garde";
     </div>
     <br><br>
     <div class="container-fluid row">
-        <h4>Ecrans de communication & Trafic</h4>
+        <h4><?=$Titles[2]['title']?></h4>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -204,7 +206,7 @@ $title = "CSU-NVB - Remise de garde";
             <tbody>
             <tr>
                 <td>
-                    <div id="lbl_Info_Traf">Info trafic consulté</div>
+                    <div id="lbl_Info_Traf"><?=$Lines[11]['text']?></div>
                 </td>
                 <td id="td_Info_Traf_J" onclick="fn_Chk_Info_Traf_J()"><input type="checkbox" id="chk_Info_Traf_J"
                                                                               style="visibility: hidden"></td>
@@ -216,7 +218,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Report_Info_Traf">Report des info trafic sur plan de secteur centrale</div>
+                    <div id="lbl_Report_Info_Traf"><?=$Lines[12]['text']?></div>
                 </td>
                 <td id="td_Report_Info_Traf_J" onclick="fn_Chk_Report_Info_Traf_J()"><input type="checkbox" id="chk_Report_Info_Traf_J"
                                                                                             style="visibility: hidden"></td>
@@ -230,7 +232,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Acc_Stage">Acceuil étudiant ou stagiaire</div>
+                    <div id="lbl_Acc_Stage"><?=$Lines[13]['text']?></div>
                 </td>
                 <td id="td_Acc_Stage_J" onclick="fn_Chk_Acc_Stage_J()"><input type="checkbox" id="chk_Acc_Stage_J"
                                                                               style="visibility: hidden"></td>
@@ -244,7 +246,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Lect_Journal">Lecture journal de bord</div>
+                    <div id="lbl_Lect_Journal"><?=$Lines[14]['text']?></div>
                 </td>
                 <td id="td_Lect_Journal_J" onclick="fn_Chk_Lect_Journal_J()"><input type="checkbox" id="chk_Lect_Journal_J"
                                                                                     style="visibility: hidden"></td>
@@ -256,7 +258,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Pb_Resp_GT">Problème et responsable GT avisé</div>
+                    <div id="lbl_Pb_Resp_GT"><?=$Lines[15]['text']?></div>
                 </td>
                 <td id="td_Pb_Resp_GT_J" onclick="fn_Chk_Pb_Resp_GT_J()"><input type="checkbox" id="chk_Pb_Resp_GT_J"
                                                                                 style="visibility: hidden"></td>
@@ -272,7 +274,7 @@ $title = "CSU-NVB - Remise de garde";
     </div>
     <br><br>
     <div class="container-fluid row">
-        <h4>Centrale & tâches</h4>
+        <h4><?=$Titles[3]['title']?></h4>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -286,7 +288,7 @@ $title = "CSU-NVB - Remise de garde";
             <tbody>
             <tr>
                 <td>
-                    <div id="lbl_Central_Propre">Centrale Propre</div>
+                    <div id="lbl_Central_Propre"><?=$Lines[16]['text']?></div>
                 </td>
                 <td id="td_Central_Propre_J" onclick="fn_Chk_Central_Propre_J()"><input type="checkbox" id="chk_Central_Propre_J"
                                                                                         style="visibility: hidden"></td>
@@ -298,7 +300,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Tache_J_Eff">Tâches du jour effectuées</div>
+                    <div id="lbl_Tache_J_Eff"><?=$Lines[17]['text']?></div>
                 </td>
                 <td id="td_Tache_J_Eff_J" onclick="fn_Chk_Tache_J_Eff_J()"><input type="checkbox" id="chk_Tache_J_Eff_J"
                                                                                   style="visibility: hidden"></td>
@@ -312,7 +314,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             <tr>
                 <td>
-                    <div id="lbl_Dim_Fiche_Stups">Dimanche Fiches stupéfiants et tableau tâches scannées</div>
+                    <div id="lbl_Dim_Fiche_Stups"><?=$Lines[18]['text']?></div>
                 </td>
                 <td id="td_Dim_Fiche_Stups_J" onclick="fn_Chk_Dim_Fiche_Stups_J()"><input type="checkbox" id="chk_Dim_Fiche_Stups_J"
                                                                                           style="visibility: hidden"></td>
