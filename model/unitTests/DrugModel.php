@@ -7,7 +7,7 @@
  * IDE PhpStorm
  * Nom du Projet CSUNVB
  */
-
+require "/model/drugModel.php";
     Echo "Sheet Teste----------------------------------------------------------------------------<br>";
     echo "ALL Info?     ";
     if (getStupSheets() != null) {
