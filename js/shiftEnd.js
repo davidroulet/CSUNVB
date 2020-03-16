@@ -7,18 +7,20 @@
 document.addEventListener("DOMContentLoaded", evenement);
 
 function fn_Chk_Rad_J() {
-    document.getElementById("chk_Rad_J").checked = 1 - document.getElementById("chk_Rad_J").checked;
-    if (document.getElementById("chk_Rad_J").checked == 1) {
-        document.getElementById("td_Rad_J").style.backgroundColor = "lightgreen";
+    chk_Rad_J.checked = 1 - chk_Rad_J.checked;
+    if (chk_Rad_J.checked == 1) {
+        td_Rad_J.classList.add("ok");
+        td_Rad_J.classList.remove("no");
     } else {
-        document.getElementById("td_Rad_J").style.backgroundColor = "#ff8080";
+        td_Rad_J.classList.add("no");
+        td_Rad_J.classList.remove("ok");
     }
-    if ((document.getElementById("chk_Rad_J").checked == 1) && (document.getElementById("chk_Rad_N").checked == 1)) {
-        document.getElementById("span_Rad_Val_Ok").style.visibility = 'visible';
-        document.getElementById("span_Rad_Val_NO").style.visibility = 'hidden';
+    if ((chk_Rad_J.checked == 1) && (chk_Rad_N.checked == 1)) {
+        span_Rad_Val_Ok.classList.add("visible");
+        span_Rad_Val_No.classList.add("hidden");
     } else {
-        document.getElementById("span_Rad_Val_Ok").style.visibility = 'hidden';
-        document.getElementById("span_Rad_Val_NO").style.visibility = 'visible';
+        span_Rad_Val_Ok.classList.add("hidden");
+        span_Rad_Val_No.classList.add("visible");
     }
 }
 
@@ -614,7 +616,7 @@ function fn_Chk_Dim_Fiche_Stups_N() {
 
 
 function evenement() {
-    chk_Rad_J.addEventListener("click", fn_Chk_Rad_J);
+    chk_Rad_J, td_Rad_J, chk_Rad_N, span_Rad_Val_Ok, span_Rad_Val_No.addEventListener("click", fn_Chk_Rad_J);
     chk_Rad_N.addEventListener("click", fn_Chk_Rad_N);
     chk_Det_CO_J.addEventListener("click", fn_Chk_Det_CO_J);
     chk_Det_CO_N.addEventListener("click", fn_Chk_Det_CO_N);

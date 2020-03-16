@@ -340,7 +340,7 @@ $Lines = getGuardLines();
 
 </div>
 </body>
-<script src="js/shiftEnd.js"></script>
+<script src="../../js/shiftEnd.js"></script>
 </html>
 <?php
 $content = ob_get_clean();

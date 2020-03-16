@@ -4,3 +4,9 @@
 .hidden{
     visibility: hidden;
 }
+.ok{
+    background-color: lightgreen;
+}
+.no{
+    background-color: lightcoral;
+}
