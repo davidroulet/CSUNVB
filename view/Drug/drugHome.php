@@ -9,7 +9,6 @@ $year = 20;
 <div class="row m-2">
     <h1>Stupéfiants</h1>
 </div>
-<form action="/index.php?action=drugSiteTable" method="post">
     <div class="row m-2">
         <?php
         $liste = getStupSheets();
@@ -17,12 +16,27 @@ $year = 20;
             if ($item["base_id"] == $_SESSION["Selectsite"]) {
                 $weeks[] = $item;
             }
-        }
-        foreach ($weeks as $week) { ?>
-            <button class="text-decoration-none card col-4 menutile align-items-center colorblue"
-                    name="semaine" value="<?= $week["week"] ?>"> <?php echo $week["week"] ?> </button> <?php } ?>
+        } ?>
     </div>
-</form>
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+        <th>Date</th>
+        <th>État</th>
+        </thead>
+        <tbody>
+        <?php foreach ($weeks as $week) { ?>
+            <tr>
+                <form action="/index.php?action=drugSiteTable" method="post">
+                    <td><button class ="btn" name="semaine" value="<?= $week["week"] ?>"> <?php echo $week["week"] ?> </button></td><td><?=$week['state']?></td>
+                </form>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+
 <?php
 $content = ob_get_clean();
 require "view/gabarit.php";

@@ -8,5 +8,5 @@ $title = "CSU-NVB - Administration";
 </div>
 <?php
 $content = ob_get_clean();
-require "gabarit.php";
+require "view/gabarit.php";
 ?>
