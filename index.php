@@ -1,18 +1,19 @@
 <?php
 session_start();
+// Include all controllers
+require "controler/adminControler.php";
+require "controler/shiftEndControler.php";
+require "controler/todoListControler.php";
+require "controler/drugControler.php";
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $_SESSION["Selectsite"] = $_POST['base'];
     $base = $_POST['base'];
+    $_SESSION['site']=$_POST['base'];
 }
 
-// Include all controllers
-require "controler/adminControler.php";
-require "controler/shiftEndControler.php";
-require "controler/todoListControler.php";
-require "controler/drugControler.php";
 
 if (isset($_POST["semaine"])) {
     $semaine = $_POST["semaine"];
