@@ -42,9 +42,10 @@ $Lines = getGuardLines();
                                          class="hidden"></td>
                 <td id="td_Rad_N"><input type="checkbox" id="chk_Rad_N"
                                          class="hidden"></td>
-                <td><textarea style="resize: none" id="txt_Area_Rad" cols="100%" rows="4"></textarea></td>
-                <td id="td_Rad_Val"><span id="span_Rad_Val_OK" class="glyphicon hidden">O</span><span
-                            id="span_Rad_Val_NO" class="glyphicon glyphicon-ok visible">X</span></td>
+                <td>
+                    <textarea style="resize: none" id="txt_Area_Rad" cols="100%" rows="4"></textarea></td>
+                <td id="td_Rad_Val"><span id="span_Rad_Val_OK" class="glyphicon hidden">O</span>
+                    <span id="span_Rad_Val_NO" class="glyphicon glyphicon-ok visible">X</span></td>
             </tr>
             <tr>
                 <td>
