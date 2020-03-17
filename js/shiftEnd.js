@@ -15,12 +15,16 @@ function fn_Chk_Rad_J() {
         td_Rad_J.classList.add("no");
         td_Rad_J.classList.remove("ok");
     }
-    if ((chk_Rad_J.checked == true) && (chk_Rad_N.checked == true)) {
+    if ((chk_Rad_J.checked == 1) && (chk_Rad_N.checked == 1)) {
         span_Rad_Val_NO.classList.remove("hidden");
+        span_Rad_Val_NO.classList.remove("visible");
+        span_Rad_Val_OK.classList.remove("visible");
         span_Rad_Val_OK.classList.add("visible");
 
     } else {
         span_Rad_Val_OK.classList.remove("hidden");
+        span_Rad_Val_OK.classList.remove("visible");
+        span_Rad_Val_NO.classList.remove("visible");
         span_Rad_Val_NO.classList.add("visible");
     }
 }
@@ -34,12 +38,16 @@ function fn_Chk_Rad_N() {
         td_Rad_N.classList.add("no");
         td_Rad_N.classList.remove("ok");
     }
-    if ((chk_Rad_J.checked == true) && (chk_Rad_N.checked == true)) {
+    if ((chk_Rad_J.checked == 1) && (chk_Rad_N.checked == 1)) {
         span_Rad_Val_NO.classList.remove("hidden");
+        span_Rad_Val_NO.classList.remove("visible");
+        span_Rad_Val_OK.classList.remove("visible");
         span_Rad_Val_OK.classList.add("visible");
 
     } else {
         span_Rad_Val_OK.classList.remove("hidden");
+        span_Rad_Val_OK.classList.remove("visible");
+        span_Rad_Val_NO.classList.remove("visible");
         span_Rad_Val_NO.classList.add("visible");
     }
 }
