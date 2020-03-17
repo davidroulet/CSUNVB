@@ -22,7 +22,7 @@ $title = "CSU-NVB - Remise de garde";
 $liste = getRemises();
 foreach ($liste as $item) {
     if ($item["base_id"] == $_SESSION["Selectsite"]) {
-        $weeks[] = $item;
+        $remises[] = $item;
     }
 } ?>
 
@@ -33,9 +33,9 @@ foreach ($liste as $item) {
         <th>État</th>
         </thead>
         <tbody>
-    <?php foreach ($weeks as $week) { ?>
+    <?php foreach ($remises as $remise) { ?>
         <tr>
-            <td><a href="index.php?action=shiftend"><?=$week['date']?></a></td><td><?=$week['state']?></td>
+            <td><a href="index.php?action=shiftend"><?=$remise['date']?></a></td><td><?=$remise['state']?></td>
         </tr>
     <?php } ?>
         </tbody>
