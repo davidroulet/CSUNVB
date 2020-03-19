@@ -30,28 +30,17 @@ function getStupSheets()
     foreach ($Array as $p) {
         $SheetsArray[$p["id"]] = $p;
 
-        foreach ($drugs as $drug){
-            $SheetsArray[$p["id"]]["drugs"][]=$drug["id"];
-        }
+
+foreach ($Sutupbatch as $BatchSheet){
+if($BatchSheet["stupsheet_id"]==$p["id"]){
+    $batch=readbatche($BatchSheet["batch_id"]);
+
+    $SheetsArray[$p["id"]]["batch_id"][]=$batch["number"];
+    $SheetsArray[$p["id"]]["batch_id"][$batch["number"]][]=$drugs[ $batch["drug_id"]]["name"];
+}
 
 
-
-        foreach($Sutupbatch as $BatchShhet){
-        if($BatchShhet["stupsheet_id"]==$p["id"]){
-            $batch = readbatche($BatchShhet["batch_id"]);
-            $SheetsArray[$p["id"]]["drugs"][$batch["drug_id"]]["number"][]=$batch["number"];
-
-
-
-
-        }
-
-
-
-
-        }
-
-
+}
 
 
         foreach ($novasheet as $item) {
@@ -89,6 +78,9 @@ function updateSheets($items)
         unset($items[$item["id"]]["drugs"]);
         unset($items[$item["id"]]["nova"]);
         unset($items[$item["id"]]["batch"]);
+        unset($items[$item["id"]]["batch_id"]);
+
+
     }
     file_put_contents("../dataStorage/stupsheets.json", json_encode($items));
 }
