@@ -7,7 +7,7 @@
  * IDE PhpStorm
  * Nom du Projet CSUNVB
  */
-require "/model/drugModel.php";
+require "../drugModel.php";
     Echo "Sheet Teste----------------------------------------------------------------------------<br>";
     echo "ALL Info?     ";
     if (getStupSheets() != null) {
@@ -213,3 +213,4 @@ if (readDrug($idit["id"]) == null) {
     echo "No";
 }
 GetSheetbyWeek(2011,3);
+var_dump(getStupSheets());
