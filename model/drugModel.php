@@ -33,12 +33,24 @@ function getStupSheets()
         foreach ($drugs as $drug){
             $SheetsArray[$p["id"]]["drugs"][]=$drug["id"];
         }
-        foreach ($Sutupbatch as $stupbatch){
-            if($stupbatch["stupsheet_id"]==$p["id"]){
-                $batch = readbatche($stupbatch["batch_id"]);
-                $SheetsArray[$p["id"]]["drugs"][$batch["drug_id"]][]=$batch["number"];
-            }
+
+
+
+        foreach($Sutupbatch as $BatchShhet){
+        if($BatchShhet["stupsheet_id"]==$p["id"]){
+            $batch = readbatche($BatchShhet["batch_id"]);
+            $SheetsArray[$p["id"]]["drugs"][$batch["drug_id"]]["number"][]=$batch["number"];
+
+
+
+
         }
+
+
+
+
+        }
+
 
 
 
@@ -48,7 +60,6 @@ function getStupSheets()
                 $nova = readnova($item["nova_id"]);
                 $SheetsArray[$p["id"]]["nova"][] = $nova["number"];
             }
-
         }
 
     }
