@@ -8,8 +8,9 @@
  **/
 
 require_once 'model/todoListModel.php';
+require_once 'model/loginModel.php';
 
-function todoListHomePage()
+function todoListHomePage($base)
 {
     $TodoListItemsread = readTodoListItems();
 
@@ -19,7 +20,7 @@ function todoListHomePage()
 function edittodopage()
 {
 
-    require_once 'view/todo/edittodopage.php';
+    require_once 'view/todo/Edittodopage.php';
 
 }
 

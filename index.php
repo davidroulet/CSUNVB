@@ -29,6 +29,9 @@ if (isset($_SESSION['username']) || $action == 'trylogin') {
     $action = ' ';
 }
 
+
+
+
 switch ($action) {
     case 'home' :
         require_once 'view/home.php';
@@ -49,7 +52,7 @@ switch ($action) {
         login();
         break;
     case 'todolist':
-        todoListHomePage();
+        todoListHomePage($base);
         break;
     case 'edittod':
         edittodopage();
