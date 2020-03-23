@@ -373,22 +373,6 @@ function stupsheet_use_nova()
     return $SheetsArray;
 }
 
-function getbasebyid($id)
-{
-    $SheetsArray = getbases();
-    $base = $SheetsArray[$id];
-    return $base;
-}
-
-function getbases()
-{
-    $Array = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-    }
-    return $SheetsArray;
-}
-
 function getpharmacheck($id)
 {
     $SheetsArray = getpharmachecks();

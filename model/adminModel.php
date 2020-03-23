@@ -74,5 +74,21 @@ function createAdminItem($item)
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
 }
 
+function getbasebyid($id)
+{
+    $SheetsArray = getbases();
+    $base = $SheetsArray[$id];
+    return $base;
+}
+
+function getbases()
+{
+    $Array = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    return $SheetsArray;
+}
+
 
 ?>
