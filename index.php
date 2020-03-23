@@ -10,7 +10,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $_SESSION["Selectsite"] = $_POST['base'];
-    $base = $_POST['base'];
     $_SESSION['site']=$_POST['base'];
 }
 
@@ -52,7 +51,12 @@ switch ($action) {
         login();
         break;
     case 'todolist':
-        todoListHomePage($base);
+        $selectedBase = $_SESSION['Selectsite'];
+        if (isset($_POST['selectBase']))
+        {
+            $selectedBase = $_POST['selectBase'];
+        }
+        todoListHomePage($selectedBase);
         break;
     case 'edittod':
         edittodopage();

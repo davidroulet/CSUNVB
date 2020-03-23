@@ -13,7 +13,7 @@ require_once 'model/loginModel.php';
 function todoListHomePage($base)
 {
     $TodoListItemsread = readTodoListItems();
-
+    $selectedBase = $base;
     require_once 'view/todo/todoListHome.php';
 }
 //
