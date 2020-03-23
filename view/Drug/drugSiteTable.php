@@ -48,7 +48,8 @@ foreach ($jours as $jour) { ?>
                 <td><?= $drug["name"] ?></td>
                 <td></td>
                 <td></td>
-                <?php foreach ($stupSheet["nova"] as $nova) {
+
+                <?php foreach ($stupSheet["nova"] as $nova) {;
                     echo "<td></td>";
                 } ?>
             </tr>
