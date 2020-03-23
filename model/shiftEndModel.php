@@ -84,5 +84,7 @@ function getGuardLines()
 function getGuardLinesForSection($section)
 {
     // TODO return le lines for one section only
+    $section = getGuardLines();
+    for ($guardline = 0;$guardline < $section ;){}
 }
 ?>
