@@ -14,11 +14,32 @@ $year = date('y');
 
 $todoSheets = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
 ?>
-<h1 class="center"><?= $title  ?></h1>
-<h2 class="center">Année <?=  date("Y")." SITE à " .getbasebyid($_SESSION["site"])["name"];?></h2>
-<div class="container ">
+<h1 class="center p-4"><?= $title ?></h1>
+<h2 class="center p-2">Année <?= date("Y") . " SITE à " . getbasebyid($_SESSION["site"])["name"]; ?></h2>
 
-    <div class="week">
+
+<div class="p-3 d-flex justify-content-end ">
+    <FORM action="/index.php?" method="post">
+        <SELECT>
+            <OPTION value="1" <?php if ($_SESSION["Selectsite"] == 1){ ?> selected="selected" <?php } ?>name="site">
+                Yverdon
+            <OPTION value="2" <?php if ($_SESSION["Selectsite"] == 2){ ?> selected="selected" <?php } ?>name="site">
+                Sainte-Croix
+            <OPTION value="3" <?php if ($_SESSION["Selectsite"] == 3){ ?> selected="selected" <?php } ?>name="site">
+                Saint-Loup
+            <OPTION value="4" <?php if ($_SESSION["Selectsite"] == 4) { ?> selected="selected"  <?php } ?>
+                    name="site">Payerne
+            <OPTION value="5" <?php if ($_SESSION["Selectsite"] == 5){ ?> selected="selected" <?php } ?>name="site">
+                Vallée-de-Joux
+        </SELECT>
+        <button type="submit" class="btn btn-info">Recharger</button>
+    </form>
+</div>
+
+<div class="container d-flex justify-content-center">
+
+    <div class="weeknumber p-3">
+
         <?php
 
         foreach ($todoSheets as $todosheet) {
@@ -32,8 +53,8 @@ $todoSheets = json_decode(file_get_contents("model/dataStorage/todosheets.json")
 
         }
 
-
         ?>
+
     </div>
 </div>
 

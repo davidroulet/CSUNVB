@@ -80,3 +80,12 @@
     font-weight: bold;
     padding: 3px;
 }
+.weeknumber {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2px;
+    margin: 2px;
+
+}

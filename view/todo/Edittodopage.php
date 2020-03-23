@@ -13,7 +13,7 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 ?>
 
 
-<h1 class="center"><?= $title ?></h1>
+<h1 class="center p-4"><?= $title ?></h1>
 
 <div class="container ">
     <div class="week">
