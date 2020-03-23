@@ -44,9 +44,9 @@ foreach ($jours as $jour) { ?>
         </tr>
 
 
-        <?php foreach ($drugs as $drug) { ?>
+        <?php foreach ($stupSheet["drug"] as $drug)  { $Drugname=readDrug($drug["Drug_id"]["name"]); ?>
             <tr>
-                <td><?= $drug["name"] ?></td>
+                <td><?= $Drugname["name"] ?></td>
                 <td></td>
                 <td></td>
 
@@ -54,7 +54,9 @@ foreach ($jours as $jour) { ?>
                     echo "<td></td>";
                 } ?>
             </tr>
-            <?php foreach ($drug["batches"] as $batch) {
+
+
+            <?php  foreach ($drug["batch_number"] as $batch) {
                 echo "<tr>";
                 echo "<td>" . $batch . "</td>"; ?>
                 <td></td>

@@ -31,30 +31,38 @@ function getStupSheets()
 
     foreach ($Array as $p) {
         $SheetsArray[$p["id"]] = $p;
-        foreach ($Sutupbatch as $BatchSheet) {
-            foreach ($novasheet as $item) {
-                if ($item["stupsheet_id"] == $p["id"]) {
-                    $nova = readnova($item["nova_id"]);
-                    $SheetsArray[$p["id"]]["nova"][] = $nova["number"];
-                }
-            }
 
+        foreach ($novasheet as $item) {
+            if ($item["stupsheet_id"] == $p["id"]) {
+                $nova = readnova($item["nova_id"]);
+                $SheetsArray[$p["id"]]["nova"][] = $nova["number"];
+            }
+        }
+
+        foreach ($Sutupbatch as $BatchSheet) {
             if ($BatchSheet["stupsheet_id"] == $p["id"]) {
                 $batch = readbatche($BatchSheet["batch_id"]);
+
                 switch ($batch["drug_id"]) {
                     case '1' :
-                        $SheetsArray[$p["id"]]["drug"]["Morphine"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["1"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["1"]["Drug_id"]["name"] = 1;
                         break;
                     case '2' :
-                        $SheetsArray[$p["id"]]["drug"]["Fentanyl"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["2"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["2"]["Drug_id"]["name"] = 2;
                         break;
                     case '3' :
-                        $SheetsArray[$p["id"]]["drug"]["Temesta"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["3"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["3"]["Drug_id"]["name"] = 3;
                         break;
                 }
             }
         }
+
+
     }
+
     return $SheetsArray;
 }
 
@@ -381,5 +389,19 @@ function getbases()
     return $SheetsArray;
 }
 
+function getpharmacheck($id)
+{
+    $SheetsArray = getpharmachecks();
+    $base = $SheetsArray[$id];
+    return $base;
+}
 
+function getpharmachecks()
+{
+    $Array = json_decode(file_get_contents("model/dataStorage/pharmachecks.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    return $SheetsArray;
+}
 ?>
