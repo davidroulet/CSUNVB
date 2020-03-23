@@ -6,8 +6,6 @@
 
 ob_start();
 $title = "CSU-NVB - Remise de garde";
-$Titles = getSectionsTitles();
-$Lines = getGuardLines();
 ?><!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -34,72 +32,19 @@ $Lines = getGuardLines();
             </tr>
             </thead>
             <tbody>
+            <?php for($line = 0; $line < 5; $line++) { ?>
             <tr>
                 <td>
-                    <div><?= $Lines[0]['text'] ?></div>
+                    <div><?= $CentralLines[$line]['text'] ?></div>
                 </td>
-                <td id="td_Rad_J"><input type="checkbox" id="chk_Rad_J"
-                                         class="hidden"></td>
-                <td id="td_Rad_N"><input type="checkbox" id="chk_Rad_N"
-                                         class="hidden"></td>
+                <td data-line="<?= $line ?>" data-type="J"></td>
+                <td data-line="<?= $line ?>" data-type="N"></td>
                 <td>
                     <textarea style="resize: none" id="txt_Area_Rad" cols="100%" rows="4"></textarea></td>
                 <td id="td_Rad_Val"><span id="span_Rad_Val_OK" class="glyphicon hidden">O</span>
                     <span id="span_Rad_Val_NO" class="glyphicon glyphicon-ok visible">X</span></td>
             </tr>
-            <tr>
-                <td>
-                    <div><?= $Lines[1]['text'] ?></div>
-                </td>
-                <td id="td_Det_CO_J"><input type="checkbox" id="chk_Det_CO_J"
-                                            class="hidden"></td>
-                <td id="td_Det_CO_N"><input type="checkbox" id="chk_Det_CO_N"
-                                            class="hidden"></td>
-                <td><textarea style="resize: none" id="txt_Area_Det_Co" cols="100%" rows="4"></textarea></td>
-                <td id="td_Det_CO_Val">
-                    <span id="span_Det_CO_Val_Ok" class="glyphicon hidden">O</span>
-                    <span id="span_Det_CO_Val_NO" class="glyphicon glyphicon-ok visible">X</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div><?= $Lines[2]['text'] ?></div>
-                </td>
-                <td id="td_Tel_J"><input type="checkbox" id="chk_Tel_J"
-                                         class="hidden"></td>
-                <td id="td_Tel_N"><input type="checkbox" id="chk_Tel_N"
-                                         class="hidden"></td>
-                <td><textarea style="resize: none" id="txt_Area_Tel" cols="100%" rows="4"></textarea></td>
-                <td id="td_Tel_Val">
-                    <span id="span_Tel_Val_Ok" class="glyphicon hidden">O</span>
-                    <span id="span_Tel_Val_NO" class="glyphicon glyphicon-ok visible">X</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div><?= $Lines[3]['text'] ?></div>
-                </td>
-                <td id="td_GT_Info_J"><input type="checkbox" id="chk_GT_Info_J"
-                                             class="hidden"></td>
-                <td id="td_GT_Info_N"><input type="checkbox" id="chk_GT_Info_N"
-                                             class="hidden"></td>
-                <td><textarea style="resize: none" id="txt_Area_GT_Info" cols="100%" rows="4"></textarea></td>
-                <td id="td_GT_Info_Val"><span id="span_GT_Info_Val_Ok" class="glyphicon hidden">O</span><span
-                            id="span_GT_Info_Val_NO" class="glyphicon glyphicon-ok visible">X</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <div><?= $Lines[4]['text'] ?></div>
-                </td>
-                <td id="td_Ann_J"><input type="checkbox" id="chk_Ann_J"
-                                         class="hidden"></td>
-                <td id="td_Ann_N"><input type="checkbox" id="chk_Ann_N"
-                                         class="hidden"></td>
-                <td><textarea style="resize: none" id="txt_Area_Ann" cols="100%" rows="4"></textarea></td>
-                <td id="td_Ann_Val"><span id="span_Ann_Val_Ok" class="glyphicon hidden">O</span>
-                    <span id="span_Ann_Val_NO" class="glyphicon glyphicon-ok visible">X</span></td>
-            </tr>
-
+            <?php } ?>
             </tbody>
         </table>
     </div>
