@@ -16,7 +16,8 @@ $drugs = getDrugs(); // Obient la list des Drugs
 //$stupSheet=readSheet(2);
 $stupSheet=GetSheetbyWeek($semaine,$_SESSION["Selectsite"]);
 $date = strtotime($jourDebutSemaine);
-$site=getbasebyid($_SESSION["Selectsite"])["name"]
+$site=getbasebyid($_SESSION["Selectsite"])["name"];
+var_dump($stupSheet);
 ?>
     <h2>Site de <?= $site?> , Semaine N° <?= $semaine ?></h2>
 
