@@ -43,7 +43,7 @@ switch ($action) {
         shiftEndHomePage();
         break;
     case 'listShiftEnd':
-        require_once 'view/viewsShiftEnd/ListShiftEnd.php';
+        listShiftEnd();
         break;
     case 'disconnect':
         disconnect();

@@ -47,4 +47,9 @@ function errorLogin()
     require_once 'view/errorLogin.php';
 }
 
+function listShiftEnd()
+{
+    $liste = getRemises();
+    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
+}
 ?>

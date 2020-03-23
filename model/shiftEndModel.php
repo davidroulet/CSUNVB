@@ -68,16 +68,16 @@ function createShiftEndItem($item)
 
 function getRemises()
 {
-    return json_decode(file_get_contents("model\dataStorage\guardsheets.json"),true);
+    return json_decode(file_get_contents("model/dataStorage/guardsheets.json"),true);
 }
 
 function getSectionsTitles()
 {
-    return json_decode(file_get_contents("model\dataStorage\guardsections.json"), true);
+    return json_decode(file_get_contents("model/dataStorage/guardsections.json"), true);
 }
 
 function getGuardLines()
 {
-    return json_decode(file_get_contents("model\dataStorage\guardlines.json"), true);
+    return json_decode(file_get_contents("model/dataStorage/guardlines.json"), true);
 }
 ?>

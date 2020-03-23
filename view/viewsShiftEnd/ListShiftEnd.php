@@ -19,7 +19,6 @@ $title = "CSU-NVB - Remise de garde";
 </FORM>
 
 <?php
-$liste = getRemises();
 foreach ($liste as $item) {
     if ($item["base_id"] == $_SESSION["Selectsite"]) {
         $remises[] = $item;
