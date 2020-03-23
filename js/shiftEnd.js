@@ -629,84 +629,11 @@ function fn_Chk_Dim_Fiche_Stups_N() {
 
 
 function evenement() {
-    td_Rad_J.addEventListener("click", fn_Chk_Rad_J);
+    var els = document.getElementsByTagName("td");
 
-    chk_Rad_J.addEventListener("click", fn_Chk_Rad_J, fn_Chk_Rad_N);
-    chk_Rad_N.addEventListener("click", fn_Chk_Rad_J, fn_Chk_Rad_N);
-    span_Rad_Val_OK.addEventListener("click", fn_Chk_Rad_J, fn_Chk_Rad_N);
-    span_Rad_Val_NO.addEventListener("click", fn_Chk_Rad_J, fn_Chk_Rad_N);
-
-    td_Rad_N.addEventListener("click", fn_Chk_Rad_N);
-
-    chk_Det_CO_J.addEventListener("click", fn_Chk_Det_CO_J);
-    chk_Det_CO_N.addEventListener("click", fn_Chk_Det_CO_N);
-
-    chk_Tel_J.addEventListener("click", fn_Chk_Tel_J);
-
-    chk_Tel_N.addEventListener("click", fn_Chk_Tel_N);
-
-    chk_GT_Info_J.addEventListener("click", fn_Chk_GT_Info_J);
-
-    chk_GT_Info_N.addEventListener("click", fn_Chk_GT_Info_N);
-
-    chk_Ann_J.addEventListener("click", fn_Chk_Ann_J);
-
-    chk_Ann_N.addEventListener("click", fn_Chk_Ann_N);
-
-    chk_Ess_J.addEventListener("click", fn_Chk_Ess_J);
-
-    chk_Ess_N.addEventListener("click", fn_Chk_Ess_N);
-
-    chk_Operation_CO_J.addEventListener("click", fn_Chk_Operation_CO_J);
-
-    chk_Operation_CO_N.addEventListener("click", fn_Chk_Operation_CO_N);
-
-    chk_Rdv_G_J.addEventListener("click", fn_Chk_Rdv_G_J);
-
-    chk_Rdv_G_N.addEventListener("click", fn_Chk_Rdv_G_N);
-
-    chk_GT_Vhc_J.addEventListener("click", fn_Chk_GT_Vhc_J);
-
-    chk_GT_Vhc_N.addEventListener("click", fn_Chk_GT_Vhc_N);
-
-    chk_50chf_J.addEventListener("click", fn_Chk_50chf_J);
-
-    chk_50chf_N.addEventListener("click", fn_Chk_50chf_N);
-
-    chk_PIHV_J.addEventListener("click", fn_Chk_PIHV_J);
-
-    chk_PIHV_N.addEventListener("click", fn_Chk_PIHV_N);
-
-    chk_Info_Traf_J.addEventListener("click", fn_Chk_Info_Traf_J);
-
-    chk_Info_Traf_N.addEventListener("click", fn_Chk_Info_Traf_N);
-
-    chk_Report_Info_Traf_J.addEventListener("click", fn_Chk_Report_Info_Traf_J);
-
-    chk_Report_Info_Traf_N.addEventListener("click", fn_Chk_Report_Info_Traf_N);
-
-    chk_Acc_Stage_J.addEventListener("click", fn_Chk_Acc_Stage_J);
-
-    chk_Acc_Stage_N.addEventListener("click", fn_Chk_Acc_Stage_N);
-
-    chk_Lect_Journal_J.addEventListener("click", fn_Chk_Lect_Journal_J);
-
-    chk_Lect_Journal_N.addEventListener("click", fn_Chk_Lect_Journal_N);
-
-    chk_Pb_Resp_GT_J.addEventListener("click", fn_Chk_Pb_Resp_GT_J);
-
-    chk_Pb_Resp_GT_N.addEventListener("click", fn_Chk_Pb_Resp_GT_N);
-
-    chk_Central_Propre_J.addEventListener("click", fn_Chk_Central_Propre_J);
-
-    chk_Central_Propre_N.addEventListener("click", fn_Chk_Central_Propre_N);
-
-    chk_Tache_J_Eff_J.addEventListener("click", fn_Chk_Tache_J_Eff_J);
-
-    chk_Tache_J_Eff_N.addEventListener("click", fn_Chk_Tache_J_Eff_N);
-
-    chk_Dim_Fiche_Stups_J.addEventListener("click", fn_Chk_Dim_Fiche_Stups_J);
-
-    chk_Dim_Fiche_Stups_N.addEventListener("click", fn_Chk_Dim_Fiche_Stups_N);
-
+    Array.prototype.forEach.call(els, function(el) {
+        el.addEventListener('click', function (evt) {
+            console.log (evt.target.getAttribute('data-line')+evt.target.getAttribute('data-type'))
+        })
+    });
 }

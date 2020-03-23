@@ -9,6 +9,11 @@ require_once 'model/loginModel.php';
 
 function shiftEndHomePage()
 {
+    $Titles = getSectionsTitles();
+    $CentralLines = getGuardLines(1);
+    $CommunicationLines = getGuardLines(2);
+    $TelecomLines = getGuardLines(3);
+
     require_once 'view/viewsShiftEnd/shiftEndHome.php';
 }
 
