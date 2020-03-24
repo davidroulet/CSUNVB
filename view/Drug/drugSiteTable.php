@@ -50,22 +50,24 @@ foreach ($jours as $jour) { ?>
                 <td></td>
                 <td></td>
 
-                <?php foreach ($stupSheet["nova"] as $nova) {;
-                    echo "<td></td>";
-                } ?>
+                <?php foreach ($stupSheet["nova"] as $nova) { ?>
+                    <td></td>
+              <?php  } ?>
             </tr>
 
 
-            <?php  foreach ($drug["batch_number"] as $batch) {
+            <?php  foreach ($drug["batch_id"]["batch_number"] as $batch) {
                 echo "<tr>";
-                echo "<td>" . $batch . "</td>"; ?>
+                echo "<td>" . $batch . "</td>";
+                ?>
+                <td><?= $drug["batch_id"]["batch_check"]["start"]?></td>
                 <td></td>
-                <td></td>
-                <?php foreach ($stupSheet["nova"] as $nova) {
-                    echo "<td></td>";
-                }
-                echo "</tr>";
-            } ?>
+                <?php foreach ($stupSheet["nova"] as $nova) { ?>
+
+                    <td><?= $drug["batch_id"]["batch_check"]["end"]?></td>
+              <?php  } ?>
+                </tr>
+          <?php  } ?>
         <?php } ?>
 
 
