@@ -26,38 +26,67 @@ function getStupSheets()
 {
     $novasheet = stupsheet_use_nova();
     $Sutupbatch = stupsheet_use_batch();
+    $pharmacheck = getpharmachecks();
     $Array = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
-    $drugs = getDrugs();
-
     foreach ($Array as $p) {
         $SheetsArray[$p["id"]] = $p;
-
         foreach ($novasheet as $item) {
             if ($item["stupsheet_id"] == $p["id"]) {
                 $nova = readnova($item["nova_id"]);
                 $SheetsArray[$p["id"]]["nova"][] = $nova["number"];
             }
         }
-
         foreach ($Sutupbatch as $BatchSheet) {
             if ($BatchSheet["stupsheet_id"] == $p["id"]) {
                 $batch = readbatche($BatchSheet["batch_id"]);
 
                 switch ($batch["drug_id"]) {
                     case '1' :
-                        $SheetsArray[$p["id"]]["drug"]["1"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["1"]["batch_id"]["batch_number"][] = $batch["number"];
                         $SheetsArray[$p["id"]]["drug"]["1"]["Drug_id"]["name"] = 1;
+
+                        foreach ($SheetsArray[$p["id"]]["drug"]["1"]["batch_id"]["batch_number"] as $item){
+                            $batch =FindBatchewhitNumber($item);
+                            foreach ($pharmacheck as $check){
+                                if ($check["batch_id"]==$batch["id"]){
+                                    $SheetsArray[$p["id"]]["drug"]["1"]["batch_id"]["batch_check"]=$check;
+                                }
+                            }
+                        }
+
                         break;
                     case '2' :
-                        $SheetsArray[$p["id"]]["drug"]["2"]["batch_number"][] = $batch["number"];
+
+                        $SheetsArray[$p["id"]]["drug"]["2"]["batch_id"]["batch_number"][] = $batch["number"];
                         $SheetsArray[$p["id"]]["drug"]["2"]["Drug_id"]["name"] = 2;
+
+                        foreach ($SheetsArray[$p["id"]]["drug"]["2"]["batch_id"]["batch_number"] as $item){
+                            $batch =FindBatchewhitNumber($item);
+                            foreach ($pharmacheck as $check){
+                                if ($check["batch_id"]==$batch["id"]){
+                                    $SheetsArray[$p["id"]]["drug"]["2"]["batch_id"]["batch_check"]=$check;
+                                }
+                            }
+                        }
+
                         break;
                     case '3' :
-                        $SheetsArray[$p["id"]]["drug"]["3"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"]["3"]["batch_id"]["batch_number"][] = $batch["number"];
                         $SheetsArray[$p["id"]]["drug"]["3"]["Drug_id"]["name"] = 3;
+
+                        foreach ($SheetsArray[$p["id"]]["drug"]["3"]["batch_id"]["batch_number"] as $item){
+                            $batch =FindBatchewhitNumber($item);
+                            foreach ($pharmacheck as $check){
+                                if ($check["batch_id"]==$batch["id"]){
+                                    $SheetsArray[$p["id"]]["drug"]["3"]["batch_id"]["batch_check"]=$check;
+                                }
+                            }
+                        }
+
                         break;
                 }
             }
+
         }
 
 
@@ -388,4 +417,5 @@ function getpharmachecks()
     }
     return $SheetsArray;
 }
+
 ?>
