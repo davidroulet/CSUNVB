@@ -14,13 +14,11 @@ $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en f
 $novas = getnovas(); // Obient la liste des ambulance
 $drugs = getDrugs(); // Obient la list des Drugs
 //$stupSheet=readSheet(2);
-$stupSheet=GetSheetbyWeek($semaine,$_SESSION["Selectsite"]);
+$stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
 $date = strtotime($jourDebutSemaine);
-$site=getbasebyid($_SESSION["Selectsite"])["name"];
-var_dump($stupSheet);
+$site = getbasebyid($_SESSION["Selectsite"])["name"];
 ?>
-    <h2>Site de <?= $site?> , Semaine N° <?= $semaine ?></h2>
-
+    <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
 <?php
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
 
@@ -43,8 +41,8 @@ foreach ($jours as $jour) { ?>
             <td>Pharmacie</td>
         </tr>
 
-
-        <?php foreach ($stupSheet["drug"] as $drug)  { $Drugname=readDrug($drug["Drug_id"]["name"]); ?>
+        <?php foreach ($stupSheet["drug"] as $drug) {
+            $Drugname = readDrug($drug["Drug_id"]["name"]); ?>
             <tr>
                 <td><?= $Drugname["name"] ?></td>
                 <td></td>
@@ -52,34 +50,28 @@ foreach ($jours as $jour) { ?>
 
                 <?php foreach ($stupSheet["nova"] as $nova) { ?>
                     <td></td>
-              <?php  } ?>
+                <?php } ?>
             </tr>
 
-
-            <?php  foreach ($drug["batch_id"]["batch_number"] as $batch) {
+            <?php foreach ($drug["batch_id"]["batch_number"] as $batch) {
                 echo "<tr>";
                 echo "<td>" . $batch . "</td>";
                 ?>
-                <td><?= $drug["batch_id"]["batch_check"]["start"]?></td>
-                <td></td>
+                <td><?= $drug["batch_id"]["batch_check"]["start"] ?></td>
                 <?php foreach ($stupSheet["nova"] as $nova) { ?>
-
-                    <td><?= $drug["batch_id"]["batch_check"]["end"]?></td>
-              <?php  } ?>
+                    <td></td>
+                <?php } ?>
+                <td><?= $drug["batch_id"]["batch_check"]["end"] ?></td>
                 </tr>
-          <?php  } ?>
+            <?php } ?>
         <?php } ?>
-
 
         <tr>
             <td>Signature</td>
             <td colspan="5"></td>
-
         </tr>
     </table>
-<?php } ?>
-
-<?php
+<?php }
 $content = ob_get_clean();
 require "view/gabarit.php";
 
