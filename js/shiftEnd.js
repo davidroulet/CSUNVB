@@ -7,60 +7,60 @@
 document.addEventListener("DOMContentLoaded", evenement);
 
 function fn_Chk_Rad_J() {
-    chk_Rad_J.checked = 1 - chk_Rad_J.checked
-    if (chk_Rad_J.checked == true) {//vérifie l'état de la case pouis change la couleur de la case en vert
-        td_Rad_J.classList.remove("no")
+    chk_Rad_J.checked = 1 - chk_Rad_J.checked;
+    if (chk_Rad_J.checked === true) {//vérifie l'état de la case pouis change la couleur de la case en vert
+        td_Rad_J.classList.remove("no");
         td_Rad_J.classList.add("ok")
     } else {//change la couleur de la case en rouge
-        td_Rad_J.classList.remove("ok")
+        td_Rad_J.classList.remove("ok");
         td_Rad_J.classList.add("no")
 
     }
-    if ((chk_Rad_J.checked == true) && (chk_Rad_N.checked == true)) {//check si l'état des deux case sont à 1 puis change le symbole a O
-        span_Rad_Val_NO.classList.remove("hidden")
-        span_Rad_Val_NO.classList.remove("visible")
-        span_Rad_Val_OK.classList.remove("visible")
+    if ((chk_Rad_J.checked === true) && (chk_Rad_N.checked === true)) {//check si l'état des deux case sont à 1 puis change le symbole a O
+        span_Rad_Val_NO.classList.remove("hidden");
+        span_Rad_Val_NO.classList.remove("visible");
+        span_Rad_Val_OK.classList.remove("visible");
         span_Rad_Val_OK.classList.add("visible")
 
     } else { //change le symbole a X
-        span_Rad_Val_OK.classList.remove("hidden")
-        span_Rad_Val_OK.classList.remove("visible")
-        span_Rad_Val_NO.classList.remove("visible")
+        span_Rad_Val_OK.classList.remove("hidden");
+        span_Rad_Val_OK.classList.remove("visible");
+        span_Rad_Val_NO.classList.remove("visible");
         span_Rad_Val_NO.classList.add("visible")
     }
 }
 
 function fn_Chk_Rad_N() {
-    chk_Rad_N.checked = 1 - chk_Rad_N.checked
-    if (chk_Rad_N.checked == true) {//vérifie l'état de la case pouis change la couleur de la case en vert
-        td_Rad_N.classList.add("ok")
+    chk_Rad_N.checked = 1 - chk_Rad_N.checked;
+    if (chk_Rad_N.checked === true) {//vérifie l'état de la case pouis change la couleur de la case en vert
+        td_Rad_N.classList.add("ok");
         td_Rad_N.classList.remove("no")
     } else {//change la couleur de la case en rouge
-        td_Rad_N.classList.add("no")
+        td_Rad_N.classList.add("no");
         td_Rad_N.classList.remove("ok")
     }
-    if ((chk_Rad_J.checked == true) && (chk_Rad_N.checked == true)) {//check si l'état des deux case sont à 1 puis change le symbole a O
-        span_Rad_Val_NO.classList.remove("hidden")
-        span_Rad_Val_NO.classList.remove("visible")
-        span_Rad_Val_OK.classList.remove("visible")
+    if ((chk_Rad_J.checked === true) && (chk_Rad_N.checked === true)) {//check si l'état des deux case sont à 1 puis change le symbole a O
+        span_Rad_Val_NO.classList.remove("hidden");
+        span_Rad_Val_NO.classList.remove("visible");
+        span_Rad_Val_OK.classList.remove("visible");
         span_Rad_Val_OK.classList.add("visible")
 
     } else {//change le symbole a X
-        span_Rad_Val_OK.classList.remove("hidden")
-        span_Rad_Val_OK.classList.remove("visible")
-        span_Rad_Val_NO.classList.remove("visible")
+        span_Rad_Val_OK.classList.remove("hidden");
+        span_Rad_Val_OK.classList.remove("visible");
+        span_Rad_Val_NO.classList.remove("visible");
         span_Rad_Val_NO.classList.add("visible")
     }
 }
 
 function fn_Chk_Det_CO_J() {
     document.getElementById("chk_Det_CO_J").checked = 1 - document.getElementById("chk_Det_CO_J").checked;
-    if (document.getElementById("chk_Det_CO_J").checked == 1) {
+    if (document.getElementById("chk_Det_CO_J").checked === 1) {
         document.getElementById("td_Det_CO_J").style.backgroundColor = "lightgreen";
     } else {
         document.getElementById("td_Det_CO_J").style.backgroundColor = "#ff8080";
     }
-    if ((document.getElementById("chk_Det_CO_J").checked == 1) && (document.getElementById("chk_Det_CO_N").checked == 1)) {
+    if ((document.getElementById("chk_Det_CO_J").checked === 1) && (document.getElementById("chk_Det_CO_N").checked == 1)) {
         document.getElementById("span_Det_CO_Val_OK").style.visibility = 'visible';
         document.getElementById("span_Det_CO_Val_NO").style.visibility = 'hidden';
     } else {
