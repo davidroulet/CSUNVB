@@ -418,4 +418,8 @@ function getpharmachecks()
     return $SheetsArray;
 }
 
+function getLogsBySheet($sheetid)
+{
+    // TODO retur all log entries that concern sheet $sheetid
+}
 ?>
