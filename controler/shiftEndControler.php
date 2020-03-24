@@ -28,15 +28,15 @@ function login()
     require_once 'view/login.php';
 
 }
-function trylogin($username, $password, $base)
+function trylogin($username, $password)
 {
     $i = 1;
     $Users = getUsers($username, $password);
     foreach ($Users as $user)
     {
-        if ($username == $user['initials'] && password_verify($password, $user['password']) && $base == true)
+        if ($username == $user['initials'] && password_verify($password, $user['password']))
         {
-            $_SESSION['username'] = [$username, $base, $user['firstname'], $user['lastname']];
+            $_SESSION['username'] = [$username, $user['firstname'], $user['lastname']];
             $i = 2;
             require_once 'view/home.php';
         }
