@@ -40,57 +40,25 @@ function getStupSheets()
             if ($BatchSheet["stupsheet_id"] == $p["id"]) {
                 $batch = readbatche($BatchSheet["batch_id"]);
 
-                switch ($batch["drug_id"]) {
-                    case '1' :
-                        $SheetsArray[$p["id"]]["drug"]["1"]["batch_id"]["batch_number"][] = $batch["number"];
-                        $SheetsArray[$p["id"]]["drug"]["1"]["Drug_id"]["name"] = 1;
 
-                        foreach ($SheetsArray[$p["id"]]["drug"]["1"]["batch_id"]["batch_number"] as $item){
+                        $SheetsArray[$p["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_number"][] = $batch["number"];
+                        $SheetsArray[$p["id"]]["drug"][$batch["drug_id"]]["Drug_id"]["name"] = $batch["drug_id"];
+
+                        foreach ($SheetsArray[$p["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_number"] as $item){
                             $batch =FindBatchewhitNumber($item);
                             foreach ($pharmacheck as $check){
                                 if ($check["batch_id"]==$batch["id"]){
-                                    $SheetsArray[$p["id"]]["drug"]["1"]["batch_id"]["batch_check"]=$check;
+                                    $SheetsArray[$p["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_check"]=$check;
                                 }
                             }
                         }
-
-                        break;
-                    case '2' :
-
-                        $SheetsArray[$p["id"]]["drug"]["2"]["batch_id"]["batch_number"][] = $batch["number"];
-                        $SheetsArray[$p["id"]]["drug"]["2"]["Drug_id"]["name"] = 2;
-
-                        foreach ($SheetsArray[$p["id"]]["drug"]["2"]["batch_id"]["batch_number"] as $item){
-                            $batch =FindBatchewhitNumber($item);
-                            foreach ($pharmacheck as $check){
-                                if ($check["batch_id"]==$batch["id"]){
-                                    $SheetsArray[$p["id"]]["drug"]["2"]["batch_id"]["batch_check"]=$check;
-                                }
-                            }
-                        }
-
-                        break;
-                    case '3' :
-                        $SheetsArray[$p["id"]]["drug"]["3"]["batch_id"]["batch_number"][] = $batch["number"];
-                        $SheetsArray[$p["id"]]["drug"]["3"]["Drug_id"]["name"] = 3;
-
-                        foreach ($SheetsArray[$p["id"]]["drug"]["3"]["batch_id"]["batch_number"] as $item){
-                            $batch =FindBatchewhitNumber($item);
-                            foreach ($pharmacheck as $check){
-                                if ($check["batch_id"]==$batch["id"]){
-                                    $SheetsArray[$p["id"]]["drug"]["3"]["batch_id"]["batch_check"]=$check;
-                                }
-                            }
-                        }
-
-                        break;
                 }
             }
 
         }
 
 
-    }
+
 
     return $SheetsArray;
 }

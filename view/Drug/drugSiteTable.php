@@ -2,9 +2,9 @@
 // David Roulet - Fabien Masson
 // Projet CSU-NVB A1
 // Drugs Section
-
-ob_start();
 $title = "CSU-NVB - Stupéfiants";
+ob_start();
+
 ?>
     <div class="row m-2">
         <h1>Stupéfiants</h1>
@@ -17,6 +17,8 @@ $drugs = getDrugs(); // Obient la list des Drugs
 $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
 $date = strtotime($jourDebutSemaine);
 $site = getbasebyid($_SESSION["Selectsite"])["name"];
+
+var_dump($stupSheet);
 ?>
     <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
         <form action="/index.php?action=LogStup" method="post"><button class="btn-dark" name="LogStup" value="<?=$stupSheet["id"]?>" </button>Log</form>
