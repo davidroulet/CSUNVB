@@ -43,7 +43,14 @@ switch ($action) {
         shiftEndHomePage();
         break;
     case 'listShiftEnd':
-        $base_id = $_SESSION['Selectsite'];
+        if (isset($_POST["site"]))
+        {
+            $base_id = $_POST["site"];
+        }
+        else
+        {
+            $base_id = $_SESSION['site'];
+        }
         listShiftEnd($base_id);
         break;
     case 'disconnect':
