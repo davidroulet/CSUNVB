@@ -18,14 +18,6 @@ $title = "CSU-NVB - Remise de garde";
     <button type="submit">Recharger</button>
 </FORM>
 
-<?php
-// TODO Déplacer ce code, ce n'est ps la bonne place pour faire cela. Il faut une fonction getGuardSheetsByBase($base_id) dans le modèle. Le contrôleur fait ensuite $liste=getGuard... et la vue a du coup toutes les données qu'il lui faut
-foreach ($liste as $item) {
-    if ($item["base_id"] == $_SESSION["Selectsite"]) {
-        $remises[] = $item;
-    }
-} ?>
-
 <div class="row">
     <table class="table table-bordered">
         <thead>
@@ -33,7 +25,7 @@ foreach ($liste as $item) {
         <th>État</th>
         </thead>
         <tbody>
-    <?php foreach ($remises as $remise) { ?>
+    <?php foreach ($list as $remise) { ?>
         <tr>
             <td><a href="index.php?action=shiftend"><?=$remise['date']?></a></td><td><?=$remise['state']?></td>
         </tr>

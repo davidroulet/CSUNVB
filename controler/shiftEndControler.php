@@ -52,9 +52,9 @@ function errorLogin()
     require_once 'view/errorLogin.php';
 }
 
-function listShiftEnd()
+function listShiftEnd($base_id)
 {
-    $liste = getRemises();
+    $list = getGuardSheetsByBase($base_id);
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 ?>

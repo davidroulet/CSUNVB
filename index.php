@@ -29,7 +29,7 @@ if (isset($_SESSION['username']) || $action == 'trylogin') {
 }
 
 
-
+var_dump($_SESSION['Selectsite']);
 
 switch ($action) {
     case 'home' :
@@ -42,7 +42,8 @@ switch ($action) {
         shiftEndHomePage();
         break;
     case 'listShiftEnd':
-        listShiftEnd();
+        $base_id = $_SESSION['Selectsite'];
+        listShiftEnd($base_id);
         break;
     case 'disconnect':
         disconnect();
@@ -68,7 +69,7 @@ switch ($action) {
         drugSiteTable($semaine, $Site);
         break;
     case "trylogin":
-        trylogin($username, $password, $base);
+        trylogin($username, $password);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
