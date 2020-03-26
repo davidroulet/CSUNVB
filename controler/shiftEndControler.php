@@ -6,6 +6,7 @@
 
 require_once 'model/shiftEndModel.php';
 require_once 'model/loginModel.php';
+require_once 'model/adminModel.php';
 
 function shiftEndHomePage()
 {
@@ -54,6 +55,7 @@ function errorLogin()
 
 function listShiftEnd($base_id)
 {
+    $Bases = getbases();
     $list = getGuardSheetsByBase($base_id);
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
