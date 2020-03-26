@@ -32,6 +32,7 @@ function getdate2($semaine) //Donne les jours de la semaine Selectionée
     return $jourDebutSemaine;
 }
 function LogStup($stupsheet){
-    die($stupsheet);
+    $LogSheets=getLogsBySheet($stupsheet);
+    require_once 'view/Drug/LogStup.php';
 }
 ?>
