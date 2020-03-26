@@ -11,10 +11,16 @@
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
-// ceci à marwan faut de ne pas Crud modifier ou ajouter ou prendre de code S:V:P
+
 function readTodoListItems()
 {
-    return json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
+    $items = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
+
+    foreach ($items as $item) {
+        $items[$item['id']] = $item;
+    }
+
+    return $items;
 }
 
 /**
@@ -24,16 +30,26 @@ function readTodoListItems()
 function readTodoListItem($id)
 {
     $items = readTodoListItems();
+
     // TODO: coder la recherche de l'item demandé
-    foreach ($items as $item)
-    {
-        if ($item['id'] == $id)
-        {
-            return $item;
+
+    $item = $items[$id];
+
+    return $item;
+}
+
+/*function readTodoListItemByType($daything)
+{
+    $items = readTodoListItems();
+    foreach ($items as $item) {
+        if(($daything == 1) && ($item['daything'] == 1)){
+            $itemsByType[] = $item;
+        } else if(($daything == 0) && ($item['daything'] == 0)){
+            $itemsByType[] = $item;
         }
     }
-
-}
+    return $itemsByType;
+}*/
 
 /**
  * Sauve l'ensemble des items dans le fichier json
@@ -41,7 +57,7 @@ function readTodoListItem($id)
  */
 function saveTodoListItems($items)
 {
-    file_put_contents("model/dataStorage/todothings.json", json_encode($items));
+    file_put_contents("model/dataStorage/todosheets.json", json_encode($items));
 }
 
 /**
@@ -53,25 +69,10 @@ function updateTodoListItem($item)
 {
 
     $itemLists = readTodoListItems();
+var_dump($itemLists);
     // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
 
-
-    foreach ($itemLists as $i => $itemList)
-    {
-        if ($item['id'] == $itemList['id'])
-        {
-
-            var_dump($item);
-            var_dump($itemList);
-            $itemLists[$i]['id'] = $item['id'];
-            $itemLists[$i]['type'] = $item['type'];
-            $itemLists[$i]['daything'] = $item['daything'];
-            $itemLists[$i]['description'] = $item['description'];
-            $itemLists[$i]['display_order'] = $item['display_order'];
-        }
-
-    }
-
+    $itemLists[$item['id']] = $item;
     saveTodoListItems($itemLists);
 }
 
@@ -82,14 +83,10 @@ function updateTodoListItem($item)
 function destroyTodoListItem($id)
 {
     $items = readTodoListItems();
+
     // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    foreach ($items as $i => $item)
-    {
-        if ($id == $item['id'])
-        {
-            unset($items[$i]);
-        }
-    }
+
+    unset($items[$id]);
     saveTodoListItems($items);
 }
 
@@ -101,28 +98,28 @@ function destroyTodoListItem($id)
  */
 function createTodoListItem($item)
 {
-    $id = 0;
     $items = readTodoListItems();
     // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
     $nextId = max(array_keys($items)) + 1;
-    /*foreach($items as $item){
-        if($id  == $item['id']-1){
-            $id = $item('id');
-        } else if(!($id == $item['id']-1)){
-            return $id+1;
-            }else{
-            $id = $item('id')+1;
-            return $id;
-        }
-    }*/
     $item['id'] = $nextId;
     $items[] = $item;
     saveTodoListItems($items);
     return ($nextId);
 }
 
-function readTodoSheetsForBase($base_id)
+
+
+
+function readTodoSheetsByBase($base_id)
 {
+    $items = readTodoListItems();
+    foreach ($items as $item) {
+        if ($item['base_id'] == $base_id)
+            $itemsByBase[] = $item;
+    }
+
     // TODO return todosheets for the given base
+    return $itemsByBase;
 }
+
 ?>

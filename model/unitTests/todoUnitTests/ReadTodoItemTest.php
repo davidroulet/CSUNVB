@@ -9,20 +9,6 @@
 
 require 'model/todoListModel.php';
 
-$todoItems = readTodoListItems();
-
-foreach ($todoItems as $item){
-    $todoItems[$item['id']] = $item;
-}
-
-//var_dump($todoItemsId);*/
-
-/*foreach($todoItemsId as $p => $todoItemId){
-    if($todoItemId[$p] == 2 && $todoItemId['id'] == 2 && $todoItemId['week'] == 2009 && $todoItemId['state'] == "closed" && $todoItemId['base_id'] == 1){
-        echo "Test réussi";
-    }
-}*/
-
 
 echo "Test unitaire de la fonction readTodoListItem (by Id)\n\n";
 
@@ -38,17 +24,9 @@ if ($item['id'] == 2 && $item['week'] == 2009 && $item['state'] == "closed" && $
 
 echo "Test 2ème partie - tester que le nombre de champs soit juste \n\n";
 
-$items = readTodoListItems();
-$countFieldsItems = 0;
+$countItem = count($item);
 
-foreach ($items as $item) {
-    $number = count($item);
-    if ($number == 4) {
-        $countFieldsItems += 1;
-    }
-}
-
-if ($countFieldsItems == 22) {
+if ($countItem == 4) {
     echo "-> Test réussi\n\n";
 } else {
     echo "-> Test échoué\n\n";
