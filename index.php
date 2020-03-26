@@ -12,7 +12,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $_SESSION["Selectsite"] = $_POST['base'];
     $_SESSION['site']=$_POST['base'];
 }
-
+if(isset($_POST["LogStup"]))
+{
+    $Stupheet=$_POST["LogStup"];
+}
 
 if (isset($_POST["semaine"])) {
     $semaine = $_POST["semaine"];
@@ -68,6 +71,9 @@ switch ($action) {
         break;
     case "trylogin":
         trylogin($username, $password);
+        break;
+    case 'LogStup':
+        LogStup($Stupheet);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {

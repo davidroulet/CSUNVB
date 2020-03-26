@@ -31,4 +31,7 @@ function getdate2($semaine) //Donne les jours de la semaine Selectionée
     $jourDebutSemaine = ($jourPremierJanvier == 1) ? date('d-m-Y', $timeStampDate) : date('d-m-Y', strtotime('last monday', $timeStampDate));
     return $jourDebutSemaine;
 }
+function LogStup($stupsheet){
+    die($stupsheet);
+}
 ?>

@@ -18,7 +18,12 @@ $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
 $date = strtotime($jourDebutSemaine);
 $site = getbasebyid($_SESSION["Selectsite"])["name"];
 ?>
-    <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
+    <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
+        <form action="/index.php?action=LogStup" method="post"><button class="btn-dark" name="LogStup" value="<?=$stupSheet["id"]?>" </button>Log</form>
+    </h2>
+
+
+
 <?php
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
 
