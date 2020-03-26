@@ -125,4 +125,10 @@ function readTodoSheetsForBase($base_id)
 {
     // TODO return todosheets for the given base
 }
+
+function getTodothingsForDay($day)
+{
+    $items = readTodoListItems();
+    // TODO return the todothings for a specific day (0=monday, ....)
+}
 ?>
