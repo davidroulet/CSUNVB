@@ -29,8 +29,6 @@ if (isset($_SESSION['username']) || $action == 'trylogin') {
 }
 
 
-var_dump($_SESSION['Selectsite']);
-
 switch ($action) {
     case 'home' :
         require_once 'view/home.php';
