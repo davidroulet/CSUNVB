@@ -316,15 +316,6 @@ function getDrugs()
     return $SheetsArray;
 }
 
-function getDrugsbyID($id)
-{
-    $Drugs = getDrugs();
-    foreach ($Drugs as $Drug) {
-        if ($Drug["id"] == $id) {
-            return $Drugs;
-        }
-    }
-}
 
 function readDrug($id)
 {
@@ -420,6 +411,26 @@ function getpharmachecks()
 
 function getLogsBySheet($sheetid)
 {
-    // TODO retur all log entries that concern sheet $sheetid
+    $Array = json_decode(file_get_contents("model/dataStorage/logs.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    foreach ($SheetsArray as $sheet){
+        if($sheet["item_type"]==1&&$sheet["item_id"]==$sheetid){
+            $user=readuser($sheet["author_id"]);
+            $sheet["author"]=$user["initials"];
+            $LogSheets[]=$sheet;
+        }
+    }
+    return $LogSheets;
+}
+function readuser($id){
+    $SheetsArray = getUsers();
+    foreach ($SheetsArray as $arry) {
+     if ($id == $arry["id"]) {
+          return $arry;
+       }
+   }
+
 }
 ?>
