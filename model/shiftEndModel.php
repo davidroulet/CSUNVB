@@ -87,4 +87,16 @@ function getGuardLinesForSection($section)
     $section = getGuardLines();
     for ($guardline = 0;$guardline < $section ; $guardline++){}
 }
+
+function getGuardSheetsByBase($base_id)
+{
+    $Liste = getRemises();
+    foreach ($Liste as $item) {
+       if ($item['base_id'] == $base_id)
+       {
+           $remises[] = $item;
+       }
+    }
+    return $remises;
+}
 ?>

@@ -18,13 +18,6 @@ $title = "CSU-NVB - Remise de garde";
     <button type="submit">Recharger</button>
 </FORM>
 
-<?php
-foreach ($liste as $item) {
-    if ($item["base_id"] == $_SESSION["Selectsite"]) {
-        $remises[] = $item;
-    }
-} ?>
-
 <div class="row">
     <table class="table table-bordered">
         <thead>
@@ -32,7 +25,7 @@ foreach ($liste as $item) {
         <th>État</th>
         </thead>
         <tbody>
-    <?php foreach ($remises as $remise) { ?>
+    <?php foreach ($list as $remise) { ?>
         <tr>
             <td><a href="index.php?action=shiftend"><?=$remise['date']?></a></td><td><?=$remise['state']?></td>
         </tr>

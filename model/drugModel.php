@@ -19,48 +19,47 @@ function GetSheetbyWeek($week, $base)
 
         }
     }
-
 }
 
 function getStupSheets()
 {
-    $novasheet = stupsheet_use_nova();
+    $novasheets = stupsheet_use_nova();
     $Sutupbatch = stupsheet_use_batch();
-    $Array = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
-    $drugs = getDrugs();
-
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-
-        foreach ($novasheet as $item) {
-            if ($item["stupsheet_id"] == $p["id"]) {
-                $nova = readnova($item["nova_id"]);
-                $SheetsArray[$p["id"]]["nova"][] = $nova["number"];
+    $pharmacheck = getpharmachecks();
+    $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
+    foreach ($stupsheets as $stupsheet)
+    {
+        $SheetsArray[$stupsheet["id"]] = $stupsheet;
+        foreach ($novasheets as $novasheet)
+        {
+            if ($novasheet["stupsheet_id"] == $stupsheet["id"])
+            {
+                $nova = readnova($novasheet["nova_id"]);
+                $SheetsArray[$stupsheet["id"]]["nova"][] = $nova["number"];
             }
         }
-
-        foreach ($Sutupbatch as $BatchSheet) {
-            if ($BatchSheet["stupsheet_id"] == $p["id"]) {
+        foreach ($Sutupbatch as $BatchSheet)
+        {
+            if ($BatchSheet["stupsheet_id"] == $stupsheet["id"])
+            {
                 $batch = readbatche($BatchSheet["batch_id"]);
 
-                switch ($batch["drug_id"]) {
-                    case '1' :
-                        $SheetsArray[$p["id"]]["drug"]["1"]["batch_number"][] = $batch["number"];
-                        $SheetsArray[$p["id"]]["drug"]["1"]["Drug_id"]["name"] = 1;
-                        break;
-                    case '2' :
-                        $SheetsArray[$p["id"]]["drug"]["2"]["batch_number"][] = $batch["number"];
-                        $SheetsArray[$p["id"]]["drug"]["2"]["Drug_id"]["name"] = 2;
-                        break;
-                    case '3' :
-                        $SheetsArray[$p["id"]]["drug"]["3"]["batch_number"][] = $batch["number"];
-                        $SheetsArray[$p["id"]]["drug"]["3"]["Drug_id"]["name"] = 3;
-                        break;
+                $SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_number"][] = $batch["number"];
+                $SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["Drug_id"]["name"] = $batch["drug_id"];
+
+                foreach ($SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_number"] as $item)
+                {
+                    $batch =FindBatchewhitNumber($item);
+                    foreach ($pharmacheck as $check)
+                    {
+                        if ($check["batch_id"]==$batch["id"])
+                        {
+                            $SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_check"]=$check;
+                        }
+                    }
                 }
             }
         }
-
-
     }
 
     return $SheetsArray;
@@ -88,8 +87,6 @@ function updateSheets($items)
         unset($items[$item["id"]]["nova"]);
         unset($items[$item["id"]]["batch"]);
         unset($items[$item["id"]]["batch_id"]);
-
-
     }
     file_put_contents("model/dataStorage/stupsheets.json", json_encode($items));
 }
@@ -113,10 +110,8 @@ function updateSheet($item)
 function destroySheet($id)
 {
     $items = getStupSheets();
-
     unset($items[$id]);
     updateSheets($items);
-
 }
 
 /**
@@ -287,15 +282,6 @@ function getDrugs()
     return $SheetsArray;
 }
 
-function getDrugsbyID($id)
-{
-    $Drugs = getDrugs();
-    foreach ($Drugs as $Drug) {
-        if ($Drug["id"] == $id) {
-            return $Drugs;
-        }
-    }
-}
 
 function readDrug($id)
 {
@@ -387,5 +373,30 @@ function getpharmachecks()
         $SheetsArray[$p["id"]] = $p;
     }
     return $SheetsArray;
+}
+
+function getLogsBySheet($sheetid)
+{
+    $Array = json_decode(file_get_contents("model/dataStorage/logs.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    foreach ($SheetsArray as $sheet){
+        if($sheet["item_type"]==1&&$sheet["item_id"]==$sheetid){
+            $user=readuser($sheet["author_id"]);
+            $sheet["author"]=$user["initials"];
+            $LogSheets[]=$sheet;
+        }
+    }
+    return $LogSheets;
+}
+function readuser($id){
+    $SheetsArray = getUsers();
+    foreach ($SheetsArray as $arry) {
+     if ($id == $arry["id"]) {
+          return $arry;
+       }
+   }
+
 }
 ?>

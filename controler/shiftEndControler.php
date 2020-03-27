@@ -6,6 +6,7 @@
 
 require_once 'model/shiftEndModel.php';
 require_once 'model/loginModel.php';
+require_once 'model/adminModel.php';
 
 function shiftEndHomePage()
 {
@@ -52,9 +53,10 @@ function errorLogin()
     require_once 'view/errorLogin.php';
 }
 
-function listShiftEnd()
+function listShiftEnd($base_id)
 {
-    $liste = getRemises();
+    $Bases = getbases();
+    $list = getGuardSheetsByBase($base_id);
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 ?>

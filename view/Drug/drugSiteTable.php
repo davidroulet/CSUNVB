@@ -2,9 +2,9 @@
 // David Roulet - Fabien Masson
 // Projet CSU-NVB A1
 // Drugs Section
-
-ob_start();
 $title = "CSU-NVB - Stupéfiants";
+ob_start();
+
 ?>
     <div class="row m-2">
         <h1>Stupéfiants</h1>
@@ -14,12 +14,17 @@ $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en f
 $novas = getnovas(); // Obient la liste des ambulance
 $drugs = getDrugs(); // Obient la list des Drugs
 //$stupSheet=readSheet(2);
-$stupSheet=GetSheetbyWeek($semaine,$_SESSION["Selectsite"]);
+$stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
 $date = strtotime($jourDebutSemaine);
-$site=getbasebyid($_SESSION["Selectsite"])["name"];
+$site = getbasebyid($_SESSION["Selectsite"])["name"];
+
 var_dump($stupSheet);
 ?>
-    <h2>Site de <?= $site?> , Semaine N° <?= $semaine ?></h2>
+    <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
+        <form action="/index.php?action=LogStup" method="post"><button class="btn-dark" name="LogStup" value="<?=$stupSheet["id"]?>" </button>Log</form>
+    </h2>
+
+
 
 <?php
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
@@ -43,41 +48,37 @@ foreach ($jours as $jour) { ?>
             <td>Pharmacie</td>
         </tr>
 
-
-        <?php foreach ($stupSheet["drug"] as $drug)  { $Drugname=readDrug($drug["Drug_id"]["name"]); ?>
+        <?php foreach ($stupSheet["drug"] as $drug) {
+            $Drugname = readDrug($drug["Drug_id"]["name"]); ?>
             <tr>
                 <td><?= $Drugname["name"] ?></td>
                 <td></td>
                 <td></td>
 
-                <?php foreach ($stupSheet["nova"] as $nova) {;
-                    echo "<td></td>";
-                } ?>
+                <?php foreach ($stupSheet["nova"] as $nova) { ?>
+                    <td></td>
+                <?php } ?>
             </tr>
 
-
-            <?php  foreach ($drug["batch_number"] as $batch) {
+            <?php foreach ($drug["batch_id"]["batch_number"] as $batch) {
                 echo "<tr>";
-                echo "<td>" . $batch . "</td>"; ?>
-                <td></td>
-                <td></td>
-                <?php foreach ($stupSheet["nova"] as $nova) {
-                    echo "<td></td>";
-                }
-                echo "</tr>";
-            } ?>
+                echo "<td>" . $batch . "</td>";
+                ?>
+                <td><?= $drug["batch_id"]["batch_check"]["start"] ?></td>
+                <?php foreach ($stupSheet["nova"] as $nova) { ?>
+                    <td></td>
+                <?php } ?>
+                <td><?= $drug["batch_id"]["batch_check"]["end"] ?></td>
+                </tr>
+            <?php } ?>
         <?php } ?>
-
 
         <tr>
             <td>Signature</td>
             <td colspan="5"></td>
-
         </tr>
     </table>
-<?php } ?>
-
-<?php
+<?php }
 $content = ob_get_clean();
 require "view/gabarit.php";
 

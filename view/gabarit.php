@@ -43,7 +43,7 @@
     <header>
         <div class="row banner">
             <img class="col-2" src="/assets/images/logo.png">
-            <a href="index.php" class="col-10 text-center mt-5 text-decoration-none"><h1>CSU-NVB</h1></a>
+            <a href="index.php" class="col-10 text-center mt-5 text-decoration-none"><h1>CSU-NVB Groupe A1</h1></a>
             <?php if (isset($_SESSION['username'])) { ?>
                 <a href="?action=disconnect" class="btn btn-primary m-1 pull-right">Logout</a><p>Connecté en tant que : <strong><?=$_SESSION['username'][2]." ".$_SESSION['username'][3]?></strong> à <strong><?=getbasebyid($_SESSION["site"])["name"]?></strong></p>
             <?php } else { ?>
