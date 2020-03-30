@@ -82,14 +82,17 @@ switch ($action) {
     case 'LogStup':
         LogStup($Stupheet);
         break;
-    case 'crew' :
-        crew();
+    case 'adminCrew' :
+        adminCrew();
         break;
-    case 'bases' :
-        bases();
+    case 'adminBases' :
+        adminBases();
         break;
-    case 'novas' :
-        novas();
+    case 'adminNovas' :
+        adminNovas();
+        break;
+    case 'adminDrugs' :
+        adminDrugs();
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
