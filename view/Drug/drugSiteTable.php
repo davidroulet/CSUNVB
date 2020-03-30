@@ -17,8 +17,6 @@ $drugs = getDrugs(); // Obient la list des Drugs
 $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
 $date = strtotime($jourDebutSemaine);
 $site = getbasebyid($_SESSION["Selectsite"])["name"];
-
-var_dump($stupSheet);
 ?>
     <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
         <form action="/index.php?action=LogStup" method="post"><button class="btn-dark" name="LogStup" value="<?=$stupSheet["id"]?>" </button>Log</form>
@@ -48,8 +46,8 @@ foreach ($jours as $jour) { ?>
             <td>Pharmacie</td>
         </tr>
 
-        <?php foreach ($stupSheet["drug"] as $drug) {
-            $Drugname = readDrug($drug["Drug_id"]["name"]); ?>
+        <?php foreach ($stupSheet["Drug"] as $drug) {
+            $Drugname = readDrug($drug); ?>
             <tr>
                 <td><?= $Drugname["name"] ?></td>
                 <td></td>
@@ -62,13 +60,14 @@ foreach ($jours as $jour) { ?>
 
             <?php foreach ($drug["batch_id"]["batch_number"] as $batch) {
                 echo "<tr>";
-                echo "<td>" . $batch . "</td>";
+                    echo "<td>" . $batch . "</td>";
+
                 ?>
-                <td><?= $drug["batch_id"]["batch_check"]["start"] ?></td>
+                <td><?= $drug["batch_id"]["batch_number"]["batch_check"]["start"] ?></td>
                 <?php foreach ($stupSheet["nova"] as $nova) { ?>
                     <td></td>
                 <?php } ?>
-                <td><?= $drug["batch_id"]["batch_check"]["end"] ?></td>
+                <td><?= $drug["batch_id"]["batch_number"]["batch_check"]["end"] ?></td>
                 </tr>
             <?php } ?>
         <?php } ?>
