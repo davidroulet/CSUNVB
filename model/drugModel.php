@@ -23,45 +23,31 @@ function GetSheetbyWeek($week, $base)
 
 function getStupSheets()
 {
-    $novasheets = stupsheet_use_nova();
-    $Sutupbatch = stupsheet_use_batch();
-    $pharmacheck = getpharmachecks();
+    $novasheets = stupsheet_use_nova(); // nova utilisé par sheet
+    $Sutupbatchs = stupsheet_use_batch(); // batch utiilisé par les sheet
+    $pharmacheck = getpharmachecks(); // donée pharmatice
+    $drug = getDrugs();
     $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
-    foreach ($stupsheets as $stupsheet)
-    {
+    foreach ($stupsheets as $stupsheet) {
         $SheetsArray[$stupsheet["id"]] = $stupsheet;
-        foreach ($novasheets as $novasheet)
-        {
-            if ($novasheet["stupsheet_id"] == $stupsheet["id"])
-            {
+        foreach ($novasheets as $novasheet) {
+            if ($novasheet["stupsheet_id"] == $stupsheet["id"]) {
                 $nova = readnova($novasheet["nova_id"]);
                 $SheetsArray[$stupsheet["id"]]["nova"][] = $nova["number"];
             }
         }
-        foreach ($Sutupbatch as $BatchSheet)
+        //la
+
+
+        foreach ($Sutupbatchs as $Sutupbatch) //met dans $sheetsArray les batchs en fonction de la semaine et de la drogue
         {
-            if ($BatchSheet["stupsheet_id"] == $stupsheet["id"])
-            {
-                $batch = readbatche($BatchSheet["batch_id"]);
-
-                $SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_number"][] = $batch["number"];
-                $SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["Drug_id"]["name"] = $batch["drug_id"];
-
-                foreach ($SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_number"] as $item)
-                {
-                    $batch =FindBatchewhitNumber($item);
-                    foreach ($pharmacheck as $check)
-                    {
-                        if ($check["batch_id"]==$batch["id"])
-                        {
-                            $SheetsArray[$stupsheet["id"]]["drug"][$batch["drug_id"]]["batch_id"]["batch_check"]=$check;
-                        }
-                    }
-                }
+            if ($Sutupbatch["stupsheet_id"] == $stupsheet["id"]) {
+                $batch = readbatche($Sutupbatch["batch_id"]);
+                $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"][] = $batch["number"];
+                $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["Drug_id"] = $batch["drug_id"];
             }
         }
     }
-
     return $SheetsArray;
 }
 
@@ -381,22 +367,25 @@ function getLogsBySheet($sheetid)
     foreach ($Array as $p) {
         $SheetsArray[$p["id"]] = $p;
     }
-    foreach ($SheetsArray as $sheet){
-        if($sheet["item_type"]==1&&$sheet["item_id"]==$sheetid){
-            $user=readuser($sheet["author_id"]);
-            $sheet["author"]=$user["initials"];
-            $LogSheets[]=$sheet;
+    foreach ($SheetsArray as $sheet) {
+        if ($sheet["item_type"] == 1 && $sheet["item_id"] == $sheetid) {
+            $user = readuser($sheet["author_id"]);
+            $sheet["author"] = $user["initials"];
+            $LogSheets[] = $sheet;
         }
     }
     return $LogSheets;
 }
-function readuser($id){
+
+function readuser($id)
+{
     $SheetsArray = getUsers();
     foreach ($SheetsArray as $arry) {
-     if ($id == $arry["id"]) {
-          return $arry;
-       }
-   }
+        if ($id == $arry["id"]) {
+            return $arry;
+        }
+    }
 
 }
+
 ?>
