@@ -3,14 +3,15 @@
 // Projet CSU-NVB A1
 // Drugs Section
 ob_start();
-$title = "CSU-NVB - Stupéfiants";
+$title = "CSU-NVB - Logs";
+//permet la definition de l'année a 20xx
 $year = 20;
-var_dump($LogSheets);
+//affiche un tableau avec les données dedans
 ?>
 <table border="1" class="table table-dark">
     <tr>
-        <td>Heurs</td>
-        <td>Personne</td>
+        <td>Dates et Heures</td>
+        <td>Initialles</td>
         <td>Action</td>
     </tr>
     <?php foreach ($LogSheets as $log) { ?>
