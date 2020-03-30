@@ -28,7 +28,6 @@ $site = getbasebyid($_SESSION["Selectsite"])["name"];
 
 <?php
 
-var_dump($stupSheet);
 
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
 
@@ -65,16 +64,36 @@ foreach ($jours as $jour) { ?>
 
         <?php
 
-        foreach ($drug["batch_number"]["number"]["number2"] as $batch) { ?>
+        foreach ($drug["batch_number"]["number"]["number2"] as $batch) {  //met dans $batch les numeros des batch
+            ?>
         <tr>
             <td><?= $batch ?></td>
-            <td></td>
-            <td></td>
+            <td><?php
+
+                foreach ($stupSheet["Drug"][$drug["Drug_id"]]["batch_number"]["number"][$batch] as $checkpharma) { //foreach des pharmacheck par batch
+                    if ($checkpharma["date"] == (date("Y-m-d", $date))) { //verifie si la date correspond a celle du fichier
+                        echo $checkpharma["start"];
+                    }
+                }
+
+                ?></td>
 
             <?php foreach ($stupSheet["nova"] as $nova) { ?>
                 <td></td>
+            <?php } ?>
+            <td>
+
+                <?php
+
+                foreach ($stupSheet["Drug"][$drug["Drug_id"]]["batch_number"]["number"][$batch] as $checkpharma) { //foreach des pharmacheck par batch
+                    if ($checkpharma["date"] == (date("Y-m-d", $date))) { //verifie si la date correspond a celle du fichier
+                        echo $checkpharma["end"];
+                    }
+                }
+                ?>
+            </td>
+
             <?php }
-            }
             } ?>
 
         <tr>
