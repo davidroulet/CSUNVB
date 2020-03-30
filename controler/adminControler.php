@@ -14,6 +14,18 @@ function adminHomePage()
 function crew()
 {
     $users = getUsers();
-    require_once 'view/Admin/crew.php';
+    require_once 'view/Admin/adminCrew.php';
+}
+
+function bases()
+{
+    $bases = getbases();
+    require_once 'view/Admin/adminBases.php';
+}
+
+function novas()
+{
+    $novas = getnovas();
+    require_once 'view/Admin/adminNovas.php';
 }
 ?>

@@ -8,22 +8,22 @@ ob_start();
 $title = "CSU-NVB - Administration - Secouristes";
 ?>
 
-<table class="table table-bordered">
+<table class="table table-bordered" style="text-align: center">
     <thead>
+    <th>Prémom</th>
     <th>Nom</th>
-    <th>Prénom</th>
     <th>Initiales</th>
     <th>Admin</th>
     </thead>
     <tbody>
     <?php foreach ($users as $user){ ?>
     <tr>
-        <td><?= $user['lastname'] ?></td>
         <td><?= $user['firstname'] ?></td>
+        <td><?= $user['lastname'] ?></td>
         <td><?= $user['initials'] ?></td>
         <td><?php if ($user['admin'] == 1){?>
-            <button class="btn btn-primary">Oui</button><?php } else {?>
-            <button class="btn btn-primary">Non</button><?php } ?>
+            <a href="#" class="btn btn-primary">Oui</a><?php } else {?>
+            <a href="#" class="btn btn-primary">Non</a><?php } ?>
         </td>
     </tr><?php } ?>
     </tbody>

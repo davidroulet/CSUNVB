@@ -85,6 +85,12 @@ switch ($action) {
     case 'crew' :
         crew();
         break;
+    case 'bases' :
+        bases();
+        break;
+    case 'novas' :
+        novas();
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
