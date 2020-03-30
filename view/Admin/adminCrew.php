@@ -10,7 +10,7 @@ $title = "CSU-NVB - Administration - Secouristes";
 
 <table class="table table-bordered" style="text-align: center">
     <thead>
-    <th>Prémom</th>
+    <th>Prénom</th>
     <th>Nom</th>
     <th>Initiales</th>
     <th>Admin</th>

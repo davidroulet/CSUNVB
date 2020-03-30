@@ -90,5 +90,15 @@ function getbases()
     return $SheetsArray;
 }
 
-
+function getUser($username)
+{
+    $Users = getUsers();
+    foreach ($Users as $item)
+    {
+        if ($username == $item['initials'])
+        {
+            return $item;
+        }
+    }
+}
 ?>
