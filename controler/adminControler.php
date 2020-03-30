@@ -1,8 +1,7 @@
 <?php
 /**
- * Ce cartouche vaudra quelques points en moins au groupe qui osera le laisser là tel quel ...
- * Auteur: X. Carrel
- * Date: Février 2020
+ * Auteur: Thomas Grossmann / Mounir Fiaux
+ * Date: Mars 2020
  **/
 
 require_once 'model/adminModel.php';
@@ -10,5 +9,11 @@ require_once 'model/adminModel.php';
 function adminHomePage()
 {
     require_once 'view/Admin/adminHome.php';
+}
+
+function crew()
+{
+    $users = getUsers();
+    require_once 'view/Admin/crew.php';
 }
 ?>

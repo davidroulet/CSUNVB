@@ -37,7 +37,7 @@ function trylogin($username, $password)
     {
         if ($username == $user['initials'] && password_verify($password, $user['password']))
         {
-            $_SESSION['username'] = [$username, $user['firstname'], $user['lastname']];
+            $_SESSION['username'] = [$username, $user['firstname'], $user['lastname'], $user['admin']];
             $i = 2;
             require_once 'view/home.php';
         }

@@ -82,6 +82,9 @@ switch ($action) {
     case 'LogStup':
         LogStup($Stupheet);
         break;
+    case 'crew' :
+        crew();
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
