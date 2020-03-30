@@ -25,6 +25,9 @@ $site = getbasebyid($_SESSION["Selectsite"])["name"];
 
 
 <?php
+
+var_dump($stupSheet);
+
 $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
 
 foreach ($jours as $jour) { ?>
@@ -47,7 +50,7 @@ foreach ($jours as $jour) { ?>
         </tr>
 
         <?php foreach ($stupSheet["Drug"] as $drug) {
-            $Drugname = readDrug($drug); ?>
+            $Drugname = readDrug($drug["Drug_id"]); ?>
             <tr>
                 <td><?= $Drugname["name"] ?></td>
                 <td></td>
@@ -58,7 +61,9 @@ foreach ($jours as $jour) { ?>
                 <?php } ?>
             </tr>
 
-            <?php foreach ($drug["batch_id"]["batch_number"] as $batch) {
+            <?php
+
+            foreach ($drug["batch_number"] as $batch) {
                 echo "<tr>";
                     echo "<td>" . $batch . "</td>";
 
