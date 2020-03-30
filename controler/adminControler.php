@@ -9,7 +9,7 @@ require_once 'model/adminModel.php';
 function trylogin($username, $password)
 {
     $User = getUser($username);
-    if ($username == $User['initials'] && password_verify($password, $User['password']))
+    if (password_verify($password, $User['password']))
     {
         $_SESSION['username'] = [$username, $User['firstname'], $User['lastname'], $User['admin']];
         require_once 'view/home.php';
