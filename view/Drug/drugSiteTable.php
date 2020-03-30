@@ -19,9 +19,11 @@ $date = strtotime($jourDebutSemaine);
 $site = getbasebyid($_SESSION["Selectsite"])["name"];
 ?>
     <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
-        <form action="/index.php?action=LogStup" method="post"><button class="btn-dark" name="LogStup" value="<?=$stupSheet["id"]?>" </button>Log</form>
+        <form action="/index.php?action=LogStup" method="post">
+            <button class="btn-dark" name="LogStup" value="<?= $stupSheet["id"] ?>"
+            </button>Log
+        </form>
     </h2>
-
 
 
 <?php
@@ -50,32 +52,30 @@ foreach ($jours as $jour) { ?>
         </tr>
 
         <?php foreach ($stupSheet["Drug"] as $drug) {
-            $Drugname = readDrug($drug["Drug_id"]); ?>
-            <tr>
-                <td><?= $Drugname["name"] ?></td>
+        $Drugname = readDrug($drug["Drug_id"]); ?>
+        <tr>
+            <td><?= $Drugname["name"] ?></td>
+            <td></td>
+            <td></td>
+
+            <?php foreach ($stupSheet["nova"] as $nova) { ?>
                 <td></td>
-                <td></td>
-
-                <?php foreach ($stupSheet["nova"] as $nova) { ?>
-                    <td></td>
-                <?php } ?>
-            </tr>
-
-            <?php
-
-            foreach ($drug["batch_number"] as $batch) {
-                echo "<tr>";
-                    echo "<td>" . $batch . "</td>";
-
-                ?>
-                <td><?= $drug["batch_id"]["batch_number"]["batch_check"]["start"] ?></td>
-                <?php foreach ($stupSheet["nova"] as $nova) { ?>
-                    <td></td>
-                <?php } ?>
-                <td><?= $drug["batch_id"]["batch_number"]["batch_check"]["end"] ?></td>
-                </tr>
             <?php } ?>
-        <?php } ?>
+        </tr>
+
+        <?php
+
+        foreach ($drug["batch_number"]["number"]["number2"] as $batch) { ?>
+        <tr>
+            <td><?= $batch ?></td>
+            <td></td>
+            <td></td>
+
+            <?php foreach ($stupSheet["nova"] as $nova) { ?>
+                <td></td>
+            <?php }
+            }
+            } ?>
 
         <tr>
             <td>Signature</td>
