@@ -12,7 +12,7 @@
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
 
-
+/** ------------------TODOSHEETS---------------------- */
 
 
 function readTodoListItems()
@@ -41,9 +41,6 @@ function readTodoListItem($id)
     } else {
         return null;
     }
-
-
-
 
 }
 
@@ -114,19 +111,116 @@ function readTodoItemsForBase($base_id)
     return $itemsByBase;
 }
 
-function getTodothingsForDay($day)
+
+
+/** ------------------TODOTHINGS---------------------- */
+
+/**
+ * Retourne tous les items dans un tableau indexé de tableaux associatifs
+ * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
+ * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
+ */
+
+function readTodoListThings()
+{
+    $items = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
+
+    foreach ($items as $item) {
+        $items[$item['id']] = $item;
+    }
+
+    return $items;
+}
+
+/**
+ * Retourne un item précis, identifié par son id
+ * ...
+ */
+function readTodoListThing($id)
+{
+    $items = readTodoListThings();
+
+    // TODO: coder la recherche de l'item demandé
+    $item = $items[$id];
+    if(isset($item)) {
+        return $item;
+    } else {
+        return null;
+    }
+
+}
+
+/**
+ * Sauve l'ensemble des items dans le fichier json
+ * ...
+ */
+function saveTodoListThings($items)
+{
+    file_put_contents("model/dataStorage/todothings.json", json_encode($items));
+}
+
+/**
+ * Modifie un item précis
+ * Le paramètre $item est un item complet (donc un tableau associatif)
+ * ...
+ */
+function updateTodoListThing($item)
+{
+
+    $itemLists = readTodoListThings();
+    // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
+
+
+    $itemLists[$item['id']] = $item;
+    saveTodoListThings($itemLists);
+}
+
+/**
+ * Détruit un item précis, identifié par son id
+ * ...
+ */
+function destroyTodoListThing($id)
+{
+    $items = readTodoListThings();
+    // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
+    unset($items[$id]);
+    saveTodoListThings($items);
+}
+
+/**
+ * Ajoute un nouvel item
+ * Le paramètre $item est un item complet (donc un tableau associatif), sauf que la valeur de son id n'est pas valable
+ * puisque le modèle ne l'a pas encore traité
+ * ...
+ */
+function createTodoListThing($item)
+{
+
+    $items = readTodoListThings();
+    // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
+    $nextId = max(array_keys($items)) + 1;
+    $item['id'] = $nextId;
+    $items[] = $item;
+    saveTodoListThings($items);
+    return ($nextId);
+}
+
+
+function getTodoThingsForDay($day)
 {
     // TODO return the todothings for a specific day (0=monday, ....)
 
 
-    $items = readTodoListItems();
+    $items = readTodoListThings();
     foreach ($items as $item) {
         if(($day == 1) && ($item['daything'] == 1)){
-            $itemsByType[] = $item;
+            $itemsByDay[] = $item;
         } else if(($day == 0) && ($item['daything'] == 0)){
             $itemsByDay[] = $item;
         }
     }
     return $itemsByDay;
 }
+
+
 ?>
