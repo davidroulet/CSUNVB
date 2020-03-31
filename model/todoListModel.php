@@ -11,7 +11,10 @@
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
-// ceci à marwan faut de ne pas Crud modifier ou ajouter ou prendre de code S:V:P
+
+
+
+
 function readTodoListItems()
 {
     $items = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
@@ -33,8 +36,14 @@ function readTodoListItem($id)
 
     // TODO: coder la recherche de l'item demandé
     $item = $items[$id];
+    if(isset($item)) {
+        return $item;
+    } else {
+        return null;
+    }
 
-    return $item;
+
+
 
 }
 
