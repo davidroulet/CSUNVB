@@ -6,20 +6,20 @@ require 'model/todoListModel.php';
 
 echo "1. Test unitaire de la fonction readTodoListItems\n\n";
 
-echo "\n\nTest 1ère partie - tester que le nombre d'items lus soit le bon\n\n";
+echo "Test 1ère partie - tester que le nombre d'items lus soit le bon\n\n";
 
 $todoItems = readTodoListItems();
 
 if (count($todoItems) ==  22) {
-    echo "Test réussie";
+    echo "-> Test réussie";
 } else {
-    echo "Test échoué";
+    echo "-> Test échoué";
 }
 
 $i = 0;
 $j = 0;
 
-echo "\n\nTest 2ème partie - tester que tous les items aient bien 4 champs\n\n\n";
+echo "\n\nTest 2ème partie - tester que tous les items aient bien 4 champs\n\n";
 
 foreach ($todoItems as $todoItem){
     if(count($todoItem) == 4){
@@ -28,9 +28,9 @@ foreach ($todoItems as $todoItem){
 }
 
 if(count($todoItems) == $i){
-    echo "Test réussie\n\n\n";
+    echo "-> Test réussie\n\n\n\n";
 } else {
-    echo "Test échoué\n\n\n";
+    echo "-> Test échoué\n\n\n\n";
 }
 
 
@@ -61,14 +61,26 @@ echo "Test 3ème partie - tester que si on met un autre id, ça ne retourne pas 
 $item2 = readTodoListItem(3);
 
 if ($item2['id'] == 2 && $item2['week'] == 2009 && $item2['state'] == "closed" && $item2['base_id'] == 1) {
-    echo "-> Test échoué\n\n\n";
+    echo "-> Test échoué\n\n";
 } else {
-    echo "-> Test réussi\n\n\n";
+    echo "-> Test réussi\n\n";
 }
 
-echo "3. Test unitaire de la fonction readTodoListItems (By base\n\n";
+echo "Test 4ème partie - tester que rien n'est retourné si l'id de l'item n'existe pas\n\n";
 
-echo " test 1 et 2ème partie - Vérifier que les items cherchés ont bien la bonne base et qu'il y a un juste nombre d'items\n\n";
+$nullItem = readTodoListItem(23);
+
+if($nullItem != null){
+    echo"-> test échoué\n\n\n\n";
+} else {
+    echo "-> Test réussi\n\n\n\n";
+}
+
+
+
+echo "3. Test unitaire de la fonction readTodoListItems (By base)\n\n";
+
+echo "test 1 et 2ème partie - Vérifier que les items cherchés ont bien la bonne base et qu'il y a un juste nombre d'items\n\n";
 
 
 $items = readTodoItemsForBase(5);
@@ -82,14 +94,14 @@ foreach($items as $item){
 }
 
 if($count == 3){
-    echo "Test réussi\n\n\n";
+    echo "-> Test réussi\n\n\n\n";
 } else {
-    echo "Test échoué\n\n\n";
+    echo "-> Test échoué\n\n\n\n";
 }
 
 echo "4. Test unitaire de la fonction createTodoListItem\n\n";
 
-echo "\n\nTest 1ère partie - tester que les bons champs ont été crées\n\n";
+echo "Test 1ère partie - tester que les bons champs ont été crées\n\n";
 
 $item = ["week" => 2, "state" => 3, "base_id" => 5];
 $items = readTodoListItems();
@@ -101,12 +113,12 @@ if ($idgiven != null) {
     $readback = readTodoListItem($idgiven);
     $item['id'] = $idgiven;
     if (empty(array_diff($readback, $item)) == true) {
-        echo "test réussi";
+        echo "-> test réussi";
     } else {
-        echo "test échoué";
+        echo "-> test échoué";
     }
 } else {
-    echo "test échoué";
+    echo "-> test échoué";
 }
 
 echo "\n\nTest 2ème partie - tester que qu'un item a été bien ajouté au nombre d'items précédent\n\n";
@@ -114,9 +126,9 @@ echo "\n\nTest 2ème partie - tester que qu'un item a été bien ajouté au nomb
 $itemsAfter = readTodoListItems();
 
 if (count($itemsAfter) == ($countItems + 1)) {
-    echo "test réussi\n\n\n";
+    echo "-> test réussi\n\n\n\n";
 } else {
-    echo "test échoué\n\n\n";
+    echo "-> test échoué\n\n\n\n";
 }
 
 echo "5. Test unitaire de la fonction updateTodoListItem\n\n";
@@ -167,14 +179,14 @@ if ($itemReaded != null){
 echo "\n\nTest 4ème partie - le même nombre d'items doit exister avant et après l'update\n\n";
 
 if (count($itemsBeforeUpdate) == count($itemsAfterUpdate)) {
-    echo "-> Test réussi\n\n\n";
+    echo "-> Test réussi\n\n\n\n";
 } else {
-    echo "-> Test échoué\n\n\n";
+    echo "-> Test échoué\n\n\n\n";
 }
 
 echo "6. Test unitaire de la fonction destroyTodoListItem\n\n";
 
-echo "\n\nTest 1ère partie - test qu'il y a le bon nombre d'item une fois l'item supprimé\n\n";
+echo "Test 1ère partie - test qu'il y a le bon nombre d'item une fois l'item supprimé\n\n";
 
 $items = readTodoListItems();
 $countItems = count($items);
@@ -186,9 +198,9 @@ $itemsAfter = readTodoListItems();
 
 
 if (count($itemsAfter) == ($countItems - 1)) {
-    echo "test réussi";
+    echo "-> test réussi";
 } else {
-    echo "test échoué";
+    echo "-> test échoué";
 }
 
 echo "\n\nTest 2ème partie - test que l'item sous l'id normalement supprimé n'existe plus\n\n";
@@ -196,9 +208,9 @@ echo "\n\nTest 2ème partie - test que l'item sous l'id normalement supprimé n'
 $item = readTodoListItem(23);
 
 if($item == null){
-    echo "test réussi";
+    echo "-> test réussi";
 }else{
-    echo "test échoué";
+    echo "-> test échoué";
 }
 
 ?>
