@@ -16,14 +16,20 @@ $todoSheets = json_decode(file_get_contents("model/dataStorage/todosheets.json")
 $bases = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
-<h2 class="center p-2">Année <?= date("Y") . " SITE à " . getbasebyid($_SESSION["site"])["name"]; ?></h2>
+
+
+<h2 class="center p-2">Année<?= date("Y") ?> </h2>
+<h3 class="center"> Vous êtes connecté(e) <?= getbasebyid($_SESSION["Selectsite"])["name"] ?></h3>
 
 
 <div class="p-3 d-flex justify-content-end ">
     <FORM action="/index.php?action=todolist" method="post">
         <SELECT name="selectBase">
-            <?php foreach($bases as $base) { ?>
-                <option value="<?= $base['id'] ?>" <?php if ($base['id'] == $selectedBase) echo "selected"; ?>><?= $base['name'] ?></option>
+            <?php foreach ($bases as $base) { ?>
+
+                <option value="<?= $base['id'] ?>" <?php if ($base['id'] == $selectedBase) echo "selected"; ?>><?= $base['name']; ?></option>
+
+
             <?php } ?>
         </SELECT>
         <button type="submit" class="btn btn-info">Recharger</button>
@@ -38,18 +44,19 @@ $bases = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
 
         foreach ($todoSheets as $todosheet) {
 
-            if ($selectedBase == $todosheet['base_id']) {
-                echo '<div class=\"day\col-lg">';
-                echo "<a href=\"?action=edittod&id=\" class=\"over\"><div class=\"hour\">Semaine N° :" . $todosheet['week'] . "</div></a>";
-                echo "<a href=\"?action=edittod&id=1\" class=\"over\"><div class=\"hour\">State :" . $todosheet['state'] . "</div></a>";
-                echo '</div>';
-            }
+            if ($selectedBase == $todosheet['base_id']) { ?>
+                <div class="day col-lg">
+                    <a href="?action=edittod&id=<?= $todosheet['id'] ?>" class="over">
+                    <div class="hour">Semaine N° : <?= $todosheet['week'] ?> <br> <?=$todosheet['state'] ?></div>
 
-        }
+                    </a>
 
-        ?>
+                </div>
+            <?php }
+        } ?>
 
     </div>
+
 </div>
 
 <?php

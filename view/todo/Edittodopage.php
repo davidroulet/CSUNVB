@@ -10,6 +10,8 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
 $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
+$things = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
+
 ?>
 
 
@@ -31,29 +33,35 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
                     <div class="nuitcolor hour">Journée</div>
                 </div>
                 <div class="week">
-                    <?php
-                        for ($i = 0; $i < count($days); $i++) {
-                        echo "<div class=\"day col-sm\">";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Fax 144 Transmission </div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Check    Ambulance et  Communication </div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Contrôle stupéfiants  +  Date perf. Chaudes</div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Check bibliothèque </div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Changer Bac chariot de nettoyage </div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Nettoyage centrale et garage </div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Tâches spécifique </div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Formation </div></a>";
-                        echo "<a href=\"?action=Edittodo\" class=\"over\"><div class=\"hour\">Remise locaux ambulances</div></a>";
-                        echo "</div>";
 
-                    }
-                    ?>
+                    <?php
+                    // TODO afficher todothings
+
+
+                        foreach ($things as $thing) {
+                            ?>
+
+
+                            <div class="day col-sm">
+                                <a href="?action=Edittodo&<?=$thing['id'] ?> " class="over">
+                                    <div class="hour"><?= $thing['description'] ?> </div>
+                                </a>
+
+
+                            </div>
+
+
+                        <?php }
+                     ?>
+
+
                     <div class="week">
                         <div class="day col-lg">
                             <div class="nuitcolor hour">NUIT</div>
                         </div>
                         <div class="week">
                             <?php
-                                for ($i = 0; $i < count($days); $i++) {
+                            for ($i = 0; $i < count($days); $i++) {
                                 echo "<div class=\"day col-sm\">";
                                 echo "<a href=\"\" class=\"over\"> <div class=\"hour\">Contrôle stupéfiants Ambulances * Morphine X4 * Sintenyl X6 </div></a>";
                                 echo "<div class=\"hour\"> <input type=\"text\" class=\"form-control\" placeholder=\" Nova N°....................\"> </div>";
