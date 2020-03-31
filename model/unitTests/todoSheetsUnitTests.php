@@ -28,7 +28,7 @@ foreach ($todoItems as $todoItem){
 }
 
 if(count($todoItems) == $i){
-    echo "-> Test réussie\n\n\n\n";
+    echo "-> Test réussi\n\n\n\n";
 } else {
     echo "-> Test échoué\n\n\n\n";
 }
@@ -99,11 +99,12 @@ if($count == 3){
     echo "-> Test échoué\n\n\n\n";
 }
 
+
 echo "4. Test unitaire de la fonction createTodoListItem\n\n";
 
 echo "Test 1ère partie - tester que les bons champs ont été crées\n\n";
 
-$item = ["week" => 2, "state" => 3, "base_id" => 5];
+$item = ["week" => 3, "state" => 3, "base_id" => 5];
 $items = readTodoListItems();
 $countItems = count($items);
 
@@ -130,6 +131,53 @@ if (count($itemsAfter) == ($countItems + 1)) {
 } else {
     echo "-> test échoué\n\n\n\n";
 }
+
+echo "5.Test unitaire de la fonction saveTodoListItems\n\n";
+
+$item = readTodoListItem(23);
+
+$items = readTodoListItems();
+$items[23]['week'] = 2;
+
+
+
+echo "Test 1ère partie - avant l'update le numéro 23 n'a pas les même champs qu'après l'update dans le champ week\n\n";
+
+if ($item['id'] == 23 && $item['week'] == 2  && $item['state'] == 3 && $item['base_id'] == 5) {
+    echo "-> Test échoué\n\n";
+} else {
+    echo "-> Test réussi\n\n";
+}
+
+saveTodoListItems($items);
+
+echo "Test 2ème partie tester que le numéro 23 a bien été update\n\n";
+
+if ($item['id'] == 23 && $item['week'] == 2  && $item['state'] == 3 && $item['base_id'] == 5) {
+    echo "-> Test réussi\n\n";
+} else {
+    echo "-> Test échoué\n\n";
+}
+
+echo "Test 3ème et 4ème partie - tester que le bon nombre de champ a été enregistré et que chaque enregistrement a 4 champs\n\n";
+
+$items = readTodoListItems();
+
+$s = 0;
+
+foreach ($items as $Item){
+    if(count($Item) == 4){
+        $s += 1;
+    }
+}
+
+if(23 == $s){
+    echo "-> Test réussi\n\n\n\n";
+} else {
+    echo "-> Test échoué\n\n\n\n";
+}
+
+
 
 echo "5. Test unitaire de la fonction updateTodoListItem\n\n";
 
