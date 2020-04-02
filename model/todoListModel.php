@@ -206,7 +206,7 @@ function createTodoListThing($item)
 }
 
 
-function getTodoThingsForDay($day)
+function getTodoThingsForDay($day, $dayOfWeek)
 {
     // TODO return the todothings for a specific day (0=monday, ....)
 
