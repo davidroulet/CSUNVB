@@ -28,6 +28,7 @@ function getStupSheets()
     $pharmachecks = getpharmachecks(); // donée pharmatice
     $drug = getDrugs();
     $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
+    $restocks = getrestocks();
     foreach ($stupsheets as $stupsheet) {
         $SheetsArray[$stupsheet["id"]] = $stupsheet;
         foreach ($novasheets as $novasheet) {
@@ -36,7 +37,6 @@ function getStupSheets()
                 $SheetsArray[$stupsheet["id"]]["nova"][] = $nova["number"];
             }
         }
-        //la
 
 
         foreach ($Sutupbatchs as $Sutupbatch) //met dans $sheetsArray les batchs en fonction de la semaine et de la drogue
@@ -53,10 +53,19 @@ function getStupSheets()
                         if ($pharma["batch_id"]==$batch["id"]&&$pharma["stupsheet_id"]==$stupsheet["id"])
                         {
                             $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"][$batch["number"]][] = $pharma;
+                        }
+
+                    }
+                    foreach ($restocks as $restock) {
+                        if ($restock["batch_id"]==$batch["id"]&&$restock["nova_id"]==$nova["id"])
+                        {
+                            $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"][$batch["number"]][] = $pharma;
 
                         }
 
                     }
+
+
 
                 }
             }
@@ -369,6 +378,15 @@ function getpharmacheck($id)
 function getpharmachecks()
 {
     $Array = json_decode(file_get_contents("model/dataStorage/pharmachecks.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    return $SheetsArray;
+}
+
+function getrestocks()
+{
+    $Array = json_decode(file_get_contents("model/dataStorage/restocks.json"), true);
     foreach ($Array as $p) {
         $SheetsArray[$p["id"]] = $p;
     }
