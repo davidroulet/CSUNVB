@@ -35,4 +35,7 @@ function LogStup($stupsheet){
     $LogSheets=getLogsBySheet($stupsheet);
     require_once 'view/Drug/LogStup.php';
 }
+function pharmacheck(){
+die(true);
+}
 ?>

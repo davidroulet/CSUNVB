@@ -91,6 +91,9 @@ switch ($action) {
     case 'adminNovas' :
         adminNovas();
         break;
+    case 'updatePharmaCheck':
+        pharmacheck();
+        break;
     case 'adminDrugs' :
         adminDrugs();
         break;
