@@ -11,7 +11,8 @@ function trylogin($username, $password)
     $User = getUserByUsername($username);
     if (password_verify($password, $User['password']))
     {
-        $_SESSION['username'] = [$username, $User['firstname'], $User['lastname'], $User['admin'], $User['id']];
+        $_SESSION['username'] = $User;
+        unset($_SESSION['username']['password']);
         require_once 'view/home.php';
     } else
     {
