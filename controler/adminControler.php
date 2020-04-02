@@ -11,7 +11,7 @@ function trylogin($username, $password)
     $User = getUser($username);
     if (password_verify($password, $User['password']))
     {
-        $_SESSION['username'] = [$username, $User['firstname'], $User['lastname'], $User['admin']];
+        $_SESSION['username'] = [$username, $User['firstname'], $User['lastname'], $User['admin'], $User['id']];
         require_once 'view/home.php';
     } else
     {
@@ -64,4 +64,9 @@ function adminDrugs()
     require_once 'view/Admin/adminDrugs.php';
 }
 
+function changeUserAdmin($changeUser)
+{
+    $users = getUsers();
+
+}
 ?>

@@ -104,6 +104,10 @@ switch ($action) {
     case 'adminDrugs' :
         adminDrugs();
         break;
+    case 'changeUserAdmin' :
+        $changeUser = $_GET['idUser'];
+        changeUserAdmin($changeUser);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';

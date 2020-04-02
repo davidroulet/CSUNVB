@@ -15,7 +15,7 @@ $title = "CSU-NVB - Administration - Bases";
     <tbody>
         <?php foreach ($bases as $base) { ?>
         <tr>
-            <td><?= $base['name'] ?></td>
+            <td><a href=""><?= $base['name'] ?></a></td>
         </tr><?php } ?>
     </tbody>
 </table>
