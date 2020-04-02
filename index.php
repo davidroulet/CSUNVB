@@ -30,8 +30,15 @@ if (isset($_SESSION['username']) || $action == 'trylogin') {
 } else {
     $action = ' ';
 }
-
-
+if (isset($_GET["batch_id"])) {
+    $pharmacheck_batch=$_GET["batch_id"];
+}
+if (isset($_GET["stupsheet_id"])) {
+    $pharmacheck_sheetid=$_GET["stupsheet_id"];
+}
+if (isset($_GET["date"])) {
+    $pharmacheck_date=$_GET["date"];
+}
 switch ($action) {
     case 'home' :
         require_once 'view/home.php';
@@ -92,7 +99,7 @@ switch ($action) {
         adminNovas();
         break;
     case 'updatePharmaCheck':
-        pharmacheck();
+        pharmacheck($pharmacheck_sheetid,$pharmacheck_date,$pharmacheck_batch);
         break;
     case 'adminDrugs' :
         adminDrugs();
