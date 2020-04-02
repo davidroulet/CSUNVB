@@ -8,7 +8,7 @@ require_once 'model/adminModel.php';
 
 function trylogin($username, $password)
 {
-    $User = getUser($username);
+    $User = getUserByUsername($username);
     if (password_verify($password, $User['password']))
     {
         $_SESSION['username'] = [$username, $User['firstname'], $User['lastname'], $User['admin'], $User['id']];
@@ -66,7 +66,23 @@ function adminDrugs()
 
 function changeUserAdmin($changeUser)
 {
-    $users = getUsers();
-
+    $Users = getUsers();
+    for ($i = 0; $i < count($Users); $i++)
+    {
+        if ($Users[$i]['id'] == $changeUser)
+        {
+            if ($Users[$i]['admin'] == false)
+            {
+                $Users[$i]['admin'] = true;
+            } else
+            {
+                $Users[$i]['admin'] = false;
+            }
+        }
+    }
+    $Changes = $Users;
+    file_put_contents("model/dataStorage/Users.json", json_encode($Changes));
+    adminCrew();
 }
+
 ?>
