@@ -368,11 +368,25 @@ function stupsheet_use_nova()
     return $SheetsArray;
 }
 
-function getpharmacheck($id)
+function readpharmacheck($id)
 {
     $SheetsArray = getpharmachecks();
     $base = $SheetsArray[$id];
     return $base;
+}
+function updatepharmachecks($items)
+{
+    file_put_contents("model/dataStorage/pharmachecks.json", json_encode($items));
+}
+function updatepharmacheck($item)
+{
+
+    $sheets = getDrugs();
+    $sheets[$item["id"]]["name"] = $item["name"];
+    foreach ($sheets as $iteme) {
+        unset($sheets[$iteme["id"]]["batches"]);
+    }
+    updateDrugs($sheets);
 }
 
 function getpharmachecks()
