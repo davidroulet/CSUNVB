@@ -36,9 +36,11 @@ function LogStup($stupsheet){
     require_once 'view/Drug/LogStup.php';
 }
 function pharmacheck($sheet,$date,$batch){
-    var_dump($sheet);
-    var_dump($date);
-    var_dump($batch);
+$batch=readbatche($batch);
+$sheet=readSheet($sheet);
+$druguse=readDrug($batch["drug_id"]);
+$base=getbasebyid($sheet["base_id"]);
+$user=$_SESSION["username"];
     require_once 'view/Drug/pharmacheck.php';
 }
 ?>
