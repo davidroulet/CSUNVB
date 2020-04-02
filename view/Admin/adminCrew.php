@@ -23,8 +23,8 @@ $title = "CSU-NVB - Administration - Secouristes";
         <td><?= $user['initials'] ?></td>
         <td><?php if ($user['id'] != $_SESSION['username'][4]){
             if ($user['admin'] == 1){?>
-            <a href="?action=changeUserAdmin&idUser=<?= $user['id']?>" class="btn btn-primary">Oui</a><?php } else {?>
-            <a href="?action=changeUserAdmin&idUser=<?= $user['id']?>" class="btn btn-primary">Non</a><?php } } else { ?>
+            <a href="?action=changeUserAdmin&idUser=<?= $user['id']?>" class="btn btn-primary">Changer en utilisateur</a><?php } else {?>
+            <a href="?action=changeUserAdmin&idUser=<?= $user['id']?>" class="btn btn-primary">Changer en administrateur</a><?php } } else { ?>
             <p>Vous ne pouvez pas changer votre propre état</p><?php } ?>
         </td>
     </tr><?php } ?>
