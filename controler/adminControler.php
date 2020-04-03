@@ -87,12 +87,11 @@ function newUser()
 
 function saveNewUser($prenom, $nom, $initiales, $admin)
 {
-    var_dump($prenom, $nom, $initiales, $admin); die();
     $hash = password_hash($initiales, PASSWORD_DEFAULT);
-    if ($admin == 1) {
-        $Admin = 'true';
+    if ($admin == 'on') {
+        $Admin = true;
     } else {
-        $Admin = 'false';
+        $Admin = false;
     }
     $Users = getUsers();
     $id = count($Users) + 1;
@@ -106,6 +105,7 @@ function saveNewUser($prenom, $nom, $initiales, $admin)
     ];
     $Users[] = $NewUser;
     file_put_contents("model/dataStorage/Users.json", json_encode($Users));
+    adminCrew();
 }
 
 ?>

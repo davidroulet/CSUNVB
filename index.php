@@ -112,10 +112,10 @@ switch ($action) {
         newUser();
         break;
     case 'saveNewUser' :
-        $prenom = $_GET['prenomUser'];
-        $nom = $_GET['nomUser'];
-        $initiales = $_GET['initialesUser'];
-        $admin = $_GET['adminUser'];
+        $prenom = $_POST['prenomUser'];
+        $nom = $_POST['nomUser'];
+        $initiales = $_POST['initialesUser'];
+        $admin = $_POST['adminUser'];
         saveNewUser($prenom, $nom, $initiales, $admin);
         break;
     default: // unknown action
