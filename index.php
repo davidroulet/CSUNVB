@@ -108,6 +108,16 @@ switch ($action) {
         $changeUser = $_GET['idUser'];
         changeUserAdmin($changeUser);
         break;
+    case 'newUser' :
+        newUser();
+        break;
+    case 'saveNewUser' :
+        $prenom = $_GET['prenomUser'];
+        $nom = $_GET['nomUser'];
+        $initiales = $_GET['initialesUser'];
+        $admin = $_GET['adminUser'];
+        saveNewUser($prenom, $nom, $initiales, $admin);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
