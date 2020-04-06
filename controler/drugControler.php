@@ -43,12 +43,28 @@ $base=getbasebyid($sheet["base_id"]);
 $user=$_SESSION["username"];
     require_once 'view/Drug/pharmacheck.php';
 }
-function PharmaUpdate($batchtoupdate,$PharmaUpdateuser,$Pharmastart,$Pharmaend,$sheetid){
-var_dump($batchtoupdate);
-var_dump($Pharmaend);
-var_dump($Pharmastart);
-var_dump($PharmaUpdateuser);
-var_dump($sheetid);
+function PharmaUpdate($batchtoupdate,$PharmaUpdateuser,$Pharmastart,$Pharmaend,$sheetid,$date){
+
+$batch=readbatche($batchtoupdate);
+$pharmacheck=getpharmacheckbydateandbybatch($date,$batchtoupdate);
+if ($pharmacheck==false){
+    $itemnew["date"]=$date;
+    $itemnew["start"]=$Pharmastart;
+    $itemnew["end"]=$Pharmaend;
+    $itemnew["stupsheet_id"]=$sheetid;
+    $itemnew["user_id"]=$PharmaUpdateuser;
+    $itemnew["batch_id"]=$batchtoupdate;
+    createpharmacheck($itemnew);
+}else{
+    $itemtoupdate=readpharmacheck($pharmacheck["id"]);
+    $itemtoupdate["date"]=$date;
+    $itemtoupdate["start"]=$Pharmastart;
+    $itemtoupdate["end"]=$Pharmaend;
+    $itemtoupdate["stupsheet_id"]=$sheetid;
+    $itemtoupdate["user_id"]=$PharmaUpdateuser;
+    $itemtoupdate["batch_id"]=$batchtoupdate;
+    updatepharmacheck($itemtoupdate);
+}
 die();
 }
 ?>

@@ -367,12 +367,24 @@ function stupsheet_use_nova()
     }
     return $SheetsArray;
 }
-
+function getpharmacheckbydateandbybatch($date,$batch){
+    $Array = getpharmachecks();
+    foreach ($Array as $check) {
+        if ($check["date"] == $date && $check["batch_id"] == $batch) {
+            return $check;
+        }
+    }
+    return false;
+}
 function readpharmacheck($id)
 {
     $SheetsArray = getpharmachecks();
+    if(isset( $SheetsArray[$id])){
     $base = $SheetsArray[$id];
     return $base;
+    }else{
+        return false;
+    }
 }
 function createpharmacheck($item)
 {
@@ -388,7 +400,7 @@ function createpharmacheck($item)
     }
     $item["id"] = $newid + 1;
     $items[] = $item;
-    updatenovas($items);
+    updatepharmachecks($items);
     return $item;
 }
 function updatepharmachecks($items)
