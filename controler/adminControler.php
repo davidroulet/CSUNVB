@@ -88,10 +88,10 @@ function newUser()
     require_once 'view/Admin/newUser.php';
 }
 
-function saveNewUser($prenom, $nom, $initiales, $admin)
+function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
 {
-    $hash = password_hash($initiales, PASSWORD_DEFAULT);
-    if ($admin == 'on') {
+    $hash = password_hash($initialesUser, PASSWORD_DEFAULT);
+    if ($adminUser == 'on') {
         $Admin = true;
     } else {
         $Admin = false;
@@ -100,10 +100,10 @@ function saveNewUser($prenom, $nom, $initiales, $admin)
     $id = count($Users) + 1;
     $NewUser = [
         'id' => $id,
-        'initials' => $initiales,
-        'lastname' => $nom,
+        'initials' => $initialesUser,
+        'lastname' => $nomUser,
         'password' => $hash,
-        'firstname' => $prenom,
+        'firstname' => $prenomUser,
         'admin' => $Admin,
         'firstconnect' => true
     ];

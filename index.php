@@ -121,11 +121,11 @@ switch ($action) {
         newUser();
         break;
     case 'saveNewUser' :
-        $prenom = $_POST['prenomUser'];
-        $nom = $_POST['nomUser'];
-        $initiales = $_POST['initialesUser'];
-        $admin = $_POST['adminUser'];
-        saveNewUser($prenom, $nom, $initiales, $admin);
+        $prenomUser = $_POST['prenomUser'];
+        $nomUser = $_POST['nomUser'];
+        $initialesUser = $_POST['initialesUser'];
+        $adminUser = $_POST['adminUser'];
+        saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser);
         break;
     case 'changeFirstPassword' :
         $passwordchange = $_POST['passwordchange'];
