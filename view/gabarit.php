@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE HTML>
+<?php require_once "helpers.php"?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -54,6 +55,7 @@
 </div>
 
     <div class="container">
+        <?= getFlashMessage(); ?>
         <?= $content; ?>
     </div>
 

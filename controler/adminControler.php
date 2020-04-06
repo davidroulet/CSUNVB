@@ -11,10 +11,12 @@ function trylogin($username, $password)
     $User = getUserByUsername($username);
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
+        $_SESSION['flashmessage'] = 'Bienvenue '.$User['initials'].' !';
         unset($_SESSION['username']['password']);
         require_once 'view/home.php';
     } else {
-        errorLogin();
+        $_SESSION['flashmessage'] = 'Identifiants incorrects ...';
+        login();
     }
 }
 
@@ -27,11 +29,6 @@ function disconnect()
 {
     unset($_SESSION['username']);
     require_once 'view/login.php';
-}
-
-function errorLogin()
-{
-    require_once 'view/errorLogin.php';
 }
 
 function adminHomePage()
