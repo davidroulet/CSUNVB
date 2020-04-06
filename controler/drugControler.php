@@ -4,11 +4,23 @@
 // Drugs Section
 require_once 'model/drugModel.php';
 
-function drugHomePage($Site) //Affiche la page de selection de la semaine
+function drugHomePage() //Affiche la page de selection de la semaine
 {
+    $year = 20;
+    $bases=getbases();
+    $liste = getStupSheets();
     require_once 'view/Drug/drugHome.php';
 }
-function drugSiteTable($semaine,$Site){ // Affiage de la page Finale
+function drugSiteTable($semaine){ // Affiage de la page Finale
+
+    $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
+    $novas = getnovas(); // Obient la liste des ambulance
+    $drugs = getDrugs(); // Obient la list des Drugs
+//$stupSheet=readSheet(2);
+    $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
+    $date = strtotime($jourDebutSemaine);
+    $site = getbasebyid($_SESSION["Selectsite"])["name"];
+    $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
     require_once 'view/Drug/drugSiteTable.php';
 }
 function getdate2($semaine) //Donne les jours de la semaine Selectionée
@@ -41,11 +53,10 @@ $sheet=readSheet($sheet);
 $druguse=readDrug($batch["drug_id"]);
 $base=getbasebyid($sheet["base_id"]);
 $user=$_SESSION["username"];
+    $pharmacheck=getpharmacheckbydateandbybatch($date,$batch["id"]);
     require_once 'view/Drug/pharmacheck.php';
 }
 function PharmaUpdate($batchtoupdate,$PharmaUpdateuser,$Pharmastart,$Pharmaend,$sheetid,$date){
-
-$batch=readbatche($batchtoupdate);
 $pharmacheck=getpharmacheckbydateandbybatch($date,$batchtoupdate);
 if ($pharmacheck==false){
     $itemnew["date"]=$date;
@@ -65,6 +76,7 @@ if ($pharmacheck==false){
     $itemtoupdate["batch_id"]=$batchtoupdate;
     updatepharmacheck($itemtoupdate);
 }
-die();
+$Site=$_SESSION["Site"];
+    drugHomePage($Site);
 }
 ?>

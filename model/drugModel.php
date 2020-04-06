@@ -46,7 +46,7 @@ function getStupSheets()
                 if ($batch["drug_id"] != null) {
 
 
-                    $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"]["number2"][] = $batch["number"];
+                    $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"]["number2"][] = $batch;
                     $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["Drug_id"] = $batch["drug_id"];
 
                     foreach ($pharmachecks as $pharma) {

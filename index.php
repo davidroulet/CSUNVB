@@ -80,10 +80,10 @@ switch ($action) {
         edittodopage();
         break;
     case 'drugs':
-        drugHomePage($Site);
+        drugHomePage();
         break;
     case "drugSiteTable":
-        drugSiteTable($semaine, $Site);
+        drugSiteTable($semaine);
         break;
     case "trylogin":
         trylogin($username, $password);
