@@ -113,4 +113,10 @@ function saveNewUser($prenom, $nom, $initiales, $admin)
     adminCrew();
 }
 
+function changeFirstPassword($passwordchange, $confirmpassword)
+{
+    $Users = getUsers();
+    if ($passwordchange != )
+}
+
 ?>

@@ -118,6 +118,11 @@ switch ($action) {
         $admin = $_POST['adminUser'];
         saveNewUser($prenom, $nom, $initiales, $admin);
         break;
+    case 'changeFirstPassword' :
+        $passwordchange = $_POST['passwordchange'];
+        $confirmpassword = $_POST['confirmpassword'];
+        changeFirstPassword($passwordchange, $confirmpassword);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
