@@ -121,6 +121,8 @@ switch ($action) {
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
+        } else if ($_SESSION['username']['firstconnect'] == true){
+            require_once 'view/firstLogin.php';
         } else {
             require_once 'view/login.php';
         }

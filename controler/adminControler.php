@@ -11,9 +11,13 @@ function trylogin($username, $password)
     $User = getUserByUsername($username);
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
-        $_SESSION['flashmessage'] = 'Bienvenue '.$User['initials'].' !';
         unset($_SESSION['username']['password']);
-        require_once 'view/home.php';
+        if ($User['firstconnect'] == true){
+            require_once 'view/firstLogin.php';
+        } else {
+            $_SESSION['flashmessage'] = 'Bienvenue '.$User['firstname'].' '.$User['lastname'].' !';
+            require_once 'view/home.php';
+        }
     } else {
         $_SESSION['flashmessage'] = 'Identifiants incorrects ...';
         login();
@@ -67,8 +71,10 @@ function changeUserAdmin($changeUser)
         if ($Users[$i]['id'] == $changeUser) {
             if ($Users[$i]['admin'] == false) {
                 $Users[$i]['admin'] = true;
+                $_SESSION['flashmessage'] = $Users[$i]['initials']." est désormais un administrateur.";
             } else {
                 $Users[$i]['admin'] = false;
+                $_SESSION['flashmessage'] = $Users[$i]['initials']." est désormais un utilisateur.";
             }
         }
     }
@@ -98,10 +104,12 @@ function saveNewUser($prenom, $nom, $initiales, $admin)
         'lastname' => $nom,
         'password' => $hash,
         'firstname' => $prenom,
-        'admin' => $Admin
+        'admin' => $Admin,
+        'firstconnect' => true
     ];
     $Users[] = $NewUser;
     file_put_contents("model/dataStorage/Users.json", json_encode($Users));
+    $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
     adminCrew();
 }
 
