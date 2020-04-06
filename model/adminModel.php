@@ -99,14 +99,4 @@ function getUserByUsername($username)
     }
 }
 
-function IDverif($id)
-{
-    $users = getUsers();
-    foreach ($users as $user) {
-        if ($user['id'] == $id){
-            return '';
-        }
-    }
-    return 'clear';
-}
 ?>

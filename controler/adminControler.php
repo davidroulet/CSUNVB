@@ -113,10 +113,20 @@ function saveNewUser($prenom, $nom, $initiales, $admin)
     adminCrew();
 }
 
-function changeFirstPassword($passwordchange, $confirmpassword)
+function changeFirstPassword($passwordchange, $confirmpassword, $username)
 {
-    $Users = getUsers();
-    if ($passwordchange != )
+    $User = getUserByUsername($username);
+    if ($passwordchange != $User['password']){
+        if ($confirmpassword != $passwordchange){
+            $_SESSION['flashmessage'] = 'Confirmation incorrecte !';
+            require_once 'view/firstLogin.php';
+        } else {
+
+        }
+    } else {
+        $_SESSION['flashmessage'] = "Le nouveau mot de passe doit être différent de l'ancien !";
+        require_once 'view/firstLogin.php';
+    }
 }
 
 ?>
