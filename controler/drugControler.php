@@ -43,4 +43,12 @@ $base=getbasebyid($sheet["base_id"]);
 $user=$_SESSION["username"];
     require_once 'view/Drug/pharmacheck.php';
 }
+function PharmaUpdate($batchtoupdate,$PharmaUpdateuser,$Pharmastart,$Pharmaend,$sheetid){
+var_dump($batchtoupdate);
+var_dump($Pharmaend);
+var_dump($Pharmastart);
+var_dump($PharmaUpdateuser);
+var_dump($sheetid);
+die();
+}
 ?>

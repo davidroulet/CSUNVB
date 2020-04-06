@@ -23,7 +23,13 @@ if (isset($_POST["semaine"])) {
 if (isset($_POST["site"])) {
     $_SESSION["Selectsite"] = $_POST["site"];
 }
-
+if (isset($_GET["batchtoupdate"])&&isset($_GET["PharmaUpdateuser"])&&isset($_GET["sheetid"])&&isset($_POST["Pharmastart"])&&isset($_POST["Pharmaend"])){
+    $batchtoupdate=$_GET["batchtoupdate"];
+        $PharmaUpdateuser=$_GET["PharmaUpdateuser"];
+    $sheetid=$_GET["sheetid"];
+                $Pharmaend=$_POST["Pharmaend"];
+                    $Pharmastart=$_POST["Pharmastart"];
+}
 $action = $_GET['action'];
 if (isset($_SESSION['username']) || $action == 'trylogin') {
     $action = $_GET['action'];
@@ -103,6 +109,9 @@ switch ($action) {
         break;
     case 'adminDrugs' :
         adminDrugs();
+        break;
+    case "PharmaUpdate":
+        PharmaUpdate($batchtoupdate,$PharmaUpdateuser,$Pharmastart,$Pharmaend,$sheetid);
         break;
     case 'changeUserAdmin' :
         $changeUser = $_GET['idUser'];

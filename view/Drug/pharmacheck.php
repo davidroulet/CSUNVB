@@ -25,7 +25,7 @@ var_dump($user);
     </tr>
     <tr>
         <td><?=$batch["number"]?></td>
-        <form action="/index.php?action=PharmaUpdate&batchtoupdate=<?=$batch["id"]?>&PharmaUpdateuser=<?=$user[4]?>" method="post">
+        <form action="/index.php?action=PharmaUpdate&batchtoupdate=<?=$batch["id"]?>&PharmaUpdateuser=<?=$user["id"]?>&sheetid=<?=$sheet["id"]?>" method="post">
             <td><input type="number" name="Pharmastart"> </td>
             <td><input type="number" name="Pharmaend"> </td>
     <tr>

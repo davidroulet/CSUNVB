@@ -374,6 +374,23 @@ function readpharmacheck($id)
     $base = $SheetsArray[$id];
     return $base;
 }
+function createpharmacheck($item)
+{
+    $items = getpharmachecks();
+    $idliste[] = 0;
+    foreach ($items as $p) {
+        $idliste[] = $p["id"];
+    }
+    foreach ($idliste as $id) {
+        if ($id != $idliste) {
+            $newid = $id;
+        }
+    }
+    $item["id"] = $newid + 1;
+    $items[] = $item;
+    updatenovas($items);
+    return $item;
+}
 function updatepharmachecks($items)
 {
     file_put_contents("model/dataStorage/pharmachecks.json", json_encode($items));
@@ -381,12 +398,15 @@ function updatepharmachecks($items)
 function updatepharmacheck($item)
 {
 
-    $sheets = getDrugs();
-    $sheets[$item["id"]]["name"] = $item["name"];
-    foreach ($sheets as $iteme) {
-        unset($sheets[$iteme["id"]]["batches"]);
-    }
-    updateDrugs($sheets);
+    $sheets = getpharmachecks();
+    $sheets[$item["id"]]["id"] = $item["id"];
+    $sheets[$item["id"]]["date"] = $item["date"];
+    $sheets[$item["id"]]["start"] = $item["start"];
+    $sheets[$item["id"]]["end"] = $item["end"];
+    $sheets[$item["id"]]["batch_id"] = $item["batch_id"];
+    $sheets[$item["id"]]["user_id"] = $item["user_id"];
+    $sheets[$item["id"]]["stupsheet_id"] = $item["stupsheet_id"];
+    updatepharmachecks($sheets);
 }
 
 function getpharmachecks()
