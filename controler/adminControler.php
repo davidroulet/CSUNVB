@@ -78,8 +78,7 @@ function changeUserAdmin($changeUser)
             }
         }
     }
-    $Changes = $Users;
-    file_put_contents("model/dataStorage/Users.json", json_encode($Changes));
+    SaveUser($Users);
     adminCrew();
 }
 
@@ -108,7 +107,7 @@ function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
         'firstconnect' => true
     ];
     $Users[] = $NewUser;
-    file_put_contents("model/dataStorage/Users.json", json_encode($Users));
+    SaveUser($Users);
     $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
     adminCrew();
 }
@@ -128,8 +127,7 @@ function changeFirstPassword($passwordchange, $confirmpassword)
                     $Users[$i]['firstconnect'] = false;
                 }
             }
-            $Changes = $Users;
-            file_put_contents("model/dataStorage/Users.json", json_encode($Changes));
+            SaveUser($Users);
             disconnect();
         }
     } else {
