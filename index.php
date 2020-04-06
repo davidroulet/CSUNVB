@@ -121,7 +121,7 @@ switch ($action) {
     case 'changeFirstPassword' :
         $passwordchange = $_POST['passwordchange'];
         $confirmpassword = $_POST['confirmpassword'];
-        changeFirstPassword($passwordchange, $confirmpassword, $username);
+        changeFirstPassword($passwordchange, $confirmpassword);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
