@@ -4,7 +4,6 @@
 // Drugs Section
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
-var_dump($_SESSION["Selectsite"]);
 ?>
 
 <div class="row m-2">

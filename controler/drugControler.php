@@ -6,7 +6,6 @@ require_once 'model/drugModel.php';
 
 function drugHomePage() //Affiche la page de selection de la semaine
 {
-    $year = 20;
     $bases=getbases();
     $liste = getStupSheets();
     require_once 'view/Drug/drugHome.php';
@@ -53,11 +52,15 @@ $sheet=readSheet($sheet);
 $druguse=readDrug($batch["drug_id"]);
 $base=getbasebyid($sheet["base_id"]);
 $user=$_SESSION["username"];
-    $pharmacheck=getpharmacheckbydateandbybatch($date,$batch["id"]);
+    $pharmacheck=getpharmacheckbydateandbybatch($date,$batch["id"],$sheet["id"]);
+    var_dump($date);
+    var_dump($batch["id"]);
+    var_dump($pharmacheck);
     require_once 'view/Drug/pharmacheck.php';
 }
 function PharmaUpdate($batchtoupdate,$PharmaUpdateuser,$Pharmastart,$Pharmaend,$sheetid,$date){
-$pharmacheck=getpharmacheckbydateandbybatch($date,$batchtoupdate);
+$pharmacheck=getpharmacheckbydateandbybatch($date,$batchtoupdate,$sheetid);
+
 if ($pharmacheck==false){
     $itemnew["date"]=$date;
     $itemnew["start"]=$Pharmastart;
@@ -76,7 +79,7 @@ if ($pharmacheck==false){
     $itemtoupdate["batch_id"]=$batchtoupdate;
     updatepharmacheck($itemtoupdate);
 }
-$Site=$_SESSION["Site"];
-    drugHomePage($Site);
+$sheet=readSheet($sheetid);
+    drugSiteTable($sheet["week"]);
 }
 ?>
