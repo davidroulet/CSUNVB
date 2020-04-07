@@ -45,18 +45,8 @@ foreach ($jours as $jour) { ?>
 
             <?php foreach ($stupSheet["nova"] as $nova) { ?>
                 <td>
-                <?php
+                    <!--novachack-->
 
-                $nova_id=$nova["id"];
-                $batch_id=$drug["batch_number"]["number"]["number2"]["id"];
-
-
-                //echo $batch_id;
-
-                $restock = getRestocksbyBatchandNovas($batch_id,$nova_id);
-
-
-                ?>
                 </td>
             <?php } ?>
             <td></td>
@@ -86,7 +76,20 @@ foreach ($jours as $jour) { ?>
 
             <?php foreach ($stupSheet["nova"] as $nova) { ?>
                 <td>
-<!--novacheck-->
+<!--resotc-->
+
+
+                    <?php
+
+                    $nova_id=$nova["id"];
+                    $batch_id=$batch["id"];
+var_dump($nova_id);
+var_dump($batch_id);
+                    //echo $batch_id;
+
+                    $restock = getRestocksbyBatchandNovas($batch_id,$nova_id);
+
+                    ?>
                 </td>
             <?php } ?>
             <td>
