@@ -28,13 +28,13 @@ function getStupSheets()
     $pharmachecks = getpharmachecks(); // donée pharmatice
     $drug = getDrugs();
     $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
-    $restocks = getrestocks();
+
     foreach ($stupsheets as $stupsheet) {
         $SheetsArray[$stupsheet["id"]] = $stupsheet;
         foreach ($novasheets as $novasheet) {
             if ($novasheet["stupsheet_id"] == $stupsheet["id"]) {
                 $nova = readnova($novasheet["nova_id"]);
-                $SheetsArray[$stupsheet["id"]]["nova"][] = $nova["number"];
+                $SheetsArray[$stupsheet["id"]]["nova"][] = $nova;
             }
         }
 
@@ -54,17 +54,7 @@ function getStupSheets()
                         {
                             $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"][$batch["number"]][] = $pharma;
                         }
-
                     }
-                    foreach ($restocks as $restock) {
-                        if ($restock["batch_id"]==$batch["id"]&&$restock["nova_id"]==$nova["id"])
-                        {
-                            $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"][$batch["number"]][] = $pharma;
-
-                        }
-
-                    }
-
 
 
                 }
@@ -73,6 +63,20 @@ function getStupSheets()
     }
     return $SheetsArray;
 }
+
+
+function getRestocksbyBatchandNovas($batch_id,$nova_id)
+{
+    $restocks = getrestocks();
+    foreach ($restocks as $restock)
+    {
+        if($batch_id == $restock["batch_id"] && $nova_id == $restock["nova_id"])
+        {
+            return $restock;
+        }
+    }
+}
+
 
 /**
  * Retourne un item précis, identifié par son id

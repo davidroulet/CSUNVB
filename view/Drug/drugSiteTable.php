@@ -4,7 +4,7 @@
 // Drugs Section
 $title = "CSU-NVB - Stupéfiants";
 ob_start();
-
+var_dump($stupSheet);
 ?>
     <div class="row m-2">
         <h1>Stupéfiants</h1>
@@ -23,7 +23,7 @@ foreach ($jours as $jour) { ?>
         <tr>
             <td colspan="6" <?php if (date("Y-m-d", $date) == date("Y-m-d")){ ?>class="today"
                 <?php } ?> > <?php
-                echo $jour . " " . date("j M Y", $date) ;
+                echo $jour . " " . date("j M Y", $date);
                 ?></td>
 
         </tr>
@@ -31,7 +31,7 @@ foreach ($jours as $jour) { ?>
             <td></td>
             <td>Pharmacie</td>
             <?php foreach ($stupSheet["nova"] as $nova) {
-                echo "<td>" . $nova . "</td>";
+                echo "<td>" . $nova["number"] . "</td>";
             } ?>
             <td>Pharmacie</td>
         </tr>
@@ -41,21 +41,38 @@ foreach ($jours as $jour) { ?>
         <tr>
             <td><?= $Drugname["name"] ?></td>
             <td></td>
-            <td></td>
+
 
             <?php foreach ($stupSheet["nova"] as $nova) { ?>
-                <td></td>
+                <td>
+                <?php
+
+                $nova_id=$nova["id"];
+                $batch_id=$drug["batch_number"]["number"]["number2"]["id"];
+
+
+                //echo $batch_id;
+
+                $restock = getRestocksbyBatchandNovas($batch_id,$nova_id);
+
+
+                ?>
+                </td>
             <?php } ?>
+            <td></td>
         </tr>
 
         <?php
 
         foreach ($drug["batch_number"]["number"]["number2"] as $batch) {  //met dans $batch les numeros des batch
 
-            ?>
+        ?>
         <tr>
-            <form action="?action=updatePharmaCheck&batch_id=<?=$batch["id"]?>&stupsheet_id=<?=$stupSheet["id"]?>&date=<?=date("Y-m-d", $date)?>" method="post">
-                    <td>  <button type="submit" class="btn-dark">  <?= $batch["number"] ?>   </button>   </td>
+            <form action="?action=updatePharmaCheck&batch_id=<?= $batch["id"] ?>&stupsheet_id=<?= $stupSheet["id"] ?>&date=<?= date("Y-m-d", $date) ?>"
+                  method="post">
+                <td>
+                    <button type="submit" class="btn-dark">  <?= $batch["number"] ?>   </button>
+                </td>
             </form>
 
             <td><?php
@@ -68,7 +85,9 @@ foreach ($jours as $jour) { ?>
                 ?></td>
 
             <?php foreach ($stupSheet["nova"] as $nova) { ?>
-                <td></td>
+                <td>
+<!--novacheck-->
+                </td>
             <?php } ?>
             <td>
 
