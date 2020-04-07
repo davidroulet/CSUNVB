@@ -136,16 +136,8 @@ function destroySheet($id)
 function createSheet($item)
 {
     $items = getStupSheets();
-    $idliste[] = 0;
-    foreach ($items as $p) {
-        $idliste[] = $p["id"];
-    }
-    foreach ($idliste as $id) {
-        if ($id != $idliste) {
-            $newid = $id;
-        }
-    }
-    $item["id"] = $newid + 1;
+    $newid = max(array_keys($items))+1;
+    $item["id"] = $newid ;
     $items[] = $item;
     updateSheets($items);
     return $item;
@@ -182,16 +174,8 @@ function updateBatche($item)
 function createbatch($item)
 {
     $items = getBatches();
-    $idliste[] = 0;
-    foreach ($items as $p) {
-        $idliste[] = $p["id"];
-    }
-    foreach ($idliste as $id) {
-        if ($id != $idliste) {
-            $newid = $id;
-        }
-    }
-    $item["id"] = $newid + 1;
+    $newid = max(array_keys($items))+1;
+    $item["id"] = $newid;
     $items[] = $item;
     updateBatches($items);
     return $item;
@@ -331,16 +315,8 @@ function updateDrug($item)
 function createDrug($item)
 {
     $items = getDrugs();
-    $idliste[] = 0;
-    foreach ($items as $p) {
-        $idliste[] = $p["id"];
-    }
-    foreach ($idliste as $id) {
-        if ($id != $idliste) {
-            $newid = $id;
-        }
-    }
-    $item["id"] = $newid + 1;
+    $newid = max(array_keys($items))+1;
+    $item["id"] = $newid ;
     $items[] = $item;
     updateDrugs($items);
     return $item;
@@ -393,16 +369,8 @@ function readpharmacheck($id)
 function createpharmacheck($item)
 {
     $items = getpharmachecks();
-    $idliste[] = 0;
-    foreach ($items as $p) {
-        $idliste[] = $p["id"];
-    }
-    foreach ($idliste as $id) {
-        if ($id != $idliste) {
-            $newid = $id;
-        }
-    }
-    $item["id"] = $newid + 1;
+    $newid = max(array_keys($items))+1;
+    $item["id"] = $newid;
     $items[] = $item;
     updatepharmachecks($items);
     return $item;
