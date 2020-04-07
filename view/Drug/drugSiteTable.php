@@ -4,7 +4,6 @@
 // Drugs Section
 $title = "CSU-NVB - Stupéfiants";
 ob_start();
-var_dump($stupSheet);
 ?>
     <div class="row m-2">
         <h1>Stupéfiants</h1>
@@ -76,18 +75,22 @@ foreach ($jours as $jour) { ?>
 
             <?php foreach ($stupSheet["nova"] as $nova) { ?>
                 <td>
-<!--resotc-->
+                <!--resotc-->
 
 
                     <?php
 
                     $nova_id=$nova["id"];
                     $batch_id=$batch["id"];
-var_dump($nova_id);
-var_dump($batch_id);
-                    //echo $batch_id;
-
                     $restock = getRestocksbyBatchandNovas($batch_id,$nova_id);
+
+
+                        $week=substr ($restock["timestamp"],0,10);
+                        if($week==(date("Y-m-d", $date)))
+                        {
+                            echo $restock["quantity"];
+                        }
+
 
                     ?>
                 </td>
