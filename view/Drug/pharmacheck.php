@@ -6,12 +6,15 @@
 
 ob_start();
 $title = "CSU-NVB - pharmacheck";
+//TODO deplacer ca dans le controleur
+$date=strtotime("$date");
+$date=date("j F Y", $date);
 ?>
-<h2>Site de <?= $base["name"] ?> , Semaine N° <?= $sheet["week"] ?>
+<h2> Contrôle de pharmacie, <?= $date ?> <?= $base["name"] ?>
 </h2>
 <table border="1" class="table table-dark">
     <tr>
-        <td colspan="6"> <?php echo $date ?>
+        <td colspan="6">
     </tr>
     <tr>
         <td>Lot</td>
@@ -20,7 +23,6 @@ $title = "CSU-NVB - pharmacheck";
     </tr>
     <tr>
         <td><?=$druguse["name"]?></td>
-
     </tr>
     <tr>
         <td><?=$batch["number"]?></td>
