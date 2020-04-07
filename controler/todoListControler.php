@@ -10,12 +10,21 @@
 require_once 'model/todoListModel.php';
 require_once 'model/loginModel.php';
 
+
 function todoListHomePage($base)
 {
     $TodoListItemsread = readTodoListItems();
     $selectedBase = $base;
     require_once 'view/todo/todoListHome.php';
 }
+
+function todothingsEditepage()
+{
+   $todothingsread= readTodoListThings();
+    require_once 'view/todo/todoListHome.php';
+}
+
+
 //
 function edittodopage()
 {

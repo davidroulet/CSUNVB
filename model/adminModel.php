@@ -99,4 +99,8 @@ function getUserByUsername($username)
     }
 }
 
+function SaveUser($Users)
+{
+    file_put_contents("model/dataStorage/Users.json", json_encode($Users));
+}
 ?>

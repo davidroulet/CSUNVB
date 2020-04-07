@@ -123,13 +123,13 @@ function readTodoItemsForBase($base_id)
 
 function readTodoListThings()
 {
-    $items = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
+    $things = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
 
-    foreach ($items as $item) {
-        $items[$item['id']] = $item;
+    foreach ($things as $thing) {
+        $things[$thing['id']] = $thing;
     }
 
-    return $items;
+    return $things;
 }
 
 /**

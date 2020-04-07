@@ -9,14 +9,18 @@ require_once 'model/adminModel.php';
 function trylogin($username, $password)
 {
     $User = getUserByUsername($username);
-    if (password_verify($password, $User['password']))
-    {
+    if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
         unset($_SESSION['username']['password']);
-        require_once 'view/home.php';
-    } else
-    {
-        errorLogin();
+        if ($User['firstconnect'] == true){
+            require_once 'view/firstLogin.php';
+        } else {
+            $_SESSION['flashmessage'] = 'Bienvenue '.$User['firstname'].' '.$User['lastname'].' !';
+            require_once 'view/home.php';
+        }
+    } else {
+        $_SESSION['flashmessage'] = 'Identifiants incorrects ...';
+        login();
     }
 }
 
@@ -29,11 +33,6 @@ function disconnect()
 {
     unset($_SESSION['username']);
     require_once 'view/login.php';
-}
-
-function errorLogin()
-{
-    require_once 'view/errorLogin.php';
 }
 
 function adminHomePage()
@@ -68,22 +67,73 @@ function adminDrugs()
 function changeUserAdmin($changeUser)
 {
     $Users = getUsers();
-    for ($i = 0; $i < count($Users); $i++)
-    {
-        if ($Users[$i]['id'] == $changeUser)
-        {
-            if ($Users[$i]['admin'] == false)
-            {
+    for ($i = 0; $i < count($Users); $i++) {
+        if ($Users[$i]['id'] == $changeUser) {
+            if ($Users[$i]['admin'] == false) {
                 $Users[$i]['admin'] = true;
-            } else
-            {
+                $_SESSION['flashmessage'] = $Users[$i]['initials']." est désormais un administrateur.";
+            } else {
                 $Users[$i]['admin'] = false;
+                $_SESSION['flashmessage'] = $Users[$i]['initials']." est désormais un utilisateur.";
             }
         }
     }
-    $Changes = $Users;
-    file_put_contents("model/dataStorage/Users.json", json_encode($Changes));
+    SaveUser($Users);
     adminCrew();
+}
+
+function newUser()
+{
+    require_once 'view/Admin/newUser.php';
+}
+
+function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
+{
+    $hash = password_hash($initialesUser, PASSWORD_DEFAULT);
+    if ($adminUser == 'on') {
+        $Admin = true;
+    } else {
+        $Admin = false;
+    }
+    $Users = getUsers();
+    $id = count($Users) + 1;
+    $NewUser = [
+        'id' => $id,
+        'initials' => $initialesUser,
+        'lastname' => $nomUser,
+        'password' => $hash,
+        'firstname' => $prenomUser,
+        'admin' => $Admin,
+        'firstconnect' => true
+    ];
+    $Users[] = $NewUser;
+    SaveUser($Users);
+    $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
+    adminCrew();
+}
+
+function changeFirstPassword($passwordchange, $confirmpassword)
+{
+    $Users = getUsers();
+    $hash = password_hash($confirmpassword, PASSWORD_DEFAULT);
+    if ($passwordchange != $_SESSION['username']['initials']){
+        if ($confirmpassword != $passwordchange){
+            $_SESSION['flashmessage'] = 'Confirmation incorrecte !';
+            require_once 'view/firstLogin.php';
+        } else {
+            for ($i = 0; $i < count($Users); $i++){
+                if ($Users[$i]['id'] == $_SESSION['username']['id']){
+                    $Users[$i]['password'] = $hash;
+                    $Users[$i]['firstconnect'] = false;
+                }
+            }
+            SaveUser($Users);
+            disconnect();
+        }
+    } else {
+        $_SESSION['flashmessage'] = "Le nouveau mot de passe doit être différent de l'ancien !";
+        require_once 'view/firstLogin.php';
+    }
 }
 
 ?>

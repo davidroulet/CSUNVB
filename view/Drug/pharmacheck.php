@@ -6,7 +6,6 @@
 
 ob_start();
 $title = "CSU-NVB - pharmacheck";
-var_dump($user);
 ?>
 <h2>Site de <?= $base["name"] ?> , Semaine N° <?= $sheet["week"] ?>
 </h2>
@@ -25,9 +24,9 @@ var_dump($user);
     </tr>
     <tr>
         <td><?=$batch["number"]?></td>
-        <form action="/index.php?action=PharmaUpdate&batchtoupdate=<?=$batch["id"]?>&PharmaUpdateuser=<?=$user[4]?>" method="post">
-            <td><input type="number" name="Pharmastart"> </td>
-            <td><input type="number" name="Pharmaend"> </td>
+        <form action="/index.php?action=PharmaUpdate&batchtoupdate=<?=$batch["id"]?>&PharmaUpdateuser=<?=$user["id"]?>&sheetid=<?=$sheet["id"]?>&date=<?=$date?>" method="post">
+            <td><input type="number" name="Pharmastart" value="<?=$pharmacheck["start"]?>"> </td>
+            <td><input type="number" name="Pharmaend" value="<?=$pharmacheck["end"]?>"> </td>
     <tr>
             <td colspan="6" class=" center" ><input type="submit" class="btn-dark" value="Envoier le Formulaire"></td>
 

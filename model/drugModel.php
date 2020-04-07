@@ -46,7 +46,7 @@ function getStupSheets()
                 if ($batch["drug_id"] != null) {
 
 
-                    $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"]["number2"][] = $batch["number"];
+                    $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"]["number2"][] = $batch;
                     $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["Drug_id"] = $batch["drug_id"];
 
                     foreach ($pharmachecks as $pharma) {
@@ -367,12 +367,41 @@ function stupsheet_use_nova()
     }
     return $SheetsArray;
 }
-
+function getpharmacheckbydateandbybatch($date,$batch,$stupsheet_id){
+    $Array = getpharmachecks();
+    foreach ($Array as $check) {
+        if ($check["date"] == $date && $check["batch_id"] == $batch&&$check["stupsheet_id"]==$stupsheet_id) {
+            return $check;
+        }
+    }
+    return false;
+}
 function readpharmacheck($id)
 {
     $SheetsArray = getpharmachecks();
+    if(isset( $SheetsArray[$id])){
     $base = $SheetsArray[$id];
     return $base;
+    }else{
+        return false;
+    }
+}
+function createpharmacheck($item)
+{
+    $items = getpharmachecks();
+    $idliste[] = 0;
+    foreach ($items as $p) {
+        $idliste[] = $p["id"];
+    }
+    foreach ($idliste as $id) {
+        if ($id != $idliste) {
+            $newid = $id;
+        }
+    }
+    $item["id"] = $newid + 1;
+    $items[] = $item;
+    updatepharmachecks($items);
+    return $item;
 }
 function updatepharmachecks($items)
 {
@@ -381,12 +410,15 @@ function updatepharmachecks($items)
 function updatepharmacheck($item)
 {
 
-    $sheets = getDrugs();
-    $sheets[$item["id"]]["name"] = $item["name"];
-    foreach ($sheets as $iteme) {
-        unset($sheets[$iteme["id"]]["batches"]);
-    }
-    updateDrugs($sheets);
+    $sheets = getpharmachecks();
+    $sheets[$item["id"]]["id"] = $item["id"];
+    $sheets[$item["id"]]["date"] = $item["date"];
+    $sheets[$item["id"]]["start"] = $item["start"];
+    $sheets[$item["id"]]["end"] = $item["end"];
+    $sheets[$item["id"]]["batch_id"] = $item["batch_id"];
+    $sheets[$item["id"]]["user_id"] = $item["user_id"];
+    $sheets[$item["id"]]["stupsheet_id"] = $item["stupsheet_id"];
+    updatepharmachecks($sheets);
 }
 
 function getpharmachecks()
