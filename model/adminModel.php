@@ -99,6 +99,15 @@ function getUserByUsername($username)
     }
 }
 
+function getUsers()
+{
+    $Array = json_decode(file_get_contents("model/dataStorage/Users.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }
+    return $SheetsArray;
+}
+
 function SaveUser($Users)
 {
     file_put_contents("model/dataStorage/Users.json", json_encode($Users));

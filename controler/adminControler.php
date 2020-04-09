@@ -12,10 +12,10 @@ function trylogin($username, $password)
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
         unset($_SESSION['username']['password']);
-        if ($User['firstconnect'] == true){
+        if ($User['firstconnect'] == true) {
             require_once 'view/firstLogin.php';
         } else {
-            $_SESSION['flashmessage'] = 'Bienvenue '.$User['firstname'].' '.$User['lastname'].' !';
+            $_SESSION['flashmessage'] = 'Bienvenue ' . $User['firstname'] . ' ' . $User['lastname'] . ' !';
             require_once 'view/home.php';
         }
     } else {
@@ -71,10 +71,10 @@ function changeUserAdmin($changeUser)
         if ($Users[$i]['id'] == $changeUser) {
             if ($Users[$i]['admin'] == false) {
                 $Users[$i]['admin'] = true;
-                $_SESSION['flashmessage'] = $Users[$i]['initials']." est désormais un administrateur.";
+                $_SESSION['flashmessage'] = $Users[$i]['initials'] . " est désormais un administrateur.";
             } else {
                 $Users[$i]['admin'] = false;
-                $_SESSION['flashmessage'] = $Users[$i]['initials']." est désormais un utilisateur.";
+                $_SESSION['flashmessage'] = $Users[$i]['initials'] . " est désormais un utilisateur.";
             }
         }
     }
@@ -91,6 +91,7 @@ function newBase()
 {
     require_once 'view/Admin/newBase.php';
 }
+
 function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
 {
     $hash = password_hash($initialesUser, PASSWORD_DEFAULT);
@@ -100,7 +101,7 @@ function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
         $Admin = false;
     }
     $Users = getUsers();
-    $id = count($Users) + 1;
+    $id = max(array_keys($Users)) + 1;
     $NewUser = [
         'id' => $id,
         'initials' => $initialesUser,
@@ -120,13 +121,13 @@ function changeFirstPassword($passwordchange, $confirmpassword)
 {
     $Users = getUsers();
     $hash = password_hash($confirmpassword, PASSWORD_DEFAULT);
-    if ($passwordchange != $_SESSION['username']['initials']){
-        if ($confirmpassword != $passwordchange){
+    if ($passwordchange != $_SESSION['username']['initials']) {
+        if ($confirmpassword != $passwordchange) {
             $_SESSION['flashmessage'] = 'Confirmation incorrecte !';
             require_once 'view/firstLogin.php';
         } else {
-            for ($i = 0; $i < count($Users); $i++){
-                if ($Users[$i]['id'] == $_SESSION['username']['id']){
+            for ($i = 0; $i < count($Users); $i++) {
+                if ($Users[$i]['id'] == $_SESSION['username']['id']) {
                     $Users[$i]['password'] = $hash;
                     $Users[$i]['firstconnect'] = false;
                 }
@@ -149,7 +150,7 @@ function modifBase($modifBase)
 function createBase($baseName)
 {
     $bases = getbases();
-    $id = count($bases) + 1;
+    $id = max(array_keys($bases)) + 1;
     $NewBase = [
         'id' => $id,
         'name' => $baseName
@@ -159,4 +160,5 @@ function createBase($baseName)
     $_SESSION['flashmessage'] = "La base a bien été créée.";
     adminBases();
 }
+
 ?>

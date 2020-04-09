@@ -8,7 +8,6 @@
  **/
 
 require_once 'model/todoListModel.php';
-require_once 'model/loginModel.php';
 
 
 function todoListHomePage($base)
