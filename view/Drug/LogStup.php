@@ -1,7 +1,9 @@
 <?php
-// David Roulet - Fabien Masson
-// Projet CSU-NVB A1
-// Drugs Section
+/**
+ * Auteur: David Roulet / Fabien Mason
+ * Date: Aril 2020
+ **/
+
 ob_start();
 $title = "CSU-NVB - Logs";
 //affiche un tableau avec les données dedans
@@ -13,11 +15,11 @@ $title = "CSU-NVB - Logs";
         <td>Action</td>
     </tr>
     <?php foreach ($LogSheets as $log) { ?>
-    <tr>
-        <td><?= $log['timestamp'] ?> </td>
-        <td> <?= $log['author'] ?></td>
-        <td><?= $log['text'] ?></td>
-    </tr>
+        <tr>
+            <td><?= $log['timestamp'] ?> </td>
+            <td> <?= $log['author'] ?></td>
+            <td><?= $log['text'] ?></td>
+        </tr>
     <?php } ?>
 </table>
 <?php

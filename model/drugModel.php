@@ -1,14 +1,13 @@
 <?php
 /**
- * Ce cartouche vaudra quelques points en plus au groupe qui osera le laisser là tel quel ...
- * Auteur: D . Roulet
- * Date: A quoi bon la noté ca change tout les jours
+ * Auteur: David Roulet / Fabien Mason
+ * Date: Aril 2020
  **/
 
+
 /**
- * Retourne tous les items dans un tableau indexé de tableaux associatifs
- * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
- * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
+ *  Retours les sheet en fonction de la semaine et de la base
+ *
  */
 function GetSheetbyWeek($week, $base)
 {
@@ -21,10 +20,13 @@ function GetSheetbyWeek($week, $base)
     }
 }
 
+/**
+ * Retours tout les fichiers des semaines avec les nova qui corresonde et les batch ainsi que les pharma check pour chaqun des batch
+ */
 function getStupSheets()
 {
-    $novasheets = stupsheet_use_nova(); // nova utilisé par sheet
-    $Sutupbatchs = stupsheet_use_batch(); // batch utiilisé par les sheet
+    $novasheets = getstupnova(); // nova utilisé par sheet
+    $Sutupbatchs = getsutpbatch(); // batch utiilisé par les sheet
     $pharmachecks = getpharmachecks(); // donée pharmatice
     $drug = getDrugs();
     $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
@@ -37,18 +39,13 @@ function getStupSheets()
                 $SheetsArray[$stupsheet["id"]]["nova"][] = $nova;
             }
         }
-
-
         foreach ($Sutupbatchs as $Sutupbatch) //met dans $sheetsArray les batchs en fonction de la semaine et de la drogue
         {
             if ($Sutupbatch["stupsheet_id"] == $stupsheet["id"]) {
                 $batch = readbatche($Sutupbatch["batch_id"]);
                 if ($batch["drug_id"] != null) {
-
-
                     $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"]["number2"][] = $batch;
                     $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["Drug_id"] = $batch["drug_id"];
-
                     foreach ($pharmachecks as $pharma) {
                         if ($pharma["batch_id"]==$batch["id"]&&$pharma["stupsheet_id"]==$stupsheet["id"])
                         {
@@ -64,6 +61,9 @@ function getStupSheets()
     return $SheetsArray;
 }
 
+/**
+ * Obient un restock en fonction de la batch et de la nova
+ */
 
 function getRestocksbyBatchandNovas($batch_id,$nova_id)
 {
@@ -91,15 +91,13 @@ function readSheet($id)
 
 /**
  * Sauve l'ensemble des items dans le fichier json
- * ...
+ * et enleve les elements en trop
  */
 function updateSheets($items)
 {
     foreach ($items as $item) {
-        unset($items[$item["id"]]["drugs"]);
+        unset($items[$item["id"]]["Drug"]);
         unset($items[$item["id"]]["nova"]);
-        unset($items[$item["id"]]["batch"]);
-        unset($items[$item["id"]]["batch_id"]);
     }
     file_put_contents("model/dataStorage/stupsheets.json", json_encode($items));
 }
@@ -143,6 +141,9 @@ function createSheet($item)
     return $item;
 }
 
+/**
+ * Retours la liste de tout les items
+ */
 function getBatches()
 {
     $Array = json_decode(file_get_contents("model/dataStorage/batches.json"), true);
@@ -151,19 +152,28 @@ function getBatches()
     }
     return $SheetsArray;
 }
-
+/**
+ * Retourne un item précis, identifié par son id
+ * ...
+ */
 function readbatche($id)
 {
     $SheetsArray = getBatches();
     $Sheet = $SheetsArray[$id];
     return $Sheet;
 }
-
+/**
+ * Sauve l'ensemble des items dans le fichier json
+ * ...
+ */
 function updateBatches($items)
 {
     file_put_contents("model/dataStorage/batches.json", json_encode($items));
 }
 
+/**
+ * met un jours un item precis
+ */
 function updateBatche($item)
 {
     $sheets = getBatches();
@@ -171,6 +181,9 @@ function updateBatche($item)
     updateBatches($sheets);
 }
 
+/**
+ * Crée un item et l ajoute au fichier
+ */
 function createbatch($item)
 {
     $items = getBatches();
@@ -181,6 +194,10 @@ function createbatch($item)
     return $item;
 }
 
+/**
+ *Retours une batches avec son numero
+ *
+ */
 function FindBatchewhitNumber($number)
 {
     $batches = getBatches();
@@ -191,6 +208,9 @@ function FindBatchewhitNumber($number)
     }
 }
 
+/**
+ * Suprime un item en fonction de son id
+ */
 function destroybatch($id)
 {
     $items = getBatches();
@@ -199,7 +219,9 @@ function destroybatch($id)
     updateBatches($items);
 
 }
-
+/**
+ * Retours la liste de tout les items
+ */
 function getnovas()
 {
     $Array = json_decode(file_get_contents("model/dataStorage/novas.json"), true);
@@ -208,7 +230,10 @@ function getnovas()
     }
     return $SheetsArray;
 }
-
+/**
+ * Retourne un item précis, identifié par son id
+ * ...
+ */
 function readnova($id)
 {
     $SheetsArray = getnovas();
@@ -216,13 +241,18 @@ function readnova($id)
     return $Sheet;
 }
 
-
+/**
+ * Sauve l'ensemble des items dans le fichier json
+ * ...
+ */
 function updatenovas($items)
 {
     file_put_contents("model/dataStorage/novas.json", json_encode($items));
 }
 
-
+/**
+ * Met un jours un item précis
+ */
 function updateNova($item)
 {
     $sheets = getnovas();
@@ -230,25 +260,23 @@ function updateNova($item)
     updatenovas($sheets);
 
 }
-
+/**
+ * Crée un item et l ajoute au fichier
+ */
 function createnova($item)
 {
     $items = getnovas();
-    $idliste[] = 0;
-    foreach ($items as $p) {
-        $idliste[] = $p["id"];
-    }
-    foreach ($idliste as $id) {
-        if ($id != $idliste) {
-            $newid = $id;
-        }
-    }
-    $item["id"] = $newid + 1;
+    $newid = max(array_keys($items))+1;
+    $item["id"] = $newid;
     $items[] = $item;
     updatenovas($items);
     return $item;
 }
 
+/**
+ * supprime un item en fonction de son id
+ *
+ */
 function destroyNova($id)
 {
     $items = getnovas();
@@ -256,7 +284,10 @@ function destroyNova($id)
     updatenovas($items);
 
 }
-
+/**
+ * Retours la liste de tout les items
+ * Avec toutes les batches assosier
+ */
 function getDrugs()
 {
     $batches = getBatches();
@@ -279,7 +310,10 @@ function getDrugs()
     return $SheetsArray;
 }
 
-
+/**
+ * Retourne un item précis, identifié par son id
+ * ...
+ */
 function readDrug($id)
 {
     $SheetsArray = getDrugs();
@@ -293,14 +327,19 @@ function readDrug($id)
     return $Sheet;
 }
 
-
+/**
+ * Sauve l'ensemble des items dans le fichier json
+ * ...
+ */
 function updateDrugs($items)
 {
     unset($items["id"]["batches"]);
     file_put_contents("model/dataStorage/Drugs.json", json_encode($items));
 }
 
-
+/**
+ * Met un jours un item precis en fonction de l'id
+ */
 function updateDrug($item)
 {
 
@@ -312,6 +351,9 @@ function updateDrug($item)
     updateDrugs($sheets);
 }
 
+/**
+ * Crée un nouvelle items et l ajoute au fichier
+ */
 function createDrug($item)
 {
     $items = getDrugs();
@@ -322,6 +364,9 @@ function createDrug($item)
     return $item;
 }
 
+/**
+ * supprmier un item précis en fonction de son id
+ */
 function destroyDrug($id)
 {
     $items = getDrugs();
@@ -330,7 +375,10 @@ function destroyDrug($id)
 
 }
 
-function stupsheet_use_batch()
+/**
+ * obients tout la liste des items
+ */
+function getsutpbatch()
 {
     $Array = json_decode(file_get_contents("model/dataStorage/stupsheet_use_batch.json"), true);
     foreach ($Array as $p) {
@@ -338,8 +386,10 @@ function stupsheet_use_batch()
     }
     return $SheetsArray;
 }
-
-function stupsheet_use_nova()
+/**
+ * obients tout la liste des items
+ */
+function getstupnova()
 {
     $Array = json_decode(file_get_contents("model/dataStorage/stupsheet_use_nova.json"), true);
     foreach ($Array as $p) {
@@ -347,6 +397,9 @@ function stupsheet_use_nova()
     }
     return $SheetsArray;
 }
+/**
+ * obients un items precis en fonction de son batch,date,stupsheet_id
+ */
 function getpharmacheckbydateandbybatch($date,$batch,$stupsheet_id){
     $Array = getpharmachecks();
     foreach ($Array as $check) {
@@ -356,6 +409,10 @@ function getpharmacheckbydateandbybatch($date,$batch,$stupsheet_id){
     }
     return false;
 }
+/**
+ * Retourne un item précis, identifié par son id
+ * ...
+ */
 function readpharmacheck($id)
 {
     $SheetsArray = getpharmachecks();
@@ -366,6 +423,10 @@ function readpharmacheck($id)
         return false;
     }
 }
+/**
+ * Crée un enrgistrement d un item precis
+ * ...
+ */
 function createpharmacheck($item)
 {
     $items = getpharmachecks();
@@ -375,10 +436,17 @@ function createpharmacheck($item)
     updatepharmachecks($items);
     return $item;
 }
+/**
+ * Sauve l'ensemble des items dans le fichier json
+ * ...
+ */
 function updatepharmachecks($items)
 {
     file_put_contents("model/dataStorage/pharmachecks.json", json_encode($items));
 }
+/**
+ * Savuase un item precis
+ */
 function updatepharmacheck($item)
 {
 
@@ -392,7 +460,9 @@ function updatepharmacheck($item)
     $sheets[$item["id"]]["stupsheet_id"] = $item["stupsheet_id"];
     updatepharmachecks($sheets);
 }
-
+/**
+ * obients tout la liste des items
+ */
 function getpharmachecks()
 {
     $Array = json_decode(file_get_contents("model/dataStorage/pharmachecks.json"), true);
@@ -401,7 +471,9 @@ function getpharmachecks()
     }
     return $SheetsArray;
 }
-
+/**
+ * obients tout la liste des items
+ */
 function getrestocks()
 {
     $Array = json_decode(file_get_contents("model/dataStorage/restocks.json"), true);
@@ -410,7 +482,9 @@ function getrestocks()
     }
     return $SheetsArray;
 }
-
+/**
+ * obients tout la liste des items en fonction de l'id de la stupsheet
+ */
 function getLogsBySheet($sheetid)
 {
     $Array = json_decode(file_get_contents("model/dataStorage/logs.json"), true);
@@ -426,7 +500,10 @@ function getLogsBySheet($sheetid)
     }
     return $LogSheets;
 }
-
+/**
+ * Retourne un item précis, identifié par son id
+ * ...
+ */
 function readuser($id)
 {
     $SheetsArray = getUsers();
