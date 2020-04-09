@@ -1,7 +1,9 @@
 <?php
-// David Roulet - Fabien Masson
-// Projet CSU-NVB A1
-// Drugs Section
+/**
+ * Auteur: David Roulet / Fabien Mason
+ * Date: Aril 2020
+ **/
+
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
 ?>
@@ -12,12 +14,15 @@ $title = "CSU-NVB - Stupéfiants";
 
 <FORM action="/index.php?action=drugs" method="post">
     <SELECT name="site" size="1">
-<?php
-foreach ($bases as $base){ ?>
-        <OPTION value="<?=$base["id"]?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?> name="site"><?=$base["name"]?>
+        <?php
+        foreach ($bases
 
-<?php }
-?>
+        as $base){ ?>
+        <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
+                name="site"><?= $base["name"] ?>
+
+            <?php }
+            ?>
     </SELECT>
     <button type="submit">Recharger</button>
 </FORM>

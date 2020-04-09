@@ -1,7 +1,9 @@
 <?php
-// David Roulet - Fabien Masson
-// Projet CSU-NVB A1
-// Drugs Section
+/**
+ * Auteur: David Roulet / Fabien Mason
+ * Date: Aril 2020
+ **/
+
 $title = "CSU-NVB - Stupéfiants";
 ob_start();
 ?>
@@ -17,7 +19,7 @@ ob_start();
 
 
 <?php
-foreach ($jours as $jour) { ?>
+foreach ($jours as $jour) { // vas generé tous les jours de semaine ?>
     <table border="1" class="table table-dark">
         <tr>
             <td colspan="6" <?php if (date("Y-m-d", $date) == date("Y-m-d")){ ?>class="today"
@@ -75,21 +77,20 @@ foreach ($jours as $jour) { ?>
 
             <?php foreach ($stupSheet["nova"] as $nova) { ?>
                 <td>
-                <!--resotc-->
+                    <!--resotc-->
 
 
                     <?php
 
-                    $nova_id=$nova["id"];
-                    $batch_id=$batch["id"];
-                    $restock = getRestocksbyBatchandNovas($batch_id,$nova_id);
+                    $nova_id = $nova["id"];
+                    $batch_id = $batch["id"];
+                    $restock = getRestocksbyBatchandNovas($batch_id, $nova_id);
 
 
-                        $week=substr ($restock["timestamp"],0,10);
-                        if($week==(date("Y-m-d", $date)))
-                        {
-                            echo $restock["quantity"];
-                        }
+                    $week = substr($restock["timestamp"], 0, 10);
+                    if ($week == (date("Y-m-d", $date))) {
+                        echo $restock["quantity"];
+                    }
 
 
                     ?>
