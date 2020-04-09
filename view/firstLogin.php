@@ -9,6 +9,9 @@ $title = "CSU-NVB - Premier Login";
 ?>
 
 <div class="row">
+    <h3>Veuillez entrer un nouveau mot de passe</h3>
+</div>
+<div class="row">
     <form class="form form-group" action="index.php?action=changeFirstPassword" method="post">
         <label>Mot de passe</label>
         <input type="password" placeholder="Entrez votre nouveau mot de passe" name="passwordchange" required class="form-group form-control" size="35">

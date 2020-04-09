@@ -22,7 +22,7 @@ function readAdminItems()
  */
 function readAdminItem($id)
 {
-    $items = getAdminItems();
+    $items = readAdminItems();
     // TODO: coder la recherche de l'item demandé
     return $item;
 }
@@ -43,7 +43,7 @@ function updateAdminItems($items)
  */
 function updateAdminItem($item)
 {
-    $items = getAdminItems();
+    $items = readAdminItems();
     // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
     saveAdminItem($items);
 }
@@ -54,7 +54,7 @@ function updateAdminItem($item)
  */
 function destroyAdminItem($id)
 {
-    $items = getAdminItems();
+    $items = readAdminItems();
     // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
     saveAdminItem($items);
 }
@@ -67,7 +67,7 @@ function destroyAdminItem($id)
  */
 function createAdminItem($item)
 {
-    $items = getAdminItems();
+    $items = readAdminItems();
     // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
     saveAdminItem($items);
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
@@ -102,5 +102,10 @@ function getUserByUsername($username)
 function SaveUser($Users)
 {
     file_put_contents("model/dataStorage/Users.json", json_encode($Users));
+}
+
+function SaveBase($bases)
+{
+    file_put_contents("model/dataStorage/bases.json", json_encode($bases));
 }
 ?>

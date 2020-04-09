@@ -129,6 +129,17 @@ switch ($action) {
         $confirmpassword = $_POST['confirmpassword'];
         changeFirstPassword($passwordchange, $confirmpassword);
         break;
+    case 'modifBase' :
+        $modifBase = $_GET['modifbase'];
+        modifBase($modifBase);
+        break;
+    case 'newBase' :
+        newBase();
+        break;
+    case 'createBase' :
+        $baseName = $_POST['baseName'];
+        createBase($baseName);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';

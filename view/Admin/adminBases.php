@@ -15,10 +15,11 @@ $title = "CSU-NVB - Administration - Bases";
     <tbody>
         <?php foreach ($bases as $base) { ?>
         <tr>
-            <td><a href=""><?= $base['name'] ?></a></td>
+            <td><a href="?action=modifBase&modifbase=<?= $base['id'] ?>"><?= $base['name'] ?></a></td>
         </tr><?php } ?>
     </tbody>
 </table>
+<a href="?action=newBase" class="btn btn-primary" >Créer une base</a>
 
 <?php
 $content = ob_get_clean();

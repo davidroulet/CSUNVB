@@ -87,6 +87,10 @@ function newUser()
     require_once 'view/Admin/newUser.php';
 }
 
+function newBase()
+{
+    require_once 'view/Admin/newBase.php';
+}
 function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
 {
     $hash = password_hash($initialesUser, PASSWORD_DEFAULT);
@@ -136,4 +140,23 @@ function changeFirstPassword($passwordchange, $confirmpassword)
     }
 }
 
+function modifBase($modifBase)
+{
+    $base = getbasebyid($modifBase);
+    require_once 'view/Admin/modifyBases.php';
+}
+
+function createBase($baseName)
+{
+    $bases = getbases();
+    $id = count($bases) + 1;
+    $NewBase = [
+        'id' => $id,
+        'name' => $baseName
+    ];
+    $bases[] = $NewBase;
+    SaveBase($bases);
+    $_SESSION['flashmessage'] = "La base a bien été créée.";
+    adminBases();
+}
 ?>
