@@ -8,7 +8,7 @@ echo "1. Test unitaire de la fonction readTodoListItems\n\n";
 
 echo "Test 1ère partie - tester que le nombre d'items lus soit le bon\n\n";
 
-$todoItems = readTodoListItems();
+$todoItems = readTodoSheets();
 
 if (count($todoItems) == 22) {
     echo "-> Test réussie";
@@ -38,7 +38,7 @@ echo "2. Test unitaire de la fonction readTodoListItem (by Id)\n\n";
 
 echo "Test 1ère partie - tester que les bons champs soient retournés\n\n";
 
-$item = readTodoListItem(2);
+$item = readTodoSheet(2);
 
 if ($item['id'] == 2 && $item['week'] == 2009 && $item['state'] == "closed" && $item['base_id'] == 1) {
     echo "-> Test réussi\n\n";
@@ -58,7 +58,7 @@ if ($countItem == 4) {
 
 echo "Test 3ème partie - tester que si on met un autre id, ça ne retourne pas les mêmes champs\n\n";
 
-$item2 = readTodoListItem(3);
+$item2 = readTodoSheet(3);
 
 if ($item2['id'] == 2 && $item2['week'] == 2009 && $item2['state'] == "closed" && $item2['base_id'] == 1) {
     echo "-> Test échoué\n\n";
@@ -68,7 +68,7 @@ if ($item2['id'] == 2 && $item2['week'] == 2009 && $item2['state'] == "closed" &
 
 echo "Test 4ème partie - tester que rien n'est retourné si l'id de l'item n'existe pas\n\n";
 
-$nullItem = readTodoListItem(23);
+$nullItem = readTodoSheet(23);
 
 if ($nullItem != null) {
     echo "-> test échoué\n\n\n\n";
@@ -82,7 +82,7 @@ echo "3. Test unitaire de la fonction readTodoListItems (By base)\n\n";
 echo "test 1 et 2ème partie - Vérifier que les items cherchés ont bien la bonne base et qu'il y a un juste nombre d'items\n\n";
 
 
-$items = readTodoItemsForBase(5);
+$items = readTodoSheetsForBase(5);
 
 $count = 0;
 
@@ -104,13 +104,13 @@ echo "4. Test unitaire de la fonction createTodoListItem\n\n";
 echo "Test 1ère partie - tester que les bons champs ont été crées\n\n";
 
 $item = ["week" => 3, "state" => 3, "base_id" => 5];
-$items = readTodoListItems();
+$items = readTodoSheets();
 $countItems = count($items);
 
-$idgiven = createTodoListItem($item);
+$idgiven = createTodoSheet($item);
 
 if ($idgiven != null) {
-    $readback = readTodoListItem($idgiven);
+    $readback = readTodoSheet($idgiven);
     $item['id'] = $idgiven;
     if (empty(array_diff($readback, $item)) == true) {
         echo "-> test réussi";
@@ -123,7 +123,7 @@ if ($idgiven != null) {
 
 echo "\n\nTest 2ème partie - tester que qu'un item a été bien ajouté au nombre d'items précédent\n\n";
 
-$itemsAfter = readTodoListItems();
+$itemsAfter = readTodoSheets();
 
 if (count($itemsAfter) == ($countItems + 1)) {
     echo "-> test réussi\n\n\n\n";
@@ -133,9 +133,9 @@ if (count($itemsAfter) == ($countItems + 1)) {
 
 echo "5.Test unitaire de la fonction saveTodoListItems\n\n";
 
-$item = readTodoListItem(23);
+$item = readTodoSheet(23);
 
-$items = readTodoListItems();
+$items = readTodoSheets();
 $items[23]['week'] = 2;
 
 
@@ -147,9 +147,9 @@ if ($item['id'] == 23 && $item['week'] == 2 && $item['state'] == 3 && $item['bas
     echo "-> Test réussi\n\n";
 }
 
-saveTodoListItems($items);
+saveTodoSheets($items);
 
-$item = readTodoListItem(23);
+$item = readTodoSheet(23);
 
 
 echo "Test 2ème partie tester que l'item à l'id 23 a bien été update\n\n";
@@ -162,7 +162,7 @@ if ($item['id'] == 23 && $item['week'] == 2 && $item['state'] == 3 && $item['bas
 
 echo "Test 3ème et 4ème partie - tester que le bon nombre de champ a été enregistré et que chaque enregistrement a 4 champs\n\n";
 
-$items = readTodoListItems();
+$items = readTodoSheets();
 
 $s = 0;
 
@@ -183,7 +183,7 @@ echo "6. Test unitaire de la fonction updateTodoListItem\n\n";
 
 echo "Test 1ère partie - avant l'update il ne doit pas y avoir les mêmes champs qu'après l'update\n\n";
 
-$firstItemReaded = readTodoListItem(23);
+$firstItemReaded = readTodoSheet(23);
 
 if ($firstItemReaded['id'] == 23 && $firstItemReaded['week'] == 2 && $firstItemReaded['state'] == "open" && $firstItemReaded['base_id'] == 5) {
     echo "-> Test échoué";
@@ -193,17 +193,17 @@ if ($firstItemReaded['id'] == 23 && $firstItemReaded['week'] == 2 && $firstItemR
 
 echo "\n\nTest 2ème partie - la modification existe belle et bien\n\n";
 
-$item = readTodoListItem(23);
+$item = readTodoSheet(23);
 $item['state'] = "open";
 
 
-$itemsBeforeUpdate = readTodoListItems();
+$itemsBeforeUpdate = readTodoSheets();
 
-updateTodoListItem($item);
+updateTodoSheet($item);
 
-$itemsAfterUpdate = readTodoListItems();
+$itemsAfterUpdate = readTodoSheets();
 
-$itemReaded = readTodoListItem(23);
+$itemReaded = readTodoSheet(23);
 
 if ($itemReaded['id'] == 23 && $itemReaded['week'] == 2 && $itemReaded['state'] == "open" && $itemReaded['base_id'] == 5) {
     echo "-> Test réussi";
@@ -236,12 +236,12 @@ echo "7. Test unitaire de la fonction destroyTodoListItem\n\n";
 
 echo "Test 1ère partie - test qu'il y a le bon nombre d'item une fois l'item supprimé\n\n";
 
-$items = readTodoListItems();
+$items = readTodoSheets();
 $countItems = count($items);
 
-destroyTodoListItem(23);
+destroyTodoSheet(23);
 
-$itemsAfter = readTodoListItems();
+$itemsAfter = readTodoSheets();
 
 
 if (count($itemsAfter) == ($countItems - 1)) {
@@ -252,7 +252,7 @@ if (count($itemsAfter) == ($countItems - 1)) {
 
 echo "\n\nTest 2ème partie - test que l'item sous l'id normalement supprimé n'existe plus\n\n";
 
-$item = readTodoListItem(23);
+$item = readTodoSheet(23);
 
 if ($item == null) {
     echo "-> test réussi";
