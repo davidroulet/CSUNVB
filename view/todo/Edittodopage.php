@@ -10,8 +10,6 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
 $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
-$things = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
-
 ?>
 
 

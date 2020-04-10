@@ -7,7 +7,9 @@
 ob_start();
 $title = "CSU-NVB - Administration - Secouristes";
 ?>
-
+<div>
+    <a href="?action=newUser" class="btn btn-success">Créer un utilisateur</a>
+</div>
 <table class="table table-bordered" style="text-align: center">
     <thead>
     <th>Prénom</th>
@@ -16,16 +18,18 @@ $title = "CSU-NVB - Administration - Secouristes";
     <th>Admin</th>
     </thead>
     <tbody>
-    <?php foreach ($users as $user){ ?>
-    <tr>
+    <?php foreach ($users as $user) { ?>
+        <tr>
         <td><?= $user['firstname'] ?></td>
         <td><?= $user['lastname'] ?></td>
         <td><?= $user['initials'] ?></td>
-        <td><?php if ($user['admin'] == 1){?>
-            <a href="#" class="btn btn-primary">Oui</a><?php } else {?>
-            <a href="#" class="btn btn-primary">Non</a><?php } ?>
+        <td><?php if ($user['id'] != $_SESSION['username']['id']) {
+                if ($user['admin'] == 1) { ?>
+                <a href="?action=changeUserAdmin&idUser=<?= $user['id'] ?>" class="btn btn-primary">Changer en utilisateur</a><?php } else { ?>
+                <a href="?action=changeUserAdmin&idUser=<?= $user['id'] ?>" class="btn btn-primary">Changer en administrateur</a><?php } } else { ?>
+                <p>Vous ne pouvez pas changer votre propre état</p><?php } ?>
         </td>
-    </tr><?php } ?>
+        </tr><?php } ?>
     </tbody>
 </table>
 

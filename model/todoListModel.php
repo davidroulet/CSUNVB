@@ -123,13 +123,13 @@ function readTodoItemsForBase($base_id)
 
 function readTodoListThings()
 {
-    $items = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
+    $things = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
 
-    foreach ($items as $item) {
-        $items[$item['id']] = $item;
+    foreach ($things as $thing) {
+        $things[$thing['id']] = $thing;
     }
 
-    return $items;
+    return $things;
 }
 
 /**
@@ -205,22 +205,6 @@ function createTodoListThing($item)
     return ($nextId);
 }
 
-
-function getTodoThingsForDay($day)
-{
-    // TODO return the todothings for a specific day (0=monday, ....)
-
-
-    $items = readTodoListThings();
-    foreach ($items as $item) {
-        if(($day == 1) && ($item['daything'] == 1)){
-            $itemsByDay[] = $item;
-        } else if(($day == 0) && ($item['daything'] == 0)){
-            $itemsByDay[] = $item;
-        }
-    }
-    return $itemsByDay;
-}
 
 
 ?>
