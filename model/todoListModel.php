@@ -205,5 +205,22 @@ function createTodoListThing($item)
     return ($nextId);
 }
 
+function getTodoThingsForDay($day, $dayOfWeek)
+{
+    // TODO return the todothings for a specific day (0=monday, ....)
 
+    $items = readTodoListThings();
+    foreach ($items as $item) {
+        if(($day == 1) && ($item['daything'] == 1)){
+            if($item['days'][$dayOfWeek] == true){
+                $itemsByDay[] = $item;
+            }
+        } else if(($day == 0) && ($item['daything'] == 0)){
+            if($item['days'][$dayOfWeek] == true){
+                $itemsByDay[] = $item;
+            }
+        }
+    }
+    return $itemsByDay;
+}
 
