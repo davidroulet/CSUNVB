@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE HTML>
+<?php require_once "helpers.php"?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -43,9 +44,9 @@
     <header>
         <div class="row banner">
             <img class="col-2" src="/assets/images/logo.png">
-            <a href="index.php" class="col-10 text-center mt-5 text-decoration-none"><h1>CSU-NVB Groupe A1</h1></a>
-            <?php if (isset($_SESSION['username'])) { ?>
-                <a href="?action=disconnect" class="btn btn-primary m-1 pull-right">Logout</a><p>Connecté en tant que : <strong><?=$_SESSION['username'][2]?></strong> à <strong><?=getbasebyid($_SESSION["site"])["name"]?></strong></p>
+            <a href="index.php?action=<?php if ($_SESSION['username']['firstconnect'] == true){echo "login";}else{echo "home";}?>" class="col-10 text-center mt-5 text-decoration-none"><h1>CSU-NVB Groupe A1</h1></a>
+            <?php if (isset($_SESSION['username']) && $_SESSION['username']['firstconnect'] != true) { ?>
+                <a href="?action=disconnect" class="btn btn-primary m-1 pull-right">Logout</a><p>Connecté en tant que : <strong><?=$_SESSION['username']['initials']?></strong> à <strong><?=getbasebyid($_SESSION["site"])["name"]?></strong></p>
             <?php } else { ?>
                 <a href="?action=login" class="btn btn-primary m-1 pull-right">Login</a>
             <?php } ?>
@@ -54,6 +55,7 @@
 </div>
 
     <div class="container">
+        <?= getFlashMessage(); ?>
         <?= $content; ?>
     </div>
 

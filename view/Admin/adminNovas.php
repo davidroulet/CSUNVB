@@ -15,7 +15,7 @@ $title = "CSU-NVB - Administration - Ambulances";
     <tbody>
         <?php foreach ($novas as $nova) { ?>
         <tr>
-            <td><a href="#">Nova n°<?= $nova['number']?></a></td>
+            <td><a href="">Nova n°<?= $nova['number']?></a></td>
         </tr><?php } ?>
     </tbody>
 </table>

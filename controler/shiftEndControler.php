@@ -5,7 +5,6 @@
  **/
 
 require_once 'model/shiftEndModel.php';
-require_once 'model/loginModel.php';
 require_once 'model/adminModel.php';
 
 function shiftEndHomePage()
