@@ -49,8 +49,6 @@ $title = "CSU-NVB - Remise de garde";
         <?php } ?>
     </div>
 
-                    <span id="span_Dim_Fiche_Stups_Val_Ok" class="glyphicon hidden">O</span>
-                    <span id="span_Dim_Fiche_Stups_Val_NO" class="glyphicon glyphicon-ok visible">X</span>
 
 </div>
 </body>
