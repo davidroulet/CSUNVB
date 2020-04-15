@@ -18,9 +18,8 @@ $title = "CSU-NVB - Remise de garde";
     <div class="row">
         <h1>Remises de garde</h1>
     </div>
-
     <div class="container-fluid row">
-        <h4><?= $Titles[0]['title'] ?></h4>
+        <h4><?php for($Title = 0; $Title < $Titles[1]['id']; $Title++) {?></h4>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -32,7 +31,7 @@ $title = "CSU-NVB - Remise de garde";
             </tr>
             </thead>
             <tbody>
-            <?php for($line = 0; $line < 5; $line++) { ?>
+            <?php for($line = 0; $line < $TitlesLines[1]['id']; $line++) { ?>
             <tr>
                 <td>
                     <div><?= $CentralLines[$line]['text'] ?></div>
@@ -47,6 +46,7 @@ $title = "CSU-NVB - Remise de garde";
             <?php } ?>
             </tbody>
         </table>
+        <?php } ?>
     </div>
     <br><br>
     <div class="container-fluid row">

@@ -81,6 +81,11 @@ function getGuardLines()
     return json_decode(file_get_contents("model/dataStorage/guardlines.json"), true);
 }
 
+function getGuardComments()
+{
+    return json_decode(file_get_contents("model/dataStorage/guardcontents.json"), true);
+}
+
 function getGuardLinesForSection($section)
 {
     // TODO return le lines for one section only
