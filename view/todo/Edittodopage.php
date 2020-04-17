@@ -18,7 +18,7 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 
     <div class="day col-md">
 
-        <?php  foreach ($dayThingsForMonday[1][0] as $thing) { ?>
+        <?php  foreach ($dayThingsForMonday as $thing) { ?>
             <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
         <?php }?>
     </div>
