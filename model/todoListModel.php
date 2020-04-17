@@ -123,7 +123,7 @@ function readTodoSheetsForBase($base_id)
 
 function readTodoThings()
 {
-    $things = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
+    $things = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
 
     foreach ($things as $thing) {
         $things[$thing['id']] = $thing;
@@ -210,6 +210,7 @@ function readTodoThingsForDay($day, $dayOfWeek)
     // TODO return the todothings for a specific day (0=monday, ....)
 
     $items = readTodoThings();
+
     foreach ($items as $item) {
         if(($day == 1) && ($item['daything'] == 1)){
             if($item['days'][$dayOfWeek] == true){

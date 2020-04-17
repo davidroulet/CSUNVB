@@ -11,7 +11,7 @@
     }
 }
 .week {
-    background-color: lightcyan;
+    background-color: snow;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -37,9 +37,9 @@
 .dayheader {
     background-color: lightskyblue;
     text-align: center;
-    font-size: large;
+    font-size: x-large;
     font-weight: bold;
-    padding: 3px;
+    padding: 4px;
 }
 
 .horizontal{

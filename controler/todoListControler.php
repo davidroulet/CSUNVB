@@ -8,11 +8,14 @@
  **/
 
 require_once 'model/todoListModel.php';
+require_once 'model/adminModel.php';
+
 
 
 function todoListHomePage($base)
 {
     $TodoListItemsread = readTodoSheets();
+
     $selectedBase = $base;
     require_once 'view/todo/todoListHome.php';
 }
@@ -34,6 +37,7 @@ function edittodopage()
     $dayThingsForFriday = readTodoThingsForDay(1, 4);
     $dayThingsForSaturday = readTodoThingsForDay(1, 5);
     $dayThingsForSunday = readTodoThingsForDay(1, 6);
+    //for  night
     $nightThingsForMonday = readTodoThingsForDay(0, 0);
     $nightThingsForTuesday = readTodoThingsForDay(0, 1);
     $nightThingsForWednesday = readTodoThingsForDay(0, 2);
@@ -41,6 +45,8 @@ function edittodopage()
     $nightThingsForFriday = readTodoThingsForDay(0, 4);
     $nightThingsForSaturday = readTodoThingsForDay(0, 5);
     $nightThingsForSunday = readTodoThingsForDay(0, 6);
+
+    $thingsFor[$i][$j] = readTodoThingsForDay($i, $j);
     require_once 'view/todo/Edittodopage.php';
 
 }
