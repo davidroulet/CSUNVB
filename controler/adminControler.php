@@ -6,12 +6,13 @@
 
 require_once 'model/adminModel.php';
 
-function trylogin($username, $password)
+function trylogin($username, $password, $baselogin)
 {
     $User = getUserByUsername($username);
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
         unset($_SESSION['username']['password']);
+    $_SESSION['username']['base'] = getbasebyid($baselogin);
         if ($User['firstconnect'] == true) {
             require_once 'view/firstLogin.php';
         } else {

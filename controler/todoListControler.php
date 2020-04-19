@@ -12,22 +12,19 @@ require_once 'model/adminModel.php';
 
 
 
-function todoListHomePage($base)
+function todoListHomePage($selectedBase)
 {
+
     $TodoListItemsread = readTodoSheets();
+    $todoSheets=readTodoSheetsForBase($selectedBase);
+    $bases= getbases();
+$basedefault = $_SESSION['username']["base"]['id'];
 
-    $selectedBase = $base;
+
+
     require_once 'view/todo/todoListHome.php';
 }
 
-function todothingsEditepage()
-{
-   $todothingsread= readTodoThings();
-    require_once 'view/todo/todoListHome.php';
-}
-
-
-//
 function edittodopage()
 {
     $dayThingsForMonday = readTodoThingsForDay(1, 0);

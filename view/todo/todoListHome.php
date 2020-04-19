@@ -7,13 +7,15 @@
  **/
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
-$firstWeek =
-$currentWeekNumber = date('W');
-$year = date('y');
+
+
 // TODO remplacer cette function par celle du model
-$todoSheets = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
+//$todoSheets = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
 // TODO remplacer cette function par celle du model
-$bases = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
+//$bases = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
+
+
+
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
 
@@ -44,7 +46,7 @@ $bases = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
 
         foreach ($todoSheets as $todosheet) {
 
-            if ($selectedBase == $todosheet['base_id']) { ?>
+            ?>
                 <div class="day col-lg">
                     <a href="?action=edittod&id=<?= $todosheet['id'] ?>" class="over">
                     <div class="hour">Semaine N° : <?= $todosheet['week'] ?> <br> <?=$todosheet['state'] ?></div>
@@ -52,7 +54,7 @@ $bases = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
                     </a>
 
                 </div>
-            <?php }
+            <?php
         } ?>
 
     </div>
