@@ -12,7 +12,16 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
+<div class="week">
 
+
+        <?php
+        foreach ($datesoftheweek as $index => $onedate){
+            echo "<div class='day col-md'>{$days[$index-1]}<br>".date("Y-m-d", $onedate)." </div>";
+        }
+        ?>
+
+</div>
 
 <div class="week">
 

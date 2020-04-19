@@ -48,7 +48,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
             ?>
                 <div class="day col-lg">
-                    <a href="?action=edittod&id=<?= $todosheet['id'] ?>" class="over">
+                    <a href="?action=edittod&sheetid=<?= $todosheet['id'] ?>" class="over">
                     <div class="hour">Semaine N° : <?= $todosheet['week'] ?> <br> <?=$todosheet['state'] ?></div>
 
                     </a>

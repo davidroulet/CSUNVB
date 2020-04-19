@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION);
+
 // Include all controllers
 require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
@@ -81,8 +81,8 @@ switch ($action) {
         todoListHomePage($selectedBase);
         break;
     case 'edittod':
-        edittodopage();
-
+        $sheetid = $_GET['sheetid'];
+        edittodopage($sheetid);
         break;
 
 
