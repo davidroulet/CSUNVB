@@ -11,8 +11,8 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
 ?>
-<h1 class="center p-4"><?= $title ?></h1>
-<div class="week text-center">
+<h1 class="center p-4 font-weight-bold"><?= $title ?></h1>
+<div class="week text-center hour">
 
 
         <?php
@@ -22,8 +22,10 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
         ?>
 
 </div>
-
-<div class="week border border-dark">
+<div class="week text-center hour">
+    <div class="day col-md font-weight-bold h4 bg-info text-white"> Journée </div>
+</div>
+<div class="week hour">
 
 
     <div class="day col-md">
@@ -65,8 +67,10 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
         <?php }?>
     </div>
 </div>
-
-<div class="week border border-dark">
+<div class="week text-center hour">
+    <div class="day col-md font-weight-bold h4 bg-dark text-white"> Nuit </div>
+</div>
+<div class="week hour">
     <div class="day col-md">
 
         <?php  foreach ($nightThingsForSunday as $thing) { ?>
