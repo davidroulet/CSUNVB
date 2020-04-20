@@ -324,13 +324,31 @@
     "daything": 0,
     "description": "de jour",
     "display_order": null,
-    "id": 21
+    "id": 21,
+    "days": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   {
     "type": 0,
     "daything": 0,
     "description": "de nuit",
     "display_order": null,
-    "id": 22
+    "id": 22,
+    "days": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 ]
