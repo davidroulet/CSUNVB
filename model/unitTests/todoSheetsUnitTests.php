@@ -11,7 +11,7 @@ echo "Test 1ère partie - tester que le nombre d'items lus soit le bon\n\n";
 $todoItems = readTodoSheets();
 
 if (count($todoItems) == 22) {
-    echo "-> Test réussie";
+    echo "-> Test réussi";
 } else {
     echo "-> Test échoué";
 }
@@ -172,7 +172,7 @@ foreach ($items as $Item) {
     }
 }
 
-if (23 == $s) {
+if (count($items) == $s) {
     echo "-> Test réussi\n\n\n\n";
 } else {
     echo "-> Test échoué\n\n\n\n";
