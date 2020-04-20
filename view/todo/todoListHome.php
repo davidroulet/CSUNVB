@@ -8,14 +8,6 @@
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 
-
-// TODO remplacer cette function par celle du model
-//$todoSheets = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
-// TODO remplacer cette function par celle du model
-//$bases = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
-
-
-
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
 

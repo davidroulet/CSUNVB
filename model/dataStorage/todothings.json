@@ -114,7 +114,7 @@
   {
     "id": 8,
     "type": 0,
-    "daything": 0,
+    "daything":1,
     "description": "Commande O2",
     "display_order": null,
     "days": [
@@ -290,7 +290,7 @@
   {
     "id": 19,
     "type": 0,
-    "daything": 0,
+    "daything": 1,
     "description": "T\u00e2ches sp\u00e9cifique nuit",
     "display_order": null,
     "days": [

@@ -12,18 +12,26 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
-<div class="week">
+<div class="week text-center">
 
 
         <?php
         foreach ($datesoftheweek as $index => $onedate){
-            echo "<div class='day col-md'>{$days[$index-1]}<br>".date("Y-m-d", $onedate)." </div>";
+            echo "<div class='bg-primary text-white day hour col-md h4 font-weight-bold'>{$days[$index-1]}<br>".date("Y-m-d", $onedate)." </div>";
         }
         ?>
 
 </div>
 
-<div class="week">
+<div class="week border border-dark">
+
+
+    <div class="day col-md">
+
+        <?php  foreach ($dayThingsForSunday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
 
     <div class="day col-md">
 
@@ -57,38 +65,49 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
         <?php }?>
     </div>
 </div>
+
+<div class="week border border-dark">
+    <div class="day col-md">
+
+        <?php  foreach ($nightThingsForSunday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+
+    <div class="day col-sm">
+
+        <?php  foreach ($nightThingsForMonday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+    <div class="day col-md">
+        <?php  foreach ($nightThingsForTuesday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+    <div class="day col-md">
+        <?php  foreach ($nightThingsForWednesday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+    <div class="day col-md">
+        <?php  foreach ($nightThingsForThursday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+    <div class="day col-md">
+        <?php  foreach ($nightThingsForFriday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+    <div class="day col-md">
+        <?php  foreach ($nightThingsForSaturday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+</div>
+
 <?php
 $content = ob_get_clean();
 require "view/gabarit.php";
 ?>
-
-<!--
-
-
- <div class="week">
-    <div class="day col-lg">
-        <div class="nuitcolor hour">NUIT</div>
-    </div>
-    <div class="week">
-/**
-
-
- <?php
-
-/**
- * for ($i = 0; $i < count($days); $i++) {
- * echo "<div class=\"day col-sm\">";
- * echo "<a href=\"\" class=\"over\"> <div class=\"hour\">Contrôle stupéfiants Ambulances * Morphine X4 * Sintenyl X6 </div></a>";
- * echo "<div class=\"hour\"> <input type=\"text\" class=\"form-control\" placeholder=\" Nova N°....................\"> </div>";
- * echo "<a href=\"\" class=\"over\"><div class=\"hour\"> Tâches spécifique</div></a>";
- * echo "<a href=\"\" class=\"over\"><div class=\"hour\"> Remise locaux Transmission</div></a>";
- * echo "</div>";
- * }
- *
- * **/
-?>
-
-    </div>
-</div>
-
- -->
