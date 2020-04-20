@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // Include all controllers
 require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
@@ -10,6 +11,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $_SESSION["Selectsite"] = $_POST['base'];
+    $baselogin = $_POST['base'];
     $_SESSION['site'] = $_POST['base'];
 }
 if (isset($_POST["LogStup"])) {
@@ -70,15 +72,19 @@ switch ($action) {
         login();
         break;
     case 'todolist':
-        $selectedBase = $_SESSION['Selectsite'];
+
         if (isset($_POST['selectBase'])) {
             $selectedBase = $_POST['selectBase'];
+        }else{
+            $selectedBase = $_SESSION['username']['base']['id'];
         }
         todoListHomePage($selectedBase);
         break;
     case 'edittod':
-        edittodopage();
+        $sheetid = $_GET['sheetid'];
+        edittodopage($sheetid);
         break;
+
 
     case 'drugs':
         drugHomePage();
@@ -87,7 +93,7 @@ switch ($action) {
         drugSiteTable($semaine);
         break;
     case "trylogin":
-        trylogin($username, $password);
+        trylogin($username, $password, $baselogin);
         break;
     case 'LogStup':
         LogStup($Stupheet);
