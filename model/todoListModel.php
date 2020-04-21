@@ -125,10 +125,10 @@ function readTodoThings()
     $things = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
 
     foreach ($things as $thing) {
-        $things[$thing['id']] = $thing;
+        $newThings[$thing['id']] = $thing;
     }
 
-    return $things;
+    return $newThings;
 }
 
 /**

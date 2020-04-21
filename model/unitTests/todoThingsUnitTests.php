@@ -11,8 +11,9 @@ echo "Test 1ère partie - tester que le nombre d'items lus soit le bon\n\n";
 
 $todoItems = readTodoThings();
 
+
 if (count($todoItems) == 22) {
-    echo "-> Test réussie";
+    echo "-> Test réussi";
 } else {
     echo "-> Test échoué";
 }
@@ -20,7 +21,7 @@ if (count($todoItems) == 22) {
 $i = 0;
 $j = 0;
 
-echo "\n\nTest 2ème partie - tester que tous les items aient bien 4 champs\n\n";
+echo "\n\nTest 2ème partie - tester que tous les items aient bien 6 champs\n\n";
 
 foreach ($todoItems as $todoItem) {
     if (count($todoItem) == 6) {
@@ -43,7 +44,7 @@ $item = readTodoThing(2);
 
 $daysArray = [false, false, false, false, true, false, false];
 
-if ($item['id'] == 2 && $item['type'] == 0 && $item['daything'] == 1 && $item['description'] == "Rangement mat" && $item['description'] == "display_order" && $item['days'] == $daysArray) {
+if ($item['id'] == 2 && $item['type'] == 0 && $item['daything'] == 1 && $item['description'] == "Rangement mat" && $item['display_order'] == null && $item['days'] == $daysArray) {
     echo "-> Test réussi\n\n";
 } else {
     echo "-> Test échoué\n\n";
@@ -140,19 +141,25 @@ if ($item['id'] == 23 && $item['week'] == 2 && $item['state'] == 3 && $item['bas
     echo "-> Test échoué\n\n";
 }
 
-echo "Test 3ème et 4ème partie - tester que le bon nombre de champ a été enregistré et que chaque enregistrement a 4 champs\n\n";
+echo "Test 3ème et 4ème partie - tester que le bon nombre de champ a été enregistré et que chaque enregistrement a 6 champs sauf le dernier qui a 4 champs\n\n";
 
 $items = readTodoThings();
 
 $s = 0;
 
+
 foreach ($items as $Item) {
-    if (count($Item) == 4) {
+    if (count($Item) == 6) {
         $s += 1;
     }
+
 }
 
-if (23 == $s) {
+if(count((array)$items[23]) == 4){
+    $s += 1;
+}
+
+if (count($items) == $s) {
     echo "-> Test réussi\n\n\n\n";
 } else {
     echo "-> Test échoué\n\n\n\n";
@@ -163,7 +170,7 @@ echo "5. Test unitaire de la fonction updateThings\n\n";
 
 echo "Test 1ère partie - avant l'update il ne doit pas y avoir les mêmes champs qu'après l'update\n\n";
 
-$firstItemReaded = readTodoThings(23);
+$firstItemReaded = readTodoThing(23);
 
 if ($firstItemReaded['id'] == 23 && $firstItemReaded['week'] == 2 && $firstItemReaded['state'] == "open" && $firstItemReaded['base_id'] == 5) {
     echo "-> Test échoué";
@@ -179,7 +186,7 @@ $item['state'] = "open";
 
 $itemsBeforeUpdate = readTodoThings();
 
-updateTodoSheetThing($item);
+updateTodoThing($item);
 
 $itemsAfterUpdate = readTodoThings();
 
@@ -219,7 +226,7 @@ echo "Test 1ère partie - test qu'il y a le bon nombre d'item une fois l'item su
 $items = readTodoThings();
 $countItems = count($items);
 
-destroyTodoSheet(23);
+destroyTodoThing(23);
 
 $itemsAfter = readTodoThings();
 
