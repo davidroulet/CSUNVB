@@ -30,13 +30,6 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 
     <div class="day col-md">
 
-        <?php  foreach ($dayThingsForSunday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
-        <?php }?>
-    </div>
-
-    <div class="day col-md">
-
         <?php  foreach ($dayThingsForMonday as $thing) { ?>
             <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
         <?php }?>
@@ -66,6 +59,13 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
             <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
         <?php }?>
     </div>
+    <div class="day col-md">
+
+        <?php  foreach ($dayThingsForSunday as $thing) { ?>
+            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over"><div class="hour"><?= $thing['description'] ?></div> </a>
+        <?php }?>
+    </div>
+
 </div>
 <div class="week text-center hour">
     <div class="day col-md font-weight-bold h4 bg-dark text-white"> Nuit </div>
