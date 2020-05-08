@@ -2,8 +2,8 @@
 /**
  * Title: CSUNVB
  * USER: marwan.alhelo
- * DATE: 13.02.2020
- * Time: 11:29
+ * Reedition: David Roulet
+ * DATE: 05.2020
  **/
 
 /**
@@ -13,46 +13,69 @@
  */
 
 /** ------------------TODOSHEETS---------------------- */
-
-
+function getPDO()
+{
+    require ".const.php";
+    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
+    return $dbh;
+}
+function readDatas($Table)
+{
+    try {
+        $dbh = getPDO();
+        $query = "SELECT * FROM csu.'$Table'";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
+function destroyData($Table,$id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "DELETE FROM csu.'$Table' WHERE id='$id'";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $dbh = null;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return false;
+    }
+}
 function readTodoSheets()
 {
-    $items = json_decode(file_get_contents("model/dataStorage/todosheets.json"), true);
-
-    foreach ($items as $item) {
-        $items[$item['id']] = $item;
-    }
-
-    return $items;
+    $data=readDatas("todosheets");
+        return $data;
 }
-
 /**
  * Retourne un item précis, identifié par son id
  * ...
  */
-function readTodoSheet($id)
+function readDatawhitid($Table,$id)
 {
-    $items = readTodoSheets();
-
-    // TODO: coder la recherche de l'item demandé
-    $item = $items[$id];
-    if(isset($item)) {
-        return $item;
-    } else {
+    try {
+        $dbh = getPDO();
+        $query = "SELECT * FROM csu.'$Table' where '$Table'.id'$id'";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
         return null;
     }
-
 }
-
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
-function saveTodoSheets($items)
+function readTodoSheet($id)
 {
-    file_put_contents("model/dataStorage/todosheets.json", json_encode($items));
+    $data=readDatawhitid("todosheets",$id);
+    return $data;
 }
-
 /**
  * Modifie un item précis
  * Le paramètre $item est un item complet (donc un tableau associatif)
@@ -60,14 +83,23 @@ function saveTodoSheets($items)
  */
 function updateTodoSheet($item)
 {
-
-    $itemLists = readTodoSheets();
-    // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
-
-
-    $itemLists[$item['id']] = $item;
-    saveTodoSheets($itemLists);
+    try {
+        $dbh = getPDO();
+        $query = "UPDATE todosheets SET
+                    base_id=:base_id,
+             state=:state,
+                    week=:week,
+                    WHERE id =:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($item);//execute query
+        $dbh = null;
+        return true;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return false;
+    }
 }
+
 
 /**
  * Détruit un item précis, identifié par son id
@@ -75,11 +107,10 @@ function updateTodoSheet($item)
  */
 function destroyTodoSheet($id)
 {
-    $items = readTodoSheets();
-    // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    unset($items[$id]);
-    saveTodoSheets($items);
+    $data=destroyData("todosheets",$id);
+    return $data;
 }
+
 
 /**
  * Ajoute un nouvel item
@@ -89,26 +120,32 @@ function destroyTodoSheet($id)
  */
 function createTodoSheet($item)
 {
-
-    $items = readTodoSheets();
-    // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
-    $nextId = max(array_keys($items)) + 1;
-    $item['id'] = $nextId;
-    $items[] = $item;
-    saveTodoSheets($items);
-    return ($nextId);
-}
-
-function readTodoSheetsForBase($base_id)
-{
-    // TODO return todosheets for the given base
-    $items = readTodoSheets();
-    foreach ($items as $item) {
-        if ($item['base_id'] == $base_id)
-            $itemsByBase[] = $item;
+    try {
+        $dbh = getPDO();
+        $query = "INSERT INTO users (base_id,state,week)
+VALUES (:base_id,:state,:week)";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($item);//execute query
+        $dbh = null;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return false;
     }
-
-    return $itemsByBase;
+}
+    function readTodoSheetsForBase($base_id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "SELECT * FROM csu.todosheets WHERE todosheets.base_id='$base_id'";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
 }
 
 
@@ -122,13 +159,8 @@ function readTodoSheetsForBase($base_id)
 
 function readTodoThings()
 {
-    $things = json_decode(file_get_contents("model/dataStorage/todothings.json"), true);
-
-    foreach ($things as $thing) {
-        $newThings[$thing['id']] = $thing;
-    }
-
-    return $newThings;
+        $data=readDatas("todothings");
+return $data;
 }
 
 /**
@@ -137,27 +169,9 @@ function readTodoThings()
  */
 function readTodoThing($id)
 {
-    $items = readTodoThings();
-
-    // TODO: coder la recherche de l'item demandé
-    $item = $items[$id];
-    if(isset($item)) {
-        return $item;
-    } else {
-        return null;
-    }
-
+    $data=readDatawhitid("todothings",$id);
+    return $data;
 }
-
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
-function saveTodoThings($items)
-{
-    file_put_contents("model/dataStorage/todothings.json", json_encode($items));
-}
-
 /**
  * Modifie un item précis
  * Le paramètre $item est un item complet (donc un tableau associatif)
@@ -165,13 +179,22 @@ function saveTodoThings($items)
  */
 function updateTodoThing($item)
 {
-
-    $itemLists = readTodoThings();
-    // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
-
-
-    $itemLists[$item['id']] = $item;
-    saveTodoThings($itemLists);
+    try {
+        $dbh = getPDO();
+        $query = "UPDATE todothings SET
+                    daything=:daything,
+             description=:description,
+                    type=:type,
+                    display_order=:display_order
+                    WHERE id =:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($item);//execute query
+        $dbh = null;
+        return true;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return false;
+    }
 }
 
 /**
@@ -180,12 +203,9 @@ function updateTodoThing($item)
  */
 function destroyTodoThing($id)
 {
-    $items = readTodoThings();
-    // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    unset($items[$id]);
-    saveTodoThings($items);
+        $data=destroyData("todothings",$id);
+        return $data;
 }
-
 /**
  * Ajoute un nouvel item
  * Le paramètre $item est un item complet (donc un tableau associatif), sauf que la valeur de son id n'est pas valable
@@ -194,14 +214,17 @@ function destroyTodoThing($id)
  */
 function createTodoThing($item)
 {
-
-    $items = readTodoThings();
-    // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
-    $nextId = max(array_keys($items)) + 1;
-    $item['id'] = $nextId;
-    $items[] = $item;
-    saveTodoThings($items);
-    return ($nextId);
+    try {
+        $dbh = getPDO();
+        $query = "INSERT INTO users (daything,description,type,display_order)
+VALUES (:daything,:description,:type,:display_order)";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($item);//execute query
+        $dbh = null;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return false;
+    }
 }
 
 function readTodoThingsForDay($day, $dayOfWeek)
@@ -223,4 +246,3 @@ function readTodoThingsForDay($day, $dayOfWeek)
     }
     return $itemsByDay;
 }
-
