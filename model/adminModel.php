@@ -11,6 +11,13 @@
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
+function getPDO()
+{
+    require ".const.php";
+    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
+    return $dbh;
+}
+
 function readAdminItems()
 {
     return json_decode(file_get_contents("model/dataStorage/items.json"), true);
