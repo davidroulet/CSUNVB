@@ -15,7 +15,7 @@ require_once 'model/adminModel.php';
 function todoListHomePage($selectedBase)
 {
 
-    $TodoListItemsread = readTodoSheets();
+    $TodoListItemsread = readDatas("todosheets");
     $todoSheets=readTodoSheetsForBase($selectedBase);
     $bases= getbases();
 $basedefault = $_SESSION['username']["base"]['id'];
