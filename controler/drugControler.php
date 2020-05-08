@@ -1,6 +1,6 @@
 <?php
 /**
- * Auteur: David Roulet / Fabien Mason
+ * Auteur: David Roulet / Fabien Masson
  * Date: Aril 2020
  **/
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Auteur: David Roulet / Fabien Mason
+ * Auteur: David Roulet / Fabien Masson
  * Date: Aril 2020
  **/
 
@@ -9,14 +9,35 @@
  *  Retours les sheet en fonction de la semaine et de la base
  *
  */
+
+function getPDO()
+{
+    require ".const.php";
+    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
+    return $dbh;
+}
+
 function GetSheetbyWeek($week, $base)
 {
     $Sheets = getStupSheets();
-    foreach ($Sheets as $Sheet) {
+    /*foreach ($Sheets as $Sheet) {
         if ($Sheet["week"] == $week && $Sheet["base_id"] == $base) {
             return $Sheet;
 
         }
+    }*/
+
+    try {
+        $dbh = getPDO();
+        $query = 'SELECT * FROM csu.restocks';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
     }
 }
 
@@ -146,11 +167,18 @@ function createSheet($item)
  */
 function getBatches()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/batches.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
+    try {
+        $dbh = getPDO();
+        $query = 'SELECT * FROM csu.batches';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
     }
-    return $SheetsArray;
 }
 /**
  * Retourne un item précis, identifié par son id
@@ -158,9 +186,18 @@ function getBatches()
  */
 function readbatche($id)
 {
-    $SheetsArray = getBatches();
-    $Sheet = $SheetsArray[$id];
-    return $Sheet;
+    try {
+        $dbh = getPDO();
+        $query = "SELECT * FROM csu.batches WHERE batches.id ='$id'";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
 }
 /**
  * Sauve l'ensemble des items dans le fichier json
@@ -224,11 +261,20 @@ function destroybatch($id)
  */
 function getnovas()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/novas.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
+    try {
+        $dbh = getPDO();
+        $query = 'SELECT * FROM csu.novas';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
     }
-    return $SheetsArray;
+
+
 }
 /**
  * Retourne un item précis, identifié par son id
@@ -236,9 +282,18 @@ function getnovas()
  */
 function readnova($id)
 {
-    $SheetsArray = getnovas();
-    $Sheet = $SheetsArray[$id];
-    return $Sheet;
+    try {
+        $dbh = getPDO();
+        $query = "SELECT * FROM csu.batches WHERE novas.id ='$id'";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
 }
 
 /**
@@ -380,22 +435,37 @@ function destroyDrug($id)
  */
 function getsutpbatch()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/stupsheet_use_batch.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
+    try {
+        $dbh = getPDO();
+        $query = 'SELECT * FROM csu.stupsheet_use_batch';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
     }
-    return $SheetsArray;
+
 }
 /**
  * obients tout la liste des items
  */
 function getstupnova()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/stupsheet_use_nova.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
+    try {
+        $dbh = getPDO();
+        $query = 'SELECT * FROM csu.stupsheet_use_nova';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
     }
-    return $SheetsArray;
 }
 /**
  * obients un items precis en fonction de son batch,date,stupsheet_id
@@ -465,22 +535,36 @@ function updatepharmacheck($item)
  */
 function getpharmachecks()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/pharmachecks.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
+    try {
+        $dbh = getPDO();
+        $query = 'SELECT * FROM csu.pharmachecks';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
     }
-    return $SheetsArray;
 }
 /**
  * obients tout la liste des items
  */
 function getrestocks()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/restocks.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
+    try {
+        $dbh = getPDO();
+        $query = 'SELECT * FROM csu.restocks';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute();//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
     }
-    return $SheetsArray;
 }
 /**
  * obients tout la liste des items en fonction de l'id de la stupsheet
