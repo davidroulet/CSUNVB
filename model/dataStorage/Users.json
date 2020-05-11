@@ -998,14 +998,5 @@
     "admin": false,
     "base_id": 3,
     "firstconnect": false
-  },
-  "101": {
-    "id": 101,
-    "initials": "TGN",
-    "lastname": "Grossmann",
-    "password": "$2y$10$tDprevALcd93chTzLNfqmePls842a5xncoahq4iOsYL6UiP7lwAVO",
-    "firstname": "Thomas",
-    "admin": false,
-    "firstconnect": true
   }
 }
