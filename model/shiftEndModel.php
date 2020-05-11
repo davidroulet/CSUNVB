@@ -10,7 +10,7 @@ function readShiftEndItems()
 }
 
 function getGuardsheets(){
-    require ".const.php";
+    require "model\utils\.const.php";
     $dbh = callPDO();
     try {
         $query = 'SELECT * FROM guardsheets';
@@ -38,7 +38,7 @@ function readShiftEndItem($id)
 }
 
 function getGuardsheet($id){
-    require ".const.php";
+    require "model\utils\.const.php";
     $dbh = callPDO();
     try {
         $query = 'SELECT  * FROM guardsheets where id=:id';
@@ -115,7 +115,7 @@ function createShiftEndItem($item)
 
 function getRemises()
 {
-    require ".const.php";
+    require "model\utils\.const.php";
     $dbh = callPDO();
     try {
         $query = 'SELECT * FROM guardsection';
@@ -133,7 +133,7 @@ function getRemises()
 
 function getSectionsTitles()
 {
-    require ".const.php";
+    require "model\utils\.const.php";
     $dbh = callPDO();
     try {
         $query = 'SELECT * FROM guardsection';
@@ -151,7 +151,7 @@ function getSectionsTitles()
 
 function getGuardLines()
 {
-    require ".const.php";
+    require "model\utils\.const.php";
     $dbh = callPDO();
     try {
         $query = 'SELECT * FROM guardlines';
@@ -169,7 +169,7 @@ function getGuardLines()
 
 function getGuardComments()
 {
-    require ".const.php";
+    require "model\utils\.const.php";
     $dbh = callPDO();
     try {
         $query = 'SELECT * FROM guardcontent';
@@ -205,7 +205,7 @@ function getGuardSheetsByBase($base_id)
 }
 function callPDO()
 {
-    require ".const.php";
+    require "model\utils\.const.php";
     $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
     return $dbh;
 }
