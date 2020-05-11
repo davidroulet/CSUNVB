@@ -54,11 +54,8 @@ insertBatch("INSERT INTO logs (timestamp, author_id, item_type, item_id, text) V
 */
 foreach ($basesData as $key => $val) {unset ($basesData[$key]['id']);}
 insertBatch("INSERT INTO bases (name) VALUES (:name);", $basesData);
-
-//Erreur
 foreach ($usersData as $key => $val) {unset ($usersData[$key]['id']); unset($usersData[$key]['base_id']);}
 insertBatch("INSERT INTO users (initials, lastname, password, firstname, admin, firstconnect) VALUES (:initials, :lastname, :password, :firstname, :admin, :firstconnect);", $usersData);
-
 foreach ($drugsData as $key => $val) {unset ($drugsData[$key]['id']);}
 insertBatch("INSERT INTO drugs (name) VALUES (:name);", $drugsData);
 foreach ($novasData as $key => $val) {unset ($novasData[$key]['id']);}
@@ -69,21 +66,14 @@ foreach ($stupsheetsData as $key => $val) {unset ($stupsheetsData[$key]['id']);}
 insertBatch("INSERT INTO stupsheets (week, state, base_id) VALUES (:week, :state, :base_id);", $stupsheetsData);
 foreach ($stupsheet_use_novaData as $key => $val) {unset ($stupsheet_use_novaData[$key]['id']);}
 insertBatch("INSERT INTO stupsheet_use_nova (nova_id, stupsheet_id) VALUES (:nova_id, :stupsheet_id);", $stupsheet_use_novaData);
-
-//Erreur
 foreach ($restocksData as $key => $val) {unset ($restocksData[$key]['id']);}
 insertBatch("INSERT INTO restocks (date, quantity, user_id, nova_id, batch_id) VALUES (:timestamp, :quantity, :user_id, :nova_id, :batch_id);", $restocksData);
-
 foreach ($stupsheet_use_batchData as $key => $val) {unset ($stupsheet_use_batchData[$key]['id']);}
 insertBatch("INSERT INTO stupsheet_use_batch (batch_id, stupsheet_id) VALUES (:batch_id, :stupsheet_id);", $stupsheet_use_batchData);
-
-//Erreur
 foreach ($novachecksData as $key => $val) {unset ($novachecksData[$key]['id']);}
 insertBatch("INSERT INTO novachecks (date, start, end, nova_id, drug_id, user_id, stupsheet_id) VALUES (:date, :start, :end, :nova_id, :drug_id, :user_id, :stupsheet_id);", $novachecksData);
-//Erreur
 foreach ($pharmachecksData as $key => $val) {unset ($pharmachecksData[$key]['id']);}
 insertBatch("INSERT INTO pharmachecks (date, start, end, batch_id, user_id, stupsheet_id) VALUES (:date, :start, :end, :batch_id, :user_id, :stupsheet_id);", $pharmachecksData);
-
 foreach ($todothingsData as $key => $val) {unset ($todothingsData[$key]['id']); unset($todothingsData[$key]['days']);}
 insertBatch("INSERT INTO todothings (type, daything, description, display_order) VALUES (:type, :daything, :description, :display_order);", $todothingsData);
 foreach ($todosheetsData as $key => $val) {unset ($todosheetsData[$key]['id']);}
@@ -92,17 +82,12 @@ foreach ($guardsheetsData as $key => $val) {unset ($guardsheetsData[$key]['id'])
 insertBatch("INSERT INTO guardsheets (date, state, base_id) VALUES (:date, :state, :base_id);", $guardsheetsData);
 foreach ($guard_use_novaData as $key => $val) {unset ($guard_use_novaData[$key]['id']);}
 insertBatch("INSERT INTO guard_use_nova (day, nova_id, guardsheet_id) VALUES (:day, :nova_id, :guardsheet_id);", $guard_use_novaData);
-
-//Erreur
 foreach ($crewsData as $key => $val) {unset ($crewsData[$key]['id']);}
 insertBatch("INSERT INTO crews (day, boss, user_id, guardsheet_id) VALUES (:day, :boss, :user_id, :guardsheet_id);", $crewsData);
-
 foreach ($guardsectionsData as $key => $val) {unset ($guardsectionsData[$key]['id']);}
 insertBatch("INSERT INTO guardsections (title) VALUES (:title);", $guardsectionsData);
 foreach ($guardlinesData as $key => $val) {unset ($guardlinesData[$key]['id']);}
 insertBatch("INSERT INTO guardlines (text, guard_sections_id) VALUES (:text, :guard_sections_id);", $guardlinesData);
-
-//Erreur
-foreach ($guardcontentsData as $key => $val) {unset ($key['id']);}
+foreach ($guardcontentsData as $key => $val) {unset ($guardcontentsData[$key]['id']);}
 insertBatch("INSERT INTO guardcontents (comment, guard_line_id, guardsheet_id, day_check, day_check_user_id, night_check, night_check_user_id) VALUES (:comment, :guard_line_id, :guardsheet_id, :day_check, :day_check_user_id, :night_check, :night_check_user_id);", $guardcontentsData);
 ?>
