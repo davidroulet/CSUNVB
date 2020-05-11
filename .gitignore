@@ -4,5 +4,5 @@ node_modules/
 #phpStorm
 .idea
 *.mwb.bak
-model/utils/.const.php
+.const.php
 .vs
