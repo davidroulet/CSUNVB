@@ -6,17 +6,7 @@
  * Time: 11:29
  **/
 
-/**
- * Retourne tous les items dans un tableau indexé de tableaux associatifs
- * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
- * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
- */
-function getPDO()
-{
-    require "model\utils\.const.php";
-    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
-    return $dbh;
-}
+require "database.php";
 
 function readAdminItems()
 {
@@ -89,11 +79,7 @@ function getbasebyid($id)
 
 function getbases()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-    }
-    return $SheetsArray;
+    return selectMany("SELECT * FROM bases;",[]);
 }
 
 function getUserByUsername($username)
