@@ -13,12 +13,6 @@
  */
 
 /** ------------------TODOSHEETS---------------------- */
-/*function getPDO()
-{
-    require "model\utils\.const.php";
-    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
-    return $dbh;
-}*/
 function readDatas($Table)
 {
     try {
@@ -60,10 +54,10 @@ function readDatawhitid($Table,$id)
 {
     try {
         $dbh = getPDO();
-        $query = "SELECT * FROM csu.'$Table' where '$Table'.id'$id'";
+        $query = "SELECT * FROM csu.'$Table' where '$Table'.id ='$id'";
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         return $queryResult;
     } catch (PDOException $e) {
@@ -74,6 +68,7 @@ function readDatawhitid($Table,$id)
 function readTodoSheet($id)
 {
     $data=readDatawhitid("todosheets",$id);
+    var_dump($id);
     return $data;
 }
 /**
@@ -139,7 +134,7 @@ VALUES (:base_id,:state,:week)";
         $query = "SELECT * FROM csu.todosheets WHERE todosheets.base_id='$base_id'";
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
-        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         return $queryResult;
     } catch (PDOException $e) {
