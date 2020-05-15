@@ -99,6 +99,19 @@ function getUsers()
         $SheetsArray[$p["id"]] = $p;
     }
     return $SheetsArray;
+    try {
+        $dbh = getPDO();
+        foreach ($Array as $p){
+        $query = "SELECT * FROM $table";}
+        $statment = $dbh->prepare($query); //Prepare query
+        $statment->execute(); //Execute query
+        $queryResult = $statment->fetchAll(PDO::FETCH_ASSOC); //Prepare result for client
+        return $queryResult;
+        $dbh = null;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
 }
 
 function SaveUser($Users)
