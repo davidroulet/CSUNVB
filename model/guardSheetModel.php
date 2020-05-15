@@ -11,7 +11,7 @@ function readShiftEndItems()
 
 function getGuardsheets(){
     require ".const.php";
-    $dbh = callPDO();
+    $dbh = getPDO();
     try {
         $query = 'SELECT * FROM guardsheets';
         $statement = $dbh->prepare($query);//prepare query
@@ -39,7 +39,7 @@ function readShiftEndItem($id)
 
 function getGuardsheet($id){
     require ".const.php";
-    $dbh = callPDO();
+    $dbh = getPDO();
     try {
         $query = 'SELECT  * FROM guardsheets where id=:id';
         $statement = $dbh->prepare($query);//prepare query
@@ -116,7 +116,7 @@ function createShiftEndItem($item)
 function getRemises()
 {
     require ".const.php";
-    $dbh = callPDO();
+    $dbh = getPDO();
     try {
         $query = 'SELECT * FROM guardsection';
         $statement = $dbh->prepare($query);//prepare query
@@ -134,7 +134,7 @@ function getRemises()
 function getSectionsTitles()
 {
     require ".const.php";
-    $dbh = callPDO();
+    $dbh = getPDO();
     try {
         $query = 'SELECT * FROM guardsection';
         $statement = $dbh->prepare($query);//prepare query
@@ -170,7 +170,7 @@ function getGuardLines()
 function getGuardComments()
 {
     require ".const.php";
-    $dbh = callPDO();
+    $dbh = getPDO();
     try {
         $query = 'SELECT * FROM guardcontent';
         $statement = $dbh->prepare($query);//prepare query
@@ -194,19 +194,20 @@ function getGuardLinesForSection($section)
 
 function getGuardSheetsByBase($base_id)
 {
-    $Liste = getRemises();
-    foreach ($Liste as $item) {
-       if ($item['base_id'] == $base_id)
-       {
-           $remises[] = $item;
-       }
-    }
-    return $remises;
-}
-function callPDO()
-{
     require ".const.php";
-    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
-    return $dbh;
+    $dbh = getPDO();
+    try {
+        $query = 'select * from guardsheets where base_id=:base_id';
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(['id' => $id]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        if ($debug) var_dump($queryResult);
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
 }
+
 ?>
