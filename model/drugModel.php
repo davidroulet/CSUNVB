@@ -4,6 +4,7 @@
  * Date: Aril 2020
  **/
 
+require 'model/database.php';
 
 /**
  *  Retours les sheet en fonction de la semaine et de la base
@@ -24,6 +25,11 @@ function GetSheetbyWeek($week, $base)
 /**
  * Retours tout les fichiers des semaines avec les nova qui corresonde et les batch ainsi que les pharma check pour chaqun des batch
  */
+/*
+function getStupSheetsById() {
+    return selectOne(select * from stupsheet)
+}
+*/
 function getStupSheets()
 {
     $novasheets = getstupnova(); // nova utilisé par sheet
