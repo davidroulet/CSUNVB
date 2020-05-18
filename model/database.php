@@ -62,4 +62,21 @@ function insert($query, $params)
         return null;
     }
 }
+
+function execute($query, $params)
+{
+    require ".const.php";
+    $dbh = getPDO();
+    try
+    {
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($params);//execute query
+        $dbh = null;
+        return true;
+    } catch (PDOException $e)
+    {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
 ?>
