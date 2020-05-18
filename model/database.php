@@ -42,6 +42,9 @@ function selectMany($query, $params)
     return select($query, $params, true);
 }
 
-
+function selectOne($query, $params)
+{
+    return select($query, $params, false);
+}
 
 ?>
