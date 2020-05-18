@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Include all controllers
 require "controler/adminControler.php";
 require "controler/shiftEndControler.php";

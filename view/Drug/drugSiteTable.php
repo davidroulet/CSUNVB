@@ -36,18 +36,18 @@ foreach ($jours as $jour) { // vas generé tous les jours de semaine ?>
             } ?>
             <td>Pharmacie</td>
         </tr>
-
-        <?php foreach ($stupSheet["Drug"] as $drug) {
+        <?php
+        foreach ($stupSheet["Drug"] as $drug) {
         $Drugname = readDrug($drug["Drug_id"]); ?>
         <tr>
             <td><?= $Drugname["name"] ?></td>
             <td></td>
 
 
-            <?php foreach ($stupSheet["nova"] as $nova) { ?>
+            <?php foreach ($stupSheet["nova"] as $nova) {
+                ?>
                 <td>
                     <!--novachack-->
-
                 </td>
             <?php } ?>
             <td></td>
@@ -81,7 +81,6 @@ foreach ($jours as $jour) { // vas generé tous les jours de semaine ?>
 
 
                     <?php
-
                     $nova_id = $nova["id"];
                     $batch_id = $batch["id"];
                     $restock = getRestocksbyBatchandNovas($batch_id, $nova_id);
