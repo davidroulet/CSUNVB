@@ -94,24 +94,7 @@ function getUserByUsername($username)
 
 function getUsers()
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/Users.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-    }
-    return $SheetsArray;
-    try {
-        $dbh = getPDO();
-        foreach ($Array as $p){
-        $query = "SELECT * FROM $table";}
-        $statment = $dbh->prepare($query); //Prepare query
-        $statment->execute(); //Execute query
-        $queryResult = $statment->fetchAll(PDO::FETCH_ASSOC); //Prepare result for client
-        return $queryResult;
-        $dbh = null;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany("SELECT * FROM users;",[]);
 }
 
 function SaveUser($Users)
