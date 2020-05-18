@@ -9,7 +9,7 @@ ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 
 $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
-
+var_dump($dayThingsForWednesday);
 ?>
 <h1 class="center p-4 font-weight-bold"><?= $title ?></h1>
 <div class="week text-center hour">

@@ -13,21 +13,6 @@
  */
 
 /** ------------------TODOSHEETS---------------------- */
-function readDatas($Table)
-{
-    try {
-        $dbh = getPDO();
-        $query = "SELECT * FROM csu.'$Table'";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
-}
 function destroyData($Table,$id)
 {
     try {
@@ -43,33 +28,16 @@ function destroyData($Table,$id)
 }
 function readTodoSheets()
 {
-    $data=readDatas("todosheets");
-        return $data;
+    return selectMany("SELECT * FROM csu.todosheets;",[]);
 }
 /**
  * Retourne un item précis, identifié par son id
  * ...
  */
-function readDatawhitid($Table,$id)
-{
-    try {
-        $dbh = getPDO();
-        $query = "SELECT * FROM csu.'$Table' where '$Table'.id ='$id'";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
-}
+
 function readTodoSheet($id)
 {
-    $data=readDatawhitid("todosheets",$id);
-    var_dump($id);
-    return $data;
+    return selectMany("SELECT * FROM csu.todosheets where id='$id';",[]);
 }
 /**
  * Modifie un item précis
@@ -154,8 +122,7 @@ VALUES (:base_id,:state,:week)";
 
 function readTodoThings()
 {
-        $data=readDatas("todothings");
-return $data;
+    return selectMany("SELECT * FROM csu.todothings;",[]);
 }
 
 /**
@@ -164,8 +131,7 @@ return $data;
  */
 function readTodoThing($id)
 {
-    $data=readDatawhitid("todothings",$id);
-    return $data;
+    return selectMany("SELECT * FROM csu.todothings where id='$id';",[]);
 }
 /**
  * Modifie un item précis
@@ -229,6 +195,7 @@ function readTodoThingsForDay($day, $dayOfWeek)
     $items = readTodoThings();
 
     foreach ($items as $item) {
+
         if(($day == 1) && ($item['daything'] == 1)){
             if($item['days'][$dayOfWeek] == true){
                 $itemsByDay[] = $item;
@@ -239,5 +206,6 @@ function readTodoThingsForDay($day, $dayOfWeek)
             }
         }
     }
+
     return $itemsByDay;
 }
