@@ -6,9 +6,9 @@
 
 require_once 'model/adminModel.php';
 
-function trylogin($username, $password, $baselogin)
+function trylogin($initials, $password, $baselogin)
 {
-    $User = getUserByUsername($username);
+    $User = getUserByInitials($initials);
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
         unset($_SESSION['username']['password']);

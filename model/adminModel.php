@@ -72,9 +72,8 @@ function createAdminItem($item)
 
 function getbasebyid($id)
 {
-    $SheetsArray = getbases();
-    $base = $SheetsArray[$id];
-    return $base;
+
+    return selectOne("SELECT * FROM bases where id =:id",['id'=>$id]);
 }
 
 function getbases()
@@ -82,14 +81,9 @@ function getbases()
     return selectMany("SELECT * FROM bases;",[]);
 }
 
-function getUserByUsername($username)
+function getUserByInitials($initials)
 {
-    $Users = getUsers();
-    foreach ($Users as $item) {
-        if ($username == $item['initials']) {
-            return $item;
-        }
-    }
+    return selectOne("SELECT * FROM users where initials =:initials",['initials'=>$initials]);
 }
 
 function getUsers()
