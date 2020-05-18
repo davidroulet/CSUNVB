@@ -10,34 +10,14 @@
  *
  */
 
-/*function getPDO()
-{
-    require "model\utils\.const.php";
-    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
-    return $dbh;
-}*/
-
 function GetSheetbyWeek($week, $base)
 {
     $Sheets = getStupSheets();
-    /*foreach ($Sheets as $Sheet) {
+    foreach ($Sheets as $Sheet) {
         if ($Sheet["week"] == $week && $Sheet["base_id"] == $base) {
             return $Sheet;
 
         }
-    }*/
-
-    try {
-        $dbh = getPDO();
-        $query = 'SELECT * FROM csu.restocks';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
     }
 }
 
@@ -52,7 +32,7 @@ function getStupSheets()
     $drug = getDrugs();
     $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
 
-    foreach ($stupsheets as $stupsheet) {
+    foreach ($stupsheets as $stupsheet) {  //prend une page de stupsheet
         $SheetsArray[$stupsheet["id"]] = $stupsheet;
         foreach ($novasheets as $novasheet) {
             if ($novasheet["stupsheet_id"] == $stupsheet["id"]) {
@@ -191,7 +171,7 @@ function readbatche($id)
         $query = "SELECT * FROM csu.batches WHERE batches.id ='$id'";
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         return $queryResult;
     } catch (PDOException $e) {
@@ -284,10 +264,10 @@ function readnova($id)
 {
     try {
         $dbh = getPDO();
-        $query = "SELECT * FROM csu.batches WHERE novas.id ='$id'";
+        $query = "SELECT * FROM csu.novas WHERE novas.id ='$id'";
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         return $queryResult;
     } catch (PDOException $e) {
