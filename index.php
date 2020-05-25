@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Include all controllers
 require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
@@ -8,7 +7,7 @@ require "controler/todoListControler.php";
 require "controler/drugControler.php";
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
+    $initials = $_POST['username'];
     $password = $_POST['password'];
     $_SESSION["Selectsite"] = $_POST['base'];
     $baselogin = $_POST['base'];
@@ -93,7 +92,7 @@ switch ($action) {
         drugSiteTable($semaine);
         break;
     case "trylogin":
-        trylogin($username, $password, $baselogin);
+        trylogin($initials, $password, $baselogin);
         break;
     case 'LogStup':
         LogStup($Stupheet);

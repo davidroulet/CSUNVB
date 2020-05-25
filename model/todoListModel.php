@@ -28,6 +28,7 @@ function destroyData($Table,$id)
 }
 function readTodoSheets()
 {
+
     return selectMany("SELECT * FROM csu.todosheets;",[]);
 }
 /**
@@ -193,7 +194,6 @@ function readTodoThingsForDay($day, $dayOfWeek)
     // TODO return the todothings for a specific day (0=monday, ....)
 
     $items = readTodoThings();
-
     foreach ($items as $item) {
 
         if(($day == 1) && ($item['daything'] == 1)){

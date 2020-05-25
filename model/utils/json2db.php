@@ -9,10 +9,8 @@
 function getPDO()
 {
     require ".const.php";
-//  return new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
-    $dsn = "mysql:host=localhost:3306;dbname=csu" ;
-    $pass='Pa$$w0rd';
-    return new PDO($dsn, CSU, $pass);
+    $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
+    return $dbh;
 }
 
 /**

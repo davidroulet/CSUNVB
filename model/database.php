@@ -42,6 +42,41 @@ function selectMany($query, $params)
     return select($query, $params, true);
 }
 
+function selectOne($query, $params)
+{
+    return select($query, $params, false);
+}
 
+function insert($query, $params)
+{
+    require ".const.php";
+    $dbh = getPDO();
+    try
+    {
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($params);//execute query
+        return $dbh->lastInsertId();
+    } catch (PDOException $e)
+    {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
 
+function execute($query, $params)
+{
+    require ".const.php";
+    $dbh = getPDO();
+    try
+    {
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($params);//execute query
+        $dbh = null;
+        return true;
+    } catch (PDOException $e)
+    {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
 ?>
