@@ -63,7 +63,7 @@ function insert($query, $params)
     }
 }
 
-function execute($query, $params)
+function execute($query, $params)//update || delete
 {
     require ".const.php";
     $dbh = getPDO();

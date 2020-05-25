@@ -78,7 +78,7 @@ function getbasebyid($id)
 
 function getbases()
 {
-    return selectMany("SELECT * FROM bases;",[]);
+    return selectMany("SELECT * FROM bases",[]);
 }
 
 function getUserByInitials($initials)
@@ -88,12 +88,12 @@ function getUserByInitials($initials)
 
 function getUsers()
 {
-    return selectMany("SELECT * FROM users;",[]);
+    return selectMany("SELECT * FROM users",[]);
 }
 
 function SaveUser($Users)
 {
-    file_put_contents("model/dataStorage/Users.json", json_encode($Users));
+    return execute("UPDATE users SET firstname= :firstname, lastname= :lastname, initials= :initials, password= :password where id = :Users", [$Users]);
 }
 
 function SaveBase($bases)
