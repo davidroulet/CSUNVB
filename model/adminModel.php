@@ -6,7 +6,7 @@
  * Time: 11:29
  **/
 
-require "database.php";
+
 
 function readAdminItems()
 {
