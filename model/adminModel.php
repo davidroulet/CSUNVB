@@ -98,6 +98,6 @@ function SaveUser($Users)
 
 function SaveBase($bases)
 {
-    file_put_contents("model/dataStorage/bases.json", json_encode($bases));
+    return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }
 ?>
