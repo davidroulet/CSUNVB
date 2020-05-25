@@ -11,6 +11,7 @@ function shiftEndHomePage()
 {
     $TitlesLines = getGuardLines();
     $Titles = getSectionsTitles();
+    $guardsheets = getGuardsheets();
     require_once 'view/viewsShiftEnd/shiftEndHome.php';
 }
 
