@@ -4,10 +4,7 @@
  * Date: Mars 2020
  **/
 
-function readShiftEndItems()
-{
-    return json_decode(file_get_contents("model/dataStorage/items.json"),true);
-}
+
 
 function getGuardsheets(){
     require ".const.php";
@@ -30,12 +27,6 @@ function getGuardsheets(){
  * Retourne un item précis, identifié par son id
  * ...
  */
-function readShiftEndItem($id)
-{
-    $items = getShiftEndItems();
-    // TODO: coder la recherche de l'item demandé
-    return $item;
-}
 
 function getGuardsheet($id){
     require ".const.php";
@@ -53,14 +44,8 @@ function getGuardsheet($id){
         return null;
     }
 }
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
-function updateShiftEndItems($items)
-{
-    file_put_contents("model/dataStorage/items.json",json_encode($items));
-}
+
+
 function updateGuardsheet($id){
     try {
         $dbh = getPDO();
@@ -152,7 +137,7 @@ function getSectionsTitles()
 function getGuardLines()
 {
     require ".const.php";
-    $dbh = callPDO();
+    $dbh = getPDO();
     try {
         $query = 'SELECT * FROM guardlines';
         $statement = $dbh->prepare($query);//prepare query
@@ -199,7 +184,7 @@ function getGuardSheetsByBase($base_id)
     try {
         $query = 'select * from guardsheets where base_id=:base_id';
         $statement = $dbh->prepare($query);//prepare query
-        $statement->execute(['id' => $id]);//execute query
+        $statement->execute(['base_id' => $base_id]);//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         if ($debug) var_dump($queryResult);
