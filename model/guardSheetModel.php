@@ -77,8 +77,9 @@ function updateShiftEndItem($item)
  * Détruit un item précis, identifié par son id
  * ...
  */
-function destroyShiftEndItem($id)
+function destroyGuardsheet($id)
 {
+
     $items = getShiftEndItems();
     // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
     saveShiftEndItem($items);
@@ -92,10 +93,22 @@ function destroyShiftEndItem($id)
  */
 function createShiftEndItem($item)
 {
-    $items = getShiftEndItems();
+    try {
+        $dbh = getPDO();
+        $query = "INSERT INTO guardsheets (base_id,state,date)
+VALUES (:base_id,:state,:date)";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute($item);//execute query
+        $dbh = null;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return false;
+    }
+   /* $items = getShiftEndItems();
     // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
     saveShiftEndItem($items);
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
+   */
 }
 
 function getRemises()
