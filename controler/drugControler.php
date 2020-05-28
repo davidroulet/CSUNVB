@@ -9,7 +9,7 @@ require_once 'model/drugModel.php';
 function drugHomePage() //Affiche la page de selection de la semaine
 {
     $bases = getbases();
-    $liste = getStupSheets();
+    $liste = getStupSheets(); // TODO Pour drugHome, on n'a pas besoin de tous les détails. Remplacer par getListOfStupSheets()
     require_once 'view/Drug/drugHome.php';
 }
 
@@ -17,9 +17,19 @@ function drugSiteTable($semaine)
 { // Affiage de la page Finale
 
     $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
-    $novas = getnovas(); // Obient la liste des ambulance
+    $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]); // la feuille de stupéfiants à afficher
+    $novas = getNovasForSheet($stupSheet["id"]); // Obient la liste des ambulances utilisées par cette feuille
     $drugs = getDrugs(); // Obient la list des Drugs
-    $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
+    $batches = getBatchesForSheet($stupSheet["id"]); // Obient la liste des batchs utilisés par cette feuille
+
+    // TODO Supprimer ces données quand les fonctions ci-dessus auront été réalisées
+    $novas = [ ["id" => 1, "number" => "111"], ["id" => 2, "number" => "222"], ["id" => 3, "number" => "333"] ];
+    $drugs = [ ["id" => 11, "name" => "Morphine"], ["id" => 22, "name" => "Fentanyl"], ["id" => 33, "name" => "Temesta"] ];
+    $batches = [
+        11 => [["id" => 1, "number" => "111111", "state" => "open", "drug_id" => 11], ["id" => 2, "number" => "111112", "state" => "open", "drug_id" => 11], ["id" => 3, "number" => "111113", "state" => "open", "drug_id" => 11] ],
+        22 => [["id" => 21, "number" => "222221", "state" => "open", "drug_id" => 22], ["id" => 22, "number" => "222222", "state" => "open", "drug_id" => 22] ],
+        33 => [["id" => 71, "number" => "333331", "state" => "open", "drug_id" => 33] ]
+    ];
     $date = strtotime($jourDebutSemaine);
     $site = getbasebyid($_SESSION["Selectsite"])["name"];
     $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");

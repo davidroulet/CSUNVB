@@ -13,13 +13,7 @@ require 'model/database.php';
 
 function GetSheetbyWeek($week, $base)
 {
-    $Sheets = getStupSheets();
-    foreach ($Sheets as $Sheet) {
-        if ($Sheet["week"] == $week && $Sheet["base_id"] == $base) {
-            return $Sheet;
-
-        }
-    }
+    // TODO Coder cette fonction avec PDO
 }
 
 /**
@@ -30,6 +24,47 @@ function getStupSheetsById() {
     return selectOne(select * from stupsheet)
 }
 */
+
+/**
+ * Retourne la liste des stupsheets pour une base donnée. On ne retourne que le contenu de la table stupsheets
+ */
+function getListOStupSheets($base)
+{
+    // TODO Coder la fonction avec PDO
+}
+
+/**
+ * Retourne la liste des novas 'utilisées' par cette feuille
+ * Les données retournées sont dans un tableau indexé par id (i.e: [ 12 => [ "id" => 12, "value" => ...], 17 => [ "id" => 17, "value" => ...] ]
+ * @param $stupSheet_id
+ */
+function getNovasForSheet($stupSheet_id)
+{
+    // TODO Coder la fonction avec PDO
+}
+
+/**
+ * Retourne la liste des batches 'utilisés' par cette feuille
+ * Les données retournées sont dans un tableau indexé par drug_id
+ * [
+ *     12 => [
+ *         ["id" => 32, "number" => "345543", "drug_id" => 12],
+ *         ["id" => 47, "number" => "766543", "drug_id" => 12],
+ *         ["id" => 12, "number" => "989966", "drug_id" => 12]
+ *     ],
+ *     15 => [
+ *         ["id" => 2, "number" => "34622", "durg_id" => 15],
+ *         ["id" => 6, "number" => "46328", "durg_id" => 15]
+ *     ]
+ * ]
+ *
+ * @param $stupSheet_id
+ */
+function getBatchesForSheet($stupSheet_id)
+{
+    // TODO Coder la fonction avec PDO
+}
+
 function getStupSheets()
 {
     $novasheets = getstupnova(); // nova utilisé par sheet
@@ -326,29 +361,11 @@ function destroyNova($id)
 
 }
 /**
- * Retours la liste de tout les items
- * Avec toutes les batches assosier
+ * Retourne la liste des médicaments connus (table 'drugs')
  */
 function getDrugs()
 {
-    $batches = getBatches();
-    $Array = json_decode(file_get_contents("model/dataStorage/drugs.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-    }
-    foreach ($SheetsArray as $item) {
-        foreach ($batches as $batch) {
-            if ($item["id"] == $batch["drug_id"]) {
-                $SheetsArray[$item["id"]]["batches"][] = $batch["number"];
-            }
-        }
-    }
-    $sheets = $SheetsArray;
-    foreach ($sheets as $item) {
-        unset($sheets[$item["id"]]["batches"]);
-    }
-    updateDrugs($sheets);
-    return $SheetsArray;
+    // TODO Coder cette fonction avec PDO
 }
 
 /**
