@@ -79,10 +79,8 @@ function updateShiftEndItem($item)
  */
 function destroyGuardsheet($id)
 {
+    return execute("DELETE * From guardsheets where id = :id", [$id]);
 
-    $items = getShiftEndItems();
-    // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    saveShiftEndItem($items);
 }
 
 /**
