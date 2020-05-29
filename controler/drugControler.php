@@ -23,7 +23,7 @@ function drugSiteTable($semaine)
     $batches = getBatchesForSheet($stupSheet["id"]); // Obient la liste des batchs utilisés par cette feuille
 
     // TODO Supprimer ces données quand les fonctions ci-dessus auront été réalisées
-    $novas = [ ["id" => 1, "number" => "111"], ["id" => 2, "number" => "222"], ["id" => 3, "number" => "333"] ];
+    //$novas = [ ["id" => 1, "number" => "111"], ["id" => 2, "number" => "222"], ["id" => 3, "number" => "333"] ];
     $drugs = [ ["id" => 11, "name" => "Morphine"], ["id" => 22, "name" => "Fentanyl"], ["id" => 33, "name" => "Temesta"] ];
     $batches = [
         11 => [["id" => 1, "number" => "111111", "state" => "open", "drug_id" => 11], ["id" => 2, "number" => "111112", "state" => "open", "drug_id" => 11], ["id" => 3, "number" => "111113", "state" => "open", "drug_id" => 11] ],

@@ -40,7 +40,7 @@ function getListOStupSheets($base)
  */
 function getNovasForSheet($stupSheet_id)
 {
-    // TODO Coder la fonction avec PDO
+    return selectOne("SELECT * FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 /**
