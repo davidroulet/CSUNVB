@@ -7,20 +7,7 @@
 
 
 function getGuardsheets(){
-    require ".const.php";
-    $dbh = getPDO();
-    try {
-        $query = 'SELECT * FROM guardsheets';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        if ($debug) var_dump($queryResult);
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany('SELECT * FROM guardsheets', []);
 }
 
 /**
@@ -29,36 +16,13 @@ function getGuardsheets(){
  */
 
 function getGuardsheet($id){
-    require ".const.php";
-    $dbh = getPDO();
-    try {
-        $query = 'SELECT  * FROM guardsheets where id=:id';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute(['id' => $id]);//execute query
-        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        if ($debug) var_dump($queryResult);
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectOne("SELECT * FROM guardsheets where id =:id",['id'=>$id]);
 }
 
 
 function updateGuardsheet($id){
-    try {
-        $dbh = getPDO();
-        $query = "update $table";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetch();//prepare result for client
-        $dbh = null;
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return execute("UPDATE bases SET date= :date,state=:state,base_id=:base_id where id = :id", [$id]);
+
 }
 
 /**
