@@ -13,10 +13,7 @@ require 'model/database.php';
 
 function GetSheetbyWeek($week, $base)
 {
-    return selectOne('SELECT * FROM stupsheets inner join bases 
-                                on bases.id=base_id 
-                                where week =:week 
-                                AND base_id=:base', ['week' => $week, 'base' => $base]);
+    return selectOne('SELECT * FROM stupsheets INNER JOIN bases ON bases.id=base_id WHERE week =:week AND base_id=:base', ['week' => $week, 'base' => $base]);
 }
 
 /**
@@ -33,9 +30,7 @@ function getStupSheetsById() {
  */
 function getListOfStupSheets($base)
 {
-    return selectMany('SELECT * from stupsheets 
-                                inner join bases on bases.id=base_id
-                                where base_id=:base', ['base' => $base]);
+    return selectMany('SELECT * FROM stupsheets INNER JOIN bases ON bases.id=base_id WHERE base_id=:base', ['base' => $base]);
 }
 
 /**
@@ -45,10 +40,7 @@ function getListOfStupSheets($base)
  */
 function getNovasForSheet($stupSheet_id)
 {
-    return selectOne("SELECT * FROM novas 
-                                INNER JOIN stupsheet_use_nova 
-                                ON nova_id = novas.id
-                                WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
+    return selectOne("SELECT * FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 /**
@@ -71,6 +63,7 @@ function getNovasForSheet($stupSheet_id)
 function getBatchesForSheet($stupSheet_id)
 {
     // TODO Coder la fonction avec PDO
+    return selectOne("SELECT * FROM batches INNER JOIN stupsheet_use_batch ON batches.id = batch_id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 function getStupSheets()

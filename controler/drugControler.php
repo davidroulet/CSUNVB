@@ -20,7 +20,7 @@ function drugSiteTable($semaine)
     $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]); // la feuille de stupéfiants à afficher
     $novas = getNovasForSheet($stupSheet["id"]); // Obient la liste des ambulances utilisées par cette feuille
     $drugs = getDrugs(); // Obient la list des Drugs
-    $batches = getBatchesForSheet($stupSheet["id"]); // Obient la liste des batchs utilisés par cette feuille
+    //$batches = getBatchesForSheet($stupSheet["id"]); // Obient la liste des batchs utilisés par cette feuille
     $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
 
     // TODO Supprimer ces données quand les fonctions ci-dessus auront été réalisées
