@@ -21,6 +21,7 @@ function drugSiteTable($semaine)
     $novas = getNovasForSheet($stupSheet["id"]); // Obient la liste des ambulances utilisées par cette feuille
     $drugs = getDrugs(); // Obient la list des Drugs
     $batches = getBatchesForSheet($stupSheet["id"]); // Obient la liste des batchs utilisés par cette feuille
+    $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
 
     // TODO Supprimer ces données quand les fonctions ci-dessus auront été réalisées
     //$novas = [ ["id" => 1, "number" => "111"], ["id" => 2, "number" => "222"], ["id" => 3, "number" => "333"] ];

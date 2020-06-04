@@ -31,9 +31,11 @@ function getStupSheetsById() {
 /**
  * Retourne la liste des stupsheets pour une base donnée. On ne retourne que le contenu de la table stupsheets
  */
-function getListOStupSheets($base)
+function getListOfStupSheets($base)
 {
-    // TODO Coder la fonction avec PDO
+    return selectMany('SELECT * from stupsheets 
+                                inner join bases on bases.id=base_id
+                                where base_id=:base', ['base' => $base]);
 }
 
 /**
@@ -43,7 +45,10 @@ function getListOStupSheets($base)
  */
 function getNovasForSheet($stupSheet_id)
 {
-    return selectOne("SELECT * FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
+    return selectOne("SELECT * FROM novas 
+                                INNER JOIN stupsheet_use_nova 
+                                ON nova_id = novas.id
+                                WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 /**
