@@ -7,3 +7,5 @@ node_modules/
 .const.php
 .vs
 *~$*
+Key/Private_Key_SSH.ppk
+Key/Public_Key_SSH.ppk
