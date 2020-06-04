@@ -17,7 +17,7 @@ function GetSheetbyWeek($week, $base)
     var_dump($week);
     var_dump($base);
     return selectOne('SELECT * FROM stupsheets inner join bases 
-                                on bases.id=base_id 
+                                on base_id=bases.id 
                                 where week =:week 
                                 AND base_id=:base', ['week' => $week, 'base' => $base]);
 }
@@ -32,11 +32,14 @@ function getStupSheetsById() {
 */
 
 /**
- * Retourne la liste des stupsheets pour une base donnée. On ne retourne que le contenu de la table stupsheets
+ * Retourne la liste des stupsheets pour une base donnée. On ne retourne que le contenu de la stupsheets
  */
 function getListOStupSheets($base)
 {
     // TODO Coder la fonction avec PDO
+    return selectOne('SELECT * FROM stupsheets inner join bases
+                                on base_id=bases.id
+                                where base=:base', ['base' => $base]);
 }
 
 /**
