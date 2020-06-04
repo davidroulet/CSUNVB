@@ -13,9 +13,6 @@ require 'model/database.php';
 
 function GetSheetbyWeek($week, $base)
 {
-    // TODO Coder cette fonction avec PDO
-    var_dump($week);
-    var_dump($base);
     return selectOne('SELECT * FROM stupsheets inner join bases 
                                 on bases.id=base_id 
                                 where week =:week 
