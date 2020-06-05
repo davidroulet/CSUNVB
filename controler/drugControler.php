@@ -14,23 +14,34 @@ function drugHomePage() //Affiche la page de selection de la semaine
 }
 
 function drugSiteTable($semaine)
-{ // Affiage de la page Finale
+{ // Affichage de la page finale
 
-    $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
+    $jourDebutSemaine = getdate2($semaine); // récupère les jours de la semaine en fonction de la date sélectionnée
     $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]); // la feuille de stupéfiants à afficher
-    $novas = getNovasForSheet($stupSheet["id"]); // Obient la liste des ambulances utilisées par cette feuille
-    $drugs = getDrugs(); // Obient la list des Drugs
-    //$batches = getBatchesForSheet($stupSheet["id"]); // Obient la liste des batchs utilisés par cette feuille
-    $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
+    $novas = getNovasForSheet($stupSheet["id"]); // Obtient la liste des ambulances utilisées par cette feuille
+    $drugs = getDrugs(); // Obtient la liste des drugs
+    $BatchesForSheet = getBatchesForSheet($stupSheet["id"]); // Obtient la liste des batches utilisées par cette feuille
 
+    foreach ($BatchesForSheet as $p) {
+        $batches[$p["drug_id"]] = $p;
+    }
+
+    /*$Array = json_decode(file_get_contents("model/dataStorage/batches.json"), true);
+    foreach ($Array as $p) {
+        $SheetsArray[$p["id"]] = $p;
+    }*/
+
+
+    $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
+    var_dump($BatchesForSheet);
     // TODO Supprimer ces données quand les fonctions ci-dessus auront été réalisées
     //$novas = [ ["id" => 1, "number" => "111"], ["id" => 2, "number" => "222"], ["id" => 3, "number" => "333"] ];
     //$drugs = [ ["id" => 11, "name" => "Morphine"], ["id" => 22, "name" => "Fentanyl"], ["id" => 33, "name" => "Temesta"] ];
-    $batches = [
-        11 => [["id" => 1, "number" => "111111", "state" => "open", "drug_id" => 11], ["id" => 2, "number" => "111112", "state" => "open", "drug_id" => 11], ["id" => 3, "number" => "111113", "state" => "open", "drug_id" => 11] ],
-        22 => [["id" => 21, "number" => "222221", "state" => "open", "drug_id" => 22], ["id" => 22, "number" => "222222", "state" => "open", "drug_id" => 22] ],
-        33 => [["id" => 71, "number" => "333331", "state" => "open", "drug_id" => 33] ]
-    ];
+    /*$batches = [
+        11 => [["id" => 1, "number" => "111111", "state" => "open", "drug_id" => 11], ["id" => 2, "number" => "111112", "state" => "open", "drug_id" => 11], ["id" => 3, "number" => "111113", "state" => "open", "drug_id" => 11]],
+        22 => [["id" => 21, "number" => "222221", "state" => "open", "drug_id" => 22], ["id" => 22, "number" => "222222", "state" => "open", "drug_id" => 22]],
+        33 => [["id" => 71, "number" => "333331", "state" => "open", "drug_id" => 33]]
+    ];*/
     $date = strtotime($jourDebutSemaine);
     $site = getbasebyid($_SESSION["Selectsite"])["name"];
     $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");

@@ -40,7 +40,7 @@ function getListOfStupSheets($base)
  */
 function getNovasForSheet($stupSheet_id)
 {
-    return selectOne("SELECT * FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
+    return selectMany("SELECT * FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 /**
@@ -63,7 +63,7 @@ function getNovasForSheet($stupSheet_id)
 function getBatchesForSheet($stupSheet_id)
 {
     // TODO Coder la fonction avec PDO
-    return selectOne("SELECT * FROM batches INNER JOIN stupsheet_use_batch ON batches.id = batch_id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
+    return selectMany("SELECT * FROM batches INNER JOIN stupsheet_use_batch ON batches.id = batch_id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 function getStupSheets()
@@ -189,18 +189,7 @@ function createSheet($item)
  */
 function getBatches()
 {
-    try {
-        $dbh = getPDO();
-        $query = 'SELECT * FROM csu.batches';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany("SELECT * FROM csu.batches", []);
 }
 /**
  * Retourne un item précis, identifié par son id

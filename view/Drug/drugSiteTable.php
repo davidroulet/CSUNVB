@@ -45,10 +45,9 @@ ob_start();
             </tr>
 
             <!-- Plusieurs lignes avec les batches nom de ce médicament, les restocks et les pharmachecks -->
-            <?php foreach ($batches[$drug["id"]] as $batch) { ?>
+            <?php foreach ($batches as $batch) { ?>
                 <tr>
-                <form action="?action=updatePharmaCheck&batch_id=<?= $batch["id"] ?>&stupsheet_id=<?= $stupSheet["id"] ?>&date=<?= date("Y-m-d", $date) ?>"
-                      method="post">
+                <form action="?action=updatePharmaCheck&batch_id=<?= $batch["id"] ?>&stupsheet_id=<?= $stupSheet["id"] ?>&date=<?= date("Y-m-d", $date) ?>" method="post">
                     <td>
                         <button type="submit" class="btn-dark">  <?= $batch["number"] ?>   </button>
                     </td>
