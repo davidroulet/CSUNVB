@@ -37,7 +37,6 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         <?php
 
         foreach ($todoSheets as $todosheet) {
-
             ?>
                 <div class="day col-lg">
                     <a href="?action=edittod&sheetid=<?= $todosheet['id'] ?>" class="over">

@@ -53,6 +53,11 @@ $usersData = json_decode(file_get_contents('model/dataStorage\users.json'), 1);
 /*foreach ($logsData as $key => $val) {unset ($logsData[$key]['id']);}
 insertBatch("INSERT INTO logs (timestamp, author_id, item_type, item_id, text) VALUES (:timestamp, :author_id, :item_type, :item_id, :text);", $logsData);
 */
+
+//WeekPlan
+foreach ($todothingsData as $todothingsDataWeek) {
+
+}
 foreach ($basesData as $key => $val) {unset ($basesData[$key]['id']);}
 insertBatch("INSERT INTO bases (name) VALUES (:name);", $basesData);
 foreach ($usersData as $key => $val) {unset ($usersData[$key]['id']); unset($usersData[$key]['base_id']);}
@@ -76,7 +81,7 @@ insertBatch("INSERT INTO novachecks (date, start, end, nova_id, drug_id, user_id
 foreach ($pharmachecksData as $key => $val) {unset ($pharmachecksData[$key]['id']);}
 insertBatch("INSERT INTO pharmachecks (date, start, end, batch_id, user_id, stupsheet_id) VALUES (:date, :start, :end, :batch_id, :user_id, :stupsheet_id);", $pharmachecksData);
 foreach ($todothingsData as $key => $val) {unset ($todothingsData[$key]['id']); unset($todothingsData[$key]['days']);}
-insertBatch("INSERT INTO todothings (type, daything, description, display_order) VALUES (:type, :daything, :description, :display_order);", $todothingsData);
+insertBatch("INSERT INTO todothings (type, daything, description, display_order,weekplan) VALUES (:type, :daything, :description, :display_order,:weekplan);", $todothingsData);
 foreach ($todosheetsData as $key => $val) {unset ($todosheetsData[$key]['id']);}
 insertBatch("INSERT INTO todosheets (week, state, base_id) VALUES (:week, :state, :base_id);", $todosheetsData);
 foreach ($guardsheetsData as $key => $val) {unset ($guardsheetsData[$key]['id']);}

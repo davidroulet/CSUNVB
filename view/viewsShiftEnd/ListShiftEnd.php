@@ -16,9 +16,7 @@ $title = "CSU-NVB - Remise de garde";
 
     <FORM action="/index.php?action=listShiftEnd" method="post">
         <SELECT name="site" size="1">
-            <?php foreach ($Bases
-
-            as $base) { ?>
+            <?php foreach ($Bases as $base) { ?>
             <OPTION value="<?= $base['id'] ?>" <?php if ($_SESSION["Selectsite"] == $base['id']) { ?> selected="selected"  <?php } ?>
                     name="site"><?= $base['name'] ?>
                 <?php } ?>

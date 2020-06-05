@@ -13,24 +13,12 @@
  */
 
 /** ------------------TODOSHEETS---------------------- */
-function destroyData($Table,$id)
-{
-    try {
-        $dbh = getPDO();
-        $query = "DELETE FROM csu.'$Table' WHERE id='$id'";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $dbh = null;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return false;
-    }
-}
 function readTodoSheets()
 {
 
-    return selectMany("SELECT * FROM csu.todosheets;",[]);
+    return selectMany("SELECT * FROM csu.todosheets;", []);
 }
+
 /**
  * Retourne un item précis, identifié par son id
  * ...
@@ -38,8 +26,9 @@ function readTodoSheets()
 
 function readTodoSheet($id)
 {
-    return selectMany("SELECT * FROM csu.todosheets where id='$id';",[]);
+    return selectMany("SELECT * FROM csu.todosheets where id='$id';", []);
 }
+
 /**
  * Modifie un item précis
  * Le paramètre $item est un item complet (donc un tableau associatif)
@@ -47,21 +36,11 @@ function readTodoSheet($id)
  */
 function updateTodoSheet($item)
 {
-    try {
-        $dbh = getPDO();
-        $query = "UPDATE todosheets SET
+    return execute("UPDATE todosheets SET
                     base_id=:base_id,
              state=:state,
                     week=:week,
-                    WHERE id =:id";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute($item);//execute query
-        $dbh = null;
-        return true;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return false;
-    }
+                    WHERE id =:id", $item);
 }
 
 
@@ -71,8 +50,8 @@ function updateTodoSheet($item)
  */
 function destroyTodoSheet($id)
 {
-    $data=destroyData("todosheets",$id);
-    return $data;
+
+    return execute("DELETE FROM csu.todosheet WHERE id=:id", ["id" => $id]);
 }
 
 
@@ -84,32 +63,12 @@ function destroyTodoSheet($id)
  */
 function createTodoSheet($item)
 {
-    try {
-        $dbh = getPDO();
-        $query = "INSERT INTO users (base_id,state,week)
-VALUES (:base_id,:state,:week)";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute($item);//execute query
-        $dbh = null;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return false;
-    }
+    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id,:state,:week)", $item);
 }
-    function readTodoSheetsForBase($base_id)
+
+function readTodoSheetsForBase($base_id)
 {
-    try {
-        $dbh = getPDO();
-        $query = "SELECT * FROM csu.todosheets WHERE todosheets.base_id='$base_id'";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany("SELECT * FROM csu.todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
 }
 
 
@@ -123,7 +82,7 @@ VALUES (:base_id,:state,:week)";
 
 function readTodoThings()
 {
-    return selectMany("SELECT * FROM csu.todothings;",[]);
+    return selectMany("SELECT * FROM csu.todothings;", []);
 }
 
 /**
@@ -132,8 +91,9 @@ function readTodoThings()
  */
 function readTodoThing($id)
 {
-    return selectMany("SELECT * FROM csu.todothings where id='$id';",[]);
+    return selectMany("SELECT * FROM csu.todothings where id='$id';", []);
 }
+
 /**
  * Modifie un item précis
  * Le paramètre $item est un item complet (donc un tableau associatif)
@@ -141,22 +101,13 @@ function readTodoThing($id)
  */
 function updateTodoThing($item)
 {
-    try {
-        $dbh = getPDO();
-        $query = "UPDATE todothings SET
+
+    return execute("UPDATE todothings SET
                     daything=:daything,
              description=:description,
                     type=:type,
                     display_order=:display_order
-                    WHERE id =:id";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute($item);//execute query
-        $dbh = null;
-        return true;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return false;
-    }
+                    WHERE id =:id", $item);
 }
 
 /**
@@ -165,9 +116,9 @@ function updateTodoThing($item)
  */
 function destroyTodoThing($id)
 {
-        $data=destroyData("todothings",$id);
-        return $data;
+    return execute("DELETE FROM csu.todothing WHERE id=:id", ["id" => $id]);
 }
+
 /**
  * Ajoute un nouvel item
  * Le paramètre $item est un item complet (donc un tableau associatif), sauf que la valeur de son id n'est pas valable
@@ -176,36 +127,55 @@ function destroyTodoThing($id)
  */
 function createTodoThing($item)
 {
-    try {
-        $dbh = getPDO();
-        $query = "INSERT INTO users (daything,description,type,display_order)
-VALUES (:daything,:description,:type,:display_order)";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute($item);//execute query
-        $dbh = null;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return false;
-    }
+    return insert("INSERT INTO todothing (daything,description,type,display_order) VALUES (:daything,:description,:type,:display_order)", $item);
 }
 
 function readTodoThingsForDay($day, $dayOfWeek)
 {
     // TODO return the todothings for a specific day (0=monday, ....)
+    /*
+        $items = readTodoThings();
 
-    $items = readTodoThings();
-    foreach ($items as $item) {
+        foreach ($items as $item) {
 
-        if(($day == 1) && ($item['daything'] == 1)){
-            if($item['days'][$dayOfWeek] == true){
-                $itemsByDay[] = $item;
-            }
-        } else if(($day == 0) && ($item['daything'] == 0)){
-            if($item['days'][$dayOfWeek] == true){
-                $itemsByDay[] = $item;
+            if (($day == 1) && ($item['daything'] == 1)) {
+                if ($item['days'][$dayOfWeek] == true) {
+                    $itemsByDay[] = $item;
+
+                }
+            } else if (($day == 0) && ($item['daything'] == 0)) {
+                if ($item['days'][$dayOfWeek] == true) {
+                    $itemsByDay[] = $item;
+                }
             }
         }
-    }
-
     return $itemsByDay;
+      */
+
+    $todothingsData = json_decode(file_get_contents('model/dataStorage\todothings.json'), 1);
+
+// Insérer les données dans la db
+    /*foreach ($logsData as $key => $val) {unset ($logsData[$key]['id']);}
+    insertBatch("INSERT INTO logs (timestamp, author_id, item_type, item_id, text) VALUES (:timestamp, :author_id, :item_type, :item_id, :text);", $logsData);
+    */
+
+//WeekPlan
+
+
+    foreach ($todothingsData as $todothingsDataWeek) {
+
+        $planweek="";
+        foreach ($todothingsDataWeek["days"] as $day) {
+            if ($day == false) {
+                $datawrite=0;
+            }else{
+                $datawrite=1;
+            }
+            $planweek="$planweek"."$datawrite";
+        }
+        $todothingsDataWeek["days"]=$planweek;
+        $todothingsData[$todothingsDataWeek["id"]]=$todothingsDataWeek;
+
+    }
+    var_dump($todothingsData);
 }
