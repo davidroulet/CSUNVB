@@ -6,27 +6,27 @@
  * Modified last :
  **/
 
-function getPDO()
+function getPDO()                   //Fonction pour se connecter à la base de données en reprenant les variables se trouvant dans le fichier .const.php
 {
     require ".const.php";
     $dbh = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $user, $pass);
     return $dbh;
 }
 
-function select($query, $params, $multirecord)
+function select($query, $params, $multirecord)      //Fontion permettant de selectionner des données
 {
     require ".const.php";
     $dbh = getPDO();
     try
     {
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute($params);//execute query
-        if ($multirecord)
+        $statement = $dbh->prepare($query);     //Préparer la requête
+        $statement->execute($params);       //Exécuter la requête
+        if ($multirecord)       //Si on veut récuperer plusieurs données
         {
-            $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);  //Alors on fait un fetchAll
         } else
         {
-            $queryResult = $statement->fetch(PDO::FETCH_ASSOC);
+            $queryResult = $statement->fetch(PDO::FETCH_ASSOC);     //Sinon on fait un fetch simple
         }
         $dbh = null;
         return $queryResult;
@@ -37,24 +37,24 @@ function select($query, $params, $multirecord)
     }
 }
 
-function selectMany($query, $params)
+function selectMany($query, $params)        //Fonction permettant de récuperer plusieurs données
 {
     return select($query, $params, true);
 }
 
-function selectOne($query, $params)
+function selectOne($query, $params)         //Fontion permettant de récuperer une donnée
 {
     return select($query, $params, false);
 }
 
-function insert($query, $params)
+function insert($query, $params)            //Fontion permettant d'insérer des données
 {
     require ".const.php";
     $dbh = getPDO();
     try
     {
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute($params);//execute query
+        $statement = $dbh->prepare($query);     //Préparer la requête
+        $statement->execute($params);       //Exécuter la requête
         return $dbh->lastInsertId();
     } catch (PDOException $e)
     {
@@ -63,14 +63,14 @@ function insert($query, $params)
     }
 }
 
-function execute($query, $params)//update || delete
+function execute($query, $params)       //Fonction permettant de mettre à jour et d'effacer des données
 {
     require ".const.php";
     $dbh = getPDO();
     try
     {
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute($params);//execute query
+        $statement = $dbh->prepare($query);     //Préparer la requête
+        $statement->execute($params);       //Exécuter la requête
         $dbh = null;
         return true;
     } catch (PDOException $e)
