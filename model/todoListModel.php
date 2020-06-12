@@ -2,17 +2,21 @@
 /**
  * Title: CSUNVB
  * USER: marwan.alhelo
- * Reedition: David Roulet
  * DATE: 05.2020
  **/
-
+/**
+ * Title: CSUNVB
+ * USER: daivd.roulet
+ * DATE: 05.2020
+ **/
 /**
  * Retourne tous les items dans un tableau indexé de tableaux associatifs
- * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
- * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
 
 /** ------------------TODOSHEETS---------------------- */
+/**
+ * Retourne tous les items dans un tableau indexé de tableaux associatifs
+ */
 function readTodoSheets()
 {
 
@@ -76,10 +80,7 @@ function readTodoSheetsForBase($base_id)
 
 /**
  * Retourne tous les items dans un tableau indexé de tableaux associatifs
- * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
- * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  */
-
 function readTodoThings()
 {
     return selectMany("SELECT * FROM csu.todothings;", []);
@@ -129,7 +130,7 @@ function createTodoThing($item)
 {
     return insert("INSERT INTO todothing (daything,description,type,display_order) VALUES (:daything,:description,:type,:display_order)", $item);
 }
-
+// WIP
 function readTodoThingsForDay($day, $dayOfWeek)
 {
     // TODO return the todothings for a specific day (0=monday, ....)
