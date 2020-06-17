@@ -1,18 +1,18 @@
 <?php
 /**
- * Auteur: Thomas Grossmann / Mounir Fiaux
+ * Auteur: Thomas Grossmann
  * Date: Mars 2020
  **/
 
 require_once 'model/adminModel.php';
 
-function trylogin($initials, $password, $baselogin)
+function trylogin($initials, $password, $baselogin)     //Fonction pour se connecter sur le site
 {
     $User = getUserByInitials($initials);
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
         unset($_SESSION['username']['password']);
-    $_SESSION['username']['base'] = getbasebyid($baselogin);
+    $_SESSION['username']['base'] = getbasebyid($baselogin);        //Met la base dans la session
         if ($User['firstconnect'] == true) {
             require_once 'view/firstLogin.php';
         } else {
@@ -25,47 +25,47 @@ function trylogin($initials, $password, $baselogin)
     }
 }
 
-function login()
+function login()            //Pointe sur la page du login
 {
     require_once 'view/login.php';
 }
 
-function disconnect()
+function disconnect()           //Vide la session (déconnecte l'user)
 {
     unset($_SESSION['username']);
     require_once 'view/login.php';
 }
 
-function adminHomePage()
+function adminHomePage()        //Pointe sur la page admin
 {
     require_once 'view/Admin/adminHome.php';
 }
 
-function adminCrew()
+function adminCrew()        //Pointe sur la liste d'users
 {
     $users = getUsers();
     require_once 'view/Admin/adminCrew.php';
 }
 
-function adminBases()
+function adminBases()       //Pointe sur la liste des bases
 {
     $bases = getbases();
     require_once 'view/Admin/adminBases.php';
 }
 
-function adminNovas()
+function adminNovas()       //pointe sur la liste des ambulances
 {
     $novas = getnovas();
     require_once 'view/Admin/adminNovas.php';
 }
 
-function adminDrugs()
+function adminDrugs()       //Pointe sur la liste des médicaments
 {
     $drugs = getDrugs();
     require_once 'view/Admin/adminDrugs.php';
 }
 
-function changeUserAdmin($changeUser)
+function changeUserAdmin($changeUser)       //Change un user en admin (et inversément)
 {
     $Users = getUsers();
     for ($i = 0; $i < count($Users); $i++) {
@@ -83,17 +83,17 @@ function changeUserAdmin($changeUser)
     adminCrew();
 }
 
-function newUser()
+function newUser()      //Pointe sur la page d'ajout d'un user
 {
     require_once 'view/Admin/newUser.php';
 }
 
-function newBase()
+function newBase()      //Pointe sur la page d'ajout d'une base
 {
     require_once 'view/Admin/newBase.php';
 }
 
-function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
+function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)         //Crée un utilisateur
 {
     $hash = password_hash($initialesUser, PASSWORD_DEFAULT);
     if ($adminUser == 'on') {
@@ -118,7 +118,7 @@ function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
     adminCrew();
 }
 
-function changeFirstPassword($passwordchange, $confirmpassword)
+function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige le nouvel user à changer son mdp à sa première connection
 {
     $Users = getUsers();
     $hash = password_hash($confirmpassword, PASSWORD_DEFAULT);
@@ -142,13 +142,13 @@ function changeFirstPassword($passwordchange, $confirmpassword)
     }
 }
 
-function modifBase($modifBase)
+function modifBase($modifBase)      //Pointe sur la page de modification d'une base
 {
     $base = getbasebyid($modifBase);
     require_once 'view/Admin/modifyBases.php';
 }
 
-function createBase($baseName)
+function createBase($baseName)      //Crée une base
 {
     $bases = getbases();
     $id = max(array_keys($bases)) + 1;
