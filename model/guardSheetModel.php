@@ -21,7 +21,7 @@ function getGuardsheet($id){
 
 
 function updateGuardsheet($id){
-    return execute("UPDATE bases SET date= :date,state=:state,base_id=:base_id where id = :id", [$id]);
+    return execute("UPDATE bases SET date = :date,state=:state,base_id=:base_id where id = :id", [$id]);
 
 }
 
@@ -75,99 +75,35 @@ VALUES (:base_id,:state,:date)";
 
 function getRemises()
 {
-    require ".const.php";
-    $dbh = getPDO();
-    try {
-        $query = 'SELECT * FROM guardsection';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        if ($debug) var_dump($queryResult);
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany('SELECT * FROM guardsection', []);
 }
 
 function getSectionsTitles()
 {
-    require ".const.php";
-    $dbh = getPDO();
-    try {
-        $query = 'SELECT * FROM guardsection';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        if ($debug) var_dump($queryResult);
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany('SELECT * FROM guardsection', []);
 }
 
 function getGuardLines()
 {
-    require ".const.php";
-    $dbh = getPDO();
-    try {
-        $query = 'SELECT * FROM guardlines';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        if ($debug) var_dump($queryResult);
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany('SELECT * FROM guardlines', []);
 }
 
 function getGuardComments()
 {
-    require ".const.php";
-    $dbh = getPDO();
-    try {
-        $query = 'SELECT * FROM guardcontent';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute();//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        if ($debug) var_dump($queryResult);
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectMany('SELECT * FROM guardcontent', []);
 }
 
 function getGuardLinesForSection($section)
 {
     // TODO return le lines for one section only
-    $section = getGuardLines();
-    for ($guardline = 0;$guardline < $section ; $guardline++){}
+    return selectOne('SELECT * FROM guarlines where section=:section', ['section' => $section]);
+    //$section = getGuardLines();
+    //for ($guardline = 0;$guardline < $section ; $guardline++){}
 }
 
 function getGuardSheetsByBase($base_id)
 {
-    require ".const.php";
-    $dbh = getPDO();
-    try {
-        $query = 'select * from guardsheets where base_id=:base_id';
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute(['base_id' => $base_id]);//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        if ($debug) var_dump($queryResult);
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
+    return selectOne('select * from guardsheets where base_id=:base_id', ['base_id' => $base_id]);
 }
 
 ?>

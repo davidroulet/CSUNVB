@@ -14,11 +14,11 @@ function trylogin($initials, $password, $baselogin)     //Fonction pour se conne
         unset($_SESSION['username']['password']);
     $_SESSION['username']['base'] = getbasebyid($baselogin);        //Met la base dans la session
         if ($User['firstconnect'] == true) {
-            require_once 'view/firstLogin.php';
+            require 'view/firstLogin.php';
         } else {
             $_SESSION['flashmessage'] = 'Bienvenue ' . $User['firstname'] . ' ' . $User['lastname'] . ' !';
-            require_once 'view/home.php';
-        }
+            require 'view/home.php';
+         }
     } else {
         $_SESSION['flashmessage'] = 'Identifiants incorrects ...';
         login();
@@ -27,13 +27,13 @@ function trylogin($initials, $password, $baselogin)     //Fonction pour se conne
 
 function login()            //Pointe sur la page du login
 {
-    require_once 'view/login.php';
+    require 'view/login.php';
 }
 
 function disconnect()           //Vide la session (déconnecte l'user)
 {
     unset($_SESSION['username']);
-    require_once 'view/login.php';
+    require'view/login.php';
 }
 
 function adminHomePage()        //Pointe sur la page admin

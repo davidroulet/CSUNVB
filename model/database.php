@@ -15,7 +15,7 @@ function getPDO()                   //Fonction pour se connecter à la base de d
 
 function select($query, $params, $multirecord)      //Fontion permettant de selectionner des données
 {
-    require ".const.php";
+
     $dbh = getPDO();
     try
     {
@@ -49,7 +49,7 @@ function selectOne($query, $params)         //Fontion permettant de récuperer u
 
 function insert($query, $params)            //Fontion permettant d'insérer des données
 {
-    require ".const.php";
+
     $dbh = getPDO();
     try
     {
@@ -65,7 +65,7 @@ function insert($query, $params)            //Fontion permettant d'insérer des 
 
 function execute($query, $params)       //Fonction permettant de mettre à jour et d'effacer des données
 {
-    require ".const.php";
+
     $dbh = getPDO();
     try
     {

@@ -72,7 +72,6 @@ function createAdminItem($item)
 
 function getbasebyid($id)       //Récupère une base en fonction de son Id
 {
-
     return selectOne("SELECT * FROM bases where id =:id",['id'=>$id]);
 }
 

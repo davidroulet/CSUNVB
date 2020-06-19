@@ -48,7 +48,7 @@ if (isset($_GET["date"])) {
 }
 switch ($action) {
     case 'home' :
-        require_once 'view/home.php';
+        require 'view/home.php';
         break;
     case 'admin':
         adminHomePage();
@@ -149,9 +149,9 @@ switch ($action) {
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
         } else if ($_SESSION['username']['firstconnect'] == true) {
-            require_once 'view/firstLogin.php';
+            require 'view/firstLogin.php';
         } else {
-            require_once 'view/login.php';
+            require 'view/login.php';
         }
         break;
 }
