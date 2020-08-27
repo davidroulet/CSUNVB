@@ -11,7 +11,11 @@
  * USER: David.Roulet
  * DATE: 12.06.2020
  * Time: 11:15
- *
+ **/
+/**
+ * Title: CSUNVB - Controller
+ * USER: Gatien.Jayme
+ * DATE: 27.08.2020
  **/
 require_once 'model/todoListModel.php';
 require_once 'model/adminModel.php';
