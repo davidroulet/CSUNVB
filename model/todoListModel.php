@@ -6,8 +6,13 @@
  **/
 /**
  * Title: CSUNVB
- * USER: daivd.roulet
+ * USER: david.roulet
  * DATE: 05.2020
+ **/
+/**
+ * Title: CSUNVB - Model
+ * USER: Gatien.Jayme
+ * DATE: 27.08.2020
  **/
 /**
  * Retourne tous les items dans un tableau indexé de tableaux associatifs

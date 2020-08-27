@@ -5,6 +5,11 @@
  * DATE: 13.02.2020
  * Time: 11:29
  **/
+/**
+ * Title: CSUNVB - View Home
+ * USER: Gatien.Jayme
+ * DATE: 27.08.2020
+ **/
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 
