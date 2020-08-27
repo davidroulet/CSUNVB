@@ -2,6 +2,7 @@
 node_modules/
 
 #phpStorm
+.const.php
 .idea
 *.mwb.bak
 model/.const.php
