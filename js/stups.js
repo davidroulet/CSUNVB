@@ -5,3 +5,8 @@
  * Auteur: X. Carrel
  * Date: Février 2020
  **/
+
+
+function init() {   //déclaration des événements et opération après le chargement du DOM
+    document.getElementById("slcBase").addEventListener("change", action="submit")
+}

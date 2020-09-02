@@ -31,9 +31,10 @@ $title = "CSU-NVB - Remise de garde";
             <th>État</th>
             </thead>
             <tbody>
+
             <?php foreach ($weeks as $week) { ?>
                 <tr>
-                    <form action="/index.php?action=drugSiteTable" method="post">
+                    <form action="/index.php?action=ShiftEndTable" method="post">
                         <td>
                             <button class="btn" name="semaine"
                                     value="<?= $week["week"] ?>"> <?php echo "Semaine " . $week["week"] ?> </button>

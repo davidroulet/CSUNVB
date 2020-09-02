@@ -13,7 +13,7 @@ $title = "CSU-NVB - Stupéfiants";
 </div>
 
 <FORM action="/index.php?action=drugs" method="post">
-    <SELECT name="site" size="1">
+    <SELECT onchange="this.form.submit()" name="site" size="1">
         <?php
         foreach ($bases
         as $base){ ?>
