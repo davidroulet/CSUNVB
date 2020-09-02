@@ -2,10 +2,10 @@
 node_modules/
 
 #phpStorm
-.const.php
 .idea
 *.mwb.bak
 .vs
 *~$*
 Key/Private_Key_SSH.ppk
 Key/Public_Key_SSH.ppk
+
