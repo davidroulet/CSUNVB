@@ -5,7 +5,6 @@ node_modules/
 .const.php
 .idea
 *.mwb.bak
-model/.const.php
 .vs
 *~$*
 Key/Private_Key_SSH.ppk
