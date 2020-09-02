@@ -105,5 +105,8 @@ function getGuardSheetsByBase($base_id)
 {
     return selectOne('select * from guardsheets where base_id=:base_id', ['base_id' => $base_id]);
 }
+function getGuradSheetWeek($week,$base){
+    return selectOne('SELECT * FROM guardsheets INNER JOIN bases ON bases.id=base_id WHERE week =:week AND base_id=:base', ['week' => $week, 'base' => $base]);
+}
 
 ?>
