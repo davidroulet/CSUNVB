@@ -14,14 +14,14 @@ $title = "CSU-NVB - Administration - Nouveau secouriste";
         <th>Prénom</th>
         <th>Nom</th>
         <th>Initiales</th>
-        <th>Admin</th>
+        <th>Mot de passe de départ</th>
         </thead>
         <tbody>
         <tr>
             <td><input type="text" name="prenomUser" required></td>
             <td><input type="text" name="nomUser" required></td>
             <td><input type="text" name="initialesUser" required></td>
-            <td><input type="checkbox" name="adminUser"></td>
+            <td><input type="password" name="startPassword" required></td>
         </tr>
         </tbody>
     </table>

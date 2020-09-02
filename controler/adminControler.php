@@ -93,27 +93,21 @@ function newBase()      //Pointe sur la page d'ajout d'une base
     require_once 'view/Admin/newBase.php';
 }
 
-function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)         //Crée un utilisateur
+function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)         //Crée un utilisateur
 {
-    $hash = password_hash($initialesUser, PASSWORD_DEFAULT);
-    if ($adminUser == 'on') {
-        $Admin = true;
-    } else {
-        $Admin = false;
-    }
+    //$hash = password_hash($startPassword, PASSWORD_DEFAULT);      En attendant de savoir quel est le mot de passe de départ
     $Users = getUsers();
     $id = max(array_keys($Users)) + 1;
     $NewUser = [
         'id' => $id,
         'initials' => $initialesUser,
         'lastname' => $nomUser,
-        'password' => $hash,
+        'password' => $startPassword,   //$hash lorsque je saurais quel est le mot de passe de départ
         'firstname' => $prenomUser,
-        'admin' => $Admin,
+        'admin' => false,
         'firstconnect' => true
     ];
-    $Users[] = $NewUser;
-    SaveUser($Users);
+    execute("INSERT INTO users VALUES (:id, :firstname, :lastname, :initials, :password, :admin, :firstconnect) WHERE id= :id", [$NewUser]);
     $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
     adminCrew();
 }
