@@ -24,16 +24,30 @@ $title = "CSU-NVB - Remise de garde";
         <button type="submit">Recharger</button>
     </FORM>
 
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <th>Date</th>
+            <th>État</th>
+            </thead>
+            <tbody>
+
+            <?php foreach ($weeks as $week) { ?>
+                <tr>
+                    <form action="/index.php?action=ShiftEndTable" method="post">
+                        <td>
+                            <button class="btn" name="semaine"
+                                    value="<?= $week["week"] ?>"> <?php echo "Semaine " . $week["week"] ?> </button>
+                        </td>
+                        <td><?= $week['state'] ?></td>
+                    </form>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
 
 
-            <select class="custom-select" id="Sites" name="base">
-                <?php foreach ($Bases
-
-                as $base) { ?>
-                <OPTION value="<?= $base['id'] ?>" <?php if ($_SESSION["Selectsite"] == $base['id']) { ?> selected="selected"  <?php } ?>
-                        name="site"><?= $base['name'] ?>
-                    <?php } ?>
-            </select>
             <table class="table table-bordered  table-striped" style="text-align: center">
                 <thead class="thead-dark">
                 <th>Date</th>

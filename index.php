@@ -91,6 +91,9 @@ switch ($action) {
     case "drugSiteTable":
         drugSiteTable($semaine);
         break;
+    case 'ShiftEndTable':
+        ShiftEndTable($semaine);
+        break;
     case "trylogin":
         trylogin($initials, $password, $baselogin);
         break;
@@ -145,6 +148,7 @@ switch ($action) {
         $baseName = $_POST['baseName'];
         createBase($baseName);
         break;
+
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
