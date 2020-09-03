@@ -15,13 +15,12 @@ $title = "CSU-NVB - Remise de garde";
     <h1>Remises de garde</h1>
 
     <FORM action="/index.php?action=listShiftEnd" method="post">
-        <SELECT name="site" size="1">
+        <SELECT onchange="this.form.submit()" name="site" size="1">
             <?php foreach ($Bases as $base) { ?>
             <OPTION value="<?= $base['id'] ?>" <?php if ($_SESSION["Selectsite"] == $base['id']) { ?> selected="selected"  <?php } ?>
                     name="site"><?= $base['name'] ?>
                 <?php } ?>
         </SELECT>
-        <button type="submit">Recharger</button>
     </FORM>
 
     <div class="row">

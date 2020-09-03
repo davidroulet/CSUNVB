@@ -23,7 +23,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
 <div class="p-3 d-flex justify-content-end ">
     <FORM action="/index.php?action=todolist" method="post">
-        <SELECT name="selectBase">
+        <SELECT onchange="this.form.submit()" name="selectBase">
             <?php foreach ($bases as $base) { ?>
 
                 <option value="<?= $base['id'] ?>" <?php if ($base['id'] == $selectedBase) echo "selected"; ?>><?= $base['name']; ?></option>
@@ -31,7 +31,6 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
             <?php } ?>
         </SELECT>
-        <button type="submit" class="btn btn-info">Recharger</button>
     </form>
 </div>
 
