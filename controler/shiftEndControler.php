@@ -18,8 +18,8 @@ function shiftEndHomePage()
 function listShiftEnd($base_id)
 {
     $Bases = getbases();
-    $list = getGuardSheetsByBase($base_id);
-    $GuardSheet = getGuradSheetWeek($semaine, $_SESSION["Selectsite"]); // la feuille de guardsheets à afficher
+    $list = getGuradSheet();
+
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 function  ShiftEndTable($semaine){
