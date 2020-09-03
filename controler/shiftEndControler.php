@@ -18,14 +18,14 @@ function shiftEndHomePage()
 function listShiftEnd($base_id)
 {
     $Bases = getbases();
-    $list = getGuardSheetsByBase($base_id);
-    $GuardSheet = getGuradSheetWeek($semaine, $_SESSION["Selectsite"]); // la feuille de guardsheets à afficher
+    $list = Guardsheet();
+
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 function  ShiftEndTable($semaine){
 
 
     $GuardSheet = getGuradSheetWeek($semaine, $_SESSION["Selectsite"]); // la feuille de stupéfiants à afficher
-
+    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 ?>

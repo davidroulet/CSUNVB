@@ -7,6 +7,10 @@
 ob_start();
 $title = "CSU-NVB - Remise de garde";
 ?>
+    <div class="row m-2">
+        <h1>Remise de garde</h1>
+    </div>
+
     <br>
     <table class="table table-bordered  table-striped" style="text-align: center">
         <thead class="thead-dark">
