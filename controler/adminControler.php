@@ -12,13 +12,13 @@ function trylogin($initials, $password, $baselogin)     //Fonction pour se conne
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
         unset($_SESSION['username']['password']);
-    $_SESSION['username']['base'] = getbasebyid($baselogin);        //Met la base dans la session
+        $_SESSION['username']['base'] = getbasebyid($baselogin);        //Met la base dans la session
         if ($User['firstconnect'] == true) {
             require 'view/firstLogin.php';
         } else {
             $_SESSION['flashmessage'] = 'Bienvenue ' . $User['firstname'] . ' ' . $User['lastname'] . ' !';
             require 'view/home.php';
-         }
+        }
     } else {
         $_SESSION['flashmessage'] = 'Identifiants incorrects ...';
         login();
@@ -33,7 +33,7 @@ function login()            //Pointe sur la page du login
 function disconnect()           //Vide la session (déconnecte l'user)
 {
     unset($_SESSION['username']);
-    require'view/login.php';
+    require 'view/login.php';
 }
 
 function adminHomePage()        //Pointe sur la page admin
@@ -147,6 +147,13 @@ function createBase($baseName)      //Crée une base
     SaveBase($bases);
     $_SESSION['flashmessage'] = "La base a bien été créée.";
     adminBases();
+}
+
+function newDrugs($newDrug_id)
+{
+    createNewDrug($newDrug_id);
+    $dr = $newDrug_id;
+    require_once 'view/Admin/newDrugs.php';
 }
 
 ?>
