@@ -16,44 +16,43 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
 
-
-<h2 class="center p-2">Année<?= date("Y") ?> </h2>
-<h3 class="center"> Vous êtes connecté(e) <?= getbasebyid($_SESSION["Selectsite"])["name"] ?></h3>
-
-
-<div class="p-3 d-flex justify-content-end ">
-    <FORM action="/index.php?action=todolist" method="post">
-        <SELECT onchange="this.form.submit()" name="selectBase">
-            <?php foreach ($bases as $base) { ?>
-
-                <option value="<?= $base['id'] ?>" <?php if ($base['id'] == $selectedBase) echo "selected"; ?>><?= $base['name']; ?></option>
-
-
-            <?php } ?>
-        </SELECT>
-    </form>
-</div>
-
-<div class="container d-flex justify-content-center">
-
-    <div class="weeknumber p-3">
-
+<FORM action="/index.php?action=todolist" method="post">
+    <SELECT onchange="this.form.submit()" name="site" size="1">
         <?php
+        foreach ($bases as $base) { ?>
 
-        foreach ($todoSheets as $todosheet) {
+        <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
+                name="site"><?= $base["name"] ?>
+
+            <?php }
             ?>
-                <div class="day col-lg">
-                    <a href="?action=edittod&sheetid=<?= $todosheet['id'] ?>" class="over">
-                    <div class="hour">Semaine N° : <?= $todosheet['week'] ?> <br> <?=$todosheet['state'] ?></div>
+    </SELECT>
+</FORM>
 
-                    </a>
 
-                </div>
-            <?php
-        } ?>
 
-    </div>
 
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+        <th>Date</th>
+        <th>État</th>
+        </thead>
+        <tbody>
+        <?php foreach ($todoSheets as $todosheet) {
+            ?>
+            <tr>
+                <form action="/index.php?action=edittod&sheetid" method="post">
+                    <td>
+                        <button class="btn" name="semaine"
+                                value="<?= $todosheet['id'] ?>"> <?php echo "Semaine " . $todosheet['week'] ?>  </button>
+                    </td>
+                    <td><?= $todosheet['state'] ?></td>
+                </form>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
 </div>
 
 <?php

@@ -84,7 +84,8 @@ function readTodoSheetsForBase($base_id)
 /** ------------------TODOTHINGS---------------------- */
 
 /**
- * Retourne tous les items dans un tableau indexé de tableaux associatifs
+ * Retourne tous les todothings
+ *
  */
 function readTodoThings()
 {
@@ -97,7 +98,7 @@ function readTodoThings()
  */
 function readTodoThing($id)
 {
-    return selectMany("SELECT * FROM csu.todothings where id='$id';", []);
+    return selectMany("SELECT * FROM csu.todothings where id=:id;", ["id" => $id]);
 }
 
 /**
@@ -135,11 +136,12 @@ function createTodoThing($item)
 {
     return insert("INSERT INTO todothing (daything,description,type,display_order) VALUES (:daything,:description,:type,:display_order)", $item);
 }
+
 // WIP
 function readTodoThingsForDay($day, $dayOfWeek)
 {
     // TODO return the todothings for a specific day (0=monday, ....)
-    /*
+
         $items = readTodoThings();
 
         foreach ($items as $item) {
@@ -156,31 +158,35 @@ function readTodoThingsForDay($day, $dayOfWeek)
             }
         }
     return $itemsByDay;
-      */
 
-    $todothingsData = json_decode(file_get_contents('model/dataStorage\todothings.json'), 1);
+
+    $todothingsData = readTodoThings();
 
 // Insérer les données dans la db
-    /*foreach ($logsData as $key => $val) {unset ($logsData[$key]['id']);}
+
+    foreach ($logsData as $key => $val) {
+        unset ($logsData[$key]['id']);
+    }
+
     insertBatch("INSERT INTO logs (timestamp, author_id, item_type, item_id, text) VALUES (:timestamp, :author_id, :item_type, :item_id, :text);", $logsData);
-    */
+
 
 //WeekPlan
 
 
     foreach ($todothingsData as $todothingsDataWeek) {
 
-        $planweek="";
+        $planweek = "";
         foreach ($todothingsDataWeek["days"] as $day) {
             if ($day == false) {
-                $datawrite=0;
-            }else{
-                $datawrite=1;
+                $datawrite = 0;
+            } else {
+                $datawrite = 1;
             }
-            $planweek="$planweek"."$datawrite";
+            $planweek = "$planweek" . "$datawrite";
         }
-        $todothingsDataWeek["days"]=$planweek;
-        $todothingsData[$todothingsDataWeek["id"]]=$todothingsDataWeek;
+        $todothingsDataWeek["days"] = $planweek;
+        $todothingsData[$todothingsDataWeek["id"]] = $todothingsDataWeek;
 
     }
     var_dump($todothingsData);

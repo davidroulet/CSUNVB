@@ -72,8 +72,8 @@ switch ($action) {
         break;
     case 'todolist':
 
-        if (isset($_POST['selectBase'])) {
-            $selectedBase = $_POST['selectBase'];
+        if (isset($_POST['site'])) {
+            $selectedBase = $_POST['site'];
         }else{
             $selectedBase = $_SESSION['username']['base']['id'];
         }
