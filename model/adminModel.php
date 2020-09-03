@@ -7,7 +7,6 @@
  **/
 
 
-
 function readAdminItems()
 {
     return json_decode(file_get_contents("model/dataStorage/items.json"), true);
@@ -72,22 +71,22 @@ function createAdminItem($item)
 
 function getbasebyid($id)       //Récupère une base en fonction de son Id
 {
-    return selectOne("SELECT * FROM bases where id =:id",['id'=>$id]);
+    return selectOne("SELECT * FROM bases where id =:id", ['id' => $id]);
 }
 
 function getbases()            //Récupère toutes les bases
 {
-    return selectMany("SELECT * FROM bases",[]);
+    return selectMany("SELECT * FROM bases", []);
 }
 
 function getUserByInitials($initials)       //Récupère un utilisateur en fonction de ses initiales
 {
-    return selectOne("SELECT * FROM users where initials =:initials",['initials'=>$initials]);
+    return selectOne("SELECT * FROM users where initials =:initials", ['initials' => $initials]);
 }
 
 function getUsers()     //Récupère tous les utilisateurs
 {
-    return selectMany("SELECT * FROM users",[]);
+    return selectMany("SELECT * FROM users", []);
 }
 
 function SaveUser($Users)       //Met à jour les informations d'un utilisateur
@@ -99,4 +98,10 @@ function SaveBase($bases)       //Met à jour les informations d'une base
 {
     return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }
+
+function createNewDrug($newDrug)
+{
+    return insert("INSERT INTO Drugs (name) values (:nameDrugs) ",[$newDrug] );
+}
+
 ?>
