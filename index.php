@@ -148,6 +148,9 @@ switch ($action) {
         $baseName = $_POST['baseName'];
         createBase($baseName);
         break;
+    case 'newDrugs' :
+        require_once 'view/Admin/newDrugs.php';
+        break;
 
     default: // unknown action
         if (isset($_SESSION['username'])) {

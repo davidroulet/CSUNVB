@@ -20,6 +20,8 @@ $title = "CSU-NVB - Administration - Médicaments";
             </tr><?php } ?>
         </tbody>
     </table>
+    <button type="button" class="btn btn-primary">Ajouter</button>
+    <a class="btn" href="?action=newDrugs">Link</a>
 
 <?php
 $content = ob_get_clean();
