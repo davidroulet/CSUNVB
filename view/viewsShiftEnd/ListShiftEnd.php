@@ -33,10 +33,10 @@ $title = "CSU-NVB - Remise de garde";
 
             <?php foreach ($weeks as $week) { ?>
                 <tr>
-                    <form action="/index.php?action=ShiftEndTable" method="post">
+                    <form action="/index.php?action=listShiftEnd" method="post">
                         <td>
                             <button class="btn" name="semaine"
-                                    value="<?= $week["week"] ?>"> <?php echo "Semaine " . $week["week"] ?> </button>
+                                    value="<?= var_dump($week) ?>"> <?php echo "Semaine " . $week["week"] ?> </button>
                         </td>
                         <td><?= $week['state'] ?></td>
                     </form>
