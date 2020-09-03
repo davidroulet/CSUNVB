@@ -72,9 +72,15 @@ switch ($action) {
         break;
     case 'todolist':
 
+<<<<<<< HEAD
         if (isset($_POST['site'])) {
             $selectedBase = $_POST['site'];
         }else{
+=======
+        if (isset($_POST['selectBase'])) {
+            $selectedBase = $_POST['selectBase'];
+        } else {
+>>>>>>> 249c068902c9948d7616e3641566e0c0957cb9fa
             $selectedBase = $_SESSION['username']['base']['id'];
         }
         todoListHomePage($selectedBase);
@@ -116,7 +122,7 @@ switch ($action) {
         adminDrugs();
         break;
     case "PharmaUpdate":
-        PharmaUpdate($batchtoupdate, $PharmaUpdateuser, $Pharmastart, $Pharmaend, $sheetid,$date);
+        PharmaUpdate($batchtoupdate, $PharmaUpdateuser, $Pharmastart, $Pharmaend, $sheetid, $date);
         break;
     case 'changeUserAdmin' :
         $changeUser = $_GET['idUser'];
@@ -149,7 +155,7 @@ switch ($action) {
         createBase($baseName);
         break;
     case 'newDrugs' :
-        require_once 'view/Admin/newDrugs.php';
+        newDrugs();
         break;
 
     default: // unknown action
