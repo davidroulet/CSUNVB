@@ -18,7 +18,7 @@ function shiftEndHomePage()
 function listShiftEnd($base_id)
 {
     $Bases = getbases();
-    $list = getGuradSheet();
+    $list = Guardsheet();
 
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
@@ -26,6 +26,6 @@ function  ShiftEndTable($semaine){
 
 
     $GuardSheet = getGuradSheetWeek($semaine, $_SESSION["Selectsite"]); // la feuille de stupéfiants à afficher
-
+    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 ?>
