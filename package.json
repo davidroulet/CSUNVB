@@ -8,6 +8,7 @@
     "buble": "^0.20.0",
     "fontawesome": "^5.6.3",
     "jquery": "^3.4.1",
+    "php": "^1.0.1",
     "popper": "^1.0.1"
   },
   "devDependencies": {},

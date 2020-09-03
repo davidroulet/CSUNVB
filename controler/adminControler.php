@@ -101,16 +101,8 @@ function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)     
     $admin = false;
     $firstconnect = true;
     addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect);
-    if (count($Users) == $id)
-    {
-        $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
-        adminCrew();
-    }
-    else
-    {
-        $_SESSION['flashmessage'] = "Erreur... L'utilisateur n'a pas pu être créé.";
-        newUser();
-    }
+    $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
+    adminCrew();
 }
 
 function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige le nouvel user à changer son mdp à sa première connection
