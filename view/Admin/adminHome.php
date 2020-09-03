@@ -2,6 +2,7 @@
 ob_start();
 $title = "CSU-NVB - Administration";
 ?>
+<a href="?action=home" class="btn btn-primary">Retour</a>
 <div class="row m-2">
     <a class="text-decoration-none card col-4 menutile pl-3 pr-3 pt-5 pb-5 m-1 align-items-center" href="?action=adminCrew">Secouristes</a>
     <a class="text-decoration-none card col-4 menutile pl-3 pr-3 pt-5 pb-5 m-1 align-items-center" href="?action=adminBases">Bases</a>

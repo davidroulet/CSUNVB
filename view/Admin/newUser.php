@@ -7,7 +7,7 @@
 ob_start();
 $title = "CSU-NVB - Administration - Nouveau secouriste";
 ?>
-
+<a href="?action=adminCrew" class="btn btn-primary">Retour</a>
 <form method="post" action="?action=saveNewUser">
     <table class="table table-bordered">
         <thead>
