@@ -95,21 +95,22 @@ function newBase()      //Pointe sur la page d'ajout d'une base
 
 function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)         //Crée un utilisateur
 {
-    //$hash = password_hash($startPassword, PASSWORD_DEFAULT);      En attendant de savoir quel est le mot de passe de départ
+    $hash = password_hash($startPassword, PASSWORD_DEFAULT);
     $Users = getUsers();
-    $id = max(array_keys($Users)) + 1;
-    $NewUser = [
-        'id' => $id,
-        'initials' => $initialesUser,
-        'lastname' => $nomUser,
-        'password' => $startPassword,   //$hash lorsque je saurais quel est le mot de passe de départ
-        'firstname' => $prenomUser,
-        'admin' => false,
-        'firstconnect' => true
-    ];
-    execute("INSERT INTO users VALUES (:id, :firstname, :lastname, :initials, :password, :admin, :firstconnect) WHERE id= :id", [$NewUser]);
-    $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
-    adminCrew();
+    $id = count($Users) + 1;
+    $admin = false;
+    $firstconnect = true;
+    addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect);
+    if (count($Users) == $id)
+    {
+        $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
+        adminCrew();
+    }
+    else
+    {
+        $_SESSION['flashmessage'] = "Erreur... L'utilisateur n'a pas pu être créé.";
+        newUser();
+    }
 }
 
 function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige le nouvel user à changer son mdp à sa première connection
