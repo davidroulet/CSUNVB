@@ -99,4 +99,9 @@ function SaveBase($bases)       //Met à jour les informations d'une base
 {
     return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }
+
+function addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
+{
+    return execute("INSERT INTO users VALUES (:id, :firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['id'=>$id, 'firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]);       //à optimiser/simplifier avec un tableau
+}
 ?>
