@@ -15,11 +15,12 @@ $title = "CSU-NVB - Remise de garde";
     <h1>Remise de Garde</h1>
 </div>
 
-<div class="row m-2">
 
     <FORM action="/index.php?action=listShiftEnd" method="post">
         <SELECT onchange="this.form.submit()" name="site" size="1">
-            <?php foreach ($Bases as $base) { ?>
+            <?php foreach ($Bases
+
+            as $base) { ?>
             <OPTION value="<?= $base['id'] ?>" <?php if ($_SESSION["Selectsite"] == $base['id']) { ?> selected="selected"  <?php } ?>
                     name="site"><?= $base['name'] ?>
                 <?php } ?>
@@ -37,7 +38,7 @@ $title = "CSU-NVB - Remise de garde";
 
 
     <div class="row">
-        <table class="table table-bordered">
+        <table class="table table-bordered ">
             <thead>
             <th>Date</th>
             <th>État</th>
@@ -49,7 +50,7 @@ $title = "CSU-NVB - Remise de garde";
                     <form action="/index.php?action=shiftend" method="post">
                         <td>
                             <button class="btn" name="semaine"
-                                    value="<?= $week["date"] ?>"> <?php echo substr($week["date"],0,10) ?> </button>
+                                    value="<?= $week["date"] ?>"> <?php echo substr($week["date"], 0, 10) ?> </button>
                         </td>
                         <td><?= $week['state'] ?></td>
                     </form>
@@ -60,14 +61,8 @@ $title = "CSU-NVB - Remise de garde";
     </div>
 
 
+    <?php
 
-
-
-
-
-
-            <?php
-
-            $content = ob_get_clean();
-            require "view/gabarit.php";
-            ?>
+    $content = ob_get_clean();
+    require "view/gabarit.php";
+    ?>
