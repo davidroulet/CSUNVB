@@ -15,13 +15,12 @@ $title = "CSU-NVB - Remise de garde";
     <h1>Remises de garde</h1>
 
     <FORM action="/index.php?action=listShiftEnd" method="post">
-        <SELECT name="site" size="1">
+        <SELECT onchange="this.form.submit()" name="site" size="1">
             <?php foreach ($Bases as $base) { ?>
             <OPTION value="<?= $base['id'] ?>" <?php if ($_SESSION["Selectsite"] == $base['id']) { ?> selected="selected"  <?php } ?>
                     name="site"><?= $base['name'] ?>
                 <?php } ?>
         </SELECT>
-        <button type="submit">Recharger</button>
     </FORM>
 
     <div class="row">
@@ -34,10 +33,10 @@ $title = "CSU-NVB - Remise de garde";
 
             <?php foreach ($weeks as $week) { ?>
                 <tr>
-                    <form action="/index.php?action=ShiftEndTable" method="post">
+                    <form action="/index.php?action=listShiftEnd" method="post">
                         <td>
                             <button class="btn" name="semaine"
-                                    value="<?= $week["week"] ?>"> <?php echo "Semaine " . $week["week"] ?> </button>
+                                    value="<?= var_dump($week) ?>"> <?php echo "Semaine " . $week["week"] ?> </button>
                         </td>
                         <td><?= $week['state'] ?></td>
                     </form>

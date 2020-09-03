@@ -23,7 +23,6 @@ $title = "CSU-NVB - Stupéfiants";
             <?php }
             ?>
     </SELECT>
-    <button type="submit">Recharger</button>
 </FORM>
 
 <div class="row m-2">
