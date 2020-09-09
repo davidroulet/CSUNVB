@@ -11,6 +11,8 @@ $title = "CSU-NVB - Remise de garde";
         <h1>Remise de garde</h1>
     </div>
 
+    <h2>Site de <?= $site ?> , Semaine <?php echo substr($semaine, 0, 10) ?>
+
     <br>
     <table class="table table-bordered  table-striped" style="text-align: center">
         <thead class="thead-dark">
