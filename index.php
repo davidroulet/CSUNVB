@@ -72,17 +72,14 @@ switch ($action) {
         break;
     case 'todolist':
 
-<<<<<<< HEAD
         if (isset($_POST['site'])) {
             $selectedBase = $_POST['site'];
         }else{
-=======
         if (isset($_POST['selectBase'])) {
             $selectedBase = $_POST['selectBase'];
         } else {
->>>>>>> 249c068902c9948d7616e3641566e0c0957cb9fa
             $selectedBase = $_SESSION['username']['base']['id'];
-        }
+        } }
         todoListHomePage($selectedBase);
         break;
     case 'edittod':
