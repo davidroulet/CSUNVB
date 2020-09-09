@@ -152,7 +152,8 @@ switch ($action) {
         createBase($baseName);
         break;
     case 'newDrugs' :
-        newDrugs();
+        $newDrug_id = $_POST['NewDrugs'];
+        newDrugs($newDrug_id);
         break;
 
     default: // unknown action
