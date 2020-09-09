@@ -151,7 +151,7 @@ function createBase($baseName)      //Crée une base
 
 function newDrugs($newDrug_id)
 {
-    createNewDrug($newDrug_id);
+    addNewDrug($newDrug_id);
     $dr = $newDrug_id;
     require_once 'view/Admin/newDrugs.php';
 }
