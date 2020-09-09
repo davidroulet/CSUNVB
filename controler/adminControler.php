@@ -117,7 +117,7 @@ function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige
             for ($i = 0; $i < count($Users); $i++) {
                 if ($Users[$i]['id'] == $_SESSION['username']['id']) {
                     $Users[$i]['password'] = $hash;
-                    $Users[$i]['firstconnect'] = false;
+                    $Users[$i]['firstconnect'] = 0;
                 }
             }
             SaveUser($Users);
