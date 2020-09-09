@@ -54,7 +54,7 @@ switch ($action) {
         adminHomePage();
         break;
     case 'shiftend':
-        shiftEndHomePage();
+        shiftEndHomePage($semaine);
         break;
     case 'listShiftEnd':
         if (isset($_POST["site"])) {
@@ -93,9 +93,6 @@ switch ($action) {
         break;
     case "drugSiteTable":
         drugSiteTable($semaine);
-        break;
-    case 'ShiftEndTable':
-        ShiftEndTable($semaine);
         break;
     case "trylogin":
         trylogin($initials, $password, $baselogin);
