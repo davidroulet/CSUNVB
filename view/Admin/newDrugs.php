@@ -9,7 +9,7 @@ $title = "CSU-NVB - Administration - Médicaments";
 ?>
 <form class="form form-group" name="NewDrugs" method="post">
     <label>Nom du Nouveau Médicaments</label>
-    <input type="text" class="form-group form-control" name="drugName">
+    <input type="text" class="form-group form-control" name="nameDrug">
     <input type="submit" class="btn btn-primary">
 </form>
  <?php
