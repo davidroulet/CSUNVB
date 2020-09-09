@@ -98,18 +98,9 @@ function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)     
     $hash = password_hash($startPassword, PASSWORD_DEFAULT);
     $Users = getUsers();
     $id = count($Users) + 1;
-    $admin = false;
-    $firstconnect = true;
-    $NewUser = [
-        'id' => $id,
-        'firstname' => $prenomUser,
-        'lastname' => $nomUser,
-        'initials' => $initialesUser,
-        'password' => $hash,
-        'admin' => $admin,
-        'firstconnect' => $firstconnect
-    ];
-    addNewUser($NewUser);
+    $admin = 0;
+    $firstconnect = 1;
+    addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect);
     $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
     adminCrew();
 }
