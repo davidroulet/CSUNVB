@@ -91,7 +91,7 @@ function getUsers()     //Récupère tous les utilisateurs
 
 function SaveUser($Users)       //Met à jour les informations d'un utilisateur
 {
-    return execute("UPDATE users SET firstname= :firstname, lastname= :lastname, initials= :initials, password= :password where id = :Users", [$Users]);
+    return execute("UPDATE users SET password= :password, firstconnect= :firstconnect where id = :Users", ['Users' => $Users]);
 }
 
 function SaveBase($bases)       //Met à jour les informations d'une base 

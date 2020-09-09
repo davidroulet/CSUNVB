@@ -7,8 +7,10 @@
 require_once 'model/guardSheetModel.php';
 require_once 'model/adminModel.php';
 
-function shiftEndHomePage()
+function shiftEndHomePage($semaine)
+
 {
+    $site = getbasebyid($_SESSION["Selectsite"])["name"];
     $TitlesLines = getGuardLines();
     $Titles = getSectionsTitles();
     $guardsheets = getGuardsheets();
@@ -20,12 +22,6 @@ function listShiftEnd($base_id)
     $Bases = getbases();
     $list = Guardsheet();
 
-    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
-}
-function  ShiftEndTable($semaine){
-
-
-    $GuardSheet = getGuradSheetWeek($semaine, $_SESSION["Selectsite"]); // la feuille de stupéfiants à afficher
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 ?>
