@@ -99,9 +99,9 @@ function SaveBase($bases)       //Met à jour les informations d'une base
     return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }
 
-function addNewDrug($nameDrug)
+function addNewDrug($id, $nameDrug)
 {
-    return insert("INSERT INTO Drugs values (:id, :nameDrugs) ",['name'=>$nameDrug] );
+    return insert("INSERT INTO Drugs values (:id, :nameDrugs) ",['id'=>$id, 'name'=>$nameDrug] );
 }
 
 function addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
