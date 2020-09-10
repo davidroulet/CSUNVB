@@ -100,15 +100,21 @@ function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)     
     $id = count($Users) + 1;
     $admin = 0;
     $firstconnect = 1;
-    for ($i = 0; $i < count($Users); $i++) {
-        if ($initialesUser != $Users[$i]['initials']) {
-            addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect);
-            $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
-            adminCrew();
-        } else {
+    $control = 0;
+    foreach ($Users as $user) {
+        if ($user['initials'] == $initialesUser) {
             $_SESSION['flashmessage'] = "L'utilisateur existe déjà ! (initiales déjà éxistantes)";
             adminCrew();
+            $control = 1;
+            break;
+        } else {
+            $control = 0;
         }
+    }
+    if ($control == 0) {
+        addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect);
+        $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
+        adminCrew();
     }
 }
 
