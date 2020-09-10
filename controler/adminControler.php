@@ -162,11 +162,26 @@ function createBase($baseName)      //Crée une base
     adminBases();
 }
 
-function newDrugs($newDrug_id)
+function newDrugs($nameDrug)
 {
-    addNewDrug($newDrug_id);
-    $dr = $newDrug_id;
-    require_once 'view/Admin/newDrugs.php';
+    $Drugs = getDrugs();
+    $id = count($Drugs) + 1;
+    $control = 0;
+    foreach ($Drugs as $drug) {
+        if ($drug['name'] == $nameDrug) {
+            $_SESSION['flashmessage'] = "Le médicament existe déjà ! (Nom déjà éxistant)";
+            adminDrugs();
+            $control = 1;
+            break;
+        } else {
+            $control = 0;
+        }
+    }
+    if ($control == 0) {
+        addNewDrug($id, $nameDrug);
+        $_SESSION['flashmessage'] = "Le médicament a bien été créé.";
+        adminDrugs();
+    }
 }
 
 ?>
