@@ -74,6 +74,11 @@ function LogStup($stupsheet)
     $LogSheets = getLogsBySheet($stupsheet);
     require_once 'view/Drug/LogStup.php';
 }
+function reopenStup($stupsheet)
+{
+var_dump($stupsheet);
+    //require_once 'view/Drug/drugSiteTable.php';
+}
 
 function pharmacheck($sheet, $date, $batch)
 { // Affiche le formulaire des pharmacheck et donne tout les ^donnée nessaiare

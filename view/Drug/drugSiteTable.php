@@ -15,6 +15,11 @@ ob_start();
         <button class="btn-dark" name="LogStup" value="<?= $stupSheet["id"] ?>"
         </button>Log
     </form>
+
+    <form action="/index.php?action=reopenStup" method="post">
+        <button class="btn-dark" name="reopenStup" value="<?= $stupSheet["id"] ?>"
+        </button>Reopen
+    </form>
 </h2>
 
 
@@ -22,7 +27,7 @@ ob_start();
     <table border="1" class="table table-dark">
         <tr>
             <td colspan="6" <?= (date("Y-m-d", $date) == date("Y-m-d")) ? "class='today'" : "" ?>>
-            <?= ($jour . " " . date("j M Y", $date)) ?>
+                <?= ($jour . " " . date("j M Y", $date)) ?>
             </td>
         </tr>
         <tr>
@@ -47,7 +52,8 @@ ob_start();
             <!-- Plusieurs lignes avec les batches nom de ce médicament, les restocks et les pharmachecks -->
             <?php foreach ($batches as $batch) { ?>
                 <tr>
-                <form action="?action=updatePharmaCheck&batch_id=<?= $batch["id"] ?>&stupsheet_id=<?= $stupSheet["id"] ?>&date=<?= date("Y-m-d", $date) ?>" method="post">
+                <form action="?action=updatePharmaCheck&batch_id=<?= $batch["id"] ?>&stupsheet_id=<?= $stupSheet["id"] ?>&date=<?= date("Y-m-d", $date) ?>"
+                      method="post">
                     <td>
                         <button type="submit" class="btn-dark">  <?= $batch["number"] ?>   </button>
                     </td>
