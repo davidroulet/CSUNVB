@@ -145,7 +145,7 @@ function readTodoThingsForDay($day, $dayOfWeek)
         $items = readTodoThings();
 
         foreach ($items as $item) {
-
+        var_dump($items);
             if (($day == 1) && ($item['daything'] == 1)) {
                 if ($item['days'][$dayOfWeek] == true) {
                     $itemsByDay[] = $item;

@@ -29,9 +29,6 @@ $title = "CSU-NVB - Tâches hebdomadaires";
     </SELECT>
 </FORM>
 
-
-
-
 <div class="row">
     <table class="table table-bordered">
         <thead>
@@ -46,6 +43,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                     <td>
                         <button class="btn" name="semaine"
                                 value="<?= $todosheet['id'] ?>"> <?php echo "Semaine " . $todosheet['week'] ?>  </button>
+                    </td>
                     </td>
                     <td><?= $todosheet['state'] ?></td>
                 </form>
