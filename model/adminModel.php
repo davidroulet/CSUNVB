@@ -101,7 +101,7 @@ function SaveBase($bases)       //Met à jour les informations d'une base
 
 function addNewDrug($id, $nameDrug)
 {
-    return insert("INSERT INTO Drugs values (:id, :nameDrugs) ",['id'=>$id, 'name'=>$nameDrug] );
+    return execute("INSERT INTO Drugs values (:id, :nameDrugs) ",['id'=>$id, 'name'=>$nameDrug] );
 }
 
 function addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
