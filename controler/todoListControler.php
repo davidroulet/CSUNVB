@@ -35,7 +35,6 @@ $basedefault = $_SESSION['username']["base"]['id'];
 function edittodopage($sheetid)
 {
     $dayThingsForMonday = readTodoThingsForDay(1, 0);
-    var_dump($dayThingsForMonday);
     $dayThingsForTuesday = readTodoThingsForDay(1, 1);
     $dayThingsForWednesday = readTodoThingsForDay(1, 2);
     $dayThingsForThursday = readTodoThingsForDay(1, 3);
@@ -54,7 +53,7 @@ function edittodopage($sheetid)
     $thingsFor[$i][$j] = readTodoThingsForDay($i, $j);
 
     $datesoftheweek = getDatesOfAWeekBySheetId($sheetid);
-    var_dump($datesoftheweek);
+    $users = getUsers();
 
 
     require_once 'view/todo/Edittodopage.php';

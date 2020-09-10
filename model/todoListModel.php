@@ -80,7 +80,6 @@ function readTodoSheetsForBase($base_id)
     return selectMany("SELECT * FROM csu.todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
 }
 
-
 /** ------------------TODOTHINGS---------------------- */
 
 /**
