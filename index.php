@@ -161,6 +161,7 @@ switch ($action) {
     case 'verifyNewDrugs' :
         $nameDrug = $_GET['saveNewDrugs'];
         newDrugs($nameDrug);
+        break;
     case 'NewGuardSheet':
         NewGuardSheet();
         break;
