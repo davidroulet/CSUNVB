@@ -110,6 +110,6 @@ function addNewDrug($nameDrug)
 
 function addNewUser($prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
 {
-    return insert("INSERT INTO users VALUES (:firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]);       //à optimiser/simplifier avec un tableau
+    return intval(insert("INSERT INTO users (firstname, lastname, initials, password, admin, firstconnect) VALUES (:firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]));       //à optimiser/simplifier avec un tableau
 }
 ?>

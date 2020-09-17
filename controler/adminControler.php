@@ -96,7 +96,8 @@ function newBase()      //Pointe sur la page d'ajout d'une base
 function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)         //Crée un utilisateur
 {
     $hash = password_hash($startPassword, PASSWORD_DEFAULT);
-    if (addNewUser($prenomUser, $nomUser, $initialesUser, $hash, 0, 1) == null) {
+    $result = addNewUser($prenomUser, $nomUser, $initialesUser, $hash, 0, 1);
+    if ($result == 0) {
         $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter l'utilisateur.";
     } else {
         $_SESSION['flashmessage'] = "L'utilisateur a bien été créé !";
@@ -170,6 +171,10 @@ function newDrugs($nameDrug)
         require_once "../view/Admin/newDrugs.php";
         adminDrugs();
     }
+}
+function  NewGuardSheet(){
+
+    $CreatGuardSheet;
 }
 
 ?>
