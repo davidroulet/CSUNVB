@@ -89,6 +89,10 @@ function getUsers()     //Récupère tous les utilisateurs
     return selectMany("SELECT * FROM users", []);
 }
 
+function getUserAdmin($admin){
+    return selectOne("SELECT * FROM users where admin = :admin", ['admin' => $admin]);
+}
+
 function SaveUser($Users)       //Met à jour les informations d'un utilisateur
 {
     return execute("UPDATE users SET password= :password, firstconnect= :firstconnect where id = :Users", ['Users' => $Users]);
