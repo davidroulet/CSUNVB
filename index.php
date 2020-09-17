@@ -16,7 +16,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 if (isset($_POST["LogStup"])) {
     $Stupheet = $_POST["LogStup"];
 }
-
+if (isset($_POST["reopenStup"])) {
+    $Stupheet = $_POST["reopenStup"];
+}
 if (isset($_POST["semaine"])) {
     $semaine = $_POST["semaine"];
 }
