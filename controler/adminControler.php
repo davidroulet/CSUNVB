@@ -96,26 +96,12 @@ function newBase()      //Pointe sur la page d'ajout d'une base
 function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)         //Crée un utilisateur
 {
     $hash = password_hash($startPassword, PASSWORD_DEFAULT);
-    $Users = getUsers();
-    $id = count($Users) + 1;
-    $admin = 0;
-    $firstconnect = 1;
-    $control = 0;
-    foreach ($Users as $user) {
-        if ($user['initials'] == $initialesUser) {
-            $_SESSION['flashmessage'] = "L'utilisateur existe déjà ! (initiales déjà éxistantes)";
-            adminCrew();
-            $control = 1;
-            break;
-        } else {
-            $control = 0;
-        }
+    if (addNewUser($prenomUser, $nomUser, $initialesUser, $hash, 0, 1) == null) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter l'utilisateur.";
+    } else {
+        $_SESSION['flashmessage'] = "L'utilisateur a bien été créé !";
     }
-    if ($control == 0) {
-        addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect);
-        $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
-        adminCrew();
-    }
+    adminCrew();
 }
 
 function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige le nouvel user à changer son mdp à sa première connection
@@ -178,7 +164,7 @@ function newDrugs($nameDrug)
         }
     }
     if ($control == 0) {
-        addNewDrug($id, $nameDrug);
+        addNewDrug($nameDrug);
         $_SESSION['flashmessage'] = "Le médicament a bien été créé.";
         adminDrugs();
     }

@@ -99,13 +99,13 @@ function SaveBase($bases)       //Met à jour les informations d'une base
     return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }
 
-function addNewDrug($id, $nameDrug)
+function addNewDrug($nameDrug)
 {
-    return execute("INSERT INTO Drugs values (:id, :nameDrugs) ",['id'=>$id, 'name'=>$nameDrug] );
+    return insert("INSERT INTO Drugs values (:nameDrugs) ",['name'=>$nameDrug] );
 }
 
-function addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
+function addNewUser($prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
 {
-    return execute("INSERT INTO users VALUES (:id, :firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['id'=>$id, 'firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]);       //à optimiser/simplifier avec un tableau
+    return insert("INSERT INTO users VALUES (:firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]);       //à optimiser/simplifier avec un tableau
 }
 ?>

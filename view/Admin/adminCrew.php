@@ -7,7 +7,6 @@
 ob_start();
 $title = "CSU-NVB - Administration - Secouristes";
 ?>
-<a href="?action=admin" class="btn btn-primary">Retour</a>
 <a href="?action=newUser" class="btn btn-success">Créer un utilisateur</a>
 <table class="table table-bordered" style="text-align: center">
     <thead>
