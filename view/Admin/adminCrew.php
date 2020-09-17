@@ -27,7 +27,7 @@ $title = "CSU-NVB - Administration - Secouristes";
         <a href="?action=changeUserAdmin&idUser=<?= $user['id'] ?>" class="btn btn-primary">Changer en utilisateur</a><?php } else { ?>
         <a href="?action=changeUserAdmin&idUser=<?= $user['id'] ?>" class="btn btn-primary">Changer en administrateur</a><?php } } else { ?>
         <p>Vous ne pouvez pas changer votre propre état</p><?php } ?>
-        <td><?php if ($user['firstconnect'] == 1) { ?>Mot de passe expiré ! <?php } ?></td>
+        <td><?php if ($user['firstconnect'] == 1) { ?>Mot de passe expiré<?php } else { ?> <a href="?action=changePwdState&idUser=<?= $user['id'] ?>" class="btn btn-primary">Réinitialiser le mot de passe</a><?php } ?></td>
         </td>
         </tr><?php } ?>
     </tbody>
