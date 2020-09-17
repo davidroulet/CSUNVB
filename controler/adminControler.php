@@ -177,4 +177,8 @@ function  NewGuardSheet(){
     $CreatGuardSheet;
 }
 
+function changePwd($changeUser){
+    changePwdState($changeUser);
+    adminCrew();
+}
 ?>

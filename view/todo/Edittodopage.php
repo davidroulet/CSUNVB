@@ -18,7 +18,7 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 <h1 class="center p-4 font-weight-bold"><?= $title ?></h1>
 
 
-    <?php if ($oneuser['admin'] == 1) { displaydebug($oneuser);?>
+    <?php if ($_SESSION['username']['admin'] == 1) { ?>
         <button name="newtodo">Nouvelle tâche</button>
     <?php } ?>
 

@@ -112,4 +112,9 @@ function addNewUser($prenomUser, $nomUser, $initialesUser, $hash, $admin, $first
 {
     return intval(insert("INSERT INTO users (firstname, lastname, initials, password, admin, firstconnect) VALUES (:firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]));       //à optimiser/simplifier avec un tableau
 }
+
+function changePwdState($changeUser)
+{
+    return execute("UPDATE users SET firstconnect= :firstconnect WHERE id= :id", ['firstconnect' => 1, 'id' => $changeUser]);
+}
 ?>
