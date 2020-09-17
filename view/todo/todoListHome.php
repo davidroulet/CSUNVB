@@ -16,6 +16,8 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
 
+
+
 <FORM action="/index.php?action=todolist" method="post">
     <SELECT onchange="this.form.submit()" name="site" size="1">
         <?php
@@ -26,7 +28,11 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
             <?php }
             ?>
+
     </SELECT>
+    <?php if ($_SESSION['username']['admin'] == 1) { ?>
+        <button name="newtodo">Nouvelle feuille</button>
+    <?php } ?>
 </FORM>
 
 <div class="row">

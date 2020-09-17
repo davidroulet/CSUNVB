@@ -28,11 +28,6 @@ function readTodoSheets()
     return selectMany("SELECT * FROM csu.todosheets;", []);
 }
 
-function getUser()     //Récupère tous les utilisateurs
-{
-    return selectOne("SELECT * FROM users", []);
-}
-
 /**
  * Retourne un item précis, identifié par son id
  * ...
@@ -141,6 +136,14 @@ function createTodoThing($item)
     return insert("INSERT INTO todothing (daything,description,type,display_order) VALUES (:daything,:description,:type,:display_order)", $item);
 }
 
+/**
+ * Ajoute une nouvelle feuille
+ * Les paramètre que je prends
+ */
+/*function createToDoSheet($week, $state, $base_id) {
+    return insert("INSERT INTO todosheets (week, state, base_id) VALUES (:week, :state, :base_id)", ['week' => $week, 'state' => $state, 'base_id' => $base_id]);
+}*/
+
 // WIP
 function readTodoThingsForDay($day, $dayOfWeek)
 {
@@ -193,5 +196,4 @@ function readTodoThingsForDay($day, $dayOfWeek)
         $todothingsData[$todothingsDataWeek["id"]] = $todothingsDataWeek;
 
     }
-    var_dump($todothingsData);
 }
