@@ -5,6 +5,7 @@ require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
+require_once "helpers.php";
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $initials = $_POST['username'];
