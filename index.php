@@ -165,7 +165,10 @@ switch ($action) {
     case 'NewGuardSheet':
         NewGuardSheet();
         break;
-
+    case 'changePwdState':
+        $changeUser = $_GET['idUser'];
+        changePwd($changeUser);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
