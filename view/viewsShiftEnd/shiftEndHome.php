@@ -84,9 +84,9 @@ foreach ($guardsections as $guardsection) { ?>
 }
 ?>
     <a href="ExportPDF" class='btn btn-primary m-1 '>Format PDF</a>
-    <?php /*if(){?>
+    <?php if($admin['admin'] == 1){?>
     <a href="NouvelleFeuille" class='btn btn-primary m-1 '>Nouvelle Feuille</a>
-    <?php }*/?>
+    <?php }?>
 <?php
 
 $content = ob_get_clean();
