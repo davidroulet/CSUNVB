@@ -154,9 +154,12 @@ switch ($action) {
         createBase($baseName);
         break;
     case 'newDrugs' :
-        $nameDrug = $_POST['nameDrug'];
-        newDrugs($nameDrug);
+        $nameDrug = $_POST['saveNewDrugs'];
+        require 'view/Admin/newDrugs.php';
         break;
+    case 'verifyNewDrugs' :
+        $nameDrug = $_GET['saveNewDrugs'];
+        newDrugs($nameDrug);
 
     default: // unknown action
         if (isset($_SESSION['username'])) {

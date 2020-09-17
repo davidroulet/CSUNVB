@@ -156,6 +156,7 @@ function newDrugs($nameDrug)
     foreach ($Drugs as $drug) {
         if ($drug['name'] == $nameDrug) {
             $_SESSION['flashmessage'] = "Le médicament existe déjà ! (Nom déjà éxistant)";
+            require_once "../view/Admin/newDrugs.php";
             adminDrugs();
             $control = 1;
             break;
@@ -166,6 +167,7 @@ function newDrugs($nameDrug)
     if ($control == 0) {
         addNewDrug($nameDrug);
         $_SESSION['flashmessage'] = "Le médicament a bien été créé.";
+        require_once "../view/Admin/newDrugs.php";
         adminDrugs();
     }
 }
