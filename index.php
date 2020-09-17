@@ -158,9 +158,10 @@ switch ($action) {
         $nameDrug = $_POST['saveNewDrugs'];
         require 'view/Admin/newDrugs.php';
         break;
-    case 'verifyNewDrugs' :
+    case 'saveNewDrugs' :
         $nameDrug = $_GET['saveNewDrugs'];
         newDrugs($nameDrug);
+        break;
 
     default: // unknown action
         if (isset($_SESSION['username'])) {
