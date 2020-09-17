@@ -17,12 +17,10 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 ?>
 <h1 class="center p-4 font-weight-bold"><?= $title ?></h1>
 
-<?php foreach ($users as $oneuser) { ?>
-    <?php if ($oneuser['admin'] == 1) { ?>
+
+    <?php if ($_SESSION['username']['admin'] == 1) { ?>
         <button name="newtodo">Nouvelle tâche</button>
     <?php } ?>
-<?php } ?>
-
 
 <div class="week text-center hour">
 

@@ -28,7 +28,7 @@ function todoListHomePage($selectedBase)
     $TodoListItemsread = readTodoSheets();
     $todoSheets=readTodoSheetsForBase($selectedBase);
     $bases= getbases();
-$basedefault = $_SESSION['username']["base"]['id'];
+    $basedefault = $_SESSION['username']["base"]['id'];
     require_once 'view/todo/todoListHome.php';
 }
 
@@ -53,7 +53,7 @@ function edittodopage($sheetid)
     $thingsFor[$i][$j] = readTodoThingsForDay($i, $j);
 
     $datesoftheweek = getDatesOfAWeekBySheetId($sheetid);
-    $users = getUsers();
+    $oneuser = getUser();
 
 
     require_once 'view/todo/Edittodopage.php';

@@ -53,6 +53,15 @@ function destroyGuardsheet($id)
  * puisque le modèle ne l'a pas encore traité
  * ...
  */
+
+function createGuardSheet($item){
+    $items = getGuardsheets();
+    $newid = max(array_keys($items))+1;
+    $item["id"] = $newid ;
+    $items[] = $item;
+    updateGuardsheet($items);
+    return $item;
+}
 function createShiftEndItem($item)
 {
     try {

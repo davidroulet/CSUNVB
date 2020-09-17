@@ -14,6 +14,10 @@ function shiftEndHomePage($semaine)
     $TitlesLines = getGuardLines();
     $Titles = getSectionsTitles();
     $guardsheets = getGuardsheets();
+    $admin = getUserAdmin($_SESSION["username"]["admin"]);
+
+
+
     require_once 'view/viewsShiftEnd/shiftEndHome.php';
 }
 

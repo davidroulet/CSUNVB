@@ -28,6 +28,11 @@ function readTodoSheets()
     return selectMany("SELECT * FROM csu.todosheets;", []);
 }
 
+function getUser()     //Récupère tous les utilisateurs
+{
+    return selectOne("SELECT * FROM users", []);
+}
+
 /**
  * Retourne un item précis, identifié par son id
  * ...

@@ -5,6 +5,7 @@ require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
+require_once "helpers.php";
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $initials = $_POST['username'];
@@ -154,10 +155,20 @@ switch ($action) {
         createBase($baseName);
         break;
     case 'newDrugs' :
-        $nameDrug = $_POST['nameDrug'];
+        $nameDrug = $_POST['saveNewDrugs'];
+        require 'view/Admin/newDrugs.php';
+        break;
+    case 'verifyNewDrugs' :
+        $nameDrug = $_GET['saveNewDrugs'];
         newDrugs($nameDrug);
         break;
-
+    case 'NewGuardSheet':
+        NewGuardSheet();
+        break;
+    case 'changePwdState':
+        $changeUser = $_GET['idUser'];
+        changePwd($changeUser);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';

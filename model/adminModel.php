@@ -89,6 +89,10 @@ function getUsers()     //Récupère tous les utilisateurs
     return selectMany("SELECT * FROM users", []);
 }
 
+function getUserAdmin($admin){
+    return selectOne("SELECT * FROM users where admin = :admin", ['admin' => $admin]);
+}
+
 function SaveUser($Users)       //Met à jour les informations d'un utilisateur
 {
     return execute("UPDATE users SET password= :password, firstconnect= :firstconnect where id = :Users", ['Users' => $Users]);
@@ -99,13 +103,18 @@ function SaveBase($bases)       //Met à jour les informations d'une base
     return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }
 
-function addNewDrug($id, $nameDrug)
+function addNewDrug($nameDrug)
 {
-    return execute("INSERT INTO Drugs values (:id, :nameDrugs) ",['id'=>$id, 'name'=>$nameDrug] );
+    return insert("INSERT INTO Drugs values (:nameDrugs) ",['name'=>$nameDrug] );
 }
 
-function addNewUser($id, $prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
+function addNewUser($prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
 {
-    return execute("INSERT INTO users VALUES (:id, :firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['id'=>$id, 'firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]);       //à optimiser/simplifier avec un tableau
+    return intval(insert("INSERT INTO users (firstname, lastname, initials, password, admin, firstconnect) VALUES (:firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]));       //à optimiser/simplifier avec un tableau
+}
+
+function changePwdState($changeUser)
+{
+    return execute("UPDATE users SET firstconnect= :firstconnect WHERE id= :id", ['firstconnect' => 1, 'id' => $changeUser]);
 }
 ?>

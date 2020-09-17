@@ -7,7 +7,6 @@
 ob_start();
 $title = "CSU-NVB - Administration - Médicaments";
 ?>
-    <a href="?action=adminCrew" class="btn btn-primary">Retour</a>
 
     <table class="table table-bordered" style="text-align: center">
         <thead>
