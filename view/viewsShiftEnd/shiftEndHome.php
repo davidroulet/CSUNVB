@@ -23,6 +23,9 @@ $title = "CSU-NVB - Remise de garde";
         <th>Équipage</th>
         <th>Base</th>
         </thead>
+        <?php foreach($guardsheets as $guardsheet){?>
+
+
         <tr>
             <td><?= $guardsheet['date'] ?></td>
             <td><?php if ($guardsheet['state'] == 'open') { ?>
@@ -35,6 +38,7 @@ $title = "CSU-NVB - Remise de garde";
             <td>Jour : <?= $dayTeam['initials'] ?><br>Nuit : <?= $nightTeam['initials'] ?></td>
             <td><?= $baseinfo['name'] ?></td>
         </tr>
+        <?php } ?>
     </table>
 
 
@@ -80,6 +84,9 @@ foreach ($guardsections as $guardsection) { ?>
 }
 ?>
     <a href="ExportPDF" class='btn btn-primary m-1 '>Format PDF</a>
+    <?php /*if(){?>
+    <a href="NouvelleFeuille" class='btn btn-primary m-1 '>Nouvelle Feuille</a>
+    <?php }*/?>
 <?php
 
 $content = ob_get_clean();
