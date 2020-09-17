@@ -33,7 +33,7 @@ function drugSiteTable($semaine)
 
 
     $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
-    var_dump($BatchesForSheet);
+
     // TODO Supprimer ces données quand les fonctions ci-dessus auront été réalisées
     //$novas = [ ["id" => 1, "number" => "111"], ["id" => 2, "number" => "222"], ["id" => 3, "number" => "333"] ];
     //$drugs = [ ["id" => 11, "name" => "Morphine"], ["id" => 22, "name" => "Fentanyl"], ["id" => 33, "name" => "Temesta"] ];
@@ -76,7 +76,8 @@ function LogStup($stupsheet)
 }
 function reopenStup($stupsheet)
 {
-var_dump($stupsheet);
+
+    reopenStupPage($stupsheet);
     //require_once 'view/Drug/drugSiteTable.php';
 }
 

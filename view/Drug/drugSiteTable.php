@@ -6,6 +6,8 @@
 
 $title = "CSU-NVB - Stupéfiants";
 ob_start();
+var_dump($stupSheet);
+
 ?>
 <div class="row m-2">
     <h1>Stupéfiants</h1>
@@ -17,7 +19,7 @@ ob_start();
     </form>
 
     <form action="/index.php?action=reopenStup" method="post">
-        <button class="btn-dark" name="reopenStup" value="<?= $stupSheet["id"] ?>"
+        <button class="btn-dark" name="reopenStup" value="<?= $stupSheet ?>"
         </button>Reopen
     </form>
 </h2>

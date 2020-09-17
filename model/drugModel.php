@@ -90,8 +90,7 @@ function getStupSheets()
                     $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"]["number2"][] = $batch;
                     $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["Drug_id"] = $batch["drug_id"];
                     foreach ($pharmachecks as $pharma) {
-                        if ($pharma["batch_id"]==$batch["id"]&&$pharma["stupsheet_id"]==$stupsheet["id"])
-                        {
+                        if ($pharma["batch_id"] == $batch["id"] && $pharma["stupsheet_id"] == $stupsheet["id"]) {
                             $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"][$batch["number"]][] = $pharma;
                         }
                     }
@@ -108,13 +107,11 @@ function getStupSheets()
  * Obient un restock en fonction de la batch et de la nova
  */
 
-function getRestocksbyBatchandNovas($batch_id,$nova_id)
+function getRestocksbyBatchandNovas($batch_id, $nova_id)
 {
     $restocks = getrestocks();
-    foreach ($restocks as $restock)
-    {
-        if($batch_id == $restock["batch_id"] && $nova_id == $restock["nova_id"])
-        {
+    foreach ($restocks as $restock) {
+        if ($batch_id == $restock["batch_id"] && $nova_id == $restock["nova_id"]) {
             return $restock;
         }
     }
@@ -177,8 +174,8 @@ function destroySheet($id)
 function createSheet($item)
 {
     $items = getStupSheets();
-    $newid = max(array_keys($items))+1;
-    $item["id"] = $newid ;
+    $newid = max(array_keys($items)) + 1;
+    $item["id"] = $newid;
     $items[] = $item;
     updateSheets($items);
     return $item;
@@ -191,6 +188,7 @@ function getBatches()
 {
     return selectMany("SELECT * FROM csu.batches", []);
 }
+
 /**
  * Retourne un item précis, identifié par son id
  * ...
@@ -210,6 +208,7 @@ function readbatche($id)
         return null;
     }
 }
+
 /**
  * Sauve l'ensemble des items dans le fichier json
  * ...
@@ -235,7 +234,7 @@ function updateBatche($item)
 function createbatch($item)
 {
     $items = getBatches();
-    $newid = max(array_keys($items))+1;
+    $newid = max(array_keys($items)) + 1;
     $item["id"] = $newid;
     $items[] = $item;
     updateBatches($items);
@@ -267,6 +266,7 @@ function destroybatch($id)
     updateBatches($items);
 
 }
+
 /**
  * Retours la liste de tout les items
  */
@@ -287,6 +287,7 @@ function getnovas()
 
 
 }
+
 /**
  * Retourne un item précis, identifié par son id
  * ...
@@ -326,13 +327,14 @@ function updateNova($item)
     updatenovas($sheets);
 
 }
+
 /**
  * Crée un item et l ajoute au fichier
  */
 function createnova($item)
 {
     $items = getnovas();
-    $newid = max(array_keys($items))+1;
+    $newid = max(array_keys($items)) + 1;
     $item["id"] = $newid;
     $items[] = $item;
     updatenovas($items);
@@ -347,9 +349,10 @@ function destroyNova($id)
 {
     $items = getnovas();
     unset($items[$id]);
-        updatenovas($items);
+    updatenovas($items);
 
-    }
+}
+
 /**
  * Retourne la liste des médicaments connus (table 'drugs')
  */
@@ -405,8 +408,8 @@ function updateDrug($item)
 function createDrug($item)
 {
     $items = getDrugs();
-    $newid = max(array_keys($items))+1;
-    $item["id"] = $newid ;
+    $newid = max(array_keys($items)) + 1;
+    $item["id"] = $newid;
     $items[] = $item;
     updateDrugs($items);
     return $item;
@@ -442,6 +445,7 @@ function getsutpbatch()
     }
 
 }
+
 /**
  * obients tout la liste des items
  */
@@ -460,18 +464,21 @@ function getstupnova()
         return null;
     }
 }
+
 /**
  * obients un items precis en fonction de son batch,date,stupsheet_id
  */
-function getpharmacheckbydateandbybatch($date,$batch,$stupsheet_id){
+function getpharmacheckbydateandbybatch($date, $batch, $stupsheet_id)
+{
     $Array = getpharmachecks();
     foreach ($Array as $check) {
-        if ($check["date"] == $date && $check["batch_id"] == $batch&&$check["stupsheet_id"]==$stupsheet_id) {
+        if ($check["date"] == $date && $check["batch_id"] == $batch && $check["stupsheet_id"] == $stupsheet_id) {
             return $check;
         }
     }
     return false;
 }
+
 /**
  * Retourne un item précis, identifié par son id
  * ...
@@ -479,13 +486,14 @@ function getpharmacheckbydateandbybatch($date,$batch,$stupsheet_id){
 function readpharmacheck($id)
 {
     $SheetsArray = getpharmachecks();
-    if(isset( $SheetsArray[$id])){
-    $base = $SheetsArray[$id];
-    return $base;
-    }else{
+    if (isset($SheetsArray[$id])) {
+        $base = $SheetsArray[$id];
+        return $base;
+    } else {
         return false;
     }
 }
+
 /**
  * Crée un enrgistrement d un item precis
  * ...
@@ -493,12 +501,13 @@ function readpharmacheck($id)
 function createpharmacheck($item)
 {
     $items = getpharmachecks();
-    $newid = max(array_keys($items))+1;
+    $newid = max(array_keys($items)) + 1;
     $item["id"] = $newid;
     $items[] = $item;
     updatepharmachecks($items);
     return $item;
 }
+
 /**
  * Sauve l'ensemble des items dans le fichier json
  * ...
@@ -507,6 +516,7 @@ function updatepharmachecks($items)
 {
     file_put_contents("model/dataStorage/pharmachecks.json", json_encode($items));
 }
+
 /**
  * Savuase un item precis
  */
@@ -523,6 +533,7 @@ function updatepharmacheck($item)
     $sheets[$item["id"]]["stupsheet_id"] = $item["stupsheet_id"];
     updatepharmachecks($sheets);
 }
+
 /**
  * obients tout la liste des items
  */
@@ -541,6 +552,7 @@ function getpharmachecks()
         return null;
     }
 }
+
 /**
  * obients tout la liste des items
  */
@@ -559,6 +571,7 @@ function getrestocks()
         return null;
     }
 }
+
 /**
  * obients tout la liste des items en fonction de l'id de la stupsheet
  */
@@ -577,6 +590,7 @@ function getLogsBySheet($sheetid)
     }
     return $LogSheets;
 }
+
 /**
  * Retourne un item précis, identifié par son id
  * ...
@@ -590,6 +604,13 @@ function readuser($id)
         }
     }
 
+}
+
+function reopenStupPage($stupsheet)
+{
+
+    return execute("update csu.stupsheets
+set state='open' WHERE week=:week AND base_id=:base_id", ["week" => $stupsheet["week"], ["base_id" => $stupsheet["base_id"]]]);
 }
 
 ?>
