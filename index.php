@@ -161,6 +161,9 @@ switch ($action) {
     case 'verifyNewDrugs' :
         $nameDrug = $_GET['saveNewDrugs'];
         newDrugs($nameDrug);
+    case 'NewGuardSheet':
+        NewGuardSheet();
+        break;
 
     default: // unknown action
         if (isset($_SESSION['username'])) {

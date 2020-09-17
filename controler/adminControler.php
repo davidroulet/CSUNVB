@@ -172,5 +172,9 @@ function newDrugs($nameDrug)
         adminDrugs();
     }
 }
+function  NewGuardSheet(){
+
+    $CreatGuardSheet;
+}
 
 ?>
