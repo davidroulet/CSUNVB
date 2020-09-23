@@ -151,26 +151,13 @@ function createBase($baseName)      //Crée une base
 
 function newDrugs($nameDrug)
 {
-    $Drugs = getDrugs();
-    $id = count($Drugs) + 1;
-    $control = 0;
-    foreach ($Drugs as $drug) {
-        if ($drug['name'] == $nameDrug) {
-            $_SESSION['flashmessage'] = "Le médicament existe déjà ! (Nom déjà éxistant)";
-            require_once "../view/Admin/newDrugs.php";
-            adminDrugs();
-            $control = 1;
-            break;
-        } else {
-            $control = 0;
-        }
+    $result = addNewDrug($nameDrug);
+    if ($result == 0) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter le médicament.";
+    } else {
+        $_SESSION['flashmessage'] = "Le médicament a bien été créé !";
     }
-    if ($control == 0) {
-        addNewDrug($nameDrug);
-        $_SESSION['flashmessage'] = "Le médicament a bien été créé.";
-        require_once "../view/Admin/newDrugs.php";
-        adminDrugs();
-    }
+    adminDrugs();
 }
 function  NewGuardSheet(){
 

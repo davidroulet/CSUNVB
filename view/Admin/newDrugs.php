@@ -7,7 +7,7 @@
 ob_start();
 $title = "CSU-NVB - Administration - Médicaments";
 ?>
-<form class="form form-group" action="?action=saveNewDrugs" method="POST">
+<form class="form form-group" action="?action=newDrugs" method="POST">
     <label>Nom du Nouveau Médicaments</label>
     <input type="text" class="form-group form-control" name="nameDrug">
     <input type="submit" class="btn btn-primary">
