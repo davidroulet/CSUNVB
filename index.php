@@ -153,9 +153,9 @@ switch ($action) {
     case 'newBase' :
         newBase();
         break;
-    case 'createBase' :
-        $baseName = $_POST['baseName'];
-        createBase($baseName);
+    case 'saveNewBase' :
+        $nameBase = $_POST['nameBase'];
+        saveNewBase($nameBase);
         break;
     case 'newDrugs' :
         require 'view/Admin/newDrugs.php';

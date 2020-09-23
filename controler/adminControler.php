@@ -128,17 +128,14 @@ function modifBase($modifBase)      //Pointe sur la page de modification d'une b
     require_once 'view/Admin/modifyBases.php';
 }
 
-function createBase($baseName)      //Crée une base
+function saveNewBase($nameBase)      //Crée une base
 {
-    $bases = getbases();
-    $id = max(array_keys($bases)) + 1;
-    $NewBase = [
-        'id' => $id,
-        'name' => $baseName
-    ];
-    $bases[] = $NewBase;
-    SaveBase($bases);
-    $_SESSION['flashmessage'] = "La base a bien été créée.";
+    $result = addNewBase($nameBase);
+    if ($result == 0) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter la base.";
+    } else {
+        $_SESSION['flashmessage'] = "La base a bien été créée !";
+    }
     adminBases();
 }
 
