@@ -46,6 +46,9 @@ if (isset($_GET["batch_id"])) {
 if (isset($_GET["stupsheet_id"])) {
     $pharmacheck_sheetid = $_GET["stupsheet_id"];
 }
+if (isset($_POST["newtodo"])) {
+    $item = $_POST["newtodo"];
+}
 if (isset($_GET["date"])) {
     $pharmacheck_date = $_GET["date"];
 }
