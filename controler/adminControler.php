@@ -142,7 +142,7 @@ function createBase($baseName)      //Crée une base
     adminBases();
 }
 
-function newDrugs($nameDrug)
+function saveNewDrugs($nameDrug)
 {
     $result = addNewDrug($nameDrug);
     if ($result == 0) {
