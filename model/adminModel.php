@@ -93,9 +93,9 @@ function getUserAdmin($admin){
     return selectOne("SELECT * FROM users where admin = :admin", ['admin' => $admin]);
 }
 
-function SaveUser($Users)       //Met à jour les informations d'un utilisateur
+function SaveUser($hash, $id)       //Met à jour les informations d'un utilisateur
 {
-    return execute("UPDATE users SET password= :password, firstconnect= :firstconnect where id = :Users", ['Users' => $Users]);
+    return execute("UPDATE users SET password= :password, firstconnect= :firstconnect where id = :id", ['password' => $hash, 'firstconnect' => 0, 'id' => $id]);
 }
 
 function SaveBase($bases)       //Met à jour les informations d'une base 

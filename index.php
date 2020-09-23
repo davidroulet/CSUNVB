@@ -89,7 +89,10 @@ switch ($action) {
         $sheetid = $_GET['sheetid'];
         edittodopage($sheetid);
         break;
-
+    case 'newtodo':
+        $item = $_GET['item'];
+        createSheetToDo($item);
+        break;
 
     case 'drugs':
         drugHomePage();

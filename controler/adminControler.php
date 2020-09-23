@@ -11,7 +11,6 @@ function trylogin($initials, $password, $baselogin)     //Fonction pour se conne
     $User = getUserByInitials($initials);
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
-        unset($_SESSION['username']['password']);
         $_SESSION['username']['base'] = getbasebyid($baselogin);        //Met la base dans la session
         if ($User['firstconnect'] == true) {
             require 'view/firstLogin.php';
@@ -107,20 +106,14 @@ function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)     
 
 function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige le nouvel user à changer son mdp à sa première connection
 {
-    $Users = getUsers();
     $hash = password_hash($confirmpassword, PASSWORD_DEFAULT);
-    if ($passwordchange != $_SESSION['username']['initials']) {
+    if ($passwordchange != $_SESSION['username']['password']) {
         if ($confirmpassword != $passwordchange) {
-            $_SESSION['flashmessage'] = 'Confirmation incorrecte !';
-            require_once 'view/firstLogin.php';
+            $_SESSION['flashmessage'] = "Erreur lors de la confirmation du mot de passe";
+            login();
         } else {
-            for ($i = 0; $i < count($Users); $i++) {
-                if ($Users[$i]['id'] == $_SESSION['username']['id']) {
-                    $Users[$i]['password'] = $hash;
-                    $Users[$i]['firstconnect'] = 0;
-                }
-            }
-            SaveUser($Users);
+            $id = $_SESSION['username']['id'];
+            SaveUser($hash, $id);
             disconnect();
         }
     } else {
