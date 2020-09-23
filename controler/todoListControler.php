@@ -21,10 +21,14 @@ require_once 'model/todoListModel.php';
 require_once 'model/adminModel.php';
 
 
+function createSheetToDo($item) {
+    // récupérer la valeur de $item puis transférer les valeurs
+    createTodoSheet($item);
+}
+
 
 function todoListHomePage($selectedBase)
 {
-
     $TodoListItemsread = readTodoSheets();
     $todoSheets=readTodoSheetsForBase($selectedBase);
     $bases= getbases();
