@@ -7,7 +7,7 @@
 ob_start();
 $title = "CSU-NVB - Administration - Novas";
 ?>
-
+<a href="?action=newNovas" class="btn btn-success">Créer une nova</a>
 <table class="table table-bordered" style="text-align: center">
     <thead>
     <th>Numéro</th>
@@ -20,7 +20,6 @@ $title = "CSU-NVB - Administration - Novas";
     </tbody>
 </table>
 
-<a href="?action=newNovas" class="btn btn-primary" >Créer une nova</a>
 
 <?php
 $content = ob_get_clean();

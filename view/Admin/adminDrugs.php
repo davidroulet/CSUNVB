@@ -7,7 +7,7 @@
 ob_start();
 $title = "CSU-NVB - Administration - Médicaments";
 ?>
-
+    <a href="?action=newDrugs" class="btn btn-success">Créer un médicament</a>
     <table class="table table-bordered" style="text-align: center">
         <thead>
         <th>Nom</th>
@@ -19,9 +19,6 @@ $title = "CSU-NVB - Administration - Médicaments";
             </tr><?php } ?>
         </tbody>
     </table>
-
-    <a class="btn" href="?action=newDrugs"><button type="button" class="btn btn-primary">Ajouter</button></a>
-
 <?php
 $content = ob_get_clean();
 require "view/gabarit.php";
