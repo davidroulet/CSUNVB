@@ -158,4 +158,14 @@ function changePwd($changeUser){
     changePwdState($changeUser);
     adminCrew();
 }
+function saveNewNovas($nameNova)
+{
+    $result = addNewNova($nameNova);
+    if ($result == 0) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter la Nova.";
+    } else {
+        $_SESSION['flashmessage'] = "La Nova a bien été créé !";
+    }
+    adminNovas();
+}
 ?>

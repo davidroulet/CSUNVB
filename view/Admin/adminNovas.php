@@ -5,7 +5,7 @@
  **/
 
 ob_start();
-$title = "CSU-NVB - Administration - Médicaments";
+$title = "CSU-NVB - Administration - Novas";
 ?>
 
 <table class="table table-bordered" style="text-align: center">

@@ -5,11 +5,11 @@
  **/
 
 ob_start();
-$title = "CSU-NVB - Administration - Médicaments";
+$title = "CSU-NVB - Administration - Novas";
 ?>
 <form class="form form-group" action="?action=saveNewNovas" method="POST">
     <label>Nom du Nouveau Nova</label>
-    <input type="text" class="form-group form-control" name="nameNova">
+    <input type="number" class="form-group form-control" name="nameNova" required>
     <input type="submit" class="btn btn-primary">
 </form>
 <?php

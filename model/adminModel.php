@@ -122,4 +122,8 @@ function changePwdState($changeUser)
 {
     return execute("UPDATE users SET firstconnect= :firstconnect WHERE id= :id", ['firstconnect' => 1, 'id' => $changeUser]);
 }
+function addNewNova($nameNova)
+{
+    return intval (insert("INSERT INTO novas (number) values (:nameNovas) ",['nameNovas'=>$nameNova] ));
+}
 ?>
