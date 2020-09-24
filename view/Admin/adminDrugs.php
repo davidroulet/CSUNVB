@@ -15,7 +15,7 @@ $title = "CSU-NVB - Administration - Médicaments";
         <tbody>
         <?php foreach ($drugs as $drug) { ?>
             <tr>
-            <td><a href=""><?= $drug['name'] ?></a></td>
+            <td><a href="?action=modifDrugs&idDrug=<?= $drug['id'] ?>"><?= $drug['name'] ?></a></td>
             </tr><?php } ?>
         </tbody>
     </table>
