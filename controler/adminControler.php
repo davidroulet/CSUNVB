@@ -122,12 +122,6 @@ function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige
     }
 }
 
-function modifBase($modifBase)      //Pointe sur la page de modification d'une base
-{
-    $base = getbasebyid($modifBase);
-    require_once 'view/Admin/modifyBases.php';
-}
-
 function saveNewBase($nameBase)      //Crée une base
 {
     $result = addNewBase($nameBase);
@@ -168,8 +162,37 @@ function saveNewNovas($nameNova)
     }
     adminNovas();
 }
+
 function modifyNameDrug($modifNameDrug, $idDrug)
 {
-    
+    $result = saveModifDrug($modifNameDrug, $idDrug);
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible de modifier le médicament.";
+    } else {
+        $_SESSION['flashmessage'] = "Le médicament a bien été modifié !";
+    }
+    adminDrugs();
+}
+
+function modifyNameBase($modifNameBase, $idBase)
+{
+    $result = saveModifBase($modifNameBase, $idBase);
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible de modifier la base.";
+    } else {
+        $_SESSION['flashmessage'] = "La base a bien été modifiée !";
+    }
+    adminBases();
+}
+
+function modifyNameNova($modifNameNova, $idNova)
+{
+    $result = saveModifNova($modifNameNova, $idNova);
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible de modifier la nova.";
+    } else {
+        $_SESSION['flashmessage'] = "La nova a bien été modifiée !";
+    }
+    adminNovas();
 }
 ?>

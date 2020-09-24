@@ -15,12 +15,12 @@ $title = "CSU-NVB - Administration - Novas";
     <tbody>
     <?php foreach ($novas as $nova) { ?>
         <tr>
-        <td><a href=""><?= $nova['number'] ?></a></td>
+        <td><a href="?action=modifNova&idNova=<?= $nova['id'] ?>"><?= $nova['number'] ?></a></td>
         </tr><?php } ?>
     </tbody>
 </table>
 
-<a class="btn" href="?action=newNovas"><button type="button" class="btn btn-primary">Ajouter</button></a>
+<a href="?action=newNovas" class="btn btn-primary" >Créer une nova</a>
 
 <?php
 $content = ob_get_clean();

@@ -126,4 +126,16 @@ function addNewNova($nameNova)
 {
     return intval (insert("INSERT INTO novas (number) values (:nameNovas) ",['nameNovas'=>$nameNova] ));
 }
+function saveModifDrug($modifNameDrug, $idDrug)
+{
+    return execute("UPDATE drugs SET name= :name WHERE id= :id", ['name' => $modifNameDrug, 'id' => $idDrug]);
+}
+function saveModifBase($modifNameBase, $idBase)
+{
+    return execute("UPDATE bases SET name= :name WHERE id= :id", ['name' => $modifNameBase, 'id' => $idBase]);
+}
+function saveModifNova($modifNameNova, $idNova)
+{
+    return execute("UPDATE novas SET number= :number WHERE id= :id", ['number' => $modifNameNova, 'id' => $idNova]);
+}
 ?>

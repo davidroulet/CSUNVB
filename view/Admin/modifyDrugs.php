@@ -8,8 +8,8 @@ ob_start();
 $title = "CSU-NVB - Administration - Modifier Drugs";
 ?>
 
-    <form class="form form-group" action="?action=saveModifyDrug" method="POST">
-        <label class="form-group form-control">Renommer</label>
+    <form class="form form-group" action="?action=saveModifyDrug&idDrug=<?= $idDrug ?>" method="POST">
+        <label class="form-group">Renommer</label>
         <input type="text" class="form-group form-control" name="modifNameDrug" required>
         <input type="submit" class="btn btn-primary">
     </form>

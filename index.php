@@ -152,10 +152,6 @@ switch ($action) {
         $confirmpassword = $_POST['confirmpassword'];
         changeFirstPassword($passwordchange, $confirmpassword);
         break;
-    case 'modifBase' :
-        $modifBase = $_GET['modifbase'];
-        modifBase($modifBase);
-        break;
     case 'newBase' :
         newBase();
         break;
@@ -185,12 +181,31 @@ switch ($action) {
         saveNewNovas($nameNova);
         break;
     case 'modifDrugs' :
+        $idDrug = $_GET['idDrug'];
         require 'view/Admin/modifyDrugs.php';
         break;
     case  'saveModifyDrug' :
         $modifNameDrug = $_POST['modifNameDrug'];
         $idDrug = $_GET['idDrug'];
         modifyNameDrug($modifNameDrug, $idDrug);
+        break;
+    case 'modifBases' :
+        $idBase = $_GET['idBase'];
+        require 'view/Admin/modifyBases.php';
+        break;
+    case  'saveModifyBase' :
+        $modifNameBase = $_POST['modifNameBase'];
+        $idBase = $_GET['idBase'];
+        modifyNameBase($modifNameBase, $idBase);
+        break;
+    case 'modifNova' :
+        $idNova = $_GET['idNova'];
+        require 'view/Admin/modifyNova.php';
+        break;
+    case  'saveModifyNova' :
+        $modifNameNova = $_POST['modifNameNova'];
+        $idNova = $_GET['idNova'];
+        modifyNameNova($modifNameNova, $idNova);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
