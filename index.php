@@ -174,6 +174,13 @@ switch ($action) {
         $changeUser = $_GET['idUser'];
         changePwd($changeUser);
         break;
+    case 'newNovas' :
+        require 'view/Admin/newNovas.php';
+        break;
+    case 'saveNewNovas' :
+        $nameNova = $_POST['nameNova'];
+        saveNewNovas($nameNova);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
