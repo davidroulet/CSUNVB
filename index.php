@@ -80,27 +80,27 @@ switch ($action) {
 
         if (isset($_POST['site'])) {
             $selectedBase = $_POST['site'];
-        }else{
-        if (isset($_POST['selectBase'])) {
-            $selectedBase = $_POST['selectBase'];
         } else {
-            $selectedBase = $_SESSION['username']['base']['id'];
-        } }
-        todoListHomePage($selectedBase);
+            if (isset($_POST['selectBase'])) {
+                $selectedBase = $_POST['selectBase'];
+            } else {
+                $selectedBase = $_SESSION['username']['base']['id'];
+            }
+        }
+        if (isset($_POST['newtodo'])) {
+            createSheetToDo($selectedBase);
+        } else {
+            todoListHomePage($selectedBase);
+        }
         break;
     case 'edittod':
         $sheetid = $_GET['sheetid'];
         edittodopage($sheetid);
         break;
-    case 'newtodo':
-        $item = $_GET['item'];
-        createSheetToDo($item);
-        break;
-
     case 'drugs':
         drugHomePage();
         break;
-        case 'reopenStup':
+    case 'reopenStup':
         reopenStup($Stupheet);
         break;
     case "drugSiteTable":
