@@ -74,10 +74,15 @@ function LogStup($stupsheet)
     $LogSheets = getLogsBySheet($stupsheet);
     require_once 'view/Drug/LogStup.php';
 }
-function reopenStup($stupsheet)
+function reopenStup()
 {
 
-    reopenStupPage($stupsheet);
+    reopenStupPage();
+    require_once 'view/home.php';
+}function closeStup()
+{
+
+    closeStupPage();
     require_once 'view/home.php';
 }
 

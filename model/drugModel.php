@@ -607,11 +607,46 @@ function readuser($id)
 
 }
 
-function reopenStupPage($stupsheet)
+function reopenStupPage()
 {
 
-    return execute("update stupsheets
-set state='open' WHERE week=:week AND base_id=:base_id", ["week" => $stupsheet["week"], ["base_id" => $stupsheet["base_id"]]]);
+    $stupsheet=$_SESSION["stup"];
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+set state='reopen' WHERE week=:week AND base_id=:base_id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["week" => $stupsheet["week"], "base_id" => $stupsheet["base_id"]]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+
+
+}
+
+function closeStupPage()
+{
+
+    $stupsheet=$_SESSION["stup"];
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+set state='closed' WHERE week=:week AND base_id=:base_id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["week" => $stupsheet["week"], "base_id" => $stupsheet["base_id"]]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+
+
 }
 
 ?>

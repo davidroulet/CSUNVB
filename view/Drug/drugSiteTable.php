@@ -7,20 +7,24 @@
 $title = "CSU-NVB - Stupéfiants";
 ob_start();
 var_dump($stupSheet);
-
+$_SESSION["stup"]=$stupSheet;
 ?>
 <div class="row m-2">
     <h1>Stupéfiants</h1>
 </div>
 <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
     <form action="/index.php?action=LogStup" method="post">
-        <button class="btn-dark" name="LogStup" value="<?= $stupSheet["id"] ?>"
+        <button class="btn-dark" name="LogStup" ?>"
         </button>Log
     </form>
 
     <form action="/index.php?action=reopenStup" method="post">
-        <button class="btn-dark" name="reopenStup" value="<?= $stupSheet ?>"
+        <button class="btn-dark" name="reopenStup""
         </button>Reopen
+    </form>
+    <form action="/index.php?action=closedStup" method="post">
+        <button class="btn-dark" name="closedStup""
+        </button>Close
     </form>
 </h2>
 

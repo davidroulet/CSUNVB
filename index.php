@@ -101,7 +101,10 @@ switch ($action) {
         drugHomePage();
         break;
     case 'reopenStup':
-        reopenStup($Stupheet);
+        reopenStup();
+        break;
+    case 'closedStup':
+        closeStup();
         break;
     case "drugSiteTable":
         drugSiteTable($semaine);
