@@ -70,9 +70,9 @@ function destroyTodoSheet($id)
  * puisque le modèle ne l'a pas encore traité
  * ...
  */
-function createTodoSheet($item)
+function createTodoSheet($base_id)
 {
-    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id,:state,:week)", $item);
+    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id, 'blank', 2020)", ["base_id" => $base_id]);
 }
 
 function readTodoSheetsForBase($base_id)

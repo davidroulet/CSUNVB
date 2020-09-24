@@ -30,14 +30,11 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             ?>
 
     </SELECT>
-
+    <?php if ($_SESSION['username']['admin'] == 1) { ?>
+        <button name="newtodo">Nouvelle feuille</button>
+    <?php } ?>
 </FORM>
 
-<form action="/index.php?action=newtodo" method="post">
-    <?php if ($_SESSION['username']['admin'] == 1) { ?>
-        <button value="14" name="newtodo">Nouvelle feuille</button>
-    <?php } ?>
-</form>
 <div class="row">
     <table class="table table-bordered">
         <thead>
