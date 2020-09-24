@@ -17,7 +17,7 @@ $title = "CSU-NVB - pharmacheck";
     <tr>
         <td>Lot</td>
         <td>Matin</td>
-        <td>Soire</td>
+        <td>Soir</td>
     </tr>
     <tr>
         <td><?= $druguse["name"] ?></td>
