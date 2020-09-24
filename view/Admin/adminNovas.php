@@ -5,7 +5,7 @@
  **/
 
 ob_start();
-$title = "CSU-NVB - Administration - Ambulances";
+$title = "CSU-NVB - Administration - Médicaments";
 ?>
 
 <table class="table table-bordered" style="text-align: center">
@@ -13,12 +13,14 @@ $title = "CSU-NVB - Administration - Ambulances";
     <th>Numéro</th>
     </thead>
     <tbody>
-        <?php foreach ($novas as $nova) { ?>
+    <?php foreach ($novas as $nova) { ?>
         <tr>
-            <td><a href="">Nova n°<?= $nova['number']?></a></td>
+        <td><a href=""><?= $nova['number'] ?></a></td>
         </tr><?php } ?>
     </tbody>
 </table>
+
+<a class="btn" href="?action=newNovas"><button type="button" class="btn btn-primary">Ajouter</button></a>
 
 <?php
 $content = ob_get_clean();
