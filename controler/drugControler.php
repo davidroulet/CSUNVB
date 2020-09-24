@@ -78,7 +78,7 @@ function reopenStup($stupsheet)
 {
 
     reopenStupPage($stupsheet);
-    //require_once 'view/Drug/drugSiteTable.php';
+    require_once 'view/home.php';
 }
 
 function pharmacheck($sheet, $date, $batch)

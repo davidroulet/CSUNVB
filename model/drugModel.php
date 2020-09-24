@@ -72,7 +72,8 @@ function getStupSheets()
     $Sutupbatchs = getsutpbatch(); // batch utiilisé par les sheet
     $pharmachecks = getpharmachecks(); // donée pharmatice
     $drug = getDrugs();
-    $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
+   // $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
+    $stupsheets = selectMany("SELECT * FROM stupsheets", []);
 
     foreach ($stupsheets as $stupsheet) {  //prend une page de stupsheet
         $SheetsArray[$stupsheet["id"]] = $stupsheet;
@@ -186,7 +187,7 @@ function createSheet($item)
  */
 function getBatches()
 {
-    return selectMany("SELECT * FROM csu.batches", []);
+    return selectMany("SELECT * FROM batches", []);
 }
 
 /**
@@ -197,7 +198,7 @@ function readbatche($id)
 {
     try {
         $dbh = getPDO();
-        $query = "SELECT * FROM csu.batches WHERE batches.id ='$id'";
+        $query = "SELECT * FROM batches WHERE batches.id ='$id'";
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
@@ -274,7 +275,7 @@ function getnovas()
 {
     try {
         $dbh = getPDO();
-        $query = 'SELECT * FROM csu.novas';
+        $query = 'SELECT * FROM novas';
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
@@ -296,7 +297,7 @@ function readnova($id)
 {
     try {
         $dbh = getPDO();
-        $query = "SELECT * FROM csu.novas WHERE novas.id ='$id'";
+        $query = "SELECT * FROM novas WHERE novas.id ='$id'";
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
@@ -433,7 +434,7 @@ function getsutpbatch()
 {
     try {
         $dbh = getPDO();
-        $query = 'SELECT * FROM csu.stupsheet_use_batch';
+        $query = 'SELECT * FROM stupsheet_use_batch';
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
@@ -453,7 +454,7 @@ function getstupnova()
 {
     try {
         $dbh = getPDO();
-        $query = 'SELECT * FROM csu.stupsheet_use_nova';
+        $query = 'SELECT * FROM stupsheet_use_nova';
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
@@ -541,7 +542,7 @@ function getpharmachecks()
 {
     try {
         $dbh = getPDO();
-        $query = 'SELECT * FROM csu.pharmachecks';
+        $query = 'SELECT * FROM pharmachecks';
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
@@ -560,7 +561,7 @@ function getrestocks()
 {
     try {
         $dbh = getPDO();
-        $query = 'SELECT * FROM csu.restocks';
+        $query = 'SELECT * FROM restocks';
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
@@ -609,7 +610,7 @@ function readuser($id)
 function reopenStupPage($stupsheet)
 {
 
-    return execute("update csu.stupsheets
+    return execute("update stupsheets
 set state='open' WHERE week=:week AND base_id=:base_id", ["week" => $stupsheet["week"], ["base_id" => $stupsheet["base_id"]]]);
 }
 
