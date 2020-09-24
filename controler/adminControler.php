@@ -168,4 +168,8 @@ function saveNewNovas($nameNova)
     }
     adminNovas();
 }
+function modifyNameDrug($modifNameDrug, $idDrug)
+{
+    
+}
 ?>

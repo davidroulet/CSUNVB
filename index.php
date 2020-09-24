@@ -181,6 +181,14 @@ switch ($action) {
         $nameNova = $_POST['nameNova'];
         saveNewNovas($nameNova);
         break;
+    case 'modifDrugs' :
+        require 'view/Admin/modifyDrugs.php';
+        break;
+    case  'saveModifyDrug' :
+        $modifNameDrug = $_POST['modifNameDrug'];
+        $idDrug = $_GET['idDrug'];
+        modifyNameDrug($modifNameDrug, $idDrug);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
