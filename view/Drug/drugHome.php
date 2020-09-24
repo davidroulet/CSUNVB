@@ -1,11 +1,12 @@
 <?php
 /**
- * Auteur: David Roulet / Fabien Mason
+ * Auteur: David Roulet / Fabien Masson
  * Date: Aril 2020
  **/
 
 ob_start();
 $title = "CSU-NVB - Stupéfiants";
+
 ?>
 
 <div class="row m-2">
@@ -13,7 +14,7 @@ $title = "CSU-NVB - Stupéfiants";
 </div>
 
 <FORM action="/index.php?action=drugs" method="post">
-    <SELECT name="site" size="1">
+    <SELECT onchange="this.form.submit()" name="site" size="1">
         <?php
         foreach ($bases
 
@@ -24,7 +25,6 @@ $title = "CSU-NVB - Stupéfiants";
             <?php }
             ?>
     </SELECT>
-    <button type="submit">Recharger</button>
 </FORM>
 
 <div class="row m-2">
@@ -43,7 +43,8 @@ $title = "CSU-NVB - Stupéfiants";
         <th>État</th>
         </thead>
         <tbody>
-        <?php foreach ($weeks as $week) { ?>
+        <?php
+        foreach ($weeks as $week) { ?>
             <tr>
                 <form action="/index.php?action=drugSiteTable" method="post">
                     <td>
