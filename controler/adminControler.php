@@ -145,7 +145,7 @@ function saveNewDrugs($nameDrug)
 }
 function  NewGuardSheet(){
 
-    $CreatGuardSheet;
+
 }
 
 function changePwd($changeUser){

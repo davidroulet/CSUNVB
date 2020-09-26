@@ -137,5 +137,7 @@ function saveModifBase($modifNameBase, $idBase)
 function saveModifNova($modifNameNova, $idNova)
 {
     return execute("UPDATE novas SET number= :number WHERE id= :id", ['number' => $modifNameNova, 'id' => $idNova]);
+}function addNewGuardsheet (){
+    return execute();
 }
 ?>
