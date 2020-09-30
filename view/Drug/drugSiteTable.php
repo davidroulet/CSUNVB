@@ -6,7 +6,6 @@
 
 $title = "CSU-NVB - Stupéfiants";
 ob_start();
-var_dump($stupSheet);
 $_SESSION["stup"]=$stupSheet;
 ?>
 <div class="row m-2">
