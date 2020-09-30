@@ -120,7 +120,7 @@ function getGuradSheetWeek($week,$base){
 function Guardsheet()
 {
 
-    return selectMany('SELECT * FROM csu.guardsheets;', []);
+    return selectMany('SELECT * FROM guardsheets;', []);
 
 }
 ?>
