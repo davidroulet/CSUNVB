@@ -17,10 +17,22 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 ?>
 <h1 class="center p-4 font-weight-bold"><?= $title ?></h1>
 
-
     <?php if ($_SESSION['username']['admin'] == 1) { ?>
         <button name="newtodo">Nouvelle tâche</button>
+
+
+        <form action="/index.php?action=reopentodo" method="post">
+            <button class="btn-dark" name="reopentodo"">reopen
+            </button>
+        </form>
+        <form action="/index.php?action=closetodo" method="post">
+            <button class="btn-dark" name="closedtodo"">
+            close</button>
+        </form>
+
+
     <?php } ?>
+
 
 <div class="week text-center hour">
 
