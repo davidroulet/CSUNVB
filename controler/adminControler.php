@@ -143,9 +143,15 @@ function saveNewDrugs($nameDrug)
     }
     adminDrugs();
 }
-function  NewGuardSheet(){
-
-
+function  NewGuardSheet()
+{
+    $result = addNewGuardsheet();
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter la Nova.";
+    } else {
+        $_SESSION['flashmessage'] = "La Nova a bien été créé !";
+    }
+    adminNovas();
 }
 
 function changePwd($changeUser){

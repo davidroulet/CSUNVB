@@ -85,7 +85,7 @@ foreach ($guardsections as $guardsection) { ?>
 ?>
     <a href="ExportPDF" class='btn btn-primary m-1 '>Format PDF</a>
     <?php if($admin['admin'] == 1){?>
-    <a href="NewGuardSheet" class='btn btn-primary m-1 '>Nouvelle Feuille</a>
+    <a href="?action=NewGuardSheet" class='btn btn-primary m-1 '>Nouvelle Feuille</a>
     <?php }?>
 <?php
 

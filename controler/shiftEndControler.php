@@ -10,11 +10,7 @@ require_once 'model/adminModel.php';
 function shiftEndHomePage($semaine)
 
 {
-    $site = getbasebyid($_SESSION["Selectsite"])["name"];
-    $TitlesLines = getGuardLines();
-    $Titles = getSectionsTitles();
-    $guardsheets = getGuardsheets();
-    $admin = getUserAdmin($_SESSION["username"]["admin"]);
+
 
 
 
@@ -23,6 +19,11 @@ function shiftEndHomePage($semaine)
 
 function listShiftEnd($base_id)
 {
+    $site = getbasebyid($_SESSION["Selectsite"])["name"];
+    $TitlesLines = getGuardLines();
+    $Titles = getSectionsTitles();
+    $guardsheets = getGuardsheets();
+    $admin = getUserAdmin($_SESSION["username"]["admin"]);
     $Bases = getbases();
     $list = Guardsheet();
 
