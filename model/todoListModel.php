@@ -25,7 +25,7 @@
 function readTodoSheets()
 {
 
-    return selectMany("SELECT * FROM csu.todosheets;", []);
+    return selectMany("SELECT * FROM todosheets;", []);
 }
 
 /**
@@ -35,7 +35,7 @@ function readTodoSheets()
 
 function readTodoSheet($id)
 {
-    return selectMany("SELECT * FROM csu.todosheets where id='$id';", []);
+    return selectMany("SELECT * FROM todosheets where id='$id';", []);
 }
 
 /**
@@ -60,7 +60,7 @@ function updateTodoSheet($item)
 function destroyTodoSheet($id)
 {
 
-    return execute("DELETE FROM csu.todosheet WHERE id=:id", ["id" => $id]);
+    return execute("DELETE FROM todosheet WHERE id=:id", ["id" => $id]);
 }
 
 
@@ -77,7 +77,7 @@ function createTodoSheet($base_id)
 
 function readTodoSheetsForBase($base_id)
 {
-    return selectMany("SELECT * FROM csu.todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
+    return selectMany("SELECT * FROM todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
 }
 
 /** ------------------TODOTHINGS---------------------- */
@@ -88,7 +88,7 @@ function readTodoSheetsForBase($base_id)
  */
 function readTodoThings()
 {
-    return selectMany("SELECT * FROM csu.todothings;", []);
+    return selectMany("SELECT * FROM todothings;", []);
 }
 
 /**
@@ -97,7 +97,7 @@ function readTodoThings()
  */
 function readTodoThing($id)
 {
-    return selectMany("SELECT * FROM csu.todothings where id=:id;", ["id" => $id]);
+    return selectMany("SELECT * FROM todothings where id=:id;", ["id" => $id]);
 }
 
 /**
@@ -122,7 +122,7 @@ function updateTodoThing($item)
  */
 function destroyTodoThing($id)
 {
-    return execute("DELETE FROM csu.todothing WHERE id=:id", ["id" => $id]);
+    return execute("DELETE FROM todothing WHERE id=:id", ["id" => $id]);
 }
 
 /**

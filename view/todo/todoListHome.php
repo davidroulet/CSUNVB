@@ -42,7 +42,8 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         <th>État</th>
         </thead>
         <tbody>
-        <?php foreach ($todoSheets as $todosheet) {
+        <?php
+        foreach ($todoSheets as $todosheet) {
             ?>
             <tr>
                 <form action="/index.php?action=edittod&sheetid" method="post">

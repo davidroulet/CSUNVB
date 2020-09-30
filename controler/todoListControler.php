@@ -25,10 +25,12 @@ function createSheetToDo($base_id) {
     // récupérer la valeur de $item puis transférer les valeurs
     createTodoSheet($base_id);
     todoListHomePage($base_id);
+
 }
 
 function todoListHomePage($selectedBase)
 {
+
     $TodoListItemsread = readTodoSheets();
     $todoSheets=readTodoSheetsForBase($selectedBase);
     $bases= getbases();
