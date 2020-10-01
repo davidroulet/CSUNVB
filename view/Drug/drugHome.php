@@ -36,6 +36,8 @@ $title = "CSU-NVB - Stupéfiants";
     } ?>
 </div>
 
+<a href="#" class="btn btn-success">Créer une feuille de stupéfiants</a>
+
 <div class="row">
     <table class="table table-bordered">
         <thead>
