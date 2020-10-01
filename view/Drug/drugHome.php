@@ -36,7 +36,9 @@ $title = "CSU-NVB - Stupéfiants";
     } ?>
 </div>
 
-<a href="#" class="btn btn-success">Créer une feuille de stupéfiants</a>
+<?php if ($_SESSION['username']['admin'] == 1) { ?>
+    <a href="#" class="btn btn-success">Créer une feuille de stupéfiants</a>
+<?php } ?>
 
 <div class="row">
     <table class="table table-bordered">
@@ -55,6 +57,22 @@ $title = "CSU-NVB - Stupéfiants";
                     </td>
                     <td><?= $week['state'] ?></td>
                 </form>
+                <?php if ($_SESSION['username']['admin'] == 1) { ?>
+                    <td>
+                        <a href="?action=LogStup" class="btn">Log</a>
+                        <?php if ($week['state'] == "closed") { ?>
+                            <form action="/index.php?action=reopenStup" method="post">
+                                <button class="btn" name="reopen" value="<?= $week['id'] ?>"
+                                </button>Reopen
+                            </form>
+                        <?php } else if (($week['state'] == "open") || ($week['state'] == "reopen")) { ?>
+                            <form action="/index.php?action=closedStup" method="post">
+                                <button class="btn" name="close" value="<?= $week['id'] ?>"
+                                </button>Close
+                            </form>
+                        <?php } ?>
+                    </td>
+                <?php } ?>
             </tr>
         <?php } ?>
         </tbody>
