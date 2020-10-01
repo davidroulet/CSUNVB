@@ -66,6 +66,21 @@ function edittodopage($sheetid)
 
 }
 
+
+function reopenToDo($id)
+{
+
+    reopenToDoPage($id);
+    require_once 'view/home.php';
+}
+function closeToDo($id)
+{
+
+    closeToDoPage($id);
+    require_once 'view/home.php';
+}
+
+
 // retourne un tableau contenant les dates en timestamp des jours contenu pour la feuille donnée
 function getDatesOfAWeekBySheetId($sheetid)
 {

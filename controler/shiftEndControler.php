@@ -7,6 +7,20 @@
 require_once 'model/guardSheetModel.php';
 require_once 'model/adminModel.php';
 
+
+function reopenShift($id)
+{
+
+    reopenShiftPage($id);
+    require_once 'view/home.php';
+}
+function closeShift($id)
+{
+
+    closeShiftPage($id);
+    require_once 'view/home.php';
+}
+
 function shiftEndHomePage($semaine)
 
 {

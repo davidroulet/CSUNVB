@@ -63,6 +63,16 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                     </td>
                     <td><?= $todosheet['state'] ?></td>
                 </form>
+                <td>
+                    <form action="/index.php?action=reopenToDo" method="post">
+                        <button class="btn" name="reopen" value="<?= $todosheet['id'] ?>"
+                        </button>Reopen
+                    </form>
+                    <form action="/index.php?action=closedToDo" method="post">
+                        <button class="btn" name="close" value="<?= $todosheet['id'] ?>"
+                        </button>Close
+                    </form>
+                </td>
             </tr>
         <?php } ?>
         </tbody>

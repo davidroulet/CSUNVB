@@ -62,6 +62,14 @@ $title = "CSU-NVB - Remise de garde";
                 <td>Jour : <?= $dayBoss['initials'] ?><br>Nuit : <?= $nightBoss['initials'] ?></td>
                 <td>Jour : <?= $dayTeam['initials'] ?><br>Nuit : <?= $nightTeam['initials'] ?></td>
                 <td><?= $guardsheet['base_id'] ?></td>
+                <td><form action="/index.php?action=reopenShift" method="post">
+                        <button class="btn" name="reopen" value="<?= $week['id'] ?>"
+                        </button>Reopen
+                    </form>
+                    <form action="/index.php?action=closedShift" method="post">
+                        <button class="btn" name="close" value="<?= $week['id'] ?>"
+                        </button>Close
+                    </form></td>
             </tr>
         <?php  }}?>
     </table>

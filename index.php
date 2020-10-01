@@ -17,6 +17,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 if (isset($_POST["LogStup"])) {
     $Stupheet = $_POST["LogStup"];
 }
+if (isset($_POST["reopen"])) {
+    $id = $_POST["reopen"];
+}
+if (isset($_POST["close"])) {
+    $id = $_POST["close"];
+}
 if (isset($_POST["reopenStup"])) {
     $Stupheet = $_POST["reopenStup"];
 }
@@ -105,6 +111,18 @@ switch ($action) {
         break;
     case 'closedStup':
         closeStup();
+        break;
+    case 'reopenToDo':
+        reopenToDo($id);
+        break;
+    case 'closedToDo':
+        closeToDo($id);
+        break;
+    case 'reopenShift':
+        reopenShift($id);
+        break;
+    case 'closedShift':
+        closeShift($id);
         break;
     case "drugSiteTable":
         drugSiteTable($semaine);
