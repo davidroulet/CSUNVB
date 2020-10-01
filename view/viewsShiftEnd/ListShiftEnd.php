@@ -18,10 +18,10 @@ $title = "CSU-NVB - Remise de garde";
 
     <FORM action="/index.php?action=listShiftEnd" method="post">
         <SELECT onchange="this.form.submit()" name="site" size="1">
-            <?php foreach ($Bases
-
-            as $base) { ?>
-            <OPTION value="<?= $base['id'] ?>" <?php if ($_SESSION["Selectsite"] == $base['id']) { ?> selected="selected"  <?php } ?>
+            <?php foreach ($Bases as $base) { ?>
+            <OPTION value="<?= $base['id'] ?>" <?php if ($_SESSION["Selectsite"] == $base['id']) { ?>
+                selected="selected"
+            <?php } ?>
                     name="site"><?= $base['name'] ?>
                 <?php } ?>
         </SELECT>
@@ -46,11 +46,13 @@ $title = "CSU-NVB - Remise de garde";
         <th>Équipage</th>
         <th>Base</th>
         </thead>
-        <?php foreach($guardsheets as $guardsheet){?>
+    <?php  ?>
+        <?php foreach($guardsheets as $guardsheet){
+        if ($_SESSION["Selectsite"] == $guardsheet['base_id']) { ?>
 
 
             <tr>
-                <td><?= $guardsheet['date'] ?></td>
+                <td><?= substr($guardsheet['date'],0,10) ?></td>
                 <td><?php if ($guardsheet['state'] == 'open') { ?>
                         <?= "Ouvert " ?>
                     <?php } else { ?>
@@ -59,16 +61,16 @@ $title = "CSU-NVB - Remise de garde";
                 <td>Jour : <?= $novaday['number'] ?><br>Nuit : <?= $novanight['number'] ?></td>
                 <td>Jour : <?= $dayBoss['initials'] ?><br>Nuit : <?= $nightBoss['initials'] ?></td>
                 <td>Jour : <?= $dayTeam['initials'] ?><br>Nuit : <?= $nightTeam['initials'] ?></td>
-                <td><?= $baseinfo['name'] ?></td>
+                <td><?= $guardsheet['base_id'] ?></td>
             </tr>
-        <?php } ?>
+        <?php  }}?>
     </table>
 
 
     <?= $baseinfo['name'] ?>
 
     <?php
-    /*var_dump($guardsheetinfo);*/
+    var_dump($guardsections);
     foreach ($guardsections as $guardsection) { ?>
     <table class="table table-active table-bordered table-striped " style="text-align: center">
         <tr class="table-primary text-secondary ">
