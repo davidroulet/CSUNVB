@@ -60,11 +60,13 @@ function edittodopage($sheetid)
     $thingsFor[$i][$j] = readTodoThingsForDay($i, $j);
 
     $datesoftheweek = getDatesOfAWeekBySheetId($sheetid);
+    displaydebug($datesoftheweek);
 
     require_once 'view/todo/Edittodopage.php';
 
 }
 
+// retourne un tableau contenant les dates en timestamp des jours contenu pour la feuille donnée
 function getDatesOfAWeekBySheetId($sheetid)
 {
     $thesheet = readTodoSheet($sheetid);

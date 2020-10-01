@@ -44,10 +44,19 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         <tbody>
         <?php
         foreach ($todoSheets as $todosheet) {
+
             ?>
+
             <tr>
                 <form action="/index.php?action=edittod&sheetid" method="post">
                     <td>
+
+
+                        <?php
+                        //Convert the date string into a unix timestamp.
+                        //$unixTimestamp = strtotime($todosheet['week']);
+                        //Get the day of the week using PHP's date function.
+                        //$dayOfWeek = date("W", $unixTimestamp); ?>
                         <button class="btn" name="semaine"
                                 value="<?= $todosheet['id'] ?>"> <?php echo "Semaine " . $todosheet['week'] ?>  </button>
                     </td>
