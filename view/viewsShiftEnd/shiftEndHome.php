@@ -30,8 +30,11 @@ $title = "CSU-NVB - Remise de garde";
             <td><?= $guardsheet['date'] ?></td>
             <td><?php if ($guardsheet['state'] == 'open') { ?>
                     <?= "Ouvert " ?>
-                <?php } else { ?>
-                    <?= "Fermé " ?>
+                <?php }  if($guardsheet['state'] == 'reopen') { ?>
+                    <?= "Réouverte " ?>
+                <?php }
+                else  { ?>
+                <?= "Férmée " ?>
                 <?php } ?></td>
             <td>Jour : <?= $novaday['number'] ?><br>Nuit : <?= $novanight['number'] ?></td>
             <td>Jour : <?= $dayBoss['initials'] ?><br>Nuit : <?= $nightBoss['initials'] ?></td>
