@@ -58,7 +58,8 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                         //Get the day of the week using PHP's date function.
                         //$dayOfWeek = date("W", $unixTimestamp); ?>
                         <button class="btn" name="semaine"
-                                value="<?= $todosheet['id'] ?>"> <?php echo "Semaine " . $todosheet['week'] ?>  </button>
+                                value="<?= $todosheet['id'] ?>">
+                            <?php echo "Semaine " . $todosheet['week'] ?>  </button>
                     </td>
                     </td>
                     <td><?= $todosheet['state'] ?></td>
