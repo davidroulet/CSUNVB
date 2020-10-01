@@ -55,19 +55,22 @@ $title = "CSU-NVB - Remise de garde";
                 <td><?= substr($guardsheet['date'],0,10) ?></td>
                 <td><?php if ($guardsheet['state'] == 'open') { ?>
                         <?= "Ouvert " ?>
-                    <?php } else { ?>
-                        <?= "Fermé " ?>
+                    <?php }  if($guardsheet['state'] == 'reopen') { ?>
+                        <?= "Réouverte " ?>
+                    <?php }
+                    else  { ?>
+                        <?= "Férmée " ?>
                     <?php } ?></td>
                 <td>Jour : <?= $novaday['number'] ?><br>Nuit : <?= $novanight['number'] ?></td>
                 <td>Jour : <?= $dayBoss['initials'] ?><br>Nuit : <?= $nightBoss['initials'] ?></td>
                 <td>Jour : <?= $dayTeam['initials'] ?><br>Nuit : <?= $nightTeam['initials'] ?></td>
                 <td><?= $guardsheet['base_id'] ?></td>
                 <td><form action="/index.php?action=reopenShift" method="post">
-                        <button class="btn" name="reopen" value="<?= $week['id'] ?>"
+                        <button class="btn" name="reopen" value="<?= $guardsheet['id'] ?>"
                         </button>Reopen
                     </form>
                     <form action="/index.php?action=closedShift" method="post">
-                        <button class="btn" name="close" value="<?= $week['id'] ?>"
+                        <button class="btn" name="close" value="<?= $guardsheet['id'] ?>"
                         </button>Close
                     </form></td>
             </tr>

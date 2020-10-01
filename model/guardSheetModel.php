@@ -45,15 +45,13 @@ function reopenShiftPage($id)
 set state='reopen' WHERE id=:id";
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute(["id" => $id]);//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         return $queryResult;
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . "<br/>";
         return null;
     }
-
-
 }
 
 function closeShiftPage($id)
@@ -71,8 +69,6 @@ set state='closed' WHERE id=:id";
         print "Error!: " . $e->getMessage() . "<br/>";
         return null;
     }
-
-
 }
 
 
