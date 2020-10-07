@@ -607,16 +607,14 @@ function readuser($id)
 
 }
 
-function reopenStupPage()
+function reopenStupPage($id)
 {
-
-    $stupsheet=$_SESSION["stup"];
     try {
         $dbh = getPDO();
         $query = "update stupsheets
-set state='reopen' WHERE week=:week AND base_id=:base_id";
+set state='reopen' WHERE id=:id";
         $statement = $dbh->prepare($query);//prepare query
-        $statement->execute(["week" => $stupsheet["week"], "base_id" => $stupsheet["base_id"]]);//execute query
+        $statement->execute(["id" => $id,]);//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         return $queryResult;
@@ -628,16 +626,15 @@ set state='reopen' WHERE week=:week AND base_id=:base_id";
 
 }
 
-function closeStupPage()
+function closeStupPage($id)
 {
 
-    $stupsheet=$_SESSION["stup"];
     try {
         $dbh = getPDO();
         $query = "update stupsheets
-set state='closed' WHERE week=:week AND base_id=:base_id";
+set state='closed' WHERE id=:id";
         $statement = $dbh->prepare($query);//prepare query
-        $statement->execute(["week" => $stupsheet["week"], "base_id" => $stupsheet["base_id"]]);//execute query
+        $statement->execute(["id" => $id,]);//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
         $dbh = null;
         return $queryResult;

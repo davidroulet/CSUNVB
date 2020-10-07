@@ -33,9 +33,9 @@ function todoListHomePage($selectedBase)
 
     $TodoListItemsread = readTodoSheets();
     $todoSheets=readTodoSheetsForBase($selectedBase);
-    var_dump($todoSheets);
     $bases= getbases();
     $basedefault = $_SESSION['username']["base"]['id'];
+    $maxweek = MaxToDoSheetWeek();
     require_once 'view/todo/todoListHome.php';
 }
 
@@ -112,8 +112,20 @@ function getDatesOfAWeekBySheetId($sheetid)
     return $datesoftheweek;
 }
 
+/*function getNbWeekCalcul($sheetid, $selectedBase) {
+    $thesheet = readTodoSheet($sheetid);
+    $todoSheets=readTodoSheetsForBase($selectedBase);
 
+    $year = substr($thesheet['week'], 0, 2) + 2000;
+    $weeknb = substr($thesheet['week'], 2);
+    $maxweek = MaxToDoSheetWeek();
 
+    foreach ($todoSheets as $todoSheet) {
+        if ($todoSheet['week'] == $maxweek) {
+            strtotime("+1" , $maxweek);
+        }
+    }
+}*/
 
 ?>
 

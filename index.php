@@ -107,10 +107,10 @@ switch ($action) {
         drugHomePage();
         break;
     case 'reopenStup':
-        reopenStup();
+        reopenStup($id);
         break;
     case 'closedStup':
-        closeStup();
+        closeStup($id);
         break;
     case 'reopenToDo':
         reopenToDo($id);
