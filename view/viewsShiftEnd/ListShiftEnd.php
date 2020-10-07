@@ -45,6 +45,8 @@ $title = "CSU-NVB - Remise de garde";
         <th>Résponsable</th>
         <th>Équipage</th>
         <th>Base</th>
+        <?php if($admin['admin'] == 1){?>
+        <th>Action</th><?php } ?>
         </thead>
     <?php  ?>
         <?php foreach($guardsheets as $guardsheet){
@@ -55,13 +57,26 @@ $title = "CSU-NVB - Remise de garde";
                 <td><?= substr($guardsheet['date'],0,10) ?></td>
                 <td><?php if ($guardsheet['state'] == 'open') { ?>
                         <?= "Ouvert " ?>
-                    <?php } else { ?>
-                        <?= "Fermé " ?>
+                    <?php }  if($guardsheet['state'] == 'reopen') { ?>
+                        <?= "Réouverte " ?>
+                    <?php }
+                    else  { ?>
+                        <?= "Férmée " ?>
                     <?php } ?></td>
                 <td>Jour : <?= $novaday['number'] ?><br>Nuit : <?= $novanight['number'] ?></td>
-                <td>Jour : <?= $dayBoss['initials'] ?><br>Nuit : <?= $nightBoss['initials'] ?></td>
+            <?php if ($guardsheet['boss'] == 1 && $guardsheet['day']==1 && $_SESSION["Selectsite"] == $guardsheet['base_id']) { ?>
+                <td>Jour : <?php var_dump($guardsheet['user_id']);  } ?>
                 <td>Jour : <?= $dayTeam['initials'] ?><br>Nuit : <?= $nightTeam['initials'] ?></td>
-                <td><?= $guardsheet['base_id'] ?></td>
+                <td><?= $guardsheet['name'] ?></td>
+            <?php if($admin['admin'] == 1){?>
+                <td><form action="/index.php?action=reopenShift" method="post">
+                        <button class="btn" name="reopen" value="<?= $guardsheet['id'] ?>"
+                        </button>Reopen
+                    </form>
+                    <form action="/index.php?action=closedShift" method="post">
+                        <button class="btn" name="close" value="<?= $guardsheet['id'] ?>"
+                        </button>Close
+                    </form></td><?php } ?>
             </tr>
         <?php  }}?>
     </table>

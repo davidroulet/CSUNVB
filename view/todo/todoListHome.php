@@ -17,7 +17,6 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 <h1 class="center p-4"><?= $title ?></h1>
 
 
-
 <FORM action="/index.php?action=todolist" method="post">
     <SELECT onchange="this.form.submit()" name="site" size="1">
         <?php
@@ -31,7 +30,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
     </SELECT>
     <?php if ($_SESSION['username']['admin'] == 1) { ?>
-        <button name="newtodo">Nouvelle feuille</button>
+        <button>Nouvelle feuille</button>
     <?php } ?>
 </FORM>
 
@@ -58,11 +57,22 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                         //Get the day of the week using PHP's date function.
                         //$dayOfWeek = date("W", $unixTimestamp); ?>
                         <button class="btn" name="semaine"
-                                value="<?= $todosheet['id'] ?>"> <?php echo "Semaine " . $todosheet['week'] ?>  </button>
-                    </td>
+                                value="<?= $todosheet['id'] ?>">
+                            <?php echo "Semaine " . $todosheet['week'] ?>  </button>
+
                     </td>
                     <td><?= $todosheet['state'] ?></td>
                 </form>
+                <td>
+                    <form action="/index.php?action=reopenToDo" method="post">
+                        <button class="btn" name="reopen" value="<?= $todosheet['id'] ?>"
+                        </button>Reopen
+                    </form>
+                    <form action="/index.php?action=closedToDo" method="post">
+                        <button class="btn" name="close" value="<?= $todosheet['id'] ?>"
+                        </button>Close
+                    </form>
+                </td>
             </tr>
         <?php } ?>
         </tbody>

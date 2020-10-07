@@ -70,14 +70,24 @@ function destroyTodoSheet($id)
  * puisque le modèle ne l'a pas encore traité
  * ...
  */
-function createTodoSheet($base_id)
+function readLastWeek($base_id)
 {
-    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id, 'blank', 2020)", ["base_id" => $base_id]);
+    return selectOne("SELECT base_id, MAX(week) as 'last_week'  FROM todosheets
+where base_id =:base_id
+GROUP BY base_id",["base_id" => $base_id]);
+}
+function createTodoSheet($base_id,$lastWeek)
+{
+    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id, 'blank', :lastWeek)", ["base_id" => $base_id, "lastWeek" => $lastWeek]);
 }
 
 function readTodoSheetsForBase($base_id)
 {
     return selectMany("SELECT * FROM todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
+}
+
+function MaxToDoSheetWeek() {
+    return selectOne("SELECT MAX(week) FROM todosheets", []);
 }
 
 /** ------------------TODOTHINGS---------------------- */
@@ -143,6 +153,46 @@ function createTodoThing($item)
 /*function createToDoSheet($week, $state, $base_id) {
     return insert("INSERT INTO todosheets (week, state, base_id) VALUES (:week, :state, :base_id)", ['week' => $week, 'state' => $state, 'base_id' => $base_id]);
 }*/
+
+function reopenToDoPage($id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "update todosheets
+set state='reopen' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+
+
+}
+
+function closeToDoPage($id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "update todosheets
+set state='closed' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+
+
+}
+
+
 
 // WIP
 function readTodoThingsForDay($day, $dayOfWeek)

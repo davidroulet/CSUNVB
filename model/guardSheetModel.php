@@ -5,8 +5,8 @@
  **/
 
 
-
-function getGuardsheets(){
+function getGuardsheets()
+{
     return selectMany('SELECT * FROM guardsheets', []);
 }
 
@@ -15,12 +15,14 @@ function getGuardsheets(){
  * ...
  */
 
-function getGuardsheet($id){
-    return selectOne("SELECT * FROM guardsheets where id =:id",['id'=>$id]);
+function getGuardsheet($id)
+{
+    return selectOne("SELECT * FROM guardsheets where id =:id", ['id' => $id]);
 }
 
 
-function updateGuardsheet($id){
+function updateGuardsheet($id)
+{
     return execute("UPDATE bases SET date = :date,state=:state,base_id=:base_id where id = :id", [$id]);
 
 }
@@ -36,6 +38,41 @@ function updateShiftEndItem($item)
     // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
     saveShiftEndItem($items);
 }
+
+function reopenShiftPage($id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "update guardsheets
+set state='reopen' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id]);//execute query
+        $queryResult = $statement->fetch(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
+
+function closeShiftPage($id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "update guardsheets
+set state='closed' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
+
 
 /**
  * Détruit un item précis, identifié par son id
@@ -54,14 +91,16 @@ function destroyGuardsheet($id)
  * ...
  */
 
-function createGuardSheet($item){
+function createGuardSheet($item)
+{
     $items = getGuardsheets();
-    $newid = max(array_keys($items))+1;
-    $item["id"] = $newid ;
+    $newid = max(array_keys($items)) + 1;
+    $item["id"] = $newid;
     $items[] = $item;
     updateGuardsheet($items);
     return $item;
 }
+
 function createShiftEndItem($item)
 {
     try {
@@ -75,11 +114,11 @@ VALUES (:base_id,:state,:date)";
         print "Error!: " . $e->getMessage() . "<br/>";
         return false;
     }
-   /* $items = getShiftEndItems();
-    // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
-    saveShiftEndItem($items);
-    return ($item); // Pour que l'appelant connaisse l'id qui a été donné
-   */
+    /* $items = getShiftEndItems();
+     // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
+     saveShiftEndItem($items);
+     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
+    */
 }
 
 function getRemises()
@@ -114,13 +153,25 @@ function getGuardSheetsByBase($base_id)
 {
     return selectOne('select * from guardsheets where base_id=:base_id', ['base_id' => $base_id]);
 }
-function getGuradSheetWeek($week,$base){
+
+function getGuradSheetWeek($week, $base)
+{
     return selectOne('SELECT * FROM guardsheets INNER JOIN bases ON bases.id=base_id WHERE week =:week AND base_id=:base', ['week' => $week, 'base' => $base]);
 }
+
 function Guardsheet()
 {
 
     return selectMany('SELECT * FROM guardsheets;', []);
 
 }
+
+function getBaseForGuardsheet()
+{
+    return selectMany('select * from guardsheets 
+join crews on guardsheets.id = crews.guardsheet_id
+join bases on guardsheets.base_id = bases.id
+join users on crews.user_id = users.id', []);
+}
+
 ?>

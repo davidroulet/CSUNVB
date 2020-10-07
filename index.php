@@ -17,6 +17,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 if (isset($_POST["LogStup"])) {
     $Stupheet = $_POST["LogStup"];
 }
+if (isset($_POST["reopen"])) {
+    $id = $_POST["reopen"];
+}
+if (isset($_POST["close"])) {
+    $id = $_POST["close"];
+}
 if (isset($_POST["reopenStup"])) {
     $Stupheet = $_POST["reopenStup"];
 }
@@ -78,20 +84,16 @@ switch ($action) {
         break;
     case 'todolist':
 
-        if (isset($_POST['site'])) {
+
             $selectedBase = $_POST['site'];
-        } else {
-            if (isset($_POST['selectBase'])) {
-                $selectedBase = $_POST['selectBase'];
-            } else {
-                $selectedBase = $_SESSION['username']['base']['id'];
-            }
-        }
-        if (isset($_POST['newtodo'])) {
+
+            //    $selectedBase = $_POST['selectBase'];
+
+
+
             createSheetToDo($selectedBase);
-        } else {
-            todoListHomePage($selectedBase);
-        }
+
+      //      todoListHomePage($selectedBase);
         break;
     case 'edittod':
         $sheetid = $_GET['sheetid'];
@@ -101,10 +103,22 @@ switch ($action) {
         drugHomePage();
         break;
     case 'reopenStup':
-        reopenStup();
+        reopenStup($id);
         break;
     case 'closedStup':
-        closeStup();
+        closeStup($id);
+        break;
+    case 'reopenToDo':
+        reopenToDo($id);
+        break;
+    case 'closedToDo':
+        closeToDo($id);
+        break;
+    case 'reopenShift':
+        reopenShift($id);
+        break;
+    case 'closedShift':
+        closeShift($id);
         break;
     case "drugSiteTable":
         drugSiteTable($semaine);

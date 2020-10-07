@@ -23,7 +23,10 @@ require_once 'model/adminModel.php';
 
 function createSheetToDo($base_id) {
     // récupérer la valeur de $item puis transférer les valeurs
-    createTodoSheet($base_id);
+
+   $lastWeek = readLastWeek($base_id);
+   displaydebug($lastWeek);
+    createTodoSheet($base_id, $lastWeek);
     todoListHomePage($base_id);
 
 }
@@ -33,9 +36,9 @@ function todoListHomePage($selectedBase)
 
     $TodoListItemsread = readTodoSheets();
     $todoSheets=readTodoSheetsForBase($selectedBase);
-    var_dump($todoSheets);
     $bases= getbases();
     $basedefault = $_SESSION['username']["base"]['id'];
+    $maxweek = MaxToDoSheetWeek();
     require_once 'view/todo/todoListHome.php';
 }
 
@@ -65,6 +68,21 @@ function edittodopage($sheetid)
     require_once 'view/todo/Edittodopage.php';
 
 }
+
+
+function reopenToDo($id)
+{
+
+    reopenToDoPage($id);
+    require_once 'view/home.php';
+}
+function closeToDo($id)
+{
+
+    closeToDoPage($id);
+    require_once 'view/home.php';
+}
+
 
 // retourne un tableau contenant les dates en timestamp des jours contenu pour la feuille donnée
 function getDatesOfAWeekBySheetId($sheetid)
@@ -97,8 +115,20 @@ function getDatesOfAWeekBySheetId($sheetid)
     return $datesoftheweek;
 }
 
+/*function getNbWeekCalcul($sheetid, $selectedBase) {
+    $thesheet = readTodoSheet($sheetid);
+    $todoSheets=readTodoSheetsForBase($selectedBase);
 
+    $year = substr($thesheet['week'], 0, 2) + 2000;
+    $weeknb = substr($thesheet['week'], 2);
+    $maxweek = MaxToDoSheetWeek();
 
+    foreach ($todoSheets as $todoSheet) {
+        if ($todoSheet['week'] == $maxweek) {
+            strtotime("+1" , $maxweek);
+        }
+    }
+}*/
 
 ?>
 
