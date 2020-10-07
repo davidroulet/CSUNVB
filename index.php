@@ -84,20 +84,16 @@ switch ($action) {
         break;
     case 'todolist':
 
-        if (isset($_POST['site'])) {
+
             $selectedBase = $_POST['site'];
-        } else {
-            if (isset($_POST['selectBase'])) {
-                $selectedBase = $_POST['selectBase'];
-            } else {
-                $selectedBase = $_SESSION['username']['base']['id'];
-            }
-        }
-        if (isset($_POST['newtodo'])) {
+
+            //    $selectedBase = $_POST['selectBase'];
+
+
+
             createSheetToDo($selectedBase);
-        } else {
-            todoListHomePage($selectedBase);
-        }
+
+      //      todoListHomePage($selectedBase);
         break;
     case 'edittod':
         $sheetid = $_GET['sheetid'];

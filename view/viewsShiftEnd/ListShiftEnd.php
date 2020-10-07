@@ -64,9 +64,10 @@ $title = "CSU-NVB - Remise de garde";
                         <?= "Férmée " ?>
                     <?php } ?></td>
                 <td>Jour : <?= $novaday['number'] ?><br>Nuit : <?= $novanight['number'] ?></td>
-                <td>Jour : <?= $dayBoss['initials'] ?><br>Nuit : <?= $nightBoss['initials'] ?></td>
+            <?php if ($guardsheet['boss'] == 1 && $guardsheet['day']==1 && $_SESSION["Selectsite"] == $guardsheet['base_id']) { ?>
+                <td>Jour : <?php var_dump($guardsheet['user_id']);  } ?>
                 <td>Jour : <?= $dayTeam['initials'] ?><br>Nuit : <?= $nightTeam['initials'] ?></td>
-                <td><?= $guardsheet['base_id'] ?></td>
+                <td><?= $guardsheet['name'] ?></td>
             <?php if($admin['admin'] == 1){?>
                 <td><form action="/index.php?action=reopenShift" method="post">
                         <button class="btn" name="reopen" value="<?= $guardsheet['id'] ?>"
