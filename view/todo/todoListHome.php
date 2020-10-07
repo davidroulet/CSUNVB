@@ -17,7 +17,6 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 <h1 class="center p-4"><?= $title ?></h1>
 
 
-
 <FORM action="/index.php?action=todolist" method="post">
     <SELECT onchange="this.form.submit()" name="site" size="1">
         <?php
@@ -31,7 +30,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 
     </SELECT>
     <?php if ($_SESSION['username']['admin'] == 1) { ?>
-        <button name="newtodo">Nouvelle feuille</button>
+        <button>Nouvelle feuille</button>
     <?php } ?>
 </FORM>
 
@@ -60,7 +59,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                         <button class="btn" name="semaine"
                                 value="<?= $todosheet['id'] ?>">
                             <?php echo "Semaine " . $todosheet['week'] ?>  </button>
-                    </td>
+
                     </td>
                     <td><?= $todosheet['state'] ?></td>
                 </form>
