@@ -86,7 +86,6 @@ switch ($action) {
 if (isset($_POST['site'])) {
     $selectedBase = $_POST['site'];
     createSheetToDo($selectedBase);
-    var_dump($selectedBase);
 } else {
     if (isset($_POST['selectBase'])) {
         $selectedBase = $_POST['selectBase'];
