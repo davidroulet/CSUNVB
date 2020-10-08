@@ -62,7 +62,6 @@ function edittodopage($sheetid)
     $thingsFor[$i][$j] = readTodoThingsForDay($i, $j);
 
     $datesoftheweek = getDatesOfAWeekBySheetId($sheetid);
-    displaydebug($datesoftheweek);
 
     require_once 'view/todo/Edittodopage.php';
 
