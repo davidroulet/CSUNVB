@@ -83,17 +83,24 @@ switch ($action) {
         login();
         break;
     case 'todolist':
-
-
-            $selectedBase = $_POST['site'];
-
-            //    $selectedBase = $_POST['selectBase'];
-
-
+if (isset($_POST['site'])) {
+    $selectedBase = $_POST['site'];
+    createSheetToDo($selectedBase);
+    var_dump($selectedBase);
+} else {
+    if (isset($_POST['selectBase'])) {
+        $selectedBase = $_POST['selectBase'];
+    } else {
+        $selectedBase = $_SESSION['username']['base']['id'];
+    }
+}
+        if (isset($_POST['newtodo'])) {
 
             createSheetToDo($selectedBase);
+        } else {
+            todoListHomePage($selectedBase);
+        }
 
-      //      todoListHomePage($selectedBase);
         break;
     case 'edittod':
         $sheetid = $_GET['sheetid'];

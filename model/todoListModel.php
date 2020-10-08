@@ -78,7 +78,7 @@ GROUP BY base_id",["base_id" => $base_id]);
 }
 function createTodoSheet($base_id,$lastWeek)
 {
-    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id, 'blank', :lastWeek)", ["base_id" => $base_id, "lastWeek" => $lastWeek]);
+    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id, 'blank', :lastWeek)", ["base_id" => $base_id, "lastWeek" => $lastWeek+1]);
 }
 
 function readTodoSheetsForBase($base_id)

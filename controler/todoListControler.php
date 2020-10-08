@@ -24,9 +24,9 @@ require_once 'model/adminModel.php';
 function createSheetToDo($base_id) {
     // récupérer la valeur de $item puis transférer les valeurs
 
-   $lastWeek = readLastWeek($base_id);
-   displaydebug($lastWeek);
-    createTodoSheet($base_id, $lastWeek);
+    $lastWeek = readLastWeek($base_id);
+    displaydebug($lastWeek);
+    createTodoSheet($base_id, $lastWeek['last_week']);
     todoListHomePage($base_id);
 
 }
