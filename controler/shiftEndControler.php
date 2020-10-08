@@ -36,10 +36,12 @@ function listShiftEnd($base_id)
     $site = getbasebyid($_SESSION["Selectsite"])["name"];
     $TitlesLines = getGuardLines();
     $Titles = getSectionsTitles();
-    $guardsheets = getGuardsheets();
+    //$guardsheets = getGuardsheets();
     $admin = getUserAdmin($_SESSION["username"]["admin"]);
     $Bases = getbases();
     $list = Guardsheet();
+    $guardsheets = getBaseForGuardsheet();
+    var_dump($nameBase);
 
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
