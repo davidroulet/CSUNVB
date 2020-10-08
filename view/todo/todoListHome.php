@@ -12,7 +12,7 @@
  **/
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
-
+displaydebug($_SESSION);
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
 
@@ -23,16 +23,17 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         foreach ($bases as $base) { ?>
 
         <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
-                name="site"><?= $base["name"] ?>
-
+        ><?= $base["name"] ?>
             <?php }
             ?>
-
     </SELECT>
-    <?php if ($_SESSION['username']['admin'] == 1) { ?>
-        <button>Nouvelle feuille</button>
-    <?php } ?>
 </FORM>
+<form action="/index.php?action=todolist" method="post">
+    <input type="hidden" name="base" value="<?=$_SESSION['Selectsite']?>">
+    <?php if ($_SESSION['username']['admin'] == 1) { ?>
+        <button type="submit">Nouvelle feuille</button>
+    <?php } ?>
+</form>
 
 <div class="row">
     <table class="table table-bordered">

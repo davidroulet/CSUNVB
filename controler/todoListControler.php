@@ -26,8 +26,9 @@ function createSheetToDo($base_id) {
 
     $lastWeek = readLastWeek($base_id);
     createTodoSheet($base_id, $lastWeek['last_week']);
+    unset($_POST['site']);
+    unset($_POST['base']);
     todoListHomePage($base_id);
-
 }
 
 function todoListHomePage($selectedBase)
@@ -37,7 +38,6 @@ function todoListHomePage($selectedBase)
     $todoSheets=readTodoSheetsForBase($selectedBase);
     $bases= getbases();
     $basedefault = $_SESSION['username']["base"]['id'];
-    $maxweek = MaxToDoSheetWeek();
     require_once 'view/todo/todoListHome.php';
 }
 

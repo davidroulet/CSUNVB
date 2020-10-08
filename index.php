@@ -83,9 +83,15 @@ switch ($action) {
         login();
         break;
     case 'todolist':
+
+        if (isset($_POST['base'])) {
+            createSheetToDo($_POST['base']);
+
+        }
 if (isset($_POST['site'])) {
     $selectedBase = $_POST['site'];
-    createSheetToDo($selectedBase);
+
+
 } else {
     if (isset($_POST['selectBase'])) {
         $selectedBase = $_POST['selectBase'];
@@ -93,10 +99,8 @@ if (isset($_POST['site'])) {
         $selectedBase = $_SESSION['username']['base']['id'];
     }
 }
-        if (isset($_POST['newtodo'])) {
+        if (!isset($_POST['newtodo'])) {
 
-            createSheetToDo($selectedBase);
-        } else {
             todoListHomePage($selectedBase);
         }
 
