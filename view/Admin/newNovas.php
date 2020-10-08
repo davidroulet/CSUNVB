@@ -9,7 +9,7 @@ $title = "CSU-NVB - Administration - Novas";
 ?>
 <form class="form form-group" action="?action=saveNewNovas" method="POST">
     <label>Numéro de la nouvelle Nova</label>
-    <input type="number" class="form-group form-control" name="nameNova" required>
+    <input type="number" min="0" class="form-group form-control" name="nameNova" required>
     <input type="submit" class="btn btn-primary">
 </form>
 <?php

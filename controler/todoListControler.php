@@ -23,7 +23,9 @@ require_once 'model/adminModel.php';
 
 function createSheetToDo($base_id) {
     // récupérer la valeur de $item puis transférer les valeurs
-    createTodoSheet($base_id);
+
+    $lastWeek = readLastWeek($base_id);
+    createTodoSheet($base_id, $lastWeek['last_week']);
     todoListHomePage($base_id);
 
 }
@@ -60,7 +62,6 @@ function edittodopage($sheetid)
     $thingsFor[$i][$j] = readTodoThingsForDay($i, $j);
 
     $datesoftheweek = getDatesOfAWeekBySheetId($sheetid);
-    displaydebug($datesoftheweek);
 
     require_once 'view/todo/Edittodopage.php';
 

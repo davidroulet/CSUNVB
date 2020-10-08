@@ -70,9 +70,15 @@ function destroyTodoSheet($id)
  * puisque le modèle ne l'a pas encore traité
  * ...
  */
-function createTodoSheet($base_id)
+function readLastWeek($base_id)
 {
-    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id, 'blank', :week)", ["base_id" => $base_id]);
+    return selectOne("SELECT base_id, MAX(week) as 'last_week'  FROM todosheets
+where base_id =:base_id
+GROUP BY base_id",["base_id" => $base_id]);
+}
+function createTodoSheet($base_id,$lastWeek)
+{
+    return insert("INSERT INTO todosheets (base_id,state,week) VALUES (:base_id, 'blank', :lastWeek)", ["base_id" => $base_id, "lastWeek" => $lastWeek+1]);
 }
 
 function readTodoSheetsForBase($base_id)
