@@ -42,15 +42,15 @@ $title = "CSU-NVB - Remise de garde";
         <th>Date</th>
         <th>État</th>
         <th>Véhicule</th>
-        <th>Résponsable</th>
+        <th>Responsable</th>
         <th>Équipage</th>
-        <th>Base</th>
+
         <?php if($admin['admin'] == 1){?>
         <th>Action</th><?php } ?>
         </thead>
     <?php  ?>
-        <?php foreach($guardsheets as $guardsheet){
-        if ($_SESSION["Selectsite"] == $guardsheet['base_id']) { ?>
+        <?php foreach($guardsheets as $guardsheet) { ?>
+
 
 
             <tr>
@@ -64,21 +64,20 @@ $title = "CSU-NVB - Remise de garde";
                         <?= "Férmée " ?>
                     <?php } ?></td>
                 <td>Jour : <?= $novaday['number'] ?><br>Nuit : <?= $novanight['number'] ?></td>
-            <?php if ($guardsheet['boss'] == 1 && $guardsheet['day']==1 && $_SESSION["Selectsite"] == $guardsheet['base_id']) { ?>
-                <td>Jour : <?php var_dump($guardsheet['user_id']);  } ?>
-                <td>Jour : <?= $dayTeam['initials'] ?><br>Nuit : <?= $nightTeam['initials'] ?></td>
-                <td><?= $guardsheet['name'] ?></td>
+                <td>Jour :<?= $guardsheet['bossDay']?><br>Nuit :<?= $guardsheet['bossNight']?> </td>
+                <td>Jour : <?= $guardsheet['teammateDay']?><br>Nuit : <?= $guardsheet['teammateNight']?></td>
+
             <?php if($admin['admin'] == 1){?>
-                <td><form action="/index.php?action=reopenShift" method="post">
-                        <button class="btn" name="reopen" value="<?= $guardsheet['id'] ?>"
+                <?php if($guardsheet['state'] == 'closed' || $guardsheet['state'] == 'reopen') { ?><td><form action="/index.php?action=reopenShift" method="post">
+                        <button class="btn btn-primary btn-sm" name="reopen" value="<?= $guardsheet['id'] ?>"
                         </button>Reopen
-                    </form>
+                    </form> <?php }  if ($guardsheet['state'] == 'closed' || $guardsheet['state'] == 'reopen') { ?>
                     <form action="/index.php?action=closedShift" method="post">
-                        <button class="btn" name="close" value="<?= $guardsheet['id'] ?>"
+                        <button class="btn btn-primary btn-sm" name="close" value="<?= $guardsheet['id'] ?>"
                         </button>Close
-                    </form></td><?php } ?>
+                    </form></td><?php } } ?>
             </tr>
-        <?php  }}?>
+        <?php  } ?>
     </table>
 
 

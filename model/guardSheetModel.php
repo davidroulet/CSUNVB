@@ -166,12 +166,32 @@ function Guardsheet()
 
 }
 
-function getBaseForGuardsheet()
+function getBaseForGuardsheet($base_id)
 {
-    return selectMany('select * from guardsheets 
+    return selectMany('select
+	date,
+    state,
+    base_id,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 1 and crews.boss = 1) as bossDay,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 0 and crews.boss = 1) as bossNight,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 1 and crews.boss = 0) as teammateDay,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 0 and crews.boss = 0) as teammateNight
+    from guardsheets where base_id=:base_id',["base_id" => $base_id]);
+}
+/*  'select
+	date,
+    state,
+    base_id,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 1 and crews.boss = 1) as bossDay,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 0 and crews.boss = 1) as bossNight,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 1 and crews.boss = 0) as teammateDay,
+    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 0 and crews.boss = 0) as teammateNight
+    from guardsheets where base_id=:base_id',["base_id" => $base_id]
+
+
+'select * from guardsheets
 join crews on guardsheets.id = crews.guardsheet_id
 join bases on guardsheets.base_id = bases.id
-join users on crews.user_id = users.id', []);
-}
-
+join users on crews.user_id = users.id where bases.id=:base_id', ["base_id" => $base_id]
+*/
 ?>
