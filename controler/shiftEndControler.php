@@ -40,8 +40,8 @@ function listShiftEnd($base_id)
     $admin = getUserAdmin($_SESSION["username"]["admin"]);
     $Bases = getbases();
     $list = Guardsheet();
-    $guardsheets = getBaseForGuardsheet();
-    var_dump($nameBase);
+    $guardsheets = getBaseForGuardsheet($base_id);
+
 
     require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
