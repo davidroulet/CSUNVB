@@ -313,10 +313,7 @@ function readnova($id)
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updatenovas($items)
-{
-    file_put_contents("model/dataStorage/novas.json", json_encode($items));
-}
+
 
 /**
  * Met un jours un item précis
@@ -383,11 +380,8 @@ function readDrug($id)
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updateDrugs($items)
-{
-    unset($items["id"]["batches"]);
-    file_put_contents("model/dataStorage/Drugs.json", json_encode($items));
-}
+
+
 
 /**
  * Met un jours un item precis en fonction de l'id
