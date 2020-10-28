@@ -309,47 +309,6 @@ function readnova($id)
     }
 }
 
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
-
-
-/**
- * Met un jours un item précis
- */
-function updateNova($item)
-{
-    $sheets = getnovas();
-    $sheets[$item["id"]] = $item;
-    updatenovas($sheets);
-
-}
-
-/**
- * Crée un item et l ajoute au fichier
- */
-function createnova($item)
-{
-    $items = getnovas();
-    $newid = max(array_keys($items)) + 1;
-    $item["id"] = $newid;
-    $items[] = $item;
-    updatenovas($items);
-    return $item;
-}
-
-/**
- * supprime un item en fonction de son id
- *
- */
-function destroyNova($id)
-{
-    $items = getnovas();
-    unset($items[$id]);
-    updatenovas($items);
-
-}
 
 /**
  * Retourne la liste des médicaments connus (table 'drugs')
@@ -375,11 +334,6 @@ function readDrug($id)
     }
     return $Sheet;
 }
-
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
 
 
 
