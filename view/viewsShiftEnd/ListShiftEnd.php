@@ -67,15 +67,16 @@ $title = "CSU-NVB - Remise de garde";
                 <td>Jour :<?= $guardsheet['bossDay']?><br>Nuit :<?= $guardsheet['bossNight']?> </td>
                 <td>Jour : <?= $guardsheet['teammateDay']?><br>Nuit : <?= $guardsheet['teammateNight']?></td>
 
-            <?php if($admin['admin'] == 1){?>
-                <?php if($guardsheet['state'] == 'closed' || $guardsheet['state'] == 'reopen') { ?><td><form action="/index.php?action=reopenShift" method="post">
-                        <button class="btn btn-primary btn-sm" name="reopen" value="<?= $guardsheet['id'] ?>"
-                        </button>Reopen
-                    </form> <?php }  if ($guardsheet['state'] == 'closed' || $guardsheet['state'] == 'reopen') { ?>
-                    <form action="/index.php?action=closedShift" method="post">
-                        <button class="btn btn-primary btn-sm" name="close" value="<?= $guardsheet['id'] ?>"
-                        </button>Close
-                    </form></td><?php } } ?>
+
+                    <?php if($admin['admin'] == 1){?>
+            <?php if($guardsheet['state'] == 'closed' ) { ?><td><form action="/index.php?action=reopenShift" method="post">
+                <button class="btn btn-primary btn-sm" name="reopen" value="<?= $guardsheet['id'] ?>"
+                </button>Reopen
+            </form> <?php }  if ($guardsheet['state'] == 'open' || $guardsheet['state'] == 'reopen') { ?>
+                <form action="/index.php?action=closedShift" method="post">
+                    <button class="btn btn-primary btn-sm" name="close" value="<?= $guardsheet['id'] ?>"
+                    </button>Close
+                </form></td><?php } } ?>
             </tr>
         <?php  } ?>
     </table>
