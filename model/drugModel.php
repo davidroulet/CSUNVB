@@ -66,13 +66,13 @@ function getBatchesForSheet($stupSheet_id)
     return selectMany("SELECT * FROM batches INNER JOIN stupsheet_use_batch ON batches.id = batch_id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
-function getStupSheets()
+function temp()
 {
     $novasheets = getstupnova(); // nova utilisé par sheet
     $Sutupbatchs = getsutpbatch(); // batch utiilisé par les sheet
     $pharmachecks = getpharmachecks(); // donée pharmatice
     $drug = getDrugs();
-   // $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
+    // $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
     $stupsheets = selectMany("SELECT * FROM stupsheets", []);
 
     foreach ($stupsheets as $stupsheet) {  //prend une page de stupsheet
@@ -95,13 +95,23 @@ function getStupSheets()
                             $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"][$batch["number"]][] = $pharma;
                         }
                     }
-
-
                 }
             }
         }
     }
     return $SheetsArray;
+}
+
+function getStupSheets()
+{
+    $stupsheets = selectMany("SELECT * FROM stupsheets", []);
+    var_dump($stupsheets);
+    return $stupsheets;
+}
+
+function getBatchByStupsheet()
+{
+    $Sutupbatchs = getsutpbatch();
 }
 
 /**

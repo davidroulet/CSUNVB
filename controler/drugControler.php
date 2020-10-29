@@ -9,7 +9,7 @@ require_once 'model/drugModel.php';
 function drugHomePage() //Affiche la page de selection de la semaine
 {
     $bases = getbases();
-    $liste = getStupSheets(); // TODO Pour drugHome, on n'a pas besoin de tous les détails. Remplacer par getListOfStupSheets()
+    $liste = getStupSheets();
     require_once 'view/Drug/drugHome.php';
 }
 

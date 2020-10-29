@@ -6,7 +6,6 @@
 
 $title = "CSU-NVB - Stupéfiants";
 ob_start();
-$_SESSION["stup"]=$stupSheet;
 ?>
 <div class="row m-2">
     <h1>Stupéfiants</h1>
@@ -48,7 +47,7 @@ $_SESSION["stup"]=$stupSheet;
                 <form action="?action=updatePharmaCheck&batch_id=<?= $batch["id"] ?>&stupsheet_id=<?= $stupSheet["id"] ?>&date=<?= date("Y-m-d", $date) ?>"
                       method="post">
                     <td>
-                        <button type="submit" class="btn-dark">  <?= $batch["number"] ?>   </button>
+                       <!-- <button type="submit" class="btn-dark">  <?= $batch["number"] ?>   </button>-->
                     </td>
                 </form>
                 <td><!-- pharmacheck start --></td>
