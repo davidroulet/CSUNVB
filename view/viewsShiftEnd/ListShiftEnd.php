@@ -60,10 +60,10 @@ $title = "CSU-NVB - Remise de garde";
                     <?php }  if($guardsheet['state'] == 'reopen') { ?>
                         <?= "Réouverte " ?>
                     <?php }
-                    else  { ?>
+                    if($guardsheet['state']== 'closed') { ?>
                         <?= "Férmée " ?>
                     <?php } ?></td>
-                <td>Jour : <?= $novaday['number'] ?><br>Nuit : <?= $novanight['number'] ?></td>
+                <td>Jour : <?= $guardsheet['novaDay'] ?><br>Nuit : <?= $guardsheet['novaNight'] ?></td>
                 <td>Jour :<?= $guardsheet['bossDay']?><br>Nuit :<?= $guardsheet['bossNight']?> </td>
                 <td>Jour : <?= $guardsheet['teammateDay']?><br>Nuit : <?= $guardsheet['teammateNight']?></td>
 
