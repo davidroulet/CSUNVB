@@ -12,7 +12,6 @@
  **/
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
-displaydebug($_SESSION);
 ?>
 <h1 class="center p-4"><?= $title ?></h1>
 

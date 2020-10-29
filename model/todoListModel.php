@@ -121,7 +121,6 @@ function updateTodoThing($item)
                     display_order=:display_order
                     WHERE id =:id", $item);
 }
-
 /**
  * Détruit un item précis, identifié par son id
  * ...
@@ -171,23 +170,8 @@ set state='reopen' WHERE id=:id";
 
 function closeToDoPage($id)
 {
-    try {
-        $dbh = getPDO();
-        $query = "update todosheets
-set state='closed' WHERE id=:id";
-        $statement = $dbh->prepare($query);//prepare query
-        $statement->execute(["id" => $id]);//execute query
-        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
-        $dbh = null;
-        return $queryResult;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        return null;
-    }
-
-
+    execute("UPDATE todosheets set state='closed' WHERE id=:id", ['id' => $id]);
 }
-
 
 
 // WIP
@@ -198,7 +182,6 @@ function readTodoThingsForDay($day, $dayOfWeek)
         $items = readTodoThings();
 
         foreach ($items as $item) {
-        var_dump($items);
             if (($day == 1) && ($item['daything'] == 1)) {
                 if ($item['days'][$dayOfWeek] == true) {
                     $itemsByDay[] = $item;
