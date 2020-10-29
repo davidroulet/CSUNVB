@@ -68,7 +68,7 @@ $title = "CSU-NVB - Remise de garde";
                 <td>Jour : <?= $guardsheet['teammateDay']?><br>Nuit : <?= $guardsheet['teammateNight']?></td>
 
 
-                    <?php if($admin['admin'] == 1){?>
+                    <?php if($admin['admin'] == 1){ ?>
             <?php if($guardsheet['state'] == 'closed' ) { ?><td><form action="/index.php?action=reopenShift" method="post">
                 <button class="btn btn-primary btn-sm" name="reopen" value="<?= $guardsheet['id'] ?>"
                 </button>Reopen
@@ -85,7 +85,6 @@ $title = "CSU-NVB - Remise de garde";
     <?= $baseinfo['name'] ?>
 
     <?php
-    var_dump($guardsections);
     foreach ($guardsections as $guardsection) { ?>
     <table class="table table-active table-bordered table-striped " style="text-align: center">
         <tr class="table-primary text-secondary ">
