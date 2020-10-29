@@ -105,7 +105,7 @@ function temp()
 function getStupSheets()
 {
     $stupsheets = selectMany("SELECT * FROM stupsheets", []);
-    var_dump($stupsheets);
+    //var_dump($stupsheets);
     return $stupsheets;
 }
 
@@ -392,7 +392,9 @@ function getsutpbatch()
 {
     try {
         $dbh = getPDO();
-        $query = 'SELECT * FROM stupsheet_use_batch';
+        $query = 'SELECT * FROM stupsheets INNER JOIN stupsheet_use_batch ON stupsheet_id = stupsheets.id
+						 INNER JOIN batches ON batch_id = batches.id
+						 INNER JOIN drugs ON drug_id = drugs.id';
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
