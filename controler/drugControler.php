@@ -79,10 +79,9 @@ function reopenStup($id)
 
     reopenStupPage($id);
     require_once 'view/home.php';
-}function closeStup($id)
+}function closedStup($id)
 {
-
-    closeStupPage($id);
+    closeStup($id);
     require_once 'view/home.php';
 }
 

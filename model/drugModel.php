@@ -586,7 +586,7 @@ set state='reopen' WHERE id=:id";
 
 }
 
-function closeStupPage($id)
+function closeStup($id)
 {
 
     try {

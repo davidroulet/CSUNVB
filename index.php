@@ -116,7 +116,7 @@ if (isset($_POST['site'])) {
         reopenStup($id);
         break;
     case 'closedStup':
-        closeStup($id);
+        closedStup($id);
         break;
     case 'reopenToDo':
         reopenToDo($id);
