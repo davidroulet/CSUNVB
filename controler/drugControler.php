@@ -76,14 +76,14 @@ function LogStup($stupsheet)
 }
 function reopenStup($id)
 {
-
     reopenStupPage($id);
-    require_once 'view/home.php';
-}function closeStup($id)
-{
+    require_once 'view/Drug/drugHome.php';
+}
 
+function closeStup($id)
+{
     closeStupPage($id);
-    require_once 'view/home.php';
+    require_once 'view/Drug/drugHome.php';
 }
 
 function pharmacheck($sheet, $date, $batch)
