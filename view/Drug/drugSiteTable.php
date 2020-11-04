@@ -10,12 +10,12 @@ ob_start();
 <div class="row m-2">
     <h1>Stupéfiants</h1>
 </div>
-<h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
-
-</h2>
-<?php if (($stupSheet['state'] == 'open')||($stupSheet['state'] == 'reopen')) { ?>
-    <a class="btn btn-primary" href="?action=closedStup">Clore</a>
-<?php } ?>
+<h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
+<?php if ($_SESSION['username']['admin'] == 1) { if (($stupSheet['state'] == 'open')||($stupSheet['state'] == 'reopen')) { ?>
+    <form action="?action=closeStup" method="post">
+        <button class="btn btn-primary" name="close" value="???">Clore</button>
+    </form>
+<?php } } ?>
 
 <?php foreach ($jours as $jour) { // vas generé tous les jours de semaine ?>
     <table border="1" class="table table-dark">
