@@ -13,7 +13,9 @@ ob_start();
 <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?>
 
 </h2>
-
+<?php if (($stupSheet['state'] == 'open')||($stupSheet['state'] == 'reopen')) { ?>
+    <a class="btn btn-primary" href="?action=closedStup">Clore</a>
+<?php } ?>
 
 <?php foreach ($jours as $jour) { // vas generé tous les jours de semaine ?>
     <table border="1" class="table table-dark">
