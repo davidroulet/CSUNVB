@@ -112,6 +112,10 @@ if (isset($_POST['site'])) {
         $sheetid = $_GET['sheetid'];
         edittodopage($sheetid);
         break;
+    /*case 'activatetodosheets':
+        $activate = $_POST['activatetodosheets'];
+        activateSheet($activate);
+        break;*/
     case 'drugs':
         drugHomePage();
         break;
