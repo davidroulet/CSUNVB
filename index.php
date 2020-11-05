@@ -23,6 +23,9 @@ if (isset($_POST["reopen"])) {
 if (isset($_POST["close"])) {
     $id = $_POST["close"];
 }
+if (isset($_POST['activate'])) {
+    $id = $_POST['activate'];
+}
 if (isset($_POST["reopenStup"])) {
     $Stupheet = $_POST["reopenStup"];
 }
@@ -235,6 +238,13 @@ if (isset($_POST['site'])) {
         $baseId = $_GET['stupBaseId'];
         $week = $_GET['stupPageWeek'];
         closedStupFromTable($baseId, $week);
+        break;
+    case 'addNewStup' :
+        $base_id = $_POST['baseStup'];
+        createSheetStup($base_id);
+        break;
+    case 'activateStup' :
+        activateStup($id);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
