@@ -133,4 +133,10 @@ function createSheetStup($base_id) {
     unset($_POST['base']);
     require_once 'view/home.php';
 }
+
+function activateStup($id)
+{
+    activateStupPage($id);
+    require_once 'view/home.php';
+}
 ?>
