@@ -34,14 +34,7 @@ function drugSiteTable($semaine)
 
     $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
 
-    // TODO Supprimer ces données quand les fonctions ci-dessus auront été réalisées
-    //$novas = [ ["id" => 1, "number" => "111"], ["id" => 2, "number" => "222"], ["id" => 3, "number" => "333"] ];
-    //$drugs = [ ["id" => 11, "name" => "Morphine"], ["id" => 22, "name" => "Fentanyl"], ["id" => 33, "name" => "Temesta"] ];
-    /*$batches = [
-        11 => [["id" => 1, "number" => "111111", "state" => "open", "drug_id" => 11], ["id" => 2, "number" => "111112", "state" => "open", "drug_id" => 11], ["id" => 3, "number" => "111113", "state" => "open", "drug_id" => 11]],
-        22 => [["id" => 21, "number" => "222221", "state" => "open", "drug_id" => 22], ["id" => 22, "number" => "222222", "state" => "open", "drug_id" => 22]],
-        33 => [["id" => 71, "number" => "333331", "state" => "open", "drug_id" => 33]]
-    ];*/
+
     $date = strtotime($jourDebutSemaine);
     $site = getbasebyid($_SESSION["Selectsite"])["name"];
     $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
@@ -125,4 +118,31 @@ function PharmaUpdate($batchtoupdate, $PharmaUpdateuser, $Pharmastart, $Pharmaen
     drugSiteTable($sheet["week"]);
 }
 
+function closedStupFromTable($baseId, $week)
+{
+    closeStupFromTable($baseId, $week);
+    require_once 'view/home.php';
+}
+
+function createSheetStup($base_id) {
+    // récupérer la valeur de $item puis transférer les valeurs
+
+    $lastWeek = readLastWeekStup($base_id);
+    createStupsheet($base_id, $lastWeek['last_week']);
+    unset($_POST['site']);
+    unset($_POST['base']);
+    require_once 'view/home.php';
+}
+
+function activateStup($id)
+{
+    activateStupPage($id);
+    require_once 'view/home.php';
+}
+
+function activateStupFromTable($baseId, $week)
+{
+    activateStupPageFromTable($baseId, $week);
+    require_once 'view/home.php';
+}
 ?>
