@@ -231,6 +231,11 @@ if (isset($_POST['site'])) {
         $idNova = $_GET['idNova'];
         modifyNameNova($modifNameNova, $idNova);
         break;
+    case 'closeStupFromTable' :
+        $baseId = $_GET['stupBaseId'];
+        $week = $_GET['stupPageWeek'];
+        closedStupFromTable($baseId, $week);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
