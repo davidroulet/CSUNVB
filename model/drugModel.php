@@ -606,4 +606,23 @@ set state='closed' WHERE id=:id";
 
 }
 
+function closeStupFromTable($baseId, $week)
+{
+
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+set state='closed' WHERE base_id=:baseId AND week=:week";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["baseId" => $baseId, "week" => $week]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+
+
+}
 ?>

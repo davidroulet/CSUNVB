@@ -12,9 +12,7 @@ ob_start();
 </div>
 <h2>Site de <?= $site ?> , Semaine N° <?= $semaine ?></h2>
 <?php if ($_SESSION['username']['admin'] == 1) { if (($stupSheet['state'] == 'open')||($stupSheet['state'] == 'reopen')) { ?>
-    <form action="?action=closeStup" method="post">
-        <button class="btn btn-primary" name="close" value="???">Clore</button>
-    </form>
+    <a href="?action=closeStupFromTable&stupBaseId=<?php echo $stupSheet['base_id'] ?>&stupPageWeek=<?php echo $stupSheet['week'] ?>" class="btn btn-primary">Clore</a>
 <?php } } ?>
 
 <?php foreach ($jours as $jour) { // vas generé tous les jours de semaine ?>
