@@ -86,6 +86,11 @@ function readTodoSheetsForBase($base_id)
     return selectMany("SELECT * FROM todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
 }
 
+function activateTodoSheets($state)
+{
+    execute("UPDATE todosheets set state = :state", ["state" => $state]);
+}
+
 /** ------------------TODOTHINGS---------------------- */
 
 /**

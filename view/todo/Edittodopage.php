@@ -20,7 +20,10 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
     <?php if ($_SESSION['username']['admin'] == 1) { ?>
         <button name="newtodo">Nouvelle tâche</button>
 
-
+        <?php if ($state = "blank") { ?>
+            <button name="activatetodosheets">Activer</button>
+            
+        <?php } ?>
         <form action="/index.php?action=reopentodo" method="post">
             <button class="btn-dark" name="reopentodo"">reopen
             </button>
