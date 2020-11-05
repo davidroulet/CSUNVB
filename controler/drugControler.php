@@ -123,4 +123,14 @@ function closedStupFromTable($baseId, $week)
     closeStupFromTable($baseId, $week);
     require_once 'view/home.php';
 }
+
+function createSheetStup($base_id) {
+    // récupérer la valeur de $item puis transférer les valeurs
+
+    $lastWeek = readLastWeekStup($base_id);
+    createStupsheet($base_id, $lastWeek['last_week']);
+    unset($_POST['site']);
+    unset($_POST['base']);
+    require_once 'view/home.php';
+}
 ?>

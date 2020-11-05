@@ -625,4 +625,16 @@ set state='closed' WHERE base_id=:baseId AND week=:week";
 
 
 }
+
+function readLastWeekStup($base_id)
+{
+    return selectOne("SELECT base_id, MAX(week) as 'last_week'  FROM stupsheets
+where base_id =:base_id
+GROUP BY base_id",["base_id" => $base_id]);
+}
+function createStupsheet($base_id, $lastWeek)
+{
+    return insert("INSERT INTO stupsheets (base_id,state,week) VALUES (:base_id, 'vierge', :lastWeek)", ["base_id" => $base_id, "lastWeek" => $lastWeek+1]);
+}
+
 ?>

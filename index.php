@@ -236,6 +236,10 @@ if (isset($_POST['site'])) {
         $week = $_GET['stupPageWeek'];
         closedStupFromTable($baseId, $week);
         break;
+    case 'addNewStup' :
+        $base_id = $_POST['baseStup'];
+        createSheetStup($base_id);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
