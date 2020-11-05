@@ -139,4 +139,10 @@ function activateStup($id)
     activateStupPage($id);
     require_once 'view/home.php';
 }
+
+function activateStupFromTable($baseId, $week)
+{
+    activateStupPageFromTable($baseId, $week);
+    require_once 'view/home.php';
+}
 ?>

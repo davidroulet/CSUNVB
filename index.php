@@ -250,6 +250,11 @@ if (isset($_POST['site'])) {
     case 'activateStup' :
         activateStup($id);
         break;
+    case 'activateStupFromTable' :
+        $baseId = $_GET['stupBaseId'];
+        $week = $_GET['stupPageWeek'];
+        activateStupFromTable($baseId, $week);
+        break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';

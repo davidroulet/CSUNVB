@@ -653,4 +653,9 @@ function activateStupPage($id)
         return null;
     }
 }
+
+function activateStupPageFromTable($baseId, $week)
+{
+    return execute("UPDATE stupsheets SET state='open' WHERE base_id=:baseId AND week=:week", ["baseId"=>$baseId, "week"=>$week]);
+}
 ?>
