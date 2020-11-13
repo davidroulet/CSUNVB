@@ -615,4 +615,37 @@ set state='closed' WHERE base_id=:baseId AND week=:week";
 
 
 }
+
+function readLastWeekStup($base_id)
+{
+    return selectOne("SELECT base_id, MAX(week) as 'last_week'  FROM stupsheets
+where base_id =:base_id
+GROUP BY base_id",["base_id" => $base_id]);
+}
+function createStupsheet($base_id, $lastWeek)
+{
+    return insert("INSERT INTO stupsheets (base_id,state,week) VALUES (:base_id, 'vierge', :lastWeek)", ["base_id" => $base_id, "lastWeek" => $lastWeek+1]);
+}
+
+function activateStupPage($id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+                    set state='open' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
+
+function activateStupPageFromTable($baseId, $week)
+{
+    return execute("UPDATE stupsheets SET state='open' WHERE base_id=:baseId AND week=:week", ["baseId"=>$baseId, "week"=>$week]);
+}
 ?>
