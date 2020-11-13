@@ -96,6 +96,10 @@ function todos() {
     return selectMany("SELECT * FROM todos", []);
 }
 
+function activateTodoSheets($state)
+{
+    execute("UPDATE todosheets set state = :state", ["state" => $state]);
+}
 /** ------------------TODOTHINGS---------------------- */
 
 /**
