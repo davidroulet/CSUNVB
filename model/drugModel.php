@@ -70,9 +70,8 @@ function temp()
 {
     $novasheets = getstupnova(); // nova utilisé par sheet
     $Sutupbatchs = getsutpbatch(); // batch utiilisé par les sheet
-    $pharmachecks = getpharmachecks(); // donée pharmatice
+    $pharmachecks = getpharmachecks(); // donnée pharmaceutique
     $drug = getDrugs();
-    // $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
     $stupsheets = selectMany("SELECT * FROM stupsheets", []);
 
     foreach ($stupsheets as $stupsheet) {  //prend une page de stupsheet
@@ -150,7 +149,6 @@ function updateSheets($items)
         unset($items[$item["id"]]["Drug"]);
         unset($items[$item["id"]]["nova"]);
     }
-    file_put_contents("model/dataStorage/stupsheets.json", json_encode($items));
 }
 
 /**
@@ -224,10 +222,6 @@ function readbatche($id)
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updateBatches($items)
-{
-    file_put_contents("model/dataStorage/batches.json", json_encode($items));
-}
 
 /**
  * met un jours un item precis
@@ -473,10 +467,6 @@ function createpharmacheck($item)
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updatepharmachecks($items)
-{
-    file_put_contents("model/dataStorage/pharmachecks.json", json_encode($items));
-}
 
 /**
  * Savuase un item precis

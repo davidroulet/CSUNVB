@@ -26,11 +26,6 @@ function drugSiteTable($semaine)
         $batches[$p["drug_id"]] = $p;
     }
 
-    /*$Array = json_decode(file_get_contents("model/dataStorage/batches.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-    }*/
-
 
     $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
 
