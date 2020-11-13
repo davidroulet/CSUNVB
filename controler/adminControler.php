@@ -155,7 +155,7 @@ function  NewGuardSheet()
     } else {
         $_SESSION['flashmessage'] = "La Nova a bien été créé !";
     }
-    adminNovas();
+    adminGuardSheet();
 }
 
 function changePwd($changeUser){
