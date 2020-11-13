@@ -196,22 +196,30 @@ function readTodoThingsForDay($day, $dayOfWeek)
 
         $todothingsDatas = readTodoThings();
         $todos = todos();
-
-
+        displaydebug($todothingsDatas);
+        displaydebug($day);
+        //displaydebug($todos);
+        //displaydebug($dayOfWeek);
 
         foreach ($todothingsDatas as $todothingsData) {
-            if (($day == 1) && ($todothingsData['daything'] == 1)) {
+            if (($day == $todothingsData['daything'])) {
                 foreach ($todos as $todo) {
-                if ($todo['day_of_week'][$dayOfWeek] == true) {
-                    $itemsByDay[] = $todothingsData;
+                if ($todo['day_of_week'] ==  $dayOfWeek) {
+                    $itemsByDay[$todothingsData['id']] = $todothingsData;
                 }
                 }
-            } else if (($day == 0) && ($todothingsData['daything'] == 0)) {
-                if ($todothingsData['days'][$dayOfWeek] == true) {
-                    $itemsByDay[] = $todothingsData;
+            } else if (($todothingsData['daything'] == 0)) {
+                if ($todothingsData['days'] == $dayOfWeek) {
+                    foreach ($todos as $todo) {
+                        if ($todo['day_of_week'] ==  $dayOfWeek) {
+                            $itemsByDay[$todothingsData['id']] = $todothingsData;
+                        }
+                    }
                 }
+
             }
         }
+
     return $itemsByDay;
 
 

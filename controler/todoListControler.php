@@ -48,7 +48,6 @@ function activateSheet($state) {
 function edittodopage($sheetid)
 {
     $dayThingsForMonday = readTodoThingsForDay(1, 0);
-    displaydebug($dayThingsForMonday);
     $dayThingsForTuesday = readTodoThingsForDay(1, 1);
     $dayThingsForWednesday = readTodoThingsForDay(1, 2);
     $dayThingsForThursday = readTodoThingsForDay(1, 3);
