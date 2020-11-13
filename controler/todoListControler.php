@@ -41,6 +41,10 @@ function todoListHomePage($selectedBase)
     require_once 'view/todo/todoListHome.php';
 }
 
+function activateSheet($state) {
+    $activatestatus = activateTodoSheets($state);
+}
+
 function edittodopage($sheetid)
 {
     $dayThingsForMonday = readTodoThingsForDay(1, 0);

@@ -23,6 +23,9 @@ if (isset($_POST["reopen"])) {
 if (isset($_POST["close"])) {
     $id = $_POST["close"];
 }
+if (isset($_POST['activate'])) {
+    $id = $_POST['activate'];
+}
 if (isset($_POST["reopenStup"])) {
     $Stupheet = $_POST["reopenStup"];
 }
@@ -109,6 +112,10 @@ if (isset($_POST['site'])) {
         $sheetid = $_GET['sheetid'];
         edittodopage($sheetid);
         break;
+    /*case 'activatetodosheets':
+        $activate = $_POST['activatetodosheets'];
+        activateSheet($activate);
+        break;*/
     case 'drugs':
         drugHomePage();
         break;
@@ -116,7 +123,7 @@ if (isset($_POST['site'])) {
         reopenStup($id);
         break;
     case 'closedStup':
-        closeStup($id);
+        closedStup($id);
         break;
     case 'reopenToDo':
         reopenToDo($id);
@@ -230,6 +237,23 @@ if (isset($_POST['site'])) {
         $modifNameNova = $_POST['modifNameNova'];
         $idNova = $_GET['idNova'];
         modifyNameNova($modifNameNova, $idNova);
+        break;
+    case 'closeStupFromTable' :
+        $baseId = $_GET['stupBaseId'];
+        $week = $_GET['stupPageWeek'];
+        closedStupFromTable($baseId, $week);
+        break;
+    case 'addNewStup' :
+        $base_id = $_POST['baseStup'];
+        createSheetStup($base_id);
+        break;
+    case 'activateStup' :
+        activateStup($id);
+        break;
+    case 'activateStupFromTable' :
+        $baseId = $_GET['stupBaseId'];
+        $week = $_GET['stupPageWeek'];
+        activateStupFromTable($baseId, $week);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {

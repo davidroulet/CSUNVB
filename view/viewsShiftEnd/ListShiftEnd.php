@@ -14,7 +14,9 @@ $title = "CSU-NVB - Remise de garde";
 <div class="row m-2">
     <h1>Remise de Garde</h1>
 </div>
-
+<?php if($admin['admin'] == 1){?>
+    <a href="?action=NewGuardSheet" class='btn btn-primary m-1 '>Nouvelle Feuille</a>
+<?php }?>
 
     <FORM action="/index.php?action=listShiftEnd" method="post">
         <SELECT onchange="this.form.submit()" name="site" size="1">
@@ -123,9 +125,7 @@ $title = "CSU-NVB - Remise de garde";
     }
     ?>
     <a href="ExportPDF" class='btn btn-primary m-1 '>Format PDF</a>
-    <?php if($admin['admin'] == 1){?>
-    <a href="?action=NewGuardSheet" class='btn btn-primary m-1 '>Nouvelle Feuille</a>
-    <?php }?>
+
 
 
 

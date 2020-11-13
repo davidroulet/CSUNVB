@@ -63,6 +63,10 @@ function adminDrugs()       //Pointe sur la liste des médicaments
     $drugs = getDrugs();
     require_once 'view/Admin/adminDrugs.php';
 }
+function adminGuardSheet(){
+    $guardsheets = getGuardsheets();
+    require_once  'view/viewsShiftEnd/ListShiftEnd.php';
+}
 
 function changeUserAdmin($changeUser)       //Change un user en admin (et inversément)
 {

@@ -76,7 +76,31 @@ function saveModifBase($modifNameBase, $idBase)
 function saveModifNova($modifNameNova, $idNova)
 {
     return execute("UPDATE novas SET number= :number WHERE id= :id", ['number' => $modifNameNova, 'id' => $idNova]);
-}function addNewGuardsheet (){
-    return execute();
+}function addNewGuardsheet ($state,$idBase){
+
+    return execute("Insert into guardsheets(date,state,base_id)
+values(current_timestamp(),:state,:idBase)",['state'=>$state,'idBase'=>$idBase]);
+    $gid =$dbh->LastindexOfid();
+
+    return execute("Insert into guard_use_nova(nova_id,guardsheet_id,day)
+values(1,:guardsheetId,1)['guardsheetId'=>$gid]");
+
+
+    /*Insert into guardsheets(date,state,base_id)
+values(current_timestamp(),"blank",1)
+;
+Insert into guard_use_nova(nova_id,guardsheet_id,day)
+values(1,151,1)
+;
+Insert into guard_use_nova(nova_id,guardsheet_id,day)
+values(1,151,0)
+;
+Insert into crews(boss,day,guardsheet_id,user_id)
+values(0,0,151,1)
+;
+Insert into crews(boss,day,guardsheet_id,user_id)
+values(1,1,151,1)
+;
+*/
 }
 ?>

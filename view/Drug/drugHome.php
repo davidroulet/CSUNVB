@@ -36,9 +36,12 @@ $title = "CSU-NVB - Stupéfiants";
     } ?>
 </div>
 
-<?php if ($_SESSION['username']['admin'] == 1) { ?>
-    <a href="#" class="btn btn-success">Créer une feuille de stupéfiants</a>
-<?php } ?>
+<form action="?action=addNewStup" method="post">
+    <input type="hidden" name="baseStup" value="<?= $_SESSION['Selectsite'] ?>">
+    <?php if ($_SESSION['username']['admin'] == 1) { ?>
+        <button type="submit" class="btn btn-primary">Nouvelle feuille de stupéfiants</button>
+    <?php } ?>
+</form>
 
 <div class="row">
     <table class="table table-bordered">
@@ -69,6 +72,11 @@ $title = "CSU-NVB - Stupéfiants";
                             <form action="/index.php?action=closedStup" method="post">
                                 <button class="btn" name="close" value="<?= $week['id'] ?>"
                                 </button>Close
+                            </form>
+                        <?php } else if ($week['state'] == "vierge") { ?>
+                            <form action="?action=activateStup" method="post">
+                                <button class="btn" name="activate" value="<?= $week['id'] ?>"
+                                </button>Activate
                             </form>
                         <?php } ?>
                     </td>
