@@ -86,6 +86,16 @@ function readTodoSheetsForBase($base_id)
     return selectMany("SELECT * FROM todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
 }
 
+/** ------------------TODOS---------------------- */
+
+/**
+ * Retourne tous les todos
+ *
+ */
+function todos() {
+    return selectMany("SELECT * FROM todos", []);
+}
+
 /** ------------------TODOTHINGS---------------------- */
 
 /**
@@ -174,29 +184,32 @@ function closeToDoPage($id)
 }
 
 
+
 // WIP
 function readTodoThingsForDay($day, $dayOfWeek)
 {
     // TODO return the todothings for a specific day (0=monday, ....)
 
-        $items = readTodoThings();
+        $todothingsDatas = readTodoThings();
+        $todos = todos();
 
-        foreach ($items as $item) {
-            if (($day == 1) && ($item['daything'] == 1)) {
-                if ($item['days'][$dayOfWeek] == true) {
-                    $itemsByDay[] = $item;
 
+
+        foreach ($todothingsDatas as $todothingsData) {
+            if (($day == 1) && ($todothingsData['daything'] == 1)) {
+                foreach ($todos as $todo) {
+                if ($todo['day_of_week'][$dayOfWeek] == true) {
+                    $itemsByDay[] = $todothingsData;
                 }
-            } else if (($day == 0) && ($item['daything'] == 0)) {
-                if ($item['days'][$dayOfWeek] == true) {
-                    $itemsByDay[] = $item;
+                }
+            } else if (($day == 0) && ($todothingsData['daything'] == 0)) {
+                if ($todothingsData['days'][$dayOfWeek] == true) {
+                    $itemsByDay[] = $todothingsData;
                 }
             }
         }
     return $itemsByDay;
 
-
-    $todothingsData = readTodoThings();
 
 // Insérer les données dans la db
 
