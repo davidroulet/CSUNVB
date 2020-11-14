@@ -38,7 +38,7 @@ function todoListHomePage($selectedBase)
     $todoSheets=readTodoSheetsForBase($selectedBase);
     $bases= getbases();
     $basedefault = $_SESSION['username']["base"]['id'];
-    require_once 'view/todo/todoListHome.php';
+    require_once 'view/todo/todoHome.php';
 }
 
 function activateSheet($state) {
