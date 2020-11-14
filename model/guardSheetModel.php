@@ -166,7 +166,7 @@ function Guardsheet()
 
 }
 
-function getBaseForGuardsheet($base_id)
+function getGuardsheetForBase($base_id)
 {
     return selectMany('select
 	date,
@@ -180,20 +180,5 @@ function getBaseForGuardsheet($base_id)
     (select number from novas inner join guard_use_nova on novas.id = guard_use_nova.nova_id where guard_use_nova.guardsheet_id = guardsheets.id and  guard_use_nova.day = 1) as novaDay
     from guardsheets where base_id=:base_id',["base_id" => $base_id]);
 }
-/*  'select
-	date,
-    state,
-    base_id,
-    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 1 and crews.boss = 1) as bossDay,
-    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 0 and crews.boss = 1) as bossNight,
-    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 1 and crews.boss = 0) as teammateDay,
-    (select initials from users inner join crews on users.id = crews.user_id where crews.guardsheet_id = guardsheets.id and crews.day = 0 and crews.boss = 0) as teammateNight
-    from guardsheets where base_id=:base_id',["base_id" => $base_id]
 
-
-'select * from guardsheets
-join crews on guardsheets.id = crews.guardsheet_id
-join bases on guardsheets.base_id = bases.id
-join users on crews.user_id = users.id where bases.id=:base_id', ["base_id" => $base_id]
-*/
 ?>

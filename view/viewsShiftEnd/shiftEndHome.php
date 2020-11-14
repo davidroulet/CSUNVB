@@ -55,8 +55,6 @@ $title = "CSU-NVB - Remise de garde";
     </thead>
     <?php ?>
     <?php foreach ($guardsheets as $guardsheet) { ?>
-
-
         <tr>
             <td><?= substr($guardsheet['date'], 0, 10) ?></td>
             <td><?php if ($guardsheet['state'] == 'open') { ?>
@@ -66,7 +64,7 @@ $title = "CSU-NVB - Remise de garde";
                     <?= "Réouverte " ?>
                 <?php }
                 if ($guardsheet['state'] == 'closed') { ?>
-                    <?= "Férmée " ?>
+                    <?= "Fermée " ?>
                 <?php } ?></td>
             <td>Jour : <?= $guardsheet['novaDay'] ?><br>Nuit : <?= $guardsheet['novaNight'] ?></td>
             <td>Jour :<?= $guardsheet['bossDay'] ?><br>Nuit :<?= $guardsheet['bossNight'] ?> </td>
@@ -92,48 +90,6 @@ $title = "CSU-NVB - Remise de garde";
         </tr>
     <?php } ?>
 </table>
-
-
-<?= $baseinfo['name'] ?>
-
-<?php
-foreach ($guardsections as $guardsection) { ?>
-    <table class="table table-active table-bordered table-striped " style="text-align: center">
-        <tr class="table-primary text-secondary ">
-            <td class="font-weight-bold "><?= $guardsection['title']; ?></td>
-            <td class="font-weight-bold">JOUR</td>
-            <td class="font-weight-bold">NUIT</td>
-            <td><span class="font-weight-bold">REMARQUE</span>(APPAREIL MANQUANT, ÉTAT DE CHARGE,
-                DEFECTUOSITÉS)
-            </td>
-        </tr>
-        <?php foreach ($guardlines as $guardline) {
-            if ($guardsection['id'] == $guardline['guard_sections_id']) {
-                ?>
-
-                <tr>
-                    <td><?= $guardline['text'] ?></td>
-                    <td></td>
-                    <td></td>
-                    <td><textarea cols=100% rows="1"></textarea></td>
-                </tr>
-                <?php
-            }
-        }
-        ?>
-    </table>
-
-    <?php /*    foreach ($guardsheets as $guardsheet) {
-        if ($guardsheet['id'] == $sheetid) {
-            ?>
-            <h2><?=$guardsheet['date']?></h2>
-            <br>
-
-            <?php
-        }
-    } */
-}
-?>
 
 <?php
 
