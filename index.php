@@ -68,9 +68,6 @@ switch ($action) {
     case 'admin':
         adminHomePage();
         break;
-    case 'shiftend':
-        shiftEndHomePage($semaine);
-        break;
     case 'listShiftEnd':
         if (isset($_POST["site"])) {
             $base_id = $_POST["site"];

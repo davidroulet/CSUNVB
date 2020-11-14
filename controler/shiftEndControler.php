@@ -10,25 +10,13 @@ require_once 'model/adminModel.php';
 
 function reopenShift($id)
 {
-
     reopenShiftPage($id);
     require_once 'view/home.php';
 }
 function closeShift($id)
 {
-
     closeShiftPage($id);
     require_once 'view/home.php';
-}
-
-function shiftEndHomePage($semaine)
-
-{
-
-
-
-
-    require_once 'view/viewsShiftEnd/shiftEndHome.php';
 }
 
 function listShiftEnd($base_id)
@@ -42,7 +30,6 @@ function listShiftEnd($base_id)
     $list = Guardsheet();
     $guardsheets = getBaseForGuardsheet($base_id);
 
-
-    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
+    require_once 'view/viewsShiftEnd/shiftEndHome.php';
 }
 ?>
