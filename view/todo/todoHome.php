@@ -22,7 +22,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
             <?php
             foreach ($bases as $base) { ?>
 
-            <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
+            <OPTION value="<?= $base["id"] ?>" <?php if ($selectedBase == $base["id"]) { ?> selected="selected"  <?php } ?>
             ><?= $base["name"] ?>
                 <?php }
                 ?>
@@ -44,6 +44,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         <thead class="thead-dark">
         <th>Date</th>
         <th>État</th>
+        <th>Action</th>
         </thead>
         <tbody>
         <?php
@@ -63,14 +64,14 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                     <td><?= $todosheet['state'] ?></td>
                 </form>
                 <td>
+                    <div class="row">
                     <form action="/index.php?action=reopenToDo" method="post">
-                        <button class="btn" name="reopen" value="<?= $todosheet['id'] ?>"
-                        </button>Reopen
+                        <button class="btn btn-primary btn-sm ml-3" name="reopen" value="<?= $todosheet['id'] ?>">Reopen</button>
                     </form>
                     <form action="/index.php?action=closedToDo" method="post">
-                        <button class="btn" name="close" value="<?= $todosheet['id'] ?>"
-                        </button>Close
+                        <button class="btn btn-primary btn-sm ml-3" name="close" value="<?= $todosheet['id'] ?>">Close</button>
                     </form>
+                    </div>
                 </td>
             </tr>
         <?php } ?>

@@ -60,30 +60,27 @@ $title = "CSU-NVB - Stupéfiants";
             <tr>
                 <form action="/index.php?action=drugSiteTable" method="post">
                     <td>
-                        <button class="btn" name="semaine"
-                                value="<?= $week["week"] ?>"> <?php echo "Semaine " . $week["week"] ?> </button>
+                        <button class="btn" name="semaine" value="<?= $week["week"] ?>"> <?php echo "Semaine " . $week["week"] ?> </button>
                     </td>
                     <td><?= $week['state'] ?></td>
                 </form>
                 <?php if ($_SESSION['username']['admin'] == 1) { ?>
                     <td>
-                        <a href="?action=LogStup" class="btn">Log</a>
+                        <div class="row">
                         <?php if ($week['state'] == "closed") { ?>
                             <form action="/index.php?action=reopenStup" method="post">
-                                <button class="btn" name="reopen" value="<?= $week['id'] ?>"
-                                </button>Reopen
+                                <button class="btn btn-primary btn-sm ml-3" name="reopen" value="<?= $week['id'] ?>">Reopen</button>
                             </form>
                         <?php } else if (($week['state'] == "open") || ($week['state'] == "reopen")) { ?>
                             <form action="/index.php?action=closedStup" method="post">
-                                <button class="btn" name="close" value="<?= $week['id'] ?>"
-                                </button>Close
+                                <button class="btn btn-primary btn-sm ml-3" name="close" value="<?= $week['id'] ?>">Close</button>
                             </form>
                         <?php } else if ($week['state'] == "vierge") { ?>
                             <form action="?action=activateStup" method="post">
-                                <button class="btn" name="activate" value="<?= $week['id'] ?>"
-                                </button>Activate
+                                <button class="btn btn-primary btn-sm ml-3" name="activate" value="<?= $week['id'] ?>">Activate</button>
                             </form>
                         <?php } ?>
+                        </div>
                     </td>
                 <?php } ?>
             </tr>

@@ -13,7 +13,7 @@ require 'model/database.php';
 
 function GetSheetbyWeek($week, $base)
 {
-    return selectOne('SELECT * FROM stupsheets INNER JOIN bases ON bases.id=base_id WHERE week =:week AND base_id=:base', ['week' => $week, 'base' => $base]);
+    return selectOne('SELECT stupsheets.id as stupsheet_id FROM stupsheets INNER JOIN bases ON bases.id=base_id WHERE week =:week AND base_id=:base', ['week' => $week, 'base' => $base]);
 }
 
 /**
@@ -40,7 +40,7 @@ function getListOfStupSheets($base)
  */
 function getNovasForSheet($stupSheet_id)
 {
-    return selectMany("SELECT * FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
+    return selectMany("SELECT novas.id as id, number FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 /**
@@ -421,17 +421,30 @@ function getstupnova()
 }
 
 /**
- * obients un items precis en fonction de son batch,date,stupsheet_id
+ * Retourne le pharmacheck du jour donné pour un batch précis lors de son utilisation dans une stupsheet
  */
 function getpharmacheckbydateandbybatch($date, $batch, $stupsheet_id)
 {
-    $Array = getpharmachecks();
-    foreach ($Array as $check) {
-        if ($check["date"] == $date && $check["batch_id"] == $batch && $check["stupsheet_id"] == $stupsheet_id) {
-            return $check;
-        }
-    }
-    return false;
+    $check = selectOne('SELECT start, end FROM pharmachecks WHERE date = :date AND batch_id = :batch_id AND stupsheet_id = :stupsheet_id', ["date" => $date, "batch_id" => $batch, "stupsheet_id" => $stupsheet_id]);
+    return $check;
+}
+
+/**
+ * Retourne le novacheck du jour donné pour un médicament précis dans une nova lors de son utilisation dans une stupsheet
+ */
+function getnovacheckbydateandbybatch($date, $drug, $nova, $stupsheet_id)
+{
+    $check = selectOne('SELECT start, end FROM novachecks WHERE date = :date AND drug_id = :drug_id AND nova_id = :nova_id AND stupsheet_id = :stupsheet_id', ["date" => $date, "drug_id" => $drug, "nova_id" => $nova, "stupsheet_id" => $stupsheet_id]);
+    return $check;
+}
+
+/**
+ * Retourne le restock du jour donné pour un batch précis dans une nova lors de son utilisation dans une stupsheet
+ */
+function getrestockbydateandbydrug($date,$batch,$nova)
+{
+    $check = selectOne('SELECT quantity FROM restocks WHERE date = :date AND batch_id = :batch_id AND nova_id = :nova_id', ["date" => $date, "batch_id" => $batch, "nova_id" => $nova]);
+    return $check;
 }
 
 /**
