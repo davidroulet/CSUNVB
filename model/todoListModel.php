@@ -86,11 +86,20 @@ function readTodoSheetsForBase($base_id)
     return selectMany("SELECT * FROM todosheets WHERE todosheets.base_id=:base_id", ["base_id" => $base_id]);
 }
 
+/** ------------------TODOS---------------------- */
+
+/**
+ * Retourne tous les todos
+ *
+ */
+function todos() {
+    return selectMany("SELECT * FROM todos", []);
+}
+
 function activateTodoSheets($state)
 {
     execute("UPDATE todosheets set state = :state", ["state" => $state]);
 }
-
 /** ------------------TODOTHINGS---------------------- */
 
 /**
@@ -179,30 +188,41 @@ function closeToDoPage($id)
 }
 
 
+
 // WIP
 function readTodoThingsForDay($sid, $day, $dayOfWeek)
 {
     $res = selectOne("SELECT description, type FROM todos INNER JOIN todothings t on todothing_id = t.id where todosheet_id=:sid AND daything = :daything AND dayofweek");
     // TODO return the todothings for a specific day (0=monday, ....)
 
-        $items = readTodoThings();
+        $todothingsDatas = readTodoThings();
+        $todos = todos();
+        displaydebug($todothingsDatas);
+        displaydebug($day);
+        //displaydebug($todos);
+        //displaydebug($dayOfWeek);
 
-        foreach ($items as $item) {
-            if (($day == 1) && ($item['daything'] == 1)) {
-                if ($item['days'][$dayOfWeek] == true) {
-                    $itemsByDay[] = $item;
+        foreach ($todothingsDatas as $todothingsData) {
+            if (($day == $todothingsData['daything'])) {
+                foreach ($todos as $todo) {
+                if ($todo['day_of_week'] ==  $dayOfWeek) {
+                    $itemsByDay[$todothingsData['id']] = $todothingsData;
+                }
+                }
+            } else if (($todothingsData['daything'] == 0)) {
+                if ($todothingsData['days'] == $dayOfWeek) {
+                    foreach ($todos as $todo) {
+                        if ($todo['day_of_week'] ==  $dayOfWeek) {
+                            $itemsByDay[$todothingsData['id']] = $todothingsData;
+                        }
+                    }
+                }
 
-                }
-            } else if (($day == 0) && ($item['daything'] == 0)) {
-                if ($item['days'][$dayOfWeek] == true) {
-                    $itemsByDay[] = $item;
-                }
             }
         }
+
     return $itemsByDay;
 
-
-    $todothingsData = readTodoThings();
 
 // Insérer les données dans la db
 
