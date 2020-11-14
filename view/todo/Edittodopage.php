@@ -22,7 +22,7 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 
         <?php if ($state = "blank") { ?>
             <button name="activatetodosheets">Activer</button>
-            
+
         <?php } ?>
         <form action="/index.php?action=reopentodo" method="post">
             <button class="btn-dark" name="reopentodo"">reopen
@@ -33,24 +33,18 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
             close</button>
         </form>
 
-
     <?php } ?>
 
-
-<div class="week text-center hour">
-
-
+<div class="week text-center hour p-0">
     <?php
-    foreach ($datesoftheweek as $index => $onedate) {
-        echo "<div class='bg-primary text-white day hour col-md h4 font-weight-bold'>{$days[$index-1]}<br>" . date("Y-m-d", $onedate) . " </div>";
-    }
-    ?>
+    foreach ($datesoftheweek as $index => $onedate) : ?>
+        <div class='bg-primary text-white col-md font-weight-bold'><?= $days[$index-1] ?><br><?= date("d.m.Y", $onedate) ?></div>
+    <?php endforeach; ?>
 </div>
 <div class="week text-center hour">
-    <div class="day col-md font-weight-bold h4 bg-info text-white"> Journée</div>
+    <div class="col-md font-weight-bold bg-info text-white">Journée</div>
 </div>
 <div class="week hour">
-
 
     <div class="day col-md">
 
@@ -106,7 +100,7 @@ $days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
 
 </div>
 <div class="week text-center hour">
-    <div class="day col-md font-weight-bold h4 bg-dark text-white"> Nuit</div>
+    <div class="col-md font-weight-bold h4 bg-dark text-white"> Nuit</div>
 </div>
 <div class="week hour">
     <div class="day col-md">

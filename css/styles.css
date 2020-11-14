@@ -1,8 +1,17 @@
+body {
+    background-color: #6cc8ff;
+}
+
 .colorblue{
     color: blue;
 }
+
+.versionnumber {
+    font-size: 10px;
+    color: #93a1a1;
+}
 .banner {
-    background-color: azure;
+    background-color: transparent;
     width: 100%;
 }
 
@@ -59,4 +68,28 @@ textarea{
 .sizemax
 {
     max-width: 50px;
+}
+
+.logo {
+    width: 152px;
+    height: 81px;
+}
+
+.title {
+    font-size: xx-large;
+}
+
+.bigfont {
+    font-size: 36px;
+}
+
+table.table-bordered{
+    border:2px solid black;
+    margin-top:20px;
+}
+table.table-bordered > thead > tr > th{
+    border:1px solid black;
+}
+table.table-bordered > tbody > tr > td{
+    border:1px solid black;
 }

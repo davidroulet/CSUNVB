@@ -13,41 +13,46 @@ $title = "CSU-NVB - Stupéfiants";
     <h1>Stupéfiants</h1>
 </div>
 
-<FORM action="/index.php?action=drugs" method="post">
-    <SELECT onchange="this.form.submit()" name="site" size="1">
+<div class="row">
+    <FORM action="/index.php?action=drugs" method="post" class="col">
+        <SELECT onchange="this.form.submit()" name="site" size="1">
+            <?php
+            foreach ($bases
+
+            as $base){ ?>
+            <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
+                    name="site"><?= $base["name"] ?>
+
+                <?php }
+                ?>
+        </SELECT>
+    </FORM>
+
+    <div class="row m-2">
         <?php
-        foreach ($bases
+        foreach ($liste as $item) {
+            if ($item["base_id"] == $_SESSION["Selectsite"]) {
+                $weeks[] = $item;
+            }
+        } ?>
+    </div>
 
-        as $base){ ?>
-        <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
-                name="site"><?= $base["name"] ?>
-
-            <?php }
-            ?>
-    </SELECT>
-</FORM>
-
-<div class="row m-2">
-    <?php
-    foreach ($liste as $item) {
-        if ($item["base_id"] == $_SESSION["Selectsite"]) {
-            $weeks[] = $item;
-        }
-    } ?>
+    <div class="col">
+        <form action="?action=addNewStup" method="post">
+            <input type="hidden" name="baseStup" value="<?= $_SESSION['Selectsite'] ?>">
+            <?php if ($_SESSION['username']['admin'] == 1) { ?>
+                <button type="submit" class='btn btn-primary m-1 float-right'>Nouvelle feuille de stupéfiants</button>
+            <?php } ?>
+        </form>
+    </div>
 </div>
-
-<form action="?action=addNewStup" method="post">
-    <input type="hidden" name="baseStup" value="<?= $_SESSION['Selectsite'] ?>">
-    <?php if ($_SESSION['username']['admin'] == 1) { ?>
-        <button type="submit" class="btn btn-primary">Nouvelle feuille de stupéfiants</button>
-    <?php } ?>
-</form>
 
 <div class="row">
     <table class="table table-bordered">
-        <thead>
+        <thead class="thead-dark">
         <th>Date</th>
         <th>État</th>
+        <th>Action</th>
         </thead>
         <tbody>
         <?php

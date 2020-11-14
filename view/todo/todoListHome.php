@@ -16,41 +16,41 @@ $title = "CSU-NVB - Tâches hebdomadaires";
 <h1 class="center p-4"><?= $title ?></h1>
 
 
-<FORM action="/index.php?action=todolist" method="post">
-    <SELECT onchange="this.form.submit()" name="site" size="1">
-        <?php
-        foreach ($bases as $base) { ?>
+<div class="row">
+    <FORM action="/index.php?action=todolist" method="post" class="col">
+        <SELECT onchange="this.form.submit()" name="site" size="1">
+            <?php
+            foreach ($bases as $base) { ?>
 
-        <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
-        ><?= $base["name"] ?>
-            <?php }
-            ?>
-    </SELECT>
-</FORM>
-<form action="/index.php?action=todolist" method="post">
-    <input type="hidden" name="base" value="<?=$_SESSION['Selectsite']?>">
-    <?php if ($_SESSION['username']['admin'] == 1) { ?>
-        <button type="submit">Nouvelle feuille</button>
-    <?php } ?>
-</form>
+            <OPTION value="<?= $base["id"] ?>" <?php if ($_SESSION["Selectsite"] == $base["id"]) { ?> selected="selected"  <?php } ?>
+            ><?= $base["name"] ?>
+                <?php }
+                ?>
+        </SELECT>
+    </FORM>
+
+    <div class="col">
+        <form action="/index.php?action=todolist" method="post">
+            <input type="hidden" name="base" value="<?= $_SESSION['Selectsite'] ?>">
+            <?php if ($_SESSION['username']['admin'] == 1) { ?>
+                <button type="submit" class='btn btn-primary m-1 float-right'>Nouvelle feuille de tâches</button>
+            <?php } ?>
+        </form>
+    </div>
+</div>
 
 <div class="row">
     <table class="table table-bordered">
-        <thead>
+        <thead class="thead-dark">
         <th>Date</th>
         <th>État</th>
         </thead>
         <tbody>
         <?php
-        foreach ($todoSheets as $todosheet) {
-
-            ?>
-
+        foreach ($todoSheets as $todosheet) { ?>
             <tr>
                 <form action="/index.php?action=edittod&sheetid" method="post">
                     <td>
-
-
                         <?php
                         //Convert the date string into a unix timestamp.
                         //$unixTimestamp = strtotime($todosheet['week']);
@@ -59,7 +59,6 @@ $title = "CSU-NVB - Tâches hebdomadaires";
                         <button class="btn" name="semaine"
                                 value="<?= $todosheet['id'] ?>">
                             <?php echo "Semaine " . $todosheet['week'] ?>  </button>
-
                     </td>
                     <td><?= $todosheet['state'] ?></td>
                 </form>

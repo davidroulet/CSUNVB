@@ -180,8 +180,9 @@ function closeToDoPage($id)
 
 
 // WIP
-function readTodoThingsForDay($day, $dayOfWeek)
+function readTodoThingsForDay($sid, $day, $dayOfWeek)
 {
+    $res = selectOne("SELECT description, type FROM todos INNER JOIN todothings t on todothing_id = t.id where todosheet_id=:sid AND daything = :daything AND dayofweek");
     // TODO return the todothings for a specific day (0=monday, ....)
 
         $items = readTodoThings();
