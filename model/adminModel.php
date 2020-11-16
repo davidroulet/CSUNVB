@@ -6,115 +6,121 @@
  * Time: 11:29
  **/
 
-/**
- * Retourne tous les items dans un tableau indexé de tableaux associatifs
- * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
- * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
- */
-function readAdminItems()
+
+
+function getbasebyid($id)       //Récupère une base en fonction de son Id
 {
-    return json_decode(file_get_contents("model/dataStorage/items.json"), true);
+    return selectOne("SELECT * FROM bases where id =:id", ['id' => $id]);
 }
 
-/**
- * Retourne un item précis, identifié par son id
- * ...
- */
-function readAdminItem($id)
+function getbases()            //Récupère toutes les bases
 {
-    $items = readAdminItems();
-    // TODO: coder la recherche de l'item demandé
-    return $item;
+    return selectMany("SELECT * FROM bases", []);
 }
 
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
-function updateAdminItems($items)
+function getUserByInitials($initials)       //Récupère un utilisateur en fonction de ses initiales
 {
-    file_put_contents("model/dataStorage/items.json", json_encode($items));
+    return selectOne("SELECT * FROM users where initials =:initials", ['initials' => $initials]);
 }
 
-/**
- * Modifie un item précis
- * Le paramètre $item est un item complet (donc un tableau associatif)
- * ...
- */
-function updateAdminItem($item)
+function getUsers()     //Récupère tous les utilisateurs
 {
-    $items = readAdminItems();
-    // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
-    saveAdminItem($items);
+    return selectMany("SELECT * FROM users", []);
 }
 
-/**
- * Détruit un item précis, identifié par son id
- * ...
- */
-function destroyAdminItem($id)
+function getUser($id)     //Récupère l'utilisateur qui a cet $id
 {
-    $items = readAdminItems();
-    // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    saveAdminItem($items);
+    return selectOne("SELECT * FROM users where id=:id", ['id' => $id]);
 }
 
-/**
- * Ajoute un nouvel item
- * Le paramètre $item est un item complet (donc un tableau associatif), sauf que la valeur de son id n'est pas valable
- * puisque le modèle ne l'a pas encore traité
- * ...
- */
-function createAdminItem($item)
-{
-    $items = readAdminItems();
-    // TODO: trouver un id libre pour le nouvel id et ajouter le nouvel item dans le tableau
-    saveAdminItem($items);
-    return ($item); // Pour que l'appelant connaisse l'id qui a été donné
+function getUserAdmin($admin){
+    return selectOne("SELECT * FROM users where admin = :admin", ['admin' => $admin]);
 }
 
-function getbasebyid($id)
+function SaveUser($user)       //Met à jour un utilisateur
 {
-    $SheetsArray = getbases();
-    $base = $SheetsArray[$id];
-    return $base;
+    unset($user['password']);
+    unset($user['firstconnect']);
+    return execute("UPDATE users SET firstname= :firstname, lastname= :lastname, initials = :initials, admin = :admin where id = :id", $user);
 }
 
-function getbases()
+function SaveUserPassword($hash, $id)       //Met à jour le mdp d'un utilisateur
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/bases.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-    }
-    return $SheetsArray;
+    return execute("UPDATE users SET password= :password, firstconnect= :firstconnect where id = :id", ['password' => $hash, 'firstconnect' => 0, 'id' => $id]);
 }
 
-function getUserByUsername($username)
+function SaveBase($bases)       //Met à jour les informations d'une base
 {
-    $Users = getUsers();
-    foreach ($Users as $item) {
-        if ($username == $item['initials']) {
-            return $item;
-        }
-    }
+    return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }
 
-function getUsers()
+function addNewDrug($nameDrug)
 {
-    $Array = json_decode(file_get_contents("model/dataStorage/Users.json"), true);
-    foreach ($Array as $p) {
-        $SheetsArray[$p["id"]] = $p;
-    }
-    return $SheetsArray;
+    return intval(insert("INSERT INTO drugs (name) values (:nameDrugs) ",['nameDrugs'=>$nameDrug] ));
 }
 
-function SaveUser($Users)
+function addNewUser($prenomUser, $nomUser, $initialesUser, $hash, $admin, $firstconnect)
 {
-    file_put_contents("model/dataStorage/Users.json", json_encode($Users));
+    return intval(insert("INSERT INTO users (firstname, lastname, initials, password, admin, firstconnect) VALUES (:firstname, :lastname, :initials, :password, :admin, :firstconnect)", ['firstname'=>$prenomUser, 'lastname'=>$nomUser, 'initials'=>$initialesUser, 'password'=>$hash, 'admin'=>$admin, 'firstconnect'=>$firstconnect]));       //à optimiser/simplifier avec un tableau
 }
 
-function SaveBase($bases)
+function addNewBase($nameBase)
 {
-    file_put_contents("model/dataStorage/bases.json", json_encode($bases));
+    return intval (insert("INSERT INTO bases (name) values (:nameBase) ",['nameBase'=>$nameBase] ));
+}
+
+function changePwdState($changeUser)
+{
+    return execute("UPDATE users SET firstconnect= :firstconnect WHERE id= :id", ['firstconnect' => 1, 'id' => $changeUser]);
+}
+function addNewNova($nameNova)
+{
+    return intval (insert("INSERT INTO novas (number) values (:nameNovas) ",['nameNovas'=>$nameNova] ));
+}
+function saveModifDrug($modifNameDrug, $idDrug)
+{
+    return execute("UPDATE drugs SET name= :name WHERE id= :id", ['name' => $modifNameDrug, 'id' => $idDrug]);
+}
+function saveModifBase($modifNameBase, $idBase)
+{
+    return execute("UPDATE bases SET name= :name WHERE id= :id", ['name' => $modifNameBase, 'id' => $idBase]);
+}
+function saveModifNova($modifNameNova, $idNova)
+{
+    return execute("UPDATE novas SET number= :number WHERE id= :id", ['number' => $modifNameNova, 'id' => $idNova]);
+}function addNewGuardsheet ($state,$idBase){
+
+    return execute("Insert into guardsheets(date,state,base_id)
+values(current_timestamp(),:state,:idBase)",['state'=>$state,'idBase'=>$idBase]);
+    $gid =$dbh->LastindexOfid();
+
+    return execute("Insert into guard_use_nova(nova_id,guardsheet_id,day)
+values(1,:guardsheetId,1)['guardsheetId'=>$gid]");
+
+    return execute("Insert into guard_use_nova(nova_id,guardsheet_id,day)
+values(1,:guardsheetId,0)['guardsheetId'=>$gid]");
+
+    return execute("Insert into crews(boss,day,guardsheet_id,user_id)
+values(0,0,:guardsheetId,1)['guardsheetId'=>$gid]");
+
+    return execute("Insert into crews(boss,day,guardsheet_id,user_id)
+values(1,1,:guardsheetId,1)['guardsheetId'=>$gid]");
+
+    /*Insert into guardsheets(date,state,base_id)
+values(current_timestamp(),"blank",1)
+;
+Insert into guard_use_nova(nova_id,guardsheet_id,day)
+values(1,151,1)
+;
+Insert into guard_use_nova(nova_id,guardsheet_id,day)
+values(1,151,0)
+;
+Insert into crews(boss,day,guardsheet_id,user_id)
+values(0,0,151,1)
+;
+Insert into crews(boss,day,guardsheet_id,user_id)
+values(1,1,151,1)
+;
+*/
 }
 ?>

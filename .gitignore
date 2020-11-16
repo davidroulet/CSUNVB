@@ -4,4 +4,8 @@ node_modules/
 #phpStorm
 .idea
 *.mwb.bak
+.vs
+*~$*
+Key/Private_Key_SSH.ppk
+Key/Public_Key_SSH.ppk
 .const.php

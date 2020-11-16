@@ -1,6 +1,6 @@
 <?php
 /**
- * Auteur: David Roulet / Fabien Mason
+ * Auteur: David Roulet / Fabien Masson
  * Date: Aril 2020
  **/
 
@@ -14,12 +14,20 @@ function drugHomePage() //Affiche la page de selection de la semaine
 }
 
 function drugSiteTable($semaine)
-{ // Affiage de la page Finale
+{ // Affichage de la page finale
 
-    $jourDebutSemaine = getdate2($semaine); // recupere les jours de la semiane en fonction de la date selectioné
-    $novas = getnovas(); // Obient la liste des ambulance
-    $drugs = getDrugs(); // Obient la list des Drugs
-    $stupSheet = GetSheetbyWeek($semaine, $_SESSION["Selectsite"]);
+    $jourDebutSemaine = getdate2($semaine); // récupère les jours de la semaine en fonction de la date sélectionnée
+    $stupSheetId = GetSheetbyWeek($semaine, $_SESSION["Selectsite"])["stupsheet_id"]; // la feuille de stupéfiants à afficher
+    $novas = getNovasForSheet($stupSheetId); // Obtient la liste des ambulances utilisées par cette feuille
+    $drugs = getDrugs(); // Obtient la liste des drugs
+    $BatchesForSheet = getBatchesForSheet($stupSheetId); // Obtient la liste des batches utilisées par cette feuille
+
+    // preparer un tableau de batchs par médicament pour faciliter le travail de la vue
+    foreach ($BatchesForSheet as $p) {
+        $batchesByDrugId[$p["drug_id"]][] = $p;
+    }
+
+    $listofbaseid = getListOfStupSheets($_SESSION["Selectsite"]);
     $date = strtotime($jourDebutSemaine);
     $site = getbasebyid($_SESSION["Selectsite"])["name"];
     $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "vendredi", "samedi", "dimanche");
@@ -51,6 +59,16 @@ function LogStup($stupsheet)
 { // affiche la page des logs avec les bonnes données
     $LogSheets = getLogsBySheet($stupsheet);
     require_once 'view/Drug/LogStup.php';
+}
+function reopenStup($id)
+{
+
+    reopenStupPage($id);
+    require_once 'view/home.php';
+}function closedStup($id)
+{
+    closeStup($id);
+    require_once 'view/home.php';
 }
 
 function pharmacheck($sheet, $date, $batch)
@@ -93,4 +111,31 @@ function PharmaUpdate($batchtoupdate, $PharmaUpdateuser, $Pharmastart, $Pharmaen
     drugSiteTable($sheet["week"]);
 }
 
+function closedStupFromTable($baseId, $week)
+{
+    closeStupFromTable($baseId, $week);
+    require_once 'view/home.php';
+}
+
+function createSheetStup($base_id) {
+    // récupérer la valeur de $item puis transférer les valeurs
+
+    $lastWeek = readLastWeekStup($base_id);
+    createStupsheet($base_id, $lastWeek['last_week']);
+    unset($_POST['site']);
+    unset($_POST['base']);
+    require_once 'view/home.php';
+}
+
+function activateStup($id)
+{
+    activateStupPage($id);
+    require_once 'view/home.php';
+}
+
+function activateStupFromTable($baseId, $week)
+{
+    activateStupPageFromTable($baseId, $week);
+    require_once 'view/home.php';
+}
 ?>

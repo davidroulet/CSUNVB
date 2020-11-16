@@ -6,11 +6,30 @@
  * Time: 11:29
  *
  **/
-
+/**
+ * Title: CSUNVB
+ * USER: David.Roulet
+ * DATE: 12.06.2020
+ * Time: 11:15
+ **/
+/**
+ * Title: CSUNVB - Controller
+ * USER: Gatien.Jayme
+ * DATE: 27.08.2020
+ **/
 require_once 'model/todoListModel.php';
 require_once 'model/adminModel.php';
 
 
+function createSheetToDo($base_id) {
+    // récupérer la valeur de $item puis transférer les valeurs
+
+    $lastWeek = readLastWeek($base_id);
+    createTodoSheet($base_id, $lastWeek['last_week']);
+    unset($_POST['site']);
+    unset($_POST['base']);
+    todoListHomePage($base_id);
+}
 
 function todoListHomePage($selectedBase)
 {
@@ -18,39 +37,44 @@ function todoListHomePage($selectedBase)
     $TodoListItemsread = readTodoSheets();
     $todoSheets=readTodoSheetsForBase($selectedBase);
     $bases= getbases();
-$basedefault = $_SESSION['username']["base"]['id'];
+    $basedefault = $_SESSION['username']["base"]['id'];
+    require_once 'view/todo/todoHome.php';
+}
 
-
-    require_once 'view/todo/todoListHome.php';
+function activateSheet($state) {
+    $activatestatus = activateTodoSheets($state);
 }
 
 function edittodopage($sheetid)
 {
-    $dayThingsForMonday = readTodoThingsForDay(1, 0);
-    $dayThingsForTuesday = readTodoThingsForDay(1, 1);
-    $dayThingsForWednesday = readTodoThingsForDay(1, 2);
-    $dayThingsForThursday = readTodoThingsForDay(1, 3);
-    $dayThingsForFriday = readTodoThingsForDay(1, 4);
-    $dayThingsForSaturday = readTodoThingsForDay(1, 5);
-    $dayThingsForSunday = readTodoThingsForDay(1, 6);
-    //for  night
-    $nightThingsForMonday = readTodoThingsForDay(0, 0);
-    $nightThingsForTuesday = readTodoThingsForDay(0, 1);
-    $nightThingsForWednesday = readTodoThingsForDay(0, 2);
-    $nightThingsForThursday = readTodoThingsForDay(0, 3);
-    $nightThingsForFriday = readTodoThingsForDay(0, 4);
-    $nightThingsForSaturday = readTodoThingsForDay(0, 5);
-    $nightThingsForSunday = readTodoThingsForDay(0, 6);
-
-    $thingsFor[$i][$j] = readTodoThingsForDay($i, $j);
-
+    for ($daynight=0; $daynight < 1; $daynight++) {
+        for ($dayofweek = 0; $dayofweek > 7; $dayofweek++) {
+            $todoThings[$daynight][$dayofweek] = readTodoThingsForDay($daynight,$dayofweek);
+        }
+    }
+    var_dump($todoThings); die();
     $datesoftheweek = getDatesOfAWeekBySheetId($sheetid);
-
 
     require_once 'view/todo/Edittodopage.php';
 
 }
 
+
+function reopenToDo($id)
+{
+
+    reopenToDoPage($id);
+    require_once 'view/home.php';
+}
+function closeToDo($id)
+{
+
+    closeToDoPage($id);
+    require_once 'view/home.php';
+}
+
+
+// retourne un tableau contenant les dates en timestamp des jours contenu pour la feuille donnée
 function getDatesOfAWeekBySheetId($sheetid)
 {
     $thesheet = readTodoSheet($sheetid);
@@ -81,8 +105,20 @@ function getDatesOfAWeekBySheetId($sheetid)
     return $datesoftheweek;
 }
 
+/*function getNbWeekCalcul($sheetid, $selectedBase) {
+    $thesheet = readTodoSheet($sheetid);
+    $todoSheets=readTodoSheetsForBase($selectedBase);
 
+    $year = substr($thesheet['week'], 0, 2) + 2000;
+    $weeknb = substr($thesheet['week'], 2);
+    $maxweek = MaxToDoSheetWeek();
 
+    foreach ($todoSheets as $todoSheet) {
+        if ($todoSheet['week'] == $maxweek) {
+            strtotime("+1" , $maxweek);
+        }
+    }
+}*/
 
 ?>
 

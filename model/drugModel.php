@@ -13,7 +13,7 @@ require 'model/database.php';
 
 function GetSheetbyWeek($week, $base)
 {
-    return selectOne('SELECT * FROM stupsheets INNER JOIN bases ON bases.id=base_id WHERE week =:week AND base_id=:base', ['week' => $week, 'base' => $base]);
+    return selectOne('SELECT stupsheets.id as stupsheet_id FROM stupsheets INNER JOIN bases ON bases.id=base_id WHERE week =:week AND base_id=:base', ['week' => $week, 'base' => $base]);
 }
 
 /**
@@ -40,7 +40,7 @@ function getListOfStupSheets($base)
  */
 function getNovasForSheet($stupSheet_id)
 {
-    return selectMany("SELECT * FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
+    return selectMany("SELECT novas.id as id, number FROM novas INNER JOIN stupsheet_use_nova ON nova_id = novas.id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
 /**
@@ -66,13 +66,12 @@ function getBatchesForSheet($stupSheet_id)
     return selectMany("SELECT * FROM batches INNER JOIN stupsheet_use_batch ON batches.id = batch_id WHERE stupsheet_id =:stupsheetid", ["stupsheetid" => $stupSheet_id]);
 }
 
-function getStupSheets()
+function temp()
 {
     $novasheets = getstupnova(); // nova utilisé par sheet
     $Sutupbatchs = getsutpbatch(); // batch utiilisé par les sheet
-    $pharmachecks = getpharmachecks(); // donée pharmatice
+    $pharmachecks = getpharmachecks(); // donnée pharmaceutique
     $drug = getDrugs();
-   // $stupsheets = json_decode(file_get_contents("model/dataStorage/stupsheets.json"), true);
     $stupsheets = selectMany("SELECT * FROM stupsheets", []);
 
     foreach ($stupsheets as $stupsheet) {  //prend une page de stupsheet
@@ -95,13 +94,23 @@ function getStupSheets()
                             $SheetsArray[$stupsheet["id"]]["Drug"][$batch["drug_id"]]["batch_number"]["number"][$batch["number"]][] = $pharma;
                         }
                     }
-
-
                 }
             }
         }
     }
     return $SheetsArray;
+}
+
+function getStupSheets()
+{
+    $stupsheets = selectMany("SELECT * FROM stupsheets", []);
+    //var_dump($stupsheets);
+    return $stupsheets;
+}
+
+function getBatchByStupsheet()
+{
+    $Sutupbatchs = getsutpbatch();
 }
 
 /**
@@ -140,7 +149,6 @@ function updateSheets($items)
         unset($items[$item["id"]]["Drug"]);
         unset($items[$item["id"]]["nova"]);
     }
-    file_put_contents("model/dataStorage/stupsheets.json", json_encode($items));
 }
 
 /**
@@ -214,10 +222,6 @@ function readbatche($id)
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updateBatches($items)
-{
-    file_put_contents("model/dataStorage/batches.json", json_encode($items));
-}
 
 /**
  * met un jours un item precis
@@ -309,50 +313,6 @@ function readnova($id)
     }
 }
 
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
-function updatenovas($items)
-{
-    file_put_contents("model/dataStorage/novas.json", json_encode($items));
-}
-
-/**
- * Met un jours un item précis
- */
-function updateNova($item)
-{
-    $sheets = getnovas();
-    $sheets[$item["id"]] = $item;
-    updatenovas($sheets);
-
-}
-
-/**
- * Crée un item et l ajoute au fichier
- */
-function createnova($item)
-{
-    $items = getnovas();
-    $newid = max(array_keys($items)) + 1;
-    $item["id"] = $newid;
-    $items[] = $item;
-    updatenovas($items);
-    return $item;
-}
-
-/**
- * supprime un item en fonction de son id
- *
- */
-function destroyNova($id)
-{
-    $items = getnovas();
-    unset($items[$id]);
-    updatenovas($items);
-
-}
 
 /**
  * Retourne la liste des médicaments connus (table 'drugs')
@@ -379,15 +339,7 @@ function readDrug($id)
     return $Sheet;
 }
 
-/**
- * Sauve l'ensemble des items dans le fichier json
- * ...
- */
-function updateDrugs($items)
-{
-    unset($items["id"]["batches"]);
-    file_put_contents("model/dataStorage/Drugs.json", json_encode($items));
-}
+
 
 /**
  * Met un jours un item precis en fonction de l'id
@@ -434,7 +386,9 @@ function getsutpbatch()
 {
     try {
         $dbh = getPDO();
-        $query = 'SELECT * FROM stupsheet_use_batch';
+        $query = 'SELECT * FROM stupsheets INNER JOIN stupsheet_use_batch ON stupsheet_id = stupsheets.id
+						 INNER JOIN batches ON batch_id = batches.id
+						 INNER JOIN drugs ON drug_id = drugs.id';
         $statement = $dbh->prepare($query);//prepare query
         $statement->execute();//execute query
         $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
@@ -467,17 +421,30 @@ function getstupnova()
 }
 
 /**
- * obients un items precis en fonction de son batch,date,stupsheet_id
+ * Retourne le pharmacheck du jour donné pour un batch précis lors de son utilisation dans une stupsheet
  */
 function getpharmacheckbydateandbybatch($date, $batch, $stupsheet_id)
 {
-    $Array = getpharmachecks();
-    foreach ($Array as $check) {
-        if ($check["date"] == $date && $check["batch_id"] == $batch && $check["stupsheet_id"] == $stupsheet_id) {
-            return $check;
-        }
-    }
-    return false;
+    $check = selectOne('SELECT start, end FROM pharmachecks WHERE date = :date AND batch_id = :batch_id AND stupsheet_id = :stupsheet_id', ["date" => $date, "batch_id" => $batch, "stupsheet_id" => $stupsheet_id]);
+    return $check;
+}
+
+/**
+ * Retourne le novacheck du jour donné pour un médicament précis dans une nova lors de son utilisation dans une stupsheet
+ */
+function getnovacheckbydateandbybatch($date, $drug, $nova, $stupsheet_id)
+{
+    $check = selectOne('SELECT start, end FROM novachecks WHERE date = :date AND drug_id = :drug_id AND nova_id = :nova_id AND stupsheet_id = :stupsheet_id', ["date" => $date, "drug_id" => $drug, "nova_id" => $nova, "stupsheet_id" => $stupsheet_id]);
+    return $check;
+}
+
+/**
+ * Retourne le restock du jour donné pour un batch précis dans une nova lors de son utilisation dans une stupsheet
+ */
+function getrestockbydateandbydrug($date,$batch,$nova)
+{
+    $check = selectOne('SELECT quantity FROM restocks WHERE date = :date AND batch_id = :batch_id AND nova_id = :nova_id', ["date" => $date, "batch_id" => $batch, "nova_id" => $nova]);
+    return $check;
 }
 
 /**
@@ -513,10 +480,6 @@ function createpharmacheck($item)
  * Sauve l'ensemble des items dans le fichier json
  * ...
  */
-function updatepharmachecks($items)
-{
-    file_put_contents("model/dataStorage/pharmachecks.json", json_encode($items));
-}
 
 /**
  * Savuase un item precis
@@ -607,11 +570,95 @@ function readuser($id)
 
 }
 
-function reopenStupPage($stupsheet)
+function reopenStupPage($id)
 {
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+set state='reopen' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id,]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
 
-    return execute("update stupsheets
-set state='open' WHERE week=:week AND base_id=:base_id", ["week" => $stupsheet["week"], ["base_id" => $stupsheet["base_id"]]]);
+
 }
 
+function closeStup($id)
+{
+
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+set state='closed' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id,]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+
+
+}
+
+function closeStupFromTable($baseId, $week)
+{
+
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+set state='closed' WHERE base_id=:baseId AND week=:week";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["baseId" => $baseId, "week" => $week]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+
+
+}
+
+function readLastWeekStup($base_id)
+{
+    return selectOne("SELECT base_id, MAX(week) as 'last_week'  FROM stupsheets
+where base_id =:base_id
+GROUP BY base_id",["base_id" => $base_id]);
+}
+function createStupsheet($base_id, $lastWeek)
+{
+    return insert("INSERT INTO stupsheets (base_id,state,week) VALUES (:base_id, 'vierge', :lastWeek)", ["base_id" => $base_id, "lastWeek" => $lastWeek+1]);
+}
+
+function activateStupPage($id)
+{
+    try {
+        $dbh = getPDO();
+        $query = "update stupsheets
+                    set state='open' WHERE id=:id";
+        $statement = $dbh->prepare($query);//prepare query
+        $statement->execute(["id" => $id]);//execute query
+        $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);//prepare result for client
+        $dbh = null;
+        return $queryResult;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        return null;
+    }
+}
+
+function activateStupPageFromTable($baseId, $week)
+{
+    return execute("UPDATE stupsheets SET state='open' WHERE base_id=:baseId AND week=:week", ["baseId"=>$baseId, "week"=>$week]);
+}
 ?>

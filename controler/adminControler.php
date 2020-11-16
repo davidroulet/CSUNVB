@@ -1,23 +1,22 @@
 <?php
 /**
- * Auteur: Thomas Grossmann / Mounir Fiaux
+ * Auteur: Thomas Grossmann
  * Date: Mars 2020
  **/
 
 require_once 'model/adminModel.php';
 
-function trylogin($username, $password, $baselogin)
+function trylogin($initials, $password, $baselogin)     //Fonction pour se connecter sur le site
 {
-    $User = getUserByUsername($username);
+    $User = getUserByInitials($initials);
     if (password_verify($password, $User['password'])) {
         $_SESSION['username'] = $User;
-        unset($_SESSION['username']['password']);
-    $_SESSION['username']['base'] = getbasebyid($baselogin);
+        $_SESSION['username']['base'] = getbasebyid($baselogin);        //Met la base dans la session
         if ($User['firstconnect'] == true) {
-            require_once 'view/firstLogin.php';
+            require 'view/firstLogin.php';
         } else {
             $_SESSION['flashmessage'] = 'Bienvenue ' . $User['firstname'] . ' ' . $User['lastname'] . ' !';
-            require_once 'view/home.php';
+            require 'view/home.php';
         }
     } else {
         $_SESSION['flashmessage'] = 'Identifiants incorrects ...';
@@ -25,115 +24,98 @@ function trylogin($username, $password, $baselogin)
     }
 }
 
-function login()
+function login()            //Pointe sur la page du login
 {
-    require_once 'view/login.php';
+    require 'view/login.php';
 }
 
-function disconnect()
+function disconnect()           //Vide la session (déconnecte l'user)
 {
     unset($_SESSION['username']);
-    require_once 'view/login.php';
+    require 'view/login.php';
 }
 
-function adminHomePage()
+function adminHomePage()        //Pointe sur la page admin
 {
     require_once 'view/Admin/adminHome.php';
 }
 
-function adminCrew()
+function adminCrew()        //Pointe sur la liste d'users
 {
     $users = getUsers();
     require_once 'view/Admin/adminCrew.php';
 }
 
-function adminBases()
+function adminBases()       //Pointe sur la liste des bases
 {
     $bases = getbases();
     require_once 'view/Admin/adminBases.php';
 }
 
-function adminNovas()
+function adminNovas()       //pointe sur la liste des ambulances
 {
     $novas = getnovas();
     require_once 'view/Admin/adminNovas.php';
 }
 
-function adminDrugs()
+function adminDrugs()       //Pointe sur la liste des médicaments
 {
     $drugs = getDrugs();
     require_once 'view/Admin/adminDrugs.php';
 }
 
-function changeUserAdmin($changeUser)
+function adminGuardSheet()
 {
-    $Users = getUsers();
-    for ($i = 0; $i < count($Users); $i++) {
-        if ($Users[$i]['id'] == $changeUser) {
-            if ($Users[$i]['admin'] == false) {
-                $Users[$i]['admin'] = true;
-                $_SESSION['flashmessage'] = $Users[$i]['initials'] . " est désormais un administrateur.";
-            } else {
-                $Users[$i]['admin'] = false;
-                $_SESSION['flashmessage'] = $Users[$i]['initials'] . " est désormais un utilisateur.";
-            }
-        }
+    $guardsheets = getGuardsheets();
+    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
+}
+
+function changeUserAdmin($changeUser)       //Change un user en admin (et inversément)
+{
+    $user = getUser($changeUser);
+    if ($user['admin'] == false) {
+        $user['admin'] = true;
+        $_SESSION['flashmessage'] = $user['initials'] . " est désormais un administrateur.";
+    } else {
+        $users['admin'] = false;
+        $_SESSION['flashmessage'] = $user['initials'] . " est désormais un utilisateur.";
     }
-    SaveUser($Users);
+    SaveUser($user);
     adminCrew();
 }
 
-function newUser()
+function newUser()      //Pointe sur la page d'ajout d'un user
 {
     require_once 'view/Admin/newUser.php';
 }
 
-function newBase()
+function newBase()      //Pointe sur la page d'ajout d'une base
 {
     require_once 'view/Admin/newBase.php';
 }
 
-function saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser)
+function saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword)         //Crée un utilisateur
 {
-    $hash = password_hash($initialesUser, PASSWORD_DEFAULT);
-    if ($adminUser == 'on') {
-        $Admin = true;
+    $hash = password_hash($startPassword, PASSWORD_DEFAULT);
+    $result = addNewUser($prenomUser, $nomUser, $initialesUser, $hash, 0, 1);
+    if ($result == 0) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter l'utilisateur.";
     } else {
-        $Admin = false;
+        $_SESSION['flashmessage'] = "L'utilisateur a bien été créé !";
     }
-    $Users = getUsers();
-    $id = max(array_keys($Users)) + 1;
-    $NewUser = [
-        'id' => $id,
-        'initials' => $initialesUser,
-        'lastname' => $nomUser,
-        'password' => $hash,
-        'firstname' => $prenomUser,
-        'admin' => $Admin,
-        'firstconnect' => true
-    ];
-    $Users[] = $NewUser;
-    SaveUser($Users);
-    $_SESSION['flashmessage'] = "L'utilisateur a bien été créé.";
     adminCrew();
 }
 
-function changeFirstPassword($passwordchange, $confirmpassword)
+function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige le nouvel user à changer son mdp à sa première connection
 {
-    $Users = getUsers();
     $hash = password_hash($confirmpassword, PASSWORD_DEFAULT);
-    if ($passwordchange != $_SESSION['username']['initials']) {
+    if ($passwordchange != $_SESSION['username']['password']) {
         if ($confirmpassword != $passwordchange) {
-            $_SESSION['flashmessage'] = 'Confirmation incorrecte !';
-            require_once 'view/firstLogin.php';
+            $_SESSION['flashmessage'] = "Erreur lors de la confirmation du mot de passe";
+            login();
         } else {
-            for ($i = 0; $i < count($Users); $i++) {
-                if ($Users[$i]['id'] == $_SESSION['username']['id']) {
-                    $Users[$i]['password'] = $hash;
-                    $Users[$i]['firstconnect'] = false;
-                }
-            }
-            SaveUser($Users);
+            $id = $_SESSION['username']['id'];
+            SaveUserPassword($hash, $id);
             disconnect();
         }
     } else {
@@ -142,24 +124,87 @@ function changeFirstPassword($passwordchange, $confirmpassword)
     }
 }
 
-function modifBase($modifBase)
+function saveNewBase($nameBase)      //Crée une base
 {
-    $base = getbasebyid($modifBase);
-    require_once 'view/Admin/modifyBases.php';
+    $result = addNewBase($nameBase);
+    if ($result == 0) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter la base.";
+    } else {
+        $_SESSION['flashmessage'] = "La base a bien été créée !";
+    }
+    adminBases();
 }
 
-function createBase($baseName)
+function saveNewDrugs($nameDrug)
 {
-    $bases = getbases();
-    $id = max(array_keys($bases)) + 1;
-    $NewBase = [
-        'id' => $id,
-        'name' => $baseName
-    ];
-    $bases[] = $NewBase;
-    SaveBase($bases);
-    $_SESSION['flashmessage'] = "La base a bien été créée.";
+    $result = addNewDrug($nameDrug);
+    if ($result == 0) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter le médicament.";
+    } else {
+        $_SESSION['flashmessage'] = "Le médicament a bien été créé !";
+    }
+    adminDrugs();
+}
+
+function NewGuardSheet()
+{
+    $result = addNewGuardsheet();
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter la Nova.";
+    } else {
+        $_SESSION['flashmessage'] = "La Nova a bien été créé !";
+    }
+    adminGuardSheet();
+}
+
+function changePwd($changeUser)
+{
+    changePwdState($changeUser);
+    adminCrew();
+}
+
+function saveNewNovas($nameNova)
+{
+    $result = addNewNova($nameNova);
+    if ($result == 0) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter la Nova, il est possible que cette Nova existe déjà";
+    } else {
+        $_SESSION['flashmessage'] = "La Nova a bien été créé !";
+    }
+    adminNovas();
+}
+
+function modifyNameDrug($modifNameDrug, $idDrug)
+{
+    $result = saveModifDrug($modifNameDrug, $idDrug);
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible de modifier le médicament.";
+    } else {
+        $_SESSION['flashmessage'] = "Le médicament a bien été modifié !";
+    }
+    adminDrugs();
+}
+
+function modifyNameBase($modifNameBase, $idBase)
+{
+    $result = saveModifBase($modifNameBase, $idBase);
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible de modifier la base.";
+    } else {
+        $_SESSION['flashmessage'] = "La base a bien été modifiée !";
+    }
     adminBases();
+}
+
+function modifyNameNova($modifNameNova, $idNova)
+{
+    $result = saveModifNova($modifNameNova, $idNova);
+    if ($result == false) {
+        $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible de modifier la nova.";
+    } else {
+        $_SESSION['flashmessage'] = "La nova a bien été modifiée !";
+    }
+    adminNovas();
 }
 
 ?>

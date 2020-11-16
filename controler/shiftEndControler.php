@@ -4,20 +4,32 @@
  * Date: Mars 2020
  **/
 
-require_once 'model/shiftEndModel.php';
+require_once 'model/guardSheetModel.php';
 require_once 'model/adminModel.php';
 
-function shiftEndHomePage()
+
+function reopenShift($id)
 {
-    $TitlesLines = getGuardLines();
-    $Titles = getSectionsTitles();
-    require_once 'view/viewsShiftEnd/shiftEndHome.php';
+    reopenShiftPage($id);
+    require_once 'view/home.php';
+}
+function closeShift($id)
+{
+    closeShiftPage($id);
+    require_once 'view/home.php';
 }
 
 function listShiftEnd($base_id)
 {
+    $site = getbasebyid($_SESSION["Selectsite"])["name"];
+    $TitlesLines = getGuardLines();
+    $Titles = getSectionsTitles();
+    //$guardsheets = getGuardsheets();
+    $admin = getUserAdmin($_SESSION["username"]["admin"]);
     $Bases = getbases();
-    $list = getGuardSheetsByBase($base_id);
-    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
+    $list = Guardsheet();
+    $guardsheets = getGuardsheetForBase($base_id);
+
+    require_once 'view/viewsShiftEnd/shiftEndHome.php';
 }
 ?>

@@ -1,14 +1,14 @@
 <?php
 session_start();
-
 // Include all controllers
 require "controler/adminControler.php";
 require "controler/shiftEndControler.php";
 require "controler/todoListControler.php";
 require "controler/drugControler.php";
+require_once "helpers.php";
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
+    $initials = $_POST['username'];
     $password = $_POST['password'];
     $_SESSION["Selectsite"] = $_POST['base'];
     $baselogin = $_POST['base'];
@@ -17,7 +17,18 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 if (isset($_POST["LogStup"])) {
     $Stupheet = $_POST["LogStup"];
 }
-
+if (isset($_POST["reopen"])) {
+    $id = $_POST["reopen"];
+}
+if (isset($_POST["close"])) {
+    $id = $_POST["close"];
+}
+if (isset($_POST['activate'])) {
+    $id = $_POST['activate'];
+}
+if (isset($_POST["reopenStup"])) {
+    $Stupheet = $_POST["reopenStup"];
+}
 if (isset($_POST["semaine"])) {
     $semaine = $_POST["semaine"];
 }
@@ -44,18 +55,18 @@ if (isset($_GET["batch_id"])) {
 if (isset($_GET["stupsheet_id"])) {
     $pharmacheck_sheetid = $_GET["stupsheet_id"];
 }
+if (isset($_POST["newtodo"])) {
+    $item = $_POST["newtodo"];
+}
 if (isset($_GET["date"])) {
     $pharmacheck_date = $_GET["date"];
 }
 switch ($action) {
     case 'home' :
-        require_once 'view/home.php';
+        require 'view/home.php';
         break;
     case 'admin':
         adminHomePage();
-        break;
-    case 'shiftend':
-        shiftEndHomePage();
         break;
     case 'listShiftEnd':
         if (isset($_POST["site"])) {
@@ -73,27 +84,57 @@ switch ($action) {
         break;
     case 'todolist':
 
-        if (isset($_POST['selectBase'])) {
-            $selectedBase = $_POST['selectBase'];
-        }else{
-            $selectedBase = $_SESSION['username']['base']['id'];
+        if (isset($_POST['base'])) {
+            createSheetToDo($_POST['base']);
         }
-        todoListHomePage($selectedBase);
+        if (isset($_POST['site'])) {
+            $selectedBase = $_POST['site'];
+        } else {
+            if (isset($_POST['selectBase'])) {
+                $selectedBase = $_POST['selectBase'];
+            } else {
+                $selectedBase = $_SESSION['username']['base']['id'];
+            }
+        }
+        if (!isset($_POST['newtodo'])) {
+            todoListHomePage($selectedBase);
+        }
+
         break;
     case 'edittod':
         $sheetid = $_GET['sheetid'];
         edittodopage($sheetid);
         break;
-
-
+    /*case 'activatetodosheets':
+        $activate = $_POST['activatetodosheets'];
+        activateSheet($activate);
+        break;*/
     case 'drugs':
         drugHomePage();
+        break;
+    case 'reopenStup':
+        reopenStup($id);
+        break;
+    case 'closedStup':
+        closedStup($id);
+        break;
+    case 'reopenToDo':
+        reopenToDo($id);
+        break;
+    case 'closedToDo':
+        closeToDo($id);
+        break;
+    case 'reopenShift':
+        reopenShift($id);
+        break;
+    case 'closedShift':
+        closeShift($id);
         break;
     case "drugSiteTable":
         drugSiteTable($semaine);
         break;
     case "trylogin":
-        trylogin($username, $password, $baselogin);
+        trylogin($initials, $password, $baselogin);
         break;
     case 'LogStup':
         LogStup($Stupheet);
@@ -114,7 +155,7 @@ switch ($action) {
         adminDrugs();
         break;
     case "PharmaUpdate":
-        PharmaUpdate($batchtoupdate, $PharmaUpdateuser, $Pharmastart, $Pharmaend, $sheetid,$date);
+        PharmaUpdate($batchtoupdate, $PharmaUpdateuser, $Pharmastart, $Pharmaend, $sheetid, $date);
         break;
     case 'changeUserAdmin' :
         $changeUser = $_GET['idUser'];
@@ -127,32 +168,93 @@ switch ($action) {
         $prenomUser = $_POST['prenomUser'];
         $nomUser = $_POST['nomUser'];
         $initialesUser = $_POST['initialesUser'];
-        $adminUser = $_POST['adminUser'];
-        saveNewUser($prenomUser, $nomUser, $initialesUser, $adminUser);
+        $startPassword = $_POST['startPassword'];
+        saveNewUser($prenomUser, $nomUser, $initialesUser, $startPassword);
         break;
     case 'changeFirstPassword' :
         $passwordchange = $_POST['passwordchange'];
         $confirmpassword = $_POST['confirmpassword'];
         changeFirstPassword($passwordchange, $confirmpassword);
         break;
-    case 'modifBase' :
-        $modifBase = $_GET['modifbase'];
-        modifBase($modifBase);
-        break;
     case 'newBase' :
         newBase();
         break;
-    case 'createBase' :
-        $baseName = $_POST['baseName'];
-        createBase($baseName);
+    case 'saveNewBase' :
+        $nameBase = $_POST['nameBase'];
+        saveNewBase($nameBase);
+        break;
+    case 'newDrugs' :
+        require 'view/Admin/newDrugs.php';
+        break;
+    case 'saveNewDrugs' :
+        $nameDrug = $_POST['nameDrug'];
+        saveNewDrugs($nameDrug);
+        break;
+    case 'NewGuardSheet':
+        NewGuardSheet();
+        break;
+    case 'changePwdState':
+        $changeUser = $_GET['idUser'];
+        changePwd($changeUser);
+        break;
+    case 'newNovas' :
+        require 'view/Admin/newNovas.php';
+        break;
+    case 'saveNewNovas' :
+        $nameNova = $_POST['nameNova'];
+        saveNewNovas($nameNova);
+        break;
+    case 'modifDrugs' :
+        $idDrug = $_GET['idDrug'];
+        require 'view/Admin/modifyDrugs.php';
+        break;
+    case  'saveModifyDrug' :
+        $modifNameDrug = $_POST['modifNameDrug'];
+        $idDrug = $_GET['idDrug'];
+        modifyNameDrug($modifNameDrug, $idDrug);
+        break;
+    case 'modifBases' :
+        $idBase = $_GET['idBase'];
+        require 'view/Admin/modifyBases.php';
+        break;
+    case  'saveModifyBase' :
+        $modifNameBase = $_POST['modifNameBase'];
+        $idBase = $_GET['idBase'];
+        modifyNameBase($modifNameBase, $idBase);
+        break;
+    case 'modifNova' :
+        $idNova = $_GET['idNova'];
+        require 'view/Admin/modifyNova.php';
+        break;
+    case  'saveModifyNova' :
+        $modifNameNova = $_POST['modifNameNova'];
+        $idNova = $_GET['idNova'];
+        modifyNameNova($modifNameNova, $idNova);
+        break;
+    case 'closeStupFromTable' :
+        $baseId = $_GET['stupBaseId'];
+        $week = $_GET['stupPageWeek'];
+        closedStupFromTable($baseId, $week);
+        break;
+    case 'addNewStup' :
+        $base_id = $_POST['baseStup'];
+        createSheetStup($base_id);
+        break;
+    case 'activateStup' :
+        activateStup($id);
+        break;
+    case 'activateStupFromTable' :
+        $baseId = $_GET['stupBaseId'];
+        $week = $_GET['stupPageWeek'];
+        activateStupFromTable($baseId, $week);
         break;
     default: // unknown action
         if (isset($_SESSION['username'])) {
             require_once 'view/home.php';
         } else if ($_SESSION['username']['firstconnect'] == true) {
-            require_once 'view/firstLogin.php';
+            require 'view/firstLogin.php';
         } else {
-            require_once 'view/login.php';
+            require 'view/login.php';
         }
         break;
 }

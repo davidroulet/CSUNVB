@@ -6,55 +6,93 @@
 
 ob_start();
 $title = "CSU-NVB - Remise de garde";
-?><!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/ShiftEnd.css">
-
-</head>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <h1>Remises de garde</h1>
-    </div>
-    <div class="container-fluid row">
-        <h4><?php for($Title = 0; $Title < $Titles[1]['id']; $Title++) {?></h4>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th width="30%"></th>
-                <th width="13%">Jour</th>
-                <th width="13%">Nuit</th>
-                <th width="40%">Remarque</th>
-                <th width="4%">Validé</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php for($line = 0; $line < $TitlesLines[3]['id']; $line++) { ?>
-            <tr>
-                <td>
-                    <div><?= $CentralLines[$line]['text'] ?></div>
-                </td>
-                <td data-line="<?= $line ?>" data-type="J"></td>
-                <td data-line="<?= $line ?>" data-type="N"></td>
-                <td>
-                    <textarea style="resize: none" id="txt_Area_Rad" cols="100%" rows="4"></textarea></td>
-                <td id="td_Rad_Val"><span id="span_Rad_Val_OK" class="glyphicon hidden">O</span>
-                    <span id="span_Rad_Val_NO" class="glyphicon glyphicon-ok visible">X</span></td>
-            </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-        <?php } ?>
-    </div>
-
-
+?>
+<script src="js/shiftEnd.js"></script>
+<div class="row m-2">
+    <h1>Remise de Garde</h1>
 </div>
-</body>
-<script src="../../js/shiftEnd.js"></script>
-</html>
+
+<div class="row">
+    <FORM action="/index.php?action=listShiftEnd" method="post" class="col">
+        <SELECT onchange="this.form.submit()" name="site" size="1">
+            <?php foreach ($Bases
+
+            as $base) { ?>
+            <OPTION value="<?= $base['id'] ?>" <?php if ($base_id == $base['id']) { ?>
+                selected="selected"
+            <?php } ?>
+                    name="site"><?= $base['name'] ?>
+                <?php } ?>
+        </SELECT>
+    </FORM>
+    <?php if ($admin['admin'] == 1) { ?>
+        <div class="col">
+            <a href="?action=NewGuardSheet" class='btn btn-primary m-1 float-right'>Nouvelle Feuille de garde</a>
+        </div>
+    <?php } ?>
+</div>
+<div class="row m-2">
+    <?php
+    foreach ($list as $item) {
+        if ($item["base_id"] == $_SESSION["Selectsite"]) {
+            $weeks[] = $item;
+
+        }
+    } ?>
+</div>
+
+
+<table class="table table-bordered  table-striped" style="text-align: center">
+    <thead class="thead-dark">
+    <th>Date</th>
+    <th>État</th>
+    <th>Véhicule</th>
+    <th>Responsable</th>
+    <th>Équipage</th>
+
+    <?php if ($admin['admin'] == 1) { ?>
+        <th>Action</th><?php } ?>
+    </thead>
+    <?php ?>
+    <?php foreach ($guardsheets as $guardsheet) { ?>
+        <tr>
+            <td><?= substr($guardsheet['date'], 0, 10) ?></td>
+            <td><?php if ($guardsheet['state'] == 'open') { ?>
+                    <?= "Ouvert " ?>
+                <?php }
+                if ($guardsheet['state'] == 'reopen') { ?>
+                    <?= "Réouverte " ?>
+                <?php }
+                if ($guardsheet['state'] == 'closed') { ?>
+                    <?= "Fermée " ?>
+                <?php } ?></td>
+            <td>Jour : <?= $guardsheet['novaDay'] ?><br>Nuit : <?= $guardsheet['novaNight'] ?></td>
+            <td>Jour :<?= $guardsheet['bossDay'] ?><br>Nuit :<?= $guardsheet['bossNight'] ?> </td>
+            <td>Jour : <?= $guardsheet['teammateDay'] ?><br>Nuit : <?= $guardsheet['teammateNight'] ?></td>
+
+
+            <?php if ($admin['admin'] == 1) { ?>
+                <td>
+                    <?php if ($guardsheet['state'] == 'closed') : ?>
+                        <form action="/index.php?action=reopenShift" method="post">
+                            <button class="btn btn-primary btn-sm" name="reopen" value="<?= $guardsheet['id'] ?>"
+                            </button>Reopen
+                        </form>
+                    <?php endif; ?>
+                    <?php if ($guardsheet['state'] == 'open' || $guardsheet['state'] == 'reopen') : ?>
+                        <form action="/index.php?action=closedShift" method="post">
+                            <button class="btn btn-primary btn-sm" name="close" value="<?= $guardsheet['id'] ?>"
+                            </button>Close
+                        </form>
+                    <?php endif; ?>
+                </td>
+            <?php } ?>
+        </tr>
+    <?php } ?>
+</table>
+
 <?php
+
 $content = ob_get_clean();
 require "view/gabarit.php";
 ?>
