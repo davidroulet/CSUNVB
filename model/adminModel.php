@@ -71,7 +71,10 @@ function addNewBase($nameBase)
 
 function changePwdState($changeUser)
 {
-    return execute("UPDATE users SET firstconnect= :firstconnect WHERE id= :id", ['firstconnect' => 1, 'id' => $changeUser]);
+    $newpassw = substr(md5(rand()),0,6);
+    $hash = password_hash($newpassw, PASSWORD_DEFAULT);
+    execute("UPDATE users SET firstconnect= :firstconnect, password = :hash WHERE id= :id", ['firstconnect' => 1, 'id' => $changeUser, 'hash' => $hash]);
+    return $newpassw;
 }
 function addNewNova($nameNova)
 {

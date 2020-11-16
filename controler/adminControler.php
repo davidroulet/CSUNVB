@@ -159,7 +159,8 @@ function NewGuardSheet()
 
 function changePwd($changeUser)
 {
-    changePwdState($changeUser);
+    $newpassw = changePwdState($changeUser);
+    $_SESSION['flashmessage'] = "Le nouveau mot de passe est: $newpassw";
     adminCrew();
 }
 
