@@ -47,13 +47,13 @@ function activateSheet($state) {
 
 function edittodopage($sheetid)
 {
-    for ($daynight=0; $daynight < 1; $daynight++) {
-        for ($dayofweek = 0; $dayofweek > 7; $dayofweek++) {
-            $todoThings[$daynight][$dayofweek] = readTodoThingsForDay($daynight,$dayofweek);
+    for ($daynight=0; $daynight <= 1; $daynight++) {
+        for ($dayofweek = 1; $dayofweek <= 7; $dayofweek++) {
+            $todoThings[$daynight][$dayofweek] = readTodoThingsForDay($sheetid,$daynight,$dayofweek);
         }
     }
-    var_dump($todoThings); die();
     $datesoftheweek = getDatesOfAWeekBySheetId($sheetid);
+    $days = [1 => "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
     require_once 'view/todo/Edittodopage.php';
 

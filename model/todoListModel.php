@@ -192,63 +192,6 @@ function closeToDoPage($id)
 // WIP
 function readTodoThingsForDay($sid, $day, $dayOfWeek)
 {
-    $res = selectOne("SELECT description, type FROM todos INNER JOIN todothings t on todothing_id = t.id where todosheet_id=:sid AND daything = :daything AND dayofweek");
-    // TODO return the todothings for a specific day (0=monday, ....)
-
-        $todothingsDatas = readTodoThings();
-        $todos = todos();
-        displaydebug($todothingsDatas);
-        displaydebug($day);
-        //displaydebug($todos);
-        //displaydebug($dayOfWeek);
-
-        foreach ($todothingsDatas as $todothingsData) {
-            if (($day == $todothingsData['daything'])) {
-                foreach ($todos as $todo) {
-                if ($todo['day_of_week'] ==  $dayOfWeek) {
-                    $itemsByDay[$todothingsData['id']] = $todothingsData;
-                }
-                }
-            } else if (($todothingsData['daything'] == 0)) {
-                if ($todothingsData['days'] == $dayOfWeek) {
-                    foreach ($todos as $todo) {
-                        if ($todo['day_of_week'] ==  $dayOfWeek) {
-                            $itemsByDay[$todothingsData['id']] = $todothingsData;
-                        }
-                    }
-                }
-
-            }
-        }
-
-    return $itemsByDay;
-
-
-// Insérer les données dans la db
-
-    foreach ($logsData as $key => $val) {
-        unset ($logsData[$key]['id']);
-    }
-
-    insertBatch("INSERT INTO logs (timestamp, author_id, item_type, item_id, text) VALUES (:timestamp, :author_id, :item_type, :item_id, :text);", $logsData);
-
-
-//WeekPlan
-
-
-    foreach ($todothingsData as $todothingsDataWeek) {
-
-        $planweek = "";
-        foreach ($todothingsDataWeek["days"] as $day) {
-            if ($day == false) {
-                $datawrite = 0;
-            } else {
-                $datawrite = 1;
-            }
-            $planweek = "$planweek" . "$datawrite";
-        }
-        $todothingsDataWeek["days"] = $planweek;
-        $todothingsData[$todothingsDataWeek["id"]] = $todothingsDataWeek;
-
-    }
+    $res = selectMany("SELECT description, type FROM todos INNER JOIN todothings t on todothing_id = t.id where todosheet_id=:sid AND daything = :daything AND day_of_week = :dayofweek",["sid" => $sid, "daything" => $day, "dayofweek" => $dayOfWeek]);
+    return $res;
 }

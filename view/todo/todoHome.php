@@ -50,7 +50,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         <?php
         foreach ($todoSheets as $todosheet) { ?>
             <tr>
-                <form action="/index.php?action=edittod&sheetid" method="post">
+                <form action="/index.php?action=edittod&sheetid=<?= $todosheet['id'] ?>" method="post">
                     <td>
                         <?php
                         //Convert the date string into a unix timestamp.

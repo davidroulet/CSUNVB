@@ -13,150 +13,39 @@
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 
-$days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 ?>
 <h1 class="center p-4 font-weight-bold"><?= $title ?></h1>
 
-    <?php if ($_SESSION['username']['admin'] == 1) { ?>
-        <button name="newtodo">Nouvelle tâche</button>
-
-        <?php if ($state = "blank") { ?>
-            <button name="activatetodosheets">Activer</button>
-
-        <?php } ?>
-        <form action="/index.php?action=reopentodo" method="post">
-            <button class="btn-dark" name="reopentodo"">reopen
-            </button>
-        </form>
-        <form action="/index.php?action=closetodo" method="post">
-            <button class="btn-dark" name="closedtodo"">
-            close</button>
-        </form>
-
-    <?php } ?>
-
 <div class="week text-center hour p-0">
-    <?php
-    foreach ($datesoftheweek as $index => $onedate) : ?>
-        <div class='bg-primary text-white col-md font-weight-bold'><?= $days[$index-1] ?><br><?= date("d.m.Y", $onedate) ?></div>
+    <?php foreach ($datesoftheweek as $index => $onedate) : ?>
+        <div class='bg-primary text-white col-md font-weight-bold'><?= $days[$index] ?><br><?= date("d.m.Y", $onedate) ?></div>
     <?php endforeach; ?>
 </div>
 <div class="week text-center hour">
     <div class="col-md font-weight-bold bg-info text-white">Journée</div>
 </div>
-<div class="week hour">
-
-    <div class="day col-md">
-
-        <?php foreach ($dayThingsForMonday as $thing) { ?>
-
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($dayThingsForTuesday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($dayThingsForWednesday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($dayThingsForThursday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($dayThingsForFriday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($dayThingsForSaturday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-
-        <?php foreach ($dayThingsForSunday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-
+<div class="row week hour">
+    <?php foreach ($datesoftheweek as $index => $onedate) : ?>
+        <div class="col p-1">
+            <?php foreach ($todoThings[1][$index] as $todothing): ?>
+                <div class="todothing mb-1"><?= $todothing['description'] ?></div>
+            <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
 </div>
 <div class="week text-center hour">
-    <div class="col-md font-weight-bold h4 bg-dark text-white"> Nuit</div>
+    <div class="col-md font-weight-bold bg-info text-white">Nuit</div>
 </div>
-<div class="week hour">
-    <div class="day col-md">
-
-        <?php foreach ($nightThingsForSunday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-
-    <div class="day col-sm">
-
-        <?php foreach ($nightThingsForMonday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($nightThingsForTuesday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($nightThingsForWednesday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($nightThingsForThursday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($nightThingsForFriday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="day col-md">
-        <?php foreach ($nightThingsForSaturday as $thing) { ?>
-            <a href="?action=Edittodo&<?= $thing['id'] ?> " class="over">
-                <div class="hour"><?= $thing['description'] ?></div>
-            </a>
-        <?php } ?>
-    </div>
+<div class="row week hour">
+    <?php foreach ($datesoftheweek as $index => $onedate) : ?>
+        <div class="col p-1">
+            <?php foreach ($todoThings[0][$index] as $todothing): ?>
+                <div class="todothing mb-1"><?= $todothing['description'] ?></div>
+            <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
 </div>
+
 
 <?php
 $content = ob_get_clean();
