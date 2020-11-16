@@ -28,16 +28,28 @@ function getUsers()     //Récupère tous les utilisateurs
     return selectMany("SELECT * FROM users", []);
 }
 
+function getUser($id)     //Récupère l'utilisateur qui a cet $id
+{
+    return selectOne("SELECT * FROM users where id=:id", ['id' => $id]);
+}
+
 function getUserAdmin($admin){
     return selectOne("SELECT * FROM users where admin = :admin", ['admin' => $admin]);
 }
 
-function SaveUser($hash, $id)       //Met à jour les informations d'un utilisateur
+function SaveUser($user)       //Met à jour un utilisateur
+{
+    unset($user['password']);
+    unset($user['firstconnect']);
+    return execute("UPDATE users SET firstname= :firstname, lastname= :lastname, initials = :initials, admin = :admin where id = :id", $user);
+}
+
+function SaveUserPassword($hash, $id)       //Met à jour le mdp d'un utilisateur
 {
     return execute("UPDATE users SET password= :password, firstconnect= :firstconnect where id = :id", ['password' => $hash, 'firstconnect' => 0, 'id' => $id]);
 }
 
-function SaveBase($bases)       //Met à jour les informations d'une base 
+function SaveBase($bases)       //Met à jour les informations d'une base
 {
     return execute("UPDATE bases SET name= :name where id = :bases", [$bases]);
 }

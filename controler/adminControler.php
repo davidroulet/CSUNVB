@@ -63,26 +63,24 @@ function adminDrugs()       //Pointe sur la liste des médicaments
     $drugs = getDrugs();
     require_once 'view/Admin/adminDrugs.php';
 }
-function adminGuardSheet(){
+
+function adminGuardSheet()
+{
     $guardsheets = getGuardsheets();
-    require_once  'view/viewsShiftEnd/ListShiftEnd.php';
+    require_once 'view/viewsShiftEnd/ListShiftEnd.php';
 }
 
 function changeUserAdmin($changeUser)       //Change un user en admin (et inversément)
 {
-    $Users = getUsers();
-    for ($i = 0; $i < count($Users); $i++) {
-        if ($Users[$i]['id'] == $changeUser) {
-            if ($Users[$i]['admin'] == false) {
-                $Users[$i]['admin'] = true;
-                $_SESSION['flashmessage'] = $Users[$i]['initials'] . " est désormais un administrateur.";
-            } else {
-                $Users[$i]['admin'] = false;
-                $_SESSION['flashmessage'] = $Users[$i]['initials'] . " est désormais un utilisateur.";
-            }
-        }
+    $user = getUser($changeUser);
+    if ($user['admin'] == false) {
+        $user['admin'] = true;
+        $_SESSION['flashmessage'] = $user['initials'] . " est désormais un administrateur.";
+    } else {
+        $users['admin'] = false;
+        $_SESSION['flashmessage'] = $user['initials'] . " est désormais un utilisateur.";
     }
-    SaveUser($Users);
+    SaveUser($user);
     adminCrew();
 }
 
@@ -117,7 +115,7 @@ function changeFirstPassword($passwordchange, $confirmpassword)         //Oblige
             login();
         } else {
             $id = $_SESSION['username']['id'];
-            SaveUser($hash, $id);
+            SaveUserPassword($hash, $id);
             disconnect();
         }
     } else {
@@ -147,7 +145,8 @@ function saveNewDrugs($nameDrug)
     }
     adminDrugs();
 }
-function  NewGuardSheet()
+
+function NewGuardSheet()
 {
     $result = addNewGuardsheet();
     if ($result == false) {
@@ -158,17 +157,19 @@ function  NewGuardSheet()
     adminGuardSheet();
 }
 
-function changePwd($changeUser){
+function changePwd($changeUser)
+{
     changePwdState($changeUser);
     adminCrew();
 }
+
 function saveNewNovas($nameNova)
 {
     $result = addNewNova($nameNova);
     if ($result == 0) {
         $_SESSION['flashmessage'] = "Une erreur est survenue. Impossible d'ajouter la Nova, il est possible que cette Nova existe déjà";
     } else {
-            $_SESSION['flashmessage'] = "La Nova a bien été créé !";
+        $_SESSION['flashmessage'] = "La Nova a bien été créé !";
     }
     adminNovas();
 }
@@ -205,4 +206,5 @@ function modifyNameNova($modifNameNova, $idNova)
     }
     adminNovas();
 }
+
 ?>
