@@ -73,12 +73,12 @@ function adminGuardSheet()
 function changeUserAdmin($changeUser)       //Change un user en admin (et inversément)
 {
     $user = getUser($changeUser);
-    if ($user['admin'] == false) {
-        $user['admin'] = true;
-        $_SESSION['flashmessage'] = $user['initials'] . " est désormais un administrateur.";
-    } else {
-        $users['admin'] = false;
+    if ($user['admin']) {
+        $user['admin'] = 0;
         $_SESSION['flashmessage'] = $user['initials'] . " est désormais un utilisateur.";
+    } else {
+        $user['admin'] = 1;
+        $_SESSION['flashmessage'] = $user['initials'] . " est désormais un administrateur.";
     }
     SaveUser($user);
     adminCrew();
